@@ -2,14 +2,14 @@
 
 
 
-
-    <button> 
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        Submit
-    </button>
+   
+  <ion-button  fill="clear" type="submit"   > 
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    Submit
+  </ion-button>
 
 
 
@@ -17,11 +17,11 @@
 
 <script>
 import { defineComponent } from 'vue';
-
+import { IonButton } from '@ionic/vue';
 export default defineComponent({
   name: 'FormButton',
   components: {
-    
+    IonButton
   },
   methods: {
       
@@ -33,10 +33,13 @@ export default defineComponent({
 
 
 
- button{
+ ion-button{
+   
   position: relative;
   display: inline-block;
-  padding: 10px 20px;
+  /* padding: 0px 0px 10px 20px; */
+  
+  width: 25%;
   color: #03e9f4;
   font-size: 16px;
   text-decoration: none;
@@ -45,10 +48,12 @@ export default defineComponent({
   transition: .5s;
   margin-top: 40px;
   letter-spacing: 4px;
-  background: transparent;
+  --padding-start: 0px ;
+  --padding-end: 0px ;
+  /* background: transparent; */
 }
 
-button:hover {
+ion-button:hover {
   background: #03e9f4;
   color: #fff;
   border-radius: 5px;
@@ -58,12 +63,12 @@ button:hover {
               0 0 100px #03e9f4;
 }
 
-button span {
+ion-button span {
   position: absolute;
   display: block;
 }
 
-button span:nth-child(1) {
+ion-button span:nth-child(1) {
   top: 0;
   left: -100%;
   width: 100%;
@@ -81,9 +86,10 @@ button span:nth-child(1) {
   }
 }
 
-button span:nth-child(2) {
+ion-button span:nth-child(2) {
   top: -100%;
   right: 0;
+  
   width: 2px;
   height: 100%;
   background: linear-gradient(180deg, transparent, #03e9f4);
@@ -100,7 +106,7 @@ button span:nth-child(2) {
   }
 }
 
-button span:nth-child(3) {
+ion-button span:nth-child(3) {
   bottom: 0;
   right: -100%;
   width: 100%;
@@ -119,7 +125,7 @@ button span:nth-child(3) {
   }
 }
 
-button span:nth-child(4) {
+ion-button span:nth-child(4) {
   bottom: -100%;
   left: 0;
   width: 2px;
