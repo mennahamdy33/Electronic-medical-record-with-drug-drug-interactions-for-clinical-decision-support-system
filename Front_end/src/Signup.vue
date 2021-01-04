@@ -1,18 +1,19 @@
 <template>
 <ion-content>
 
-  <div class="con">
-    <ion-grid>  
+  <div class="content">
+    <ion-grid >  
       
 
       
 
 
       <ion-row>
-        <ion-col >
+        <ion-col offset-lg="5" offset-xs="4" size-lg="2" size-xs="4">
           <div class="image"> 
               <!-- <img :src="memory"  > -->
-              <img src="../public/assets/logo4.png"  >
+              <img src="../public/assets/logo11.png"  >
+              <!-- <img src="../public/assets/logo4.png"  > -->
               
 
           </div>
@@ -25,51 +26,60 @@
 
       <ion-row>
         
-        <ion-col size="12" size-sm="4" size-md="5" offset-sm="2" offset-md="4">
-          <div class="login-box" >
+        <ion-col offset-lg="2" size-lg="8">
+          <div class="login-box">
             <h2>Sign Up</h2>
             <form v-on:submit.prevent="">
               <ion-grid>
                 <ion-row>
-                  <ion-col>
+                  <ion-col size="12" size-sm>
                     <form-field LableText="First Name"/>
                   </ion-col>
-                  <ion-col>
+                  <ion-col size="12" size-sm>
                     <form-field LableText="Last Name"/>
                   </ion-col>
                 </ion-row>
 
                 <ion-row>
-                  <ion-col>
+                  <ion-col size="12" size-sm>
                     <form-field LableText="Gender"/>
                   </ion-col>
-                  <ion-col>
+                  <ion-col size="12" size-sm>
                     <form-field LableText="National ID"/>
                   </ion-col>
                 </ion-row>
 
                 <ion-row>
-                  <ion-col>
+                  <ion-col size="12" size-sm>
                     <form-field LableText="Phone Number"/>
                   </ion-col>
-                  <ion-col>
+                  <ion-col size="12" size-sm>
                     <form-field LableText="Birth Date"/>
                   </ion-col>
                 </ion-row>
 
                 <ion-row>
-                  <ion-col>
+                  <ion-col size="12" size-sm>
                     <form-field LableText="Education"/>
                   </ion-col>
-                  <ion-col>
+                  <ion-col size="12" size-sm>
                     <form-field LableText="Speciality"/>
                   </ion-col>
                 </ion-row>
 
-                <form-field LableText="Address"/>
-              </ion-grid>
+                <ion-row>
+                  <ion-col size="12" size-sm>
+                     <form-field LableText="Address"/>
+                  </ion-col>
+                  
+                </ion-row>
 
-              <form-button/>
+              </ion-grid>
+              <ion-row>
+                <ion-col size-lg="2" size-xs="6" >
+                <form-button/>
+                </ion-col>
+              </ion-row>
             </form>
           </div>
         </ion-col>
@@ -115,40 +125,46 @@ export default defineComponent({
 
 <style scoped>
 
-.con {
+.content {
   margin:0;
   padding:0;
   font-family: sans-serif;
-  /* background: linear-gradient(#141e30, #07adb9); */
-  background: linear-gradient(#141e30, #6f92b8);
-  /* background: linear-gradient(#141e30, #486686); */
+  background: linear-gradient(#a6dbe2, #79aebc);
+  /* background: linear-gradient(#79aebc, #a6dbe2); */
+  /* background: linear-gradient(#141e30, #6f92b8); */
+  /* background: linear-gradient(#f1c2fdc0, #8d538f); */
+  /* background: linear-gradient( #54af94c0,#aaf8e1c0); */
+  /* background: linear-gradient( #a368a5,#f1c2fdc0); */
+  /* background: linear-gradient( #424874,#a6b1e1); */
   
 
 }
 
-.login-box {
+/* .login-box { */
   
   /* position: absolute; */
   /* top: 55%; */
   /* left: 35%; */
-  display: block;
+  /* display: block;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; */
 
-  /*width: 500px;*/
-  padding: 40px;
+  /* width: 50%; */
+  /* width: 500px; */
+  /* padding: 40px; */
   /* transform: translate(-50%, -50%); */
-  background: rgba(31, 29, 29, 0.281);
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0,0,0,.6);
-  border-radius: 10px;
-}
+  /* background: rgba(31, 29, 29, 0.281); */
+  /* box-sizing: border-box; */
+  /* box-shadow: 0 15px 25px rgba(0,0,0,.6); */
+  /* border-radius: 10px; */
+/* } */
 
 .login-box h2 {
   margin: 0 0 30px;
   padding: 0;
-  color: #fff;
+  color: #05545a;
   text-align: center;
+  font-weight: bold;
 }
 
 /* .image{
@@ -158,17 +174,17 @@ export default defineComponent({
 } */
 
 
-.image img{
-  width: 13%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50px;
+/* .image img{ */
+  /* width: 20%; */
+  /* display: block; */
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  /* margin-bottom: 50px; */
   
   /* width: 40%; */
   
   
-}
+/* } */
 
 /* form{
   display: grid;
