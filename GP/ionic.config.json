@@ -1,0 +1,7 @@
+{
+  "name": "GP",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}

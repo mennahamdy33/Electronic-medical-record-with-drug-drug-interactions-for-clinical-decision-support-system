@@ -25,8 +25,8 @@
 
       <ion-row>
         
-        <ion-col>
-          <div class="login-box">
+        <ion-col size="12" size-sm="4" size-md="5" offset-sm="2" offset-md="4">
+          <div class="login-box" >
             <h2>Sign Up</h2>
             <form v-on:submit.prevent="">
               <ion-grid>
@@ -135,7 +135,7 @@ export default defineComponent({
   margin-left: auto;
   margin-right: auto;
 
-  width: 500px;
+  /*width: 500px;*/
   padding: 40px;
   /* transform: translate(-50%, -50%); */
   background: rgba(31, 29, 29, 0.281);
