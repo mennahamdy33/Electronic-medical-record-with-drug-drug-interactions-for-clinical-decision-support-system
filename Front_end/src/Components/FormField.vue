@@ -2,11 +2,12 @@
 
    
         
-
+    
     <div class="user-box">
     <input type="text" name="" required="">
     <label>{{ LableText }}</label>
     </div>
+    
     
 
         
@@ -66,8 +67,10 @@ export default defineComponent({
 .login-box .user-box input:valid ~ label {
   top: -20px;
   left: 0;
-  color: #03e9f4;
-  font-size: 12px;
+  color: #05545a;
+  /* color: #d1fdff; */
+  font-size: 16px;
+  font-weight: bold;
 }
 
 </style>
