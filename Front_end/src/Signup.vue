@@ -1,26 +1,32 @@
 <template>
-<ion-content>
 
-  <div class="content">
-    <ion-grid >  
+<!-- <body> -->
+<ion-content class="content">
+
+
+  <!-- <div class="content"> -->
+    <ion-grid  >  
+      <!-- <progress-bar></progress-bar> -->
       
 
-      
-
-
-      <ion-row>
-        <ion-col offset-lg="5" offset-xs="4" size-lg="2" size-xs="4">
+      <ion-row >
+        <ion-col offset-lg="0" offset-xs="3.7" size-lg="2" size-xs="5">
           <div class="image"> 
-              <!-- <img :src="memory"  > -->
-              <img src="../public/assets/logo11.png"  >
-              <!-- <img src="../public/assets/logo4.png"  > -->
+              
+            <!-- <img src="../public/assets/logo12.png"  > -->
+            <img src="../public/assets/logo4.png"  >
               
 
           </div>
         </ion-col>
         
-      
+        <ion-col offset-lg="1" pull-xs="0.7"  size-lg="6" size-xs="12" >
+          <progress-bar></progress-bar>
+        </ion-col>
       </ion-row>
+
+
+      
 
 
 
@@ -30,7 +36,7 @@
           <div class="login-box">
             <h2>Sign Up</h2>
             <form v-on:submit.prevent="">
-              <ion-grid>
+              <ion-grid class="FormGrid">
                 <ion-row>
                   <ion-col size="12" size-sm>
                     <form-field LableText="First Name"/>
@@ -83,22 +89,34 @@
             </form>
           </div>
         </ion-col>
-      
+
+         <!-- <ion-col offset-lg="1" offset-xs="4" size-lg="2" size-xs="4" class="ion-align-self-end">
+          <div class="image"> 
+              
+            <img src="../public/assets/logo12.png"  >
+            <img src="../public/assets/logo4.png"  >
+              
+
+          </div>
+        </ion-col> -->
       </ion-row>
 
-      
+ 
     </ion-grid>
 
-  </div>
+  <!-- </div> -->
 
 </ion-content>
+<!-- </body> -->
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import { IonCol, IonGrid, IonRow,IonContent } from '@ionic/vue';
+import { IonContent,IonCol, IonGrid, IonRow } from '@ionic/vue';
 import FormButton from './Components/FormButton.vue';
 import FormField from './Components/FormField'
+
+import ProgressBar from './Components/ProgressBar.vue';
 export default defineComponent({
   name: 'Signup',
   components: {
@@ -108,6 +126,9 @@ export default defineComponent({
     IonGrid,
     IonRow,
     IonContent,
+    ProgressBar,
+    
+   
   },
   data(){
     return{
@@ -129,15 +150,17 @@ export default defineComponent({
   margin:0;
   padding:0;
   font-family: sans-serif;
-  background: linear-gradient(#a6dbe2, #79aebc);
-  /* background: linear-gradient(#79aebc, #a6dbe2); */
+  /* background: linear-gradient(#a6dbe2, #79aebc); */
+  /* background: linear-gradient(#a4a8a8, #73a8a8); */
   /* background: linear-gradient(#141e30, #6f92b8); */
-  /* background: linear-gradient(#f1c2fdc0, #8d538f); */
+  /* background: linear-gradient(#c4c5c5a2, #8a8989); */
   /* background: linear-gradient( #54af94c0,#aaf8e1c0); */
-  /* background: linear-gradient( #a368a5,#f1c2fdc0); */
-  /* background: linear-gradient( #424874,#a6b1e1); */
+  --background: linear-gradient(#141e30, #243b55);
   
-
+}
+.FormGrid ion-col{
+--ion-grid-column-padding: 20px;
+  /* --ion-grid-padding: 50px; */
 }
 
 /* .login-box { */
@@ -162,7 +185,8 @@ export default defineComponent({
 .login-box h2 {
   margin: 0 0 30px;
   padding: 0;
-  color: #05545a;
+  color: #ffffff;
+  /* color: #05545a; */
   text-align: center;
   font-weight: bold;
 }

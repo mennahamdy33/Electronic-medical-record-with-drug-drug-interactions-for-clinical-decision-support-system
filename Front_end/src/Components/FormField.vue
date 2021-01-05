@@ -67,7 +67,9 @@ export default defineComponent({
 .login-box .user-box input:valid ~ label {
   top: -20px;
   left: 0;
-  color: #05545a;
+  color: #03e9f4;
+  
+  /* color: #05545a; */
   /* color: #d1fdff; */
   font-size: 16px;
   font-weight: bold;

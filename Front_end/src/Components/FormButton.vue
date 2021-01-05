@@ -43,8 +43,9 @@ export default defineComponent({
   /* padding: 0px 0px 10px 20px; */
   
   /* width: 25%; */
-  color: #05545a;
-  font-weight: bold;
+  color: #03e9f4;
+  /* color: #05545a; */
+  /* font-weight: bold; */
   /* color:  #333333; */
   font-size: 16px;
   /* font-size: 100%; */
@@ -67,8 +68,8 @@ export default defineComponent({
 }
 
 ion-button:hover {
-  /* background:  #03e9f4; */
-  background: #356c84;
+  background:  #03e9f4;
+  /* background: #356c84; */
   color: #fff;
   border-radius: 5px;
   /* box-shadow: 0 0 5px  #00e1ff,
@@ -95,8 +96,8 @@ ion-button span:nth-child(1) {
   left: -100%;
   width: 100%;
   height: 3px;
-  /* background: linear-gradient(90deg, transparent, #5c5c5c); */
-  background: linear-gradient(90deg, transparent, #05545a);
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  /* background: linear-gradient(90deg, transparent, #05545a); */
   animation: btn-anim1 1s linear infinite;
 }
 
@@ -115,7 +116,7 @@ ion-button span:nth-child(2) {
   
   width: 3px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, #05545a);
+  background: linear-gradient(180deg, transparent, #03e9f4);
   animation: btn-anim2 1s linear infinite;
   animation-delay: .25s
 }
@@ -134,7 +135,7 @@ ion-button span:nth-child(3) {
   right: -100%;
   width: 100%;
   height: 3px;
-  background: linear-gradient(270deg, transparent, #05545a);
+  background: linear-gradient(270deg, transparent, #03e9f4);
   animation: btn-anim3 1s linear infinite;
   animation-delay: .5s
 }
@@ -153,7 +154,7 @@ ion-button span:nth-child(4) {
   left: 0;
   width: 3px;
   height: 100%;
-  background: linear-gradient(360deg, transparent, #05545a);
+  background: linear-gradient(360deg, transparent, #03e9f4);
   animation: btn-anim4 1s linear infinite;
   animation-delay: .75s
 }
