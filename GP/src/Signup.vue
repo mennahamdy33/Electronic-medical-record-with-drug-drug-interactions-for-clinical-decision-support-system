@@ -39,43 +39,56 @@
               <ion-grid class="FormGrid">
                 <ion-row>
                   <ion-col size="12" size-sm>
-                    <form-field LableText="First Name"/>
+                    <form-field type="text" LableText="First Name"/>
                   </ion-col>
                   <ion-col size="12" size-sm>
-                    <form-field LableText="Last Name"/>
+                    <form-field type="text" LableText="Last Name"/>
+                  </ion-col>
+                </ion-row>
+
+                <ion-row>
+                  <!-- <ion-col size="12" size-sm size-lg="2">
+                    <h1 style="color:white; fontSize:18px;">Gender</h1>
+                  </ion-col> -->
+                  <!-- <ion-col size="12" size-sm size-lg="2">
+                    <radio-form id="Male"/>
+                  </ion-col> -->
+
+                  <ion-col size="12" size-sm  >
+                    <label style="color:white; fontSize:18px;">Gender</label>
+
+                    <radio-form id="Male"/>
+
+                    <radio-form id="Female"/>
+                    <!-- <form-field type="radio" LableText="Male" value="male" id="male" name="gender"/> -->
+                    <!-- <form-field type="radio" LableText="Female" value="female" id="female" name="gender"/> -->
+                  </ion-col>
+                  <ion-col size="12" size-sm>
+                    <form-field  type="text" LableText="National ID"/>
                   </ion-col>
                 </ion-row>
 
                 <ion-row>
                   <ion-col size="12" size-sm>
-                    <form-field LableText="Gender"/>
+                    <form-field type="text" LableText="Phone Number"/>
                   </ion-col>
                   <ion-col size="12" size-sm>
-                    <form-field LableText="National ID"/>
-                  </ion-col>
-                </ion-row>
-
-                <ion-row>
-                  <ion-col size="12" size-sm>
-                    <form-field LableText="Phone Number"/>
-                  </ion-col>
-                  <ion-col size="12" size-sm>
-                    <form-field LableText="Birth Date"/>
+                    <form-field type="date" LableText="Birth Date"/>
                   </ion-col>
                 </ion-row>
 
                 <ion-row>
                   <ion-col size="12" size-sm>
-                    <form-field LableText="Education"/>
+                    <form-field type="text" LableText="Education"/>
                   </ion-col>
                   <ion-col size="12" size-sm>
-                    <form-field LableText="Speciality"/>
+                    <form-field type="text" LableText="Speciality"/>
                   </ion-col>
                 </ion-row>
 
                 <ion-row>
                   <ion-col size="12" size-sm>
-                     <form-field LableText="Address"/>
+                     <form-field type="text" LableText="Address"/>
                   </ion-col>
                   
                 </ion-row>
@@ -83,7 +96,7 @@
               </ion-grid>
               <ion-row>
                 <ion-col size-lg="2" size-xs="6" >
-                <form-button/>
+                <form-button type="submit" buttonText="Submit"/>
                 </ion-col>
               </ion-row>
             </form>
@@ -115,7 +128,7 @@ import { defineComponent } from 'vue';
 import { IonContent,IonCol, IonGrid, IonRow } from '@ionic/vue';
 import FormButton from './Components/FormButton.vue';
 import FormField from './Components/FormField'
-
+import RadioForm from './Components/RadioForm'
 import ProgressBar from './Components/ProgressBar.vue';
 export default defineComponent({
   name: 'Signup',
@@ -127,9 +140,11 @@ export default defineComponent({
     IonRow,
     IonContent,
     ProgressBar,
+    RadioForm
     
    
   },
+    
   data(){
     return{
       

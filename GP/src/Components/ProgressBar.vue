@@ -2,7 +2,7 @@
 
     <div class="container">
       <ul class="progressbar">
-          <li class="active">login</li>
+          <li class="active">Personal information</li>
           <li >choose interest</li>
           <li>add friends</li>
           <li>View map</li>
@@ -97,7 +97,18 @@ export default defineComponent({
       background-color: #03e9f4;
   }
 
+@media screen and (max-width: 539px) {
+  .progressbar li{
+    font-size: 9.5px;
+  }
+  
+  .progressbar li.active {
 
+    font-size: 10.8px;
+
+    
+  }
+}
 
 
 </style>

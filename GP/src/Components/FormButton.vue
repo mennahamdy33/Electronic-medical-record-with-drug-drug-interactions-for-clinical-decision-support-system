@@ -3,13 +3,13 @@
 
 
    
-  <ion-button expand="full" fill="clear" type="submit"  > 
+  <ion-button expand="full" fill="clear"  > 
     <span></span>
     <span></span>
     <span></span>
     <span></span>
     
-    <div class="text">Submit</div>
+    <div class="text">{{ buttonText }}</div>
       
   </ion-button>
 
@@ -28,7 +28,8 @@ export default defineComponent({
   },
   methods: {
       
-  }
+  },
+  props:['buttonText']
 });
 </script>
 
