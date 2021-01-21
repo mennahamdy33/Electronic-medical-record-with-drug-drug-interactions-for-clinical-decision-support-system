@@ -12,14 +12,14 @@
 import { IonApp, IonRouterOutlet } from '@ionic/vue';
 import { defineComponent } from 'vue';
 // import ProgressBar from './Components/ProgressBar.vue';
-import Signup from './Signup.vue';
+// import Signup from './Signup.vue';
 export default defineComponent({
   name: 'App',
   components: {
     IonApp,
     IonRouterOutlet,
     // ProgressBar,
-    Signup
+    // Signup
     
   }
 });
