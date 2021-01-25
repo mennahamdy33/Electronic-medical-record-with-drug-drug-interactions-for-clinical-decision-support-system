@@ -61,7 +61,7 @@
                             <ion-col size-lg="2" size-xs="6" >
                             
                             
-                            <form-button type="button" buttonText="Next"/>
+                            <form-button @click="changePhase({currentPhase: 'MakeAccount'})" type="button" buttonText="Next"/>
                             </ion-col>
                         </ion-row>
                     </ion-grid>
@@ -80,6 +80,7 @@ import { IonCol, IonGrid, IonRow } from '@ionic/vue';
 import FormButton from '../../Components/FormButton.vue';
 import FormField from '../../Components/FormField'
 import RadioForm from '../../Components/RadioForm'
+import { mapActions } from 'vuex';
 export default defineComponent({
   name: 'Signup',
   components: {
@@ -101,7 +102,8 @@ export default defineComponent({
     }
   },
   methods: {
-    
+    ...mapActions(['changePhase'])
+
   }
 });
 </script>

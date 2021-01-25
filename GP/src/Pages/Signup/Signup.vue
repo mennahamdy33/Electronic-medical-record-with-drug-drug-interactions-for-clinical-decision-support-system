@@ -16,9 +16,9 @@
           </ion-col>
         </ion-row>
 
-        <personal-information/>
-        <!-- <make-account/> -->
-        
+        <personal-information v-if=" SignupPhase === 'PersonalInformation'" />
+        <make-account v-if=" SignupPhase === 'MakeAccount'" />
+         <clinics v-if=" SignupPhase === 'Clinics'" /> 
       </ion-grid>
     </ion-content>
   </ion-page>
@@ -29,7 +29,10 @@ import { defineComponent } from 'vue';
 import { IonPage,IonContent,IonCol, IonGrid, IonRow } from '@ionic/vue';
 import ProgressBar from '../../Components/ProgressBar.vue';
 import PersonalInformation from './PersonalInformation.vue';
-// import MakeAccount from './MakeAccount.vue';
+import MakeAccount from './MakeAccount.vue';
+import Clinics from './Clinics.vue'
+import { mapGetters } from 'vuex';
+
 export default defineComponent({
   name: 'Signup',
   components: {
@@ -41,7 +44,8 @@ export default defineComponent({
     ProgressBar,
     IonPage,
     PersonalInformation,
-    // MakeAccount  
+    MakeAccount ,
+    Clinics 
     
    
   },
@@ -54,6 +58,9 @@ export default defineComponent({
   },
   methods: {
     
+  },
+  computed: {
+    ...mapGetters(['SignupPhase'])
   }
 });
 </script>

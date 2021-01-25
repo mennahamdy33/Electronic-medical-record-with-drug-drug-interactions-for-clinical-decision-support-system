@@ -3,9 +3,14 @@
 <!-- <body> -->
   <ion-content class="content">
 
-
-      <form-button router-link="/Signup" type="button" buttonText="Signup"/>
+    <ion-grid>
+      <ion-row>
+        <ion-col size-lg="2">
+          <form-button router-link="/Signup" type="button" buttonText="Signup"/>
+        </ion-col>
+      </ion-row>
       <!-- <router-link to="/MakeAccount"><form-button type="button" buttonText="Signup"/></router-link> -->
+    </ion-grid>
   </ion-content>
 </ion-page>
 <!-- </body> -->
@@ -13,7 +18,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { IonContent , IonPage  } from '@ionic/vue';
+import { IonContent , IonPage, IonGrid , IonCol, IonRow  } from '@ionic/vue';
 import FormButton from '../Components/FormButton.vue';
 // import FormField from '../Components/FormField'
 // import ProgressBar from '../Components/ProgressBar.vue';
@@ -22,9 +27,9 @@ export default defineComponent({
   components: {
     FormButton,
     // FormField,
-    // IonCol,
-    // IonGrid,
-    // IonRow,
+    IonCol,
+    IonGrid,
+    IonRow,
     IonContent,
     IonPage 
     // ProgressBar,

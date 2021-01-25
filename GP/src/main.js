@@ -26,8 +26,24 @@ import './theme/variables.css';
 const store = createStore({
   state() {
     return {
-      counter: 0
+      SignupPhase: 'PersonalInformation'
     };
+  },
+  mutations: {
+    changePhase(state , payload ){
+      state.SignupPhase = payload.currentPhase;
+    }
+  } ,
+
+  actions: {
+    changePhase(context , payload){
+      context.commit('changePhase' , payload )
+    }
+  },
+  getters: {
+    SignupPhase(state) {
+      return state.SignupPhase ;
+    }
   }
 });
 

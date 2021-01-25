@@ -2,9 +2,9 @@
 
     <div class="container">
       <ul class="progressbar">
-          <li class="active">Personal information</li>
-          <li >Make an account</li>
-          <li>Clinics</li>
+          <li :class="{ active : SignupPhase === 'PersonalInformation'}">Personal information</li>
+          <li :class="{ active : SignupPhase === 'MakeAccount'}">Make an account</li>
+          <li :class="{ active : SignupPhase === 'Clinics'}">Clinics</li>
           <!-- <li>View map</li> -->
         </ul>
     </div>
@@ -15,7 +15,7 @@
 <script>
 import { defineComponent } from 'vue';
 // import { IonContent } from '@ionic/vue';
-
+import { mapGetters } from 'vuex';
 export default defineComponent({
   name: 'ProgressBar',
   
@@ -23,8 +23,14 @@ export default defineComponent({
     
     // IonContent
   },
+  // data:{
+    
+  // },
   methods: {
      
+  },
+  computed: {
+    ...mapGetters(['SignupPhase'])
   }
 });
 </script>

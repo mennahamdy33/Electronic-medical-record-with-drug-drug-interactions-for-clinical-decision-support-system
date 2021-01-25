@@ -35,7 +35,7 @@
           </ion-grid>
           <ion-row class="ion-justify-content-center">
             <ion-col size-lg="2" size-xs="6" >
-            <form-button type="submit" buttonText="Submit"/>
+            <form-button @click="changePhase({currentPhase: 'Clinics'})" type="button" buttonText="Next"/>
             </ion-col>
           </ion-row>
         </form>
@@ -55,6 +55,7 @@ import { defineComponent } from 'vue';
 import { IonCol, IonGrid, IonRow } from '@ionic/vue';
 import FormButton from '../../Components/FormButton.vue';
 import FormField from '../../Components/FormField'
+import { mapActions } from 'vuex';
 
 export default defineComponent({
   name: 'Signup2',
@@ -78,7 +79,7 @@ export default defineComponent({
     }
   },
   methods: {
-   
+    ...mapActions(['changePhase'])
   }
 });
 </script>
