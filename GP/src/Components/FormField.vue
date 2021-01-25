@@ -10,7 +10,7 @@
     <!-- <ion-label>{{ LableText }}</ion-label> -->
     <label :for="id" :class="topValue">{{ LableText }}</label>
     <!-- <label :style="[baseStyle ,topValue]">{{ LableText }}</label> -->
-    <div :class="check" ></div>
+    <!-- <div :class="check" ></div> -->
     </div>
     <!-- </ion-item> -->
     
@@ -40,16 +40,7 @@ export default defineComponent({
   },
 data(){
   return{
-   baseStyle: {
-  position: 'absolute',
-  
-  left: '0',
-  padding: "10px 0",
-  fontSize: '16px',
-  color: '#fff',
-  pointerEvents: 'none',
-  transition: '.5s',
-}
+
   }
 },
 computed:{
@@ -63,14 +54,7 @@ computed:{
       // return {top: '-25px'}
     }
   },
-  check(){
-    if(this.type ==="radio"){
 
-      return "check"
-    }else{
-      return ""
-    }
-  }
 }
 
 });
@@ -103,7 +87,6 @@ computed:{
 .user-box label {
   position: absolute;
   
-  /* top:-25px; */
   left: 0;
   padding: 10px 0;
   font-size: 16px;
@@ -120,83 +103,27 @@ computed:{
   top: 0;
 }
 
-.user-box input[type=text]:focus ~ label,
-.user-box input[type=password]:focus ~ label,
-.user-box input[type=date]:focus ~ label,
-.user-box input[type=date]:valid ~ label,
-.user-box input[type=radio]:checked ~ label,
-.user-box input[type=password]:valid ~ label 
-.user-box input[type=text]:valid ~ label {
-  /* top: -20px; */
+
+
+.user-box input:focus ~ .Down,
+.user-box input:valid ~ .Down {
+  top: -20px;
   left: 0;
   color: #03e9f4;
-  
-  
+ 
   font-size: 16px;
   font-weight: bold;
-} 
-
-
-.user-box input[type=text]:focus ~ .Down,
-.user-box input[type=password]:focus ~ .Down,
-.user-box input[type=password]:valid ~ .Down 
-.user-box input[type=text]:valid ~ .Down {
-  top: -20px;
-  
 }
+
 .user-box input:focus ~ .Up,
 .user-box input:valid ~ .Up {
   top: -25px;
-  
+  left: 0;
+  color: #03e9f4;
+ 
+  font-size: 16px;
+  font-weight: bold;
 }
 
-.user-box input[type=radio]:checked ~ .Down
-{
-  top: -5px;
-}
-
-.user-box input[type=radio] 
-{
-  /* opacity: 0;
-  width: 0;
-  height: 0; */
-    position: absolute;
-visibility: hidden;
-
-}
-
-.user-box .check{
-  display: block;
-  position: absolute;
-  border: 5px solid #00f7ff;
-  border-radius: 100%;
-  height: 21px;
-  width: 21px;
-  top: 10px;
-  left: 75px;
-  z-index: 5;
-  transition: border .25s linear;
-}
-.user-box .check::before{
-  display: block;
-  position: absolute;
-  content: '';
-  
-  border-radius: 100%;
-  height: 5px;
-  width: 5px;
-  top: 3px;
-  left: 3px;
-  margin: auto;
-  
-}
-
-
-input[type=radio]:checked ~ .check{
-  border: 5px solid #fafafa;
-}
-input[type=radio]:checked ~ .check::before{
-  background: aliceblue;
-}
 
 </style>

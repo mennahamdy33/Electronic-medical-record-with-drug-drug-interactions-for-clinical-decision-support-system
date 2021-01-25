@@ -4,7 +4,7 @@
   <ion-content class="content">
 
 
-      <form-button router-link="/PersonalInformation" type="button" buttonText="Signup"/>
+      <form-button router-link="/Signup" type="button" buttonText="Signup"/>
       <!-- <router-link to="/MakeAccount"><form-button type="button" buttonText="Signup"/></router-link> -->
   </ion-content>
 </ion-page>
