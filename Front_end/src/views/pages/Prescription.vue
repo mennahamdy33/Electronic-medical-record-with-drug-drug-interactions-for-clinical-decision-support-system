@@ -1,7 +1,7 @@
 <template>
   <ion-card>
     <ion-card-header>
-      <ion-avatar style="d-flex justify-items-between">
+      <ion-avatar>
         <img
           src="https://lh3.googleusercontent.com/proxy/btl-O2nMnVcynDfOi-sVQgcrbxbfw2UC3Jgsa2Hg5-VFT69A8XuCALolPVDhLeQI1YwvzlnSoiiA96UnNzZzH6DXoQ06CiKRgsMt5ldtXTSa-YFocM7vyEs"
         />
