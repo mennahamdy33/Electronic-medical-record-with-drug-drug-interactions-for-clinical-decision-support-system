@@ -121,9 +121,11 @@ computed:{
 }
 
 .user-box input[type=text]:focus ~ label,
+.user-box input[type=password]:focus ~ label,
 .user-box input[type=date]:focus ~ label,
 .user-box input[type=date]:valid ~ label,
 .user-box input[type=radio]:checked ~ label,
+.user-box input[type=password]:valid ~ label 
 .user-box input[type=text]:valid ~ label {
   /* top: -20px; */
   left: 0;
@@ -136,6 +138,8 @@ computed:{
 
 
 .user-box input[type=text]:focus ~ .Down,
+.user-box input[type=password]:focus ~ .Down,
+.user-box input[type=password]:valid ~ .Down 
 .user-box input[type=text]:valid ~ .Down {
   top: -20px;
   

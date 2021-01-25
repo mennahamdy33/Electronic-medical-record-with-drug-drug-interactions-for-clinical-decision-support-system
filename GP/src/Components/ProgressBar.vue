@@ -3,9 +3,9 @@
     <div class="container">
       <ul class="progressbar">
           <li class="active">Personal information</li>
-          <li >choose interest</li>
-          <li>add friends</li>
-          <li>View map</li>
+          <li >Make an account</li>
+          <li>Clinics</li>
+          <!-- <li>View map</li> -->
         </ul>
     </div>
 

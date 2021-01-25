@@ -1,5 +1,5 @@
 <template>
-
+<ion-page>
 <!-- <body> -->
 <ion-content class="content">
 
@@ -13,8 +13,8 @@
         <ion-col offset-lg="0" offset-xs="3.7" size-lg="2" size-xs="5">
           <div class="image"> 
               
-            <!-- <img src="../public/assets/logo12.png"  > -->
-            <img src="../public/assets/logo4.png"  >
+            
+            <img src="../../public/assets/logo4.png"  >
               
 
           </div>
@@ -39,59 +39,28 @@
               <ion-grid class="FormGrid">
                 <ion-row>
                   <ion-col size="12" size-sm>
-                    <form-field type="text" LableText="First Name"/>
-                  </ion-col>
-                  <ion-col size="12" size-sm>
-                    <form-field type="text" LableText="Last Name"/>
-                  </ion-col>
-                </ion-row>
-
-                <ion-row>
-                  <!-- <ion-col size="12" size-sm size-lg="2">
-                    <h1 style="color:white; fontSize:18px;">Gender</h1>
-                  </ion-col> -->
-                  <!-- <ion-col size="12" size-sm size-lg="2">
-                    <radio-form id="Male"/>
-                  </ion-col> -->
-
-                  <ion-col size="12" size-sm  >
-                    <label style="color:white; fontSize:18px;">Gender</label>
-
-                    <radio-form id="Male"/>
-
-                    <radio-form id="Female"/>
-                    <!-- <form-field type="radio" LableText="Male" value="male" id="male" name="gender"/> -->
-                    <!-- <form-field type="radio" LableText="Female" value="female" id="female" name="gender"/> -->
-                  </ion-col>
-                  <ion-col size="12" size-sm>
-                    <form-field  type="text" LableText="National ID"/>
-                  </ion-col>
-                </ion-row>
-
-                <ion-row>
-                  <ion-col size="12" size-sm>
-                    <form-field type="text" LableText="Phone Number"/>
-                  </ion-col>
-                  <ion-col size="12" size-sm>
-                    <form-field type="date" LableText="Birth Date"/>
-                  </ion-col>
-                </ion-row>
-
-                <ion-row>
-                  <ion-col size="12" size-sm>
-                    <form-field type="text" LableText="Education"/>
-                  </ion-col>
-                  <ion-col size="12" size-sm>
-                    <form-field type="text" LableText="Speciality"/>
-                  </ion-col>
-                </ion-row>
-
-                <ion-row>
-                  <ion-col size="12" size-sm>
-                     <form-field type="text" LableText="Address"/>
+                    <form-field type="text" LableText="Email"/>
                   </ion-col>
                   
                 </ion-row>
+
+               
+
+                <ion-row>
+                  <ion-col size="12" size-sm>
+                    <form-field type="password" LableText="Password"/>
+                  </ion-col>
+                  
+                </ion-row>
+
+                <ion-row>
+                  
+                  <ion-col size="12" size-sm>
+                    <form-field type="password" LableText="Confirm Password"/>
+                  </ion-col>
+                </ion-row>
+
+                
 
               </ion-grid>
               <ion-row>
@@ -120,18 +89,18 @@
   <!-- </div> -->
 
 </ion-content>
+</ion-page>
 <!-- </body> -->
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import { IonContent,IonCol, IonGrid, IonRow } from '@ionic/vue';
-import FormButton from './Components/FormButton.vue';
-import FormField from './Components/FormField'
-import RadioForm from './Components/RadioForm'
-import ProgressBar from './Components/ProgressBar.vue';
+import { IonContent,IonCol, IonGrid, IonRow , IonPage} from '@ionic/vue';
+import FormButton from '../Components/FormButton.vue';
+import FormField from '../Components/FormField'
+import ProgressBar from '../Components/ProgressBar.vue';
 export default defineComponent({
-  name: 'Signup',
+  name: 'Signup2',
   components: {
     FormButton,
     FormField,
@@ -140,7 +109,8 @@ export default defineComponent({
     IonRow,
     IonContent,
     ProgressBar,
-    RadioForm
+    IonPage
+    
     
    
   },
