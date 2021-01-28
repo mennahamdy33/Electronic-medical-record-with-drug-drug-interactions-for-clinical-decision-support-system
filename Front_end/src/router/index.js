@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import HomePage from '@/views/Home.vue';
+// import SignUp from '@/views/Signup';
+
 import Prescription from '@/views/pages/Prescription.vue';
 
 const routes = [
@@ -13,7 +15,7 @@ const routes = [
   },
   // {
   //   path: '/Signup',
-  //   component:Signup
+  //   component:SignUp
   // },
   {
     path: '/Prescription',
