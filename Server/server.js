@@ -14,6 +14,7 @@ const db = new Sequelize('Drug_Data', 'root', 'mysql', {
     dialect: 'mysql' 
 });
 
+// checking the connection
 db.authenticate()
 .then(() => {
     console.log('Connection has been established successfully.');
@@ -21,6 +22,8 @@ db.authenticate()
 .catch(err => {
     console.error('Unable to connect to the database:', err);
 });
+
+// starting the server
 app.listen(3000, ()=> {
     console.log('app is running on port 3000');
   })
