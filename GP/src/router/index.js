@@ -10,6 +10,10 @@ const routes = [
       path : '/addpatient',
         component: AddPatientPage
     },
+    {
+      path:'/patientProfile',
+        component:() => import('../pages/PatientProfilePage')
+    }
 
 ]
 

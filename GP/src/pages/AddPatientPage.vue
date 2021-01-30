@@ -1,27 +1,25 @@
 <template >
     <ion-page >
-<ion-menu side="start" menu-id="first" content-id="main"  >
-    <ion-header>
-        <ion-toolbar color="primary">
-            <ion-title >Start Menu</ion-title>
-        </ion-toolbar>
-    </ion-header>
-    <ion-content >
-        <ion-list >
+        <ion-menu side="start" menu-id="first" content-id="main"  >
+            <ion-header>
+                <ion-toolbar color="primary">
+                    <ion-title >Start Menu</ion-title>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content >
+                <ion-list >
 
-            <ion-item router-link="/addpatient"> Add Patient</ion-item>
-            <ion-item router-link="/">Book A Doctor</ion-item>
-            <ion-item>Edit Patient's Profile</ion-item>
-            <ion-item>Edit My Profile</ion-item>
-            <ion-item>System settings</ion-item>
-        </ion-list>
-    </ion-content>
-</ion-menu>
-
-        <ion-header >
+                    <ion-item router-link="/addpatient"> Add Patient</ion-item>
+                    <ion-item router-link="/">Book A Doctor</ion-item>
+                    <ion-item router-link="/patientProfile">Edit Patient's Profile</ion-item>
+                    <ion-item>Edit My Profile</ion-item>
+                    <ion-item>System settings</ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-menu>        <ion-header >
             <ion-toolbar >
                 <ion-buttons slot="start">
-                    <ion-menu-button auto-hide="false"></ion-menu-button>
+                    <ion-menu-button auto-hide="false" disabled="false"  ></ion-menu-button>
                 </ion-buttons>
 
 
@@ -90,17 +88,6 @@
                                         <ion-row>
                                             <ion-col size="12" class="medication" size-sm>
                                                 <IonLabel>Medications</IonLabel>
-                                                      <ion-searchbar    v-model="filterTerm" />
-
-                                                <IonSelect interface="sheet-action" placeholder="">
-                                                    <IonSelectOption v-for="med in resultQuery" :key="med" value="{{med}}"  >{{med}}</IonSelectOption>
-                                                </IonSelect>
-
-                                            </ion-col>
-                                        </ion-row>
-                                        <ion-row>
-                                            <ion-col size="12" class="medication" size-sm>
-                                                <IonLabel>Medications</IonLabel>
                                                 <ion-searchbar    v-model="filterTerm" />
 
                                                 <IonList interface="sheet-action" placeholder="search..."   >
@@ -138,13 +125,14 @@
     </ion-page>
 </template>
 <script>
+
 import RadioForm from '../components/RadioForm';
 import FormButton from '../components/FormButton';
 import FormField from '../components/FormField';
-    import {IonSelect,IonSearchbar,IonSelectOption,IonGrid,IonRow,IonCol,IonButtons,IonMenuButton,IonLabel,IonPage,IonHeader,IonContent,IonList,IonItem,IonMenu,IonToolbar,IonTitle    } from "@ionic/vue";
+    import {IonMenu,IonSearchbar,IonGrid,IonRow,IonCol,IonLabel,IonPage,IonHeader,IonContent,IonList,IonItem,IonToolbar,IonTitle ,IonButtons,IonMenuButton   } from "@ionic/vue";
     export default {
         components:{
-            IonSearchbar,IonSelect,IonSelectOption,RadioForm,FormButton,FormField,IonGrid,IonRow,IonLabel,IonCol, IonButtons,IonMenuButton,IonHeader,IonTitle,IonToolbar,IonContent,IonList,IonItem,IonMenu,IonPage
+            IonMenu,IonSearchbar,RadioForm,FormButton,FormField,IonGrid,IonRow,IonLabel,IonCol, IonButtons,IonMenuButton,IonHeader,IonTitle,IonToolbar,IonContent,IonList,IonItem,IonPage
                 },
         data(){
             return {
@@ -203,20 +191,12 @@ import FormField from '../components/FormField';
         overflow-y: scroll;
         max-height: 150%;
         z-index: 999;
-
-    IonItem {
-
-    img {
-        max-height: 2.5rem;
-        width: auto;
-        margin: auto;
-        display: block;
     }
-    }
+
 
     ion-item:hover {
         cursor: pointer;
         background: #f1f1f1
     }
-    }
+
 </style>
