@@ -7,18 +7,15 @@
  
   
   <li>
-    <input type="radio" :id="id" name="gender">
+    <!-- <input type="radio" :id="id" :name="name" v-model="RadioValue" :value="id"  > -->
+    <input type="radio" :id="id" :name="name" v-model="RadioValue" :value="id" v-on:change="get" >
     <label :for="id">{{ id }}</label>
+    
+
     
     <div class="check"><div class="inside"></div></div>
   </li>
   
-  <!-- <li>
-    <input type="radio" id="t-option" name="selector">
-    <label for="t-option">Cats</label>
-    
-    <div class="check"><div class="inside"></div></div>
-  </li> -->
 </ul>
 </div>
 
@@ -32,32 +29,31 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'Signup',
-  props: [ 'id'],
+  props: [ 'id' , 'name'],
   components: {
     // IonInput,
     // IonItem,
     // IonLabel
   },
   methods: {
-   
+   get(){
+     
+     console.log(this.RadioValue);
+     
+   }
   },
+data(){
+  return{
+    RadioValue: ''
+  }
+  
+},
+
 
 });
 </script>
 
 <style  scoped>
-
-
-/* .container{ */
-  /* display: block; */
-  /* position: relative; */
-  /* margin: 40px auto; */
-  /* height: auto; */
-  /* width: 500px; */
-  /* padding: 20px; */
-/* } */
-
-
 
 .container ul{
   list-style: none;
@@ -152,13 +148,6 @@ input[type=radio]:checked ~ .check::before{
 input[type=radio]:checked ~ label{
   color: #03e9f4;
 }
-
-
-
-
-
-
-
 
 </style>
 

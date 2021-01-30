@@ -11,6 +11,18 @@
 
   </ion-row>
 
+  <ion-row>
+    
+    <ion-col offset-lg="2" size-lg="1.2" size-xs="6" >                      
+      <form-button @click="changePhase({currentPhase: 'MakeAccount'})" type="button" buttonText="Back"/>
+    </ion-col>
+
+    <ion-col offset-lg="1" size-lg="1.2" size-xs="6" >                      
+      <form-button type="button" buttonText="Submit"/>
+    </ion-col>
+
+  </ion-row>
+
  
     
 
@@ -20,13 +32,13 @@
 <script>
 import { defineComponent } from 'vue';
 import { IonCol, IonRow } from '@ionic/vue';
-// import FormButton from '../../Components/FormButton.vue';
+import FormButton from '../../Components/FormButton.vue';
 // import FormField from '../../Components/FormField'
-
+import { mapActions } from 'vuex';
 export default defineComponent({
   name: 'Signup2',
   components: {
-    // FormButton,
+    FormButton,
     // FormField,
     IonCol,
     // IonGrid,
@@ -44,8 +56,8 @@ export default defineComponent({
       
     }
   },
-  methods: {
-   
+   methods: {
+    ...mapActions(['changePhase'])
   }
 });
 </script>

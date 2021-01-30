@@ -14,7 +14,7 @@ const db = knex({
       password : 'mysql',
       database : 'Drug_Data'
     }
-  });
+});
 
 
 const app = express();
@@ -25,6 +25,16 @@ app.use(bodyParser.json());
 db.select('*').from('doctors').then(data => {
     console.log(data[0].first_name);
 })
+
+
+
+app.post('/register', (req, res) => {
+  const { email, name, password } = req.body;
+  const hash = bcrypt.hashSync(password);
+  db.insert()
+  .catch(err => res.status(400).json('unable to register'))
+})
+
 
 
 // const db = new Sequelize('Drug_Data', 'root', 'mysql', {
