@@ -13,7 +13,7 @@ const routes = [
     {
       path:'/patientProfile',
         component:() => import('../pages/PatientProfilePage')
-    }
+    },
 
 ]
 

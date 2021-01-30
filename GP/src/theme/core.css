@@ -10,7 +10,7 @@ ion-toolbar {
 ion-title{
 
 }
-ion-item{
+ion-item menu{
     --background:var(--ion-color-secondary);
     /*--color:var(--ion-color-secondary-contrast);*/
 
