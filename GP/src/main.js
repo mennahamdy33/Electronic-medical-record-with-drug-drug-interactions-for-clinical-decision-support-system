@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
-import { createStore } from 'vuex';
+import store from './store/index.js'
 import { IonicVue } from '@ionic/vue';
 
 /* Core CSS required for Ionic components to work properly */
@@ -23,29 +23,7 @@ import '@ionic/vue/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const store = createStore({
-  state() {
-    return {
-      SignupPhase: 'PersonalInformation'
-    };
-  },
-  mutations: {
-    changePhase(state , payload ){
-      state.SignupPhase = payload.currentPhase;
-    }
-  } ,
 
-  actions: {
-    changePhase(context , payload){
-      context.commit('changePhase' , payload )
-    }
-  },
-  getters: {
-    SignupPhase(state) {
-      return state.SignupPhase ;
-    }
-  }
-});
 
 const app = createApp(App)
   .use(IonicVue)

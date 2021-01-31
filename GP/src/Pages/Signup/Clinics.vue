@@ -18,7 +18,7 @@
     </ion-col>
 
     <ion-col offset-lg="1" size-lg="1.2" size-xs="6" >                      
-      <form-button type="button" buttonText="Submit"/>
+      <form-button type="button" buttonText="Submit" @click="onSubmit"/>
     </ion-col>
 
   </ion-row>
@@ -57,6 +57,15 @@ export default defineComponent({
     }
   },
    methods: {
+     onSubmit(){
+       console.log("Hello")
+       fetch('http://localhost:3000/register', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(this.$store.getters['SignUpData'])
+    })
+      //  fetch('http://localhost:3000/')
+     },
     ...mapActions(['changePhase'])
   }
 });

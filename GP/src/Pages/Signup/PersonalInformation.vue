@@ -11,7 +11,7 @@
                             <ion-col size="12" size-sm>
                                 <!-- <form-field type="text" LableText="First Name"/> -->
                                 <div class="user-box">
-                                    <input  type="text"   required="">
+                                    <input  type="text"   required="" v-model="personalInformation.first_name">
                                     
                                     <label  class="Down"> First Name </label>
                                 
@@ -20,7 +20,7 @@
                             <ion-col size="12" size-sm>
                                 <!-- <form-field type="text" LableText="Last Name"/> -->
                                 <div class="user-box">
-                                    <input  type="text"   required="">
+                                    <input  type="text"   required="" v-model="personalInformation.last_name">
                                     
                                     <label  class="Down"> Last Name </label>
                                 
@@ -42,14 +42,14 @@
                                     
                                     
                                         <li>
-                                            <input type="radio" id="Male" name="gender" v-model="RadioValue" value="male" v-on:change="get" >
+                                            <input type="radio" id="Male" name="gender" v-model="personalInformation.gender" value="male"  >
                                             <label for="Male"> Male </label>
                                              
                                             <div class="check"><div class="inside"></div></div>
                                         </li>
 
                                         <li>
-                                            <input type="radio" id="Female" name="gender" v-model="RadioValue" value="female" v-on:change="get" >
+                                            <input type="radio" id="Female" name="gender" v-model="personalInformation.gender" value="female">
                                             <label for="Female"> Female </label>
            
                                             <div class="check"><div class="inside"></div></div>
@@ -62,7 +62,7 @@
                             <ion-col size="12" size-sm>
                                 <!-- <form-field  type="text" LableText="National ID"/> -->
                                 <div class="user-box">
-                                    <input  type="text"   required="">
+                                    <input  type="text"   required="" v-model="personalInformation.national_id">
                                     
                                     <label  class="Down"> National ID </label>
                                 
@@ -74,7 +74,7 @@
                             <ion-col size="12" size-sm>
                                 <!-- <form-field type="text" LableText="Phone Number"/> -->
                                  <div class="user-box">
-                                    <input  type="text"   required="">
+                                    <input  type="text"   required="" v-model="personalInformation.phone_number">
                                     
                                     <label  class="Down"> Phone Number </label>
                                 
@@ -83,7 +83,7 @@
                             <ion-col size="12" size-sm>
                                 <!-- <form-field type="date" LableText="Birth Date"/> -->
                                 <div class="user-box">
-                                    <input  type="date"   required="">
+                                    <input  type="date"   required="" v-model="personalInformation.birth_date">
                                     
                                     <label  class="Up"> Birth Date </label>
                                 
@@ -95,7 +95,7 @@
                             <ion-col size="12" size-sm>
                                 <!-- <form-field type="text" LableText="Education"/> -->
                                  <div class="user-box">
-                                    <input  type="text"   required="">
+                                    <input  type="text"   required="" v-model="personalInformation.education">
                                     
                                     <label  class="Down"> Education </label>
                                 
@@ -104,7 +104,7 @@
                             <ion-col size="12" size-sm>
                                 <!-- <form-field type="text" LableText="Speciality"/> -->
                                 <div class="user-box">
-                                    <input  type="text"   required="">
+                                    <input  type="text"   required="" v-model="personalInformation.speciality">
                                     
                                     <label  class="Down"> Speciality </label>
                                 
@@ -116,7 +116,7 @@
                             <ion-col size="12" size-sm>
                                 <!-- <form-field type="text" LableText="Address"/> -->
                                 <div class="user-box">
-                                    <input  type="text"   required="">
+                                    <input  type="text"   required="" v-model="personalInformation.address">
                                     
                                     <label  class="Down"> Address </label>
                                 
@@ -146,7 +146,7 @@ import { IonCol, IonGrid, IonRow } from '@ionic/vue';
 import FormButton from '../../Components/FormButton.vue';
 // import FormField from '../../Components/FormField'
 // import RadioForm from '../../Components/RadioForm'
-import { mapActions } from 'vuex';
+// import { mapActions } from 'vuex';
 export default defineComponent({
   name: 'Signup',
   components: {
@@ -163,18 +163,48 @@ export default defineComponent({
     
   data(){
     return{
-        RadioValue: '',
-
+      personalInformation: {
+      first_name: '',
+      last_name: '',
+      gender: '',
+      national_id: '',
+      phone_number:'',
+      birth_date: '',
+      education: '',
+      speciality:'',
+      address:''}
       
     }
   },
   methods: {
       get(){
-     
-     console.log(this.RadioValue);
+        
+       
+    
+     console.log(this.personalInformation);
      
    },
-    ...mapActions(['changePhase'])
+
+   changePhase(phase){
+      const personalInformation = Object.entries(this.personalInformation)
+      let complete = true;
+        for (const [key, value] of personalInformation  ) {
+          console.log(key , value);
+          if(value === ''){
+            complete = false;
+          }
+        }
+        if(complete){
+
+          this.$store.dispatch('FillData', this.personalInformation);
+          console.log(this.$store.getters['SignUpData'])
+          this.$store.dispatch('changePhase', phase);
+        }else{
+          alert("Please fill all the fields");
+
+        }
+   }
+    // ...mapActions(['changePhase'])
 
   },
   computed: {

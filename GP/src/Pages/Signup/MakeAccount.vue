@@ -12,7 +12,7 @@
               <ion-col size="12" size-sm size-lg="7" >
                 <!-- <form-field type="text" LableText="Email"/> -->
                 <div class="user-box">
-                  <input  type="text"   required="">
+                  <input  type="text"   required="" v-model="Account.email">
                   
                   <label  class="Down"> Email </label>
                                 
@@ -25,7 +25,7 @@
               <ion-col size="12" size-sm size-lg="7">
                 <!-- <form-field type="password" LableText="Password"/> -->
                 <div class="user-box">
-                  <input  type="password"   required="">
+                  <input  type="password"   required="" v-model="Account.password">
                   
                   <label  class="Down"> Password </label>
                                 
@@ -39,7 +39,7 @@
               <ion-col size="12" size-sm size-lg="7">
                 <!-- <form-field type="password" LableText="Confirm Password"/> -->
                  <div class="user-box">
-                  <input  type="password"   required="">
+                  <input  type="password"   required="" v-model="Account.confirmPassword">
                   
                   <label  class="Down"> Confirm Password </label>
                                 
@@ -75,7 +75,7 @@ import { defineComponent } from 'vue';
 import { IonCol, IonGrid, IonRow } from '@ionic/vue';
 import FormButton from '../../Components/FormButton.vue';
 // import FormField from '../../Components/FormField'
-import { mapActions } from 'vuex';
+// import { mapActions } from 'vuex';
 
 export default defineComponent({
   name: 'Signup2',
@@ -94,12 +94,38 @@ export default defineComponent({
     
   data(){
     return{
-      
+      Account:{
+        email:'',
+        password:'',
+        confirmPassword:''
+      }
       
     }
   },
   methods: {
-    ...mapActions(['changePhase'])
+    
+       changePhase(phase){
+      const Account = Object.entries(this.Account)
+      let complete = true;
+        for (const [key, value] of Account  ) {
+          console.log(key , value);
+          if(value === ''){
+            complete = false;
+          }
+        }
+        if(complete){
+          if(this.Account.password === this.Account.confirmPassword){
+
+            this.$store.dispatch('FillData', {email: this.Account.email, password: this.Account.password});
+            console.log(this.$store.getters['SignUpData'])
+            this.$store.dispatch('changePhase', phase);
+          }
+        }else{
+          alert("Please fill all the fields");
+
+        }
+   },
+    // ...mapActions(['changePhase'])
   }
 });
 </script>

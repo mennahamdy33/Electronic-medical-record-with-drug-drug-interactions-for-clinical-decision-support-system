@@ -22,17 +22,42 @@ const app = express();
 app.use(cors())
 app.use(bodyParser.json());
 
-db.select('*').from('doctors').then(data => {
-    console.log(data[0].first_name);
+// db.select('*').from('doctors').then(data => {
+//     console.log(data[0].first_name);
+// })
+
+app.get('/', (req, res)=> {
+  res.send(console.log('Hi'));
 })
 
-
-
 app.post('/register', (req, res) => {
-  const { email, name, password } = req.body;
-  const hash = bcrypt.hashSync(password);
-  db.insert()
-  .catch(err => res.status(400).json('unable to register'))
+  const {
+    first_name,
+    last_name,
+    gender,
+    national_id,
+    phone_number,
+    birth_date,
+    education,
+    speciality,
+    address, email, password} = req.body;
+    console.log(first_name,last_name)
+  // const hash = bcrypt.hashSync(password);
+  db.insert({
+    first_name: first_name,
+    last_name: last_name,
+    gender: gender,
+    ssn: national_id,
+    phone_number:phone_number,
+    birth_date: birth_date,
+    education: education,
+    specialty:speciality,
+    address:address,
+    email: email,
+    password: password}).into('doctors')
+  .catch(err => console.log(err))
+  res.status(200).json('Register done')
+  // .catch(err => res.status(400).json('unable to register'))
 })
 
 
