@@ -98,13 +98,14 @@ export default defineComponent({
         email:'',
         password:'',
         confirmPassword:''
-      }
+      },
+      emailFormat: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ 
       
     }
   },
   methods: {
     
-       changePhase(phase){
+      changePhase(phase){
       const Account = Object.entries(this.Account)
       let complete = true;
         for (const [key, value] of Account  ) {
@@ -114,11 +115,13 @@ export default defineComponent({
           }
         }
         if(complete){
-          if(this.Account.password === this.Account.confirmPassword){
+          if(this.Account.password === this.Account.confirmPassword && this.emailFormat.test(this.Account.email)){
 
             this.$store.dispatch('FillData', {email: this.Account.email, password: this.Account.password});
             console.log(this.$store.getters['SignUpData'])
             this.$store.dispatch('changePhase', phase);
+          }else{
+            alert("Please enter a vaild email or make sure that the passwords are the same")
           }
         }else{
           alert("Please fill all the fields");

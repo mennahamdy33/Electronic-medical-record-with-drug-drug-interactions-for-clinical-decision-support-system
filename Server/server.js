@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const bcrypt = require('bcrypt-nodejs');
+const bcrypt = require('bcrypt');
 const cors = require('cors');
 // const Sequelize = require('sequelize');
 const knex = require('knex')
@@ -40,22 +40,33 @@ app.post('/register', (req, res) => {
     birth_date,
     education,
     speciality,
-    address, email, password} = req.body;
-    console.log(first_name,last_name)
-  // const hash = bcrypt.hashSync(password);
-  db.insert({
-    first_name: first_name,
-    last_name: last_name,
-    gender: gender,
-    ssn: national_id,
-    phone_number:phone_number,
-    birth_date: birth_date,
-    education: education,
-    specialty:speciality,
-    address:address,
-    email: email,
-    password: password}).into('doctors')
-  .catch(err => console.log(err))
+    address, email, password,proficiency} = req.body;
+    
+  const hash = bcrypt.hashSync(password, 10);
+  // const isValid = bcrypt.compareSync(password, hash);
+  if(proficiency === 'doctor'){
+
+    db.insert({
+      first_name: first_name, last_name: last_name,
+      gender: gender, ssn: national_id,
+      phone_number:phone_number, birth_date: birth_date,
+      education: education, specialty:speciality,
+      address:address, email: email,
+      password: hash})
+    .into('doctors')
+    .catch(err => console.log(err))
+
+  }else if(proficiency === 'secretary'){
+    db.insert({
+      first_name: first_name, last_name: last_name,
+      gender: gender, ssn: national_id,
+      phone_number:phone_number, birth_date: birth_date,
+      education: education,
+      address:address, email: email,
+      password: hash})
+    .into('secretary')
+    .catch(err => console.log(err))
+  }
   res.status(200).json('Register done')
   // .catch(err => res.status(400).json('unable to register'))
 })

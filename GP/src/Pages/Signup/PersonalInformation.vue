@@ -30,65 +30,94 @@
 
                         <ion-row>
                         
-                            <ion-col size="12" size-sm  >
-                                <label style="color:white; fontSize:18px;">Gender</label>
+                          <ion-col size="12" size-sm  >
+                            <label style="color:white; fontSize:18px;">Gender</label>
 
                                 <!-- <radio-form id="Male" name='gender'/>
 
                                 <radio-form id="Female" name='gender' /> -->
-                                <div class="container">
-	
-                                    <ul>
-                                    
-                                    
-                                        <li>
-                                            <input type="radio" id="Male" name="gender" v-model="personalInformation.gender" value="male"  >
-                                            <label for="Male"> Male </label>
-                                             
-                                            <div class="check"><div class="inside"></div></div>
-                                        </li>
+                            <div class="container">
 
-                                        <li>
-                                            <input type="radio" id="Female" name="gender" v-model="personalInformation.gender" value="female">
-                                            <label for="Female"> Female </label>
-           
-                                            <div class="check"><div class="inside"></div></div>
-                                        </li>
+                              <ul>
+                              
+                              
+                                <li>
+                                  <input type="radio" id="Male" name="gender" v-model="personalInformation.gender" value="male"  >
+                                  <label for="Male"> Male </label>
                                     
-                                    </ul>
-                                </div>
+                                  <div class="check"><div class="inside"></div></div>
+                                </li>
+
+                                <li>
+                                  <input type="radio" id="Female" name="gender" v-model="personalInformation.gender" value="female">
+                                  <label for="Female"> Female </label>
+  
+                                  <div class="check"><div class="inside"></div></div>
+                                </li>
+                              
+                              </ul>
+                            </div>
                                 
-                            </ion-col>
-                            <ion-col size="12" size-sm>
-                                <!-- <form-field  type="text" LableText="National ID"/> -->
-                                <div class="user-box">
-                                    <input  type="text"   required="" v-model="personalInformation.national_id">
+                          </ion-col>
+
+
+                          <ion-col size="12" size-sm  >
+                            <label style="color:white; fontSize:18px;">I am</label>
+
+                                <!-- <radio-form id="Male" name='gender'/>
+
+                                <radio-form id="Female" name='gender' /> -->
+                            <div class="container">
+
+                              <ul>
+                              
+                              
+                                <li>
+                                  <input type="radio" id="Doctor" name="proficiency" v-model="personalInformation.proficiency" value="doctor"  >
+                                  <label for="Doctor"> Doctor </label>
                                     
-                                    <label  class="Down"> National ID </label>
+                                  <div class="check"><div class="inside"></div></div>
+                                </li>
+
+                                <li>
+                                  <input type="radio" id="Secretary" name="proficiency" v-model="personalInformation.proficiency" value="secretary">
+                                  <label for="Secretary"> Secretary </label>
+  
+                                  <div class="check"><div class="inside"></div></div>
+                                </li>
+                              
+                              </ul>
+                            </div>
                                 
-                                </div>
-                            </ion-col>
+                          </ion-col>
+
+                        
+
+                          
                         </ion-row>
 
                         <ion-row>
-                            <ion-col size="12" size-sm>
-                                <!-- <form-field type="text" LableText="Phone Number"/> -->
-                                 <div class="user-box">
-                                    <input  type="text"   required="" v-model="personalInformation.phone_number">
+                          <ion-col size="12" size-sm>
+                              <!-- <form-field type="text" LableText="Phone Number"/> -->
+                            <div class="user-box">
+                              <input  type="text"   required="" v-model="personalInformation.phone_number">
+                              
+                              <label  class="Down"> Phone Number </label>
+                          
+                          </div>
+                          </ion-col>
+
+                          <ion-col size="12" size-sm>
+                            <!-- <form-field type="date" LableText="Birth Date"/> -->
+                            <div class="user-box">
+                              <input  type="date"   required="" v-model="personalInformation.birth_date">
                                     
-                                    <label  class="Down"> Phone Number </label>
+                              <label  class="Up"> Birth Date </label>
                                 
-                                </div>
-                            </ion-col>
-                            <ion-col size="12" size-sm>
-                                <!-- <form-field type="date" LableText="Birth Date"/> -->
-                                <div class="user-box">
-                                    <input  type="date"   required="" v-model="personalInformation.birth_date">
-                                    
-                                    <label  class="Up"> Birth Date </label>
-                                
-                                </div>
-                            </ion-col>
+                            </div>
+                          </ion-col>
+                        
+                          
                         </ion-row>
 
                         <ion-row>
@@ -101,34 +130,47 @@
                                 
                                 </div>
                             </ion-col>
+
                             <ion-col size="12" size-sm>
-                                <!-- <form-field type="text" LableText="Speciality"/> -->
-                                <div class="user-box">
-                                    <input  type="text"   required="" v-model="personalInformation.speciality">
-                                    
-                                    <label  class="Down"> Speciality </label>
+                              <!-- <form-field  type="text" LableText="National ID"/> -->
+                              <div class="user-box">
+                                <input  type="text"   required="" v-model="personalInformation.national_id">
                                 
-                                </div>
+                                <label  class="Down"> National ID </label>
+                              
+                              </div>
                             </ion-col>
+
+                            
                         </ion-row>
 
                         <ion-row>
-                            <ion-col size="12" size-sm>
-                                <!-- <form-field type="text" LableText="Address"/> -->
-                                <div class="user-box">
-                                    <input  type="text"   required="" v-model="personalInformation.address">
-                                    
-                                    <label  class="Down"> Address </label>
+                          <ion-col size="12" size-sm v-if="personalInformation.proficiency === 'doctor'">
+                            <!-- <form-field type="text" LableText="Speciality"/> -->
+                            <div class="user-box">
+                              <input  type="text"   required="" v-model="personalInformation.speciality">
                                 
-                                </div>
-                            </ion-col>
+                              <label  class="Down"> Speciality </label>
+                            
+                            </div>
+                          </ion-col>
+                          
+                          <ion-col size="12" size-sm>
+                            <!-- <form-field type="text" LableText="Address"/> -->
+                            <div class="user-box">
+                              <input  type="text"   required="" v-model="personalInformation.address">
+                              
+                              <label  class="Down"> Address </label>
+                            
+                            </div>
+                          </ion-col>
                         
                         </ion-row>
 
                         <ion-row>
-                            <ion-col size-lg="2" size-xs="6" >
-                                <form-button @click="changePhase({currentPhase: 'MakeAccount'})" type="button" buttonText="Next"/>
-                            </ion-col>
+                          <ion-col size-lg="2" size-xs="6" >
+                            <form-button @click="changePhase({currentPhase: 'MakeAccount'})" type="button" buttonText="Next"/>
+                          </ion-col>
                         </ion-row>
                     </ion-grid>
                 </form>
@@ -172,7 +214,8 @@ export default defineComponent({
       birth_date: '',
       education: '',
       speciality:'',
-      address:''}
+      address:'',
+      proficiency:''}
       
     }
   },
@@ -190,8 +233,13 @@ export default defineComponent({
       let complete = true;
         for (const [key, value] of personalInformation  ) {
           console.log(key , value);
-          if(value === ''){
-            complete = false;
+          if(value === '' ){
+            if(key === 'speciality' && this.personalInformation.proficiency ==='secretary' ){
+              //do nothing
+            }else{
+
+              complete = false;
+            }
           }
         }
         if(complete){
