@@ -30,6 +30,9 @@ app.get('/', (req, res)=> {
   res.send(console.log('Hi'));
 })
 
+
+
+
 app.post('/register', (req, res) => {
   const {
     first_name,
@@ -70,6 +73,19 @@ app.post('/register', (req, res) => {
   res.status(200).json('Register done')
   // .catch(err => res.status(400).json('unable to register'))
 })
+
+app.get('/clinics', (req, res) => {
+  db.select('*').from('clinics')
+    .then(clinics => {
+      if (clinics.length) {
+        res.json(clinics)
+      } else {
+        res.status(400).json('Not found')
+      }
+    })
+    .catch(err => res.status(400).json('error getting clinics'))
+})
+
 
 
 

@@ -4,11 +4,31 @@
     
     <ion-col offset-lg="2" size-lg="8">
       <div class="login-box">
-        <h2>Pick up you Clinics</h2>
+        <h2>Pick up your Clinics</h2>
         
       </div>
     </ion-col>
+  </ion-row>
 
+  <ion-row class="ion-justify-content-center" > 
+    <ion-grid >
+      <ion-row class="ion-justify-content-start">
+        <ion-col  size-lg="3" size-xs="11" v-for="clinic in clinics" :key="clinic.clinic_id">
+          <ion-card :class="{ active : clinic.active}" button=true @click="activate(clinic)" >
+            <!-- <img src="../../public/assets/Untitled-5.svg"  >  -->
+            <ion-card-header>
+              <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+              <ion-card-title> {{clinic.clinic_name}}</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              <p>Address</p>
+              {{ clinic.address }}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-row>
 
   <ion-row>
@@ -31,7 +51,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { IonCol, IonRow } from '@ionic/vue';
+import { IonGrid,IonCol, IonRow , IonCard, IonCardTitle, IonCardHeader,  IonCardContent} from '@ionic/vue';
 import FormButton from '../../Components/FormButton.vue';
 // import FormField from '../../Components/FormField'
 import { mapActions } from 'vuex';
@@ -41,8 +61,14 @@ export default defineComponent({
     FormButton,
     // FormField,
     IonCol,
-    // IonGrid,
+    IonGrid,
     IonRow,
+    IonCard,
+    IonCardTitle,
+    IonCardHeader,
+    // IonCardSubtitle,
+    IonCardContent,
+    
     
     
     
@@ -52,7 +78,8 @@ export default defineComponent({
     
   data(){
     return{
-      
+      clinics: [],
+      // active: false,
       
     }
   },
@@ -66,7 +93,30 @@ export default defineComponent({
     })
       //  fetch('http://localhost:3000/')
      },
-    ...mapActions(['changePhase'])
+    ...mapActions(['changePhase']),
+
+    activate(clinic)
+    {
+      clinic.active = !clinic.active;
+    },
+    test(id){
+      console.log(id)
+    }
+    
+  },
+  
+  
+  mounted(){
+    fetch('http://localhost:3000/clinics')
+    .then(response => response.json())
+    .then(clinics => {
+      clinics.forEach(clinic => {
+        clinic = {...clinic , active: false}
+        console.log(clinic)
+      });
+      this.clinics = clinics
+      // console.log(clinics)
+    } )
   }
 });
 </script>
@@ -86,6 +136,17 @@ export default defineComponent({
   font-weight: bold;
 }
 
+ion-grid{
+  /* --ion-grid-columns: 12; */
+  margin-left: 10%;
+  margin-right: 10%;
+}
 
-
+.active{
+  border: 5px solid #03a8b1;
+  box-shadow: 0 0 5px #03e9f4,
+              0 0 5px #03e9f4,
+              0 0 5px #03e9f4,
+              0 0 5px #03e9f4;
+}
 </style>
