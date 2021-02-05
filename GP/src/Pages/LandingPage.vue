@@ -11,7 +11,7 @@
         </ion-col>
         <ion-col size-lg="2">
           <!-- <h2> Sign up </h2> -->
-          <form-button router-link="/Signup" type="button" buttonText="Log in"/>
+          <form-button router-link="/addpatient" type="button" buttonText="Log in"/>
         </ion-col>
       </ion-row>
       <!-- <ion-row style="margin-top: 2%" class="ion-justify-content-center"> -->

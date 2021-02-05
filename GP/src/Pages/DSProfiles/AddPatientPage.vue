@@ -151,7 +151,7 @@
                                     </ion-grid>
                                     <ion-row>
                                         <ion-col size-lg="2" size-xs="6" >
-                                            <form-button @click="sendPatientData"  type="button"/>
+                                            <form-button @click="sendPatientData"  buttonText="Submit" type="button"/>
                                         </ion-col>
                                     </ion-row>
 

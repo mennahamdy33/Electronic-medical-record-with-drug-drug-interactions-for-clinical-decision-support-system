@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
-import Home from '../Pages/Home.vue'
+//import Home from '../Pages/Home.vue'
 import BookDoctor from '../Pages/BookDoctor'
 
 import AddPatientPage from '../Pages/DSProfiles/AddPatientPage.vue'
@@ -9,11 +9,6 @@ const routes = [
   {
     path: '/',
     redirect: '/home'
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: Home
   },
   {
     path: '/bookDoctor',
