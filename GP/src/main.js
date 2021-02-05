@@ -4,7 +4,10 @@ import router from './router';
 import store from './store/index.js'
 import { IonicVue } from '@ionic/vue';
 
-/* Core CSS required for Ionic components to work properly */
+
+
+
+/* Core CSS required for Ionic Components to work properly */
 import '@ionic/vue/css/core.css';
 
 /* Basic CSS for apps built with Ionic */
@@ -22,6 +25,7 @@ import '@ionic/vue/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import './theme/core.css';
 
 
 
