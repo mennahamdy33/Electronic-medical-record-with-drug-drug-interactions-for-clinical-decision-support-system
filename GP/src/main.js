@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router/index';
 
 import { IonicVue } from '@ionic/vue';
+import BaseTemplate from './components/BaseTemplate'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
@@ -26,7 +27,7 @@ import './theme/variables.css';
 const app = createApp(App)
   .use(IonicVue)
   .use(router);
-  
+app.component('base-template',BaseTemplate);
 router.isReady().then(() => {
   app.mount('#app');
 });
