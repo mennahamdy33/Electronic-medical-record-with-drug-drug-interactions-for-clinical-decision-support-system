@@ -9,9 +9,8 @@
   </ion-header>
   <ion-content>
     <ion-grid>
-      <ion-row>
-        <ion-col></ion-col>
-        <ion-col>
+      <ion-row class="ion-justify-content-center">
+        <ion-col class="ion-padding " size-lg="6" size-sm="12" size-md="8">
           <ion-card>
             <ion-card-header>
               <ion-avatar>
@@ -58,27 +57,38 @@
               </ion-list>
             </ion-card-content>
           </ion-card>
+          <ion-card>
+            <div class="center">
+              <ion-button color="danger">Check Interaction</ion-button>
+            </div>
+          </ion-card>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-subtitle>Doctor Signature</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-textarea placeholder="Please sign here..."></ion-textarea>
+            </ion-card-content>
+          </ion-card>
+          <ion-card>
+            <div class="center">
+              <ion-button color="danger">Exit</ion-button>
+            </div>
+          </ion-card>
         </ion-col>
-        <ion-col></ion-col>
       </ion-row>
     </ion-grid>
-    <ion-footer>
-      <ion-item>
-        <ion-label position="fixed">Doctor Signature</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-    </ion-footer>
   </ion-content>
 </template>
 <script>
-import { IonInput } from "@ionic/vue";
+import { IonCard } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios from "axios";
 
 export default defineComponent({
   name: "nancy",
   components: {
-    IonInput,
+    IonCard,
   },
   data() {
     return { patientInfo: { patientPhoto: "" }, drugsInfo: [] };
@@ -104,12 +114,6 @@ export default defineComponent({
         //console
         console.log(response.data);
       });
-    },
-    decrement() {
-      console.log("decrement");
-    },
-    increment() {
-      console.log("increment");
     },
   },
 });
