@@ -1,11 +1,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router/index';
-
+import router from './router';
+import store from './store/index.js'
 import { IonicVue } from '@ionic/vue';
 import BaseTemplate from './Components/BaseTemplate'
 
-/* Core CSS required for Ionic components to work properly */
+
+
+
+/* Core CSS required for Ionic Components to work properly */
 import '@ionic/vue/css/core.css';
 
 /* Basic CSS for apps built with Ionic */
@@ -23,10 +26,14 @@ import '@ionic/vue/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import './theme/core.css';
+
+
 
 const app = createApp(App)
   .use(IonicVue)
-  .use(router);
+  .use(router)
+  .use(store);
 app.component('base-template',BaseTemplate);
 router.isReady().then(() => {
   app.mount('#app');

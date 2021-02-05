@@ -14,8 +14,11 @@
     "@innologica/vue-stackable-modal": "^0.1.10",
     "@ionic/vue": "^5.4.0",
     "@ionic/vue-router": "^5.4.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "ionicons": "^5.4.0",
     "vue": "^3.0.0-0",
+    "vue-advanced-search": "^0.1.43",
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
