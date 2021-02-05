@@ -12,7 +12,7 @@
                     <ion-item router-link="/addpatient"> Add Patient</ion-item>
                     <ion-item router-link="/">Book A Doctor</ion-item>
                     <ion-item router-link="/patientProfile">Edit Patient's Profile</ion-item>
-                    <ion-item>Edit My Profile</ion-item>
+                    <ion-item router-link="/doctorProfile">Edit My Profile</ion-item>
                     <ion-item>System settings</ion-item>
                 </ion-list>
             </ion-content>
@@ -95,8 +95,11 @@
     import {              IonMenu,IonList,IonLabel,IonItem,IonGrid,IonIcon,IonButtons,IonMenuButton,IonPage,IonHeader,IonContent,IonToolbar,IonTitle,IonRow,IonCol    } from "@ionic/vue";
         export default {
             components:{
-              IonMenu,IonList,IonItem,
-                IonGrid,IonButtons,IonMenuButton,IonLabel,IonHeader,IonIcon,IonTitle,IonToolbar,IonContent,IonPage,IonRow,IonCol
+                IonMenu,IonList,IonItem,
+                IonGrid,IonButtons,IonMenuButton,
+                IonLabel,IonHeader,IonIcon,
+                IonTitle,IonToolbar,IonContent,
+                IonPage,IonRow,IonCol
             },
 
         data(){
@@ -104,7 +107,7 @@
                 female,
                 male,
                 patientInfo:{
-                  FistName:  "Menna",
+                    FistName:  "Menna",
                     LastName: "Hamdy",
                     ssn:"242423435t4",
                         Gender: "Female",

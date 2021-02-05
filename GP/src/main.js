@@ -7,7 +7,7 @@ import { IonicVue } from '@ionic/vue';
 
 
 
-/* Core CSS required for Ionic components to work properly */
+/* Core CSS required for Ionic Components to work properly */
 import '@ionic/vue/css/core.css';
 
 /* Basic CSS for apps built with Ionic */
