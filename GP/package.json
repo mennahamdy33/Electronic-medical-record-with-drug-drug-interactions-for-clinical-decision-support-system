@@ -19,7 +19,8 @@
     "ionicons": "^5.4.0",
     "vue": "^3.0.0-0",
     "vue-advanced-search": "^0.1.43",
-    "vue-router": "^4.0.0-0"
+    "vue-router": "^4.0.0-0",
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
     "@capacitor/cli": "2.4.5",

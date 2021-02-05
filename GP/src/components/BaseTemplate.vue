@@ -10,10 +10,10 @@
         <ion-list>
           <!-- <img :src="img" alt="logo" /> -->
 
-          <ion-item>Add Patient</ion-item>
+          <ion-item href="/addpatient">Add Patient</ion-item>
           <ion-item href="/bookDoctor">Book A Doctor</ion-item>
-          <ion-item>Edit Patient's Profile</ion-item>
-          <ion-item>Edit My Profile</ion-item>
+          <ion-item href="/patientProfile">Edit Patient's Profile</ion-item>
+          <ion-item href="/doctorProfile">Edit My Profile</ion-item>
           <ion-item>System settings</ion-item>
         </ion-list>
       </ion-content>
