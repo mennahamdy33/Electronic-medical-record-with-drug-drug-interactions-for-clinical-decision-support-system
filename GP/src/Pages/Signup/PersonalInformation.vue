@@ -185,9 +185,9 @@
 <script>
 import { defineComponent } from 'vue';
 import { IonCol, IonGrid, IonRow } from '@ionic/vue';
-import FormButton from '../../Components/FormButton.vue';
-// import FormField from '../../Components/FormField'
-// import RadioForm from '../../Components/RadioForm'
+import FormButton from '../../components/FormButton.vue';
+// import FormField from '../../components/FormField'
+// import RadioForm from '../../components/RadioForm'
 // import { mapActions } from 'vuex';
 export default defineComponent({
   name: 'Signup',

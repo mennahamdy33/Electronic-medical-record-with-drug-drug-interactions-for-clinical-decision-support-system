@@ -64,9 +64,9 @@
 import { defineComponent } from 'vue';
 import { IonContent , IonPage, IonGrid , IonCol, IonRow} from '@ionic/vue';
 // import { IonContent , IonPage, IonGrid , IonCol, IonRow,IonCard ,IonCardTitle,IonCardHeader } from '@ionic/vue';
-import FormButton from '../Components/FormButton.vue';
-// import FormField from '../Components/FormField'
-// import ProgressBar from '../Components/ProgressBar.vue';
+import FormButton from '../components/FormButton.vue';
+// import FormField from '../components/FormField'
+// import ProgressBar from '../components/ProgressBar.vue';
 export default defineComponent({
   name: 'LandingPage',
   components: {

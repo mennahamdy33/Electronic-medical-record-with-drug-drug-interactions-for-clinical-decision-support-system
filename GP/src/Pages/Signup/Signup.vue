@@ -27,7 +27,7 @@
 <script>
 import { defineComponent } from 'vue';
 import { IonPage,IonContent,IonCol, IonGrid, IonRow } from '@ionic/vue';
-import ProgressBar from '../../Components/ProgressBar.vue';
+import ProgressBar from '../../components/ProgressBar.vue';
 import PersonalInformation from './PersonalInformation.vue';
 import MakeAccount from './MakeAccount.vue';
 import Clinics from './Clinics.vue'

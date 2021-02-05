@@ -52,8 +52,8 @@
 <script>
 import { defineComponent } from 'vue';
 import { IonGrid,IonCol, IonRow , IonCard, IonCardTitle, IonCardHeader,  IonCardContent} from '@ionic/vue';
-import FormButton from '../../Components/FormButton.vue';
-// import FormField from '../../Components/FormField'
+import FormButton from '../../components/FormButton.vue';
+// import FormField from '../../components/FormField'
 import { mapActions } from 'vuex';
 export default defineComponent({
   name: 'Signup2',

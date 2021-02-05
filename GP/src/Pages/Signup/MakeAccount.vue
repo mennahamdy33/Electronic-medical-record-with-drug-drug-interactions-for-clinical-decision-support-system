@@ -73,8 +73,8 @@
 <script>
 import { defineComponent } from 'vue';
 import { IonCol, IonGrid, IonRow } from '@ionic/vue';
-import FormButton from '../../Components/FormButton.vue';
-// import FormField from '../../Components/FormField'
+import FormButton from '../../components/FormButton.vue';
+// import FormField from '../../components/FormField'
 // import { mapActions } from 'vuex';
 
 export default defineComponent({

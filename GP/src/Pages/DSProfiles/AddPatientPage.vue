@@ -168,7 +168,7 @@
 </template>
 <script>
 import axios from 'axios';
-import FormButton from '../../Components/FormButton';
+import FormButton from '../../components/FormButton';
 
     import {IonMenu,
         IonSearchbar,
