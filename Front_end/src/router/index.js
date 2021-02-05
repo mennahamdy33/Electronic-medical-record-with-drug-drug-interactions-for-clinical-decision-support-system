@@ -9,10 +9,6 @@ const routes = [
     path: '/',
     redirect:"Home"
   },
-  {
-    path: '/Home',
-    component:Prescription
-  },
   // {
   //   path: '/Signup',
   //   component:SignUp
@@ -21,7 +17,6 @@ const routes = [
     path: '/Prescription',
     component:Prescription
   },
-
 ]
 
 const router = createRouter({
