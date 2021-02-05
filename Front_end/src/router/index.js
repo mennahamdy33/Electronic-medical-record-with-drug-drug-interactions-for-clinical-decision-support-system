@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 // import HomePage from '@/views/Home.vue';
 // import SignUp from '@/views/Signup';
 
-import Prescription from '@/pages/Prescription.vue';
+import Prescription from '@/Pages/Prescription.vue';
 
 const routes = [
   {
