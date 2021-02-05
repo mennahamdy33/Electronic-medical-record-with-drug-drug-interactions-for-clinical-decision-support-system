@@ -2,8 +2,8 @@
   <ion-content class="ion-padding">
     <ion-grid>
       <form @submit.prevent="submitBooking">
-        <ion-row class="ion-justify-content-center">
-          <ion-col size-md="8" offset="4">
+        <ion-row >
+          <ion-col size-md="8" offset-md="4">
             <ion-chip color="primary">
               <h2><ion-label>Doctor </ion-label>{{ name }}</h2>
             </ion-chip>
@@ -14,11 +14,11 @@
             <ion-label>Patient's SSN </ion-label>{{ ssn }}
           </ion-col>
         </ion-row>
-        <ion-row class="ion-padding">
-          <ion-col size="2">
+        <ion-row >
+          <ion-col class="ion-padding" size="6">
             <ion-label>Pick Date & Time</ion-label>
           </ion-col>
-          <ion-col size="5">
+          <ion-col size="4">
             <ion-datetime
               display-format="MMM DD, YYYY HH:mm	"
               placeholder="Select Time"

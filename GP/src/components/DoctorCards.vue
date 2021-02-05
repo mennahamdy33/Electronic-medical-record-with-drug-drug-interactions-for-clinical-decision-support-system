@@ -53,6 +53,6 @@ export default {
 </script>
 <style >
 .my-custom-class .modal-wrapper {
-  /* background: rgb(141, 134, 134); */
+  background: rgb(141, 134, 134);
 }
 </style>

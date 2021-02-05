@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
-import Home from '../views/Home.vue'
-import BookDoctor from '../views/BookDoctor'
+import Home from '../Pages/Home.vue'
+import BookDoctor from '../Pages/BookDoctor'
 const routes = [
   {
     path: '/',

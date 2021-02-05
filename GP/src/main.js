@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router/index';
 
 import { IonicVue } from '@ionic/vue';
-import BaseTemplate from './components/BaseTemplate'
+import BaseTemplate from './Components/BaseTemplate'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';

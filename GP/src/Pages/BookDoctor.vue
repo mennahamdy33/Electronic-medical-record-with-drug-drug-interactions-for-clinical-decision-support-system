@@ -29,7 +29,7 @@
   </base-template>
 </template>
 <script>
-import DoctorCard from "../components/DoctorCards";
+import DoctorCard from "../Components/DoctorCards";
 // import FormField from "../components/FormField";
 import { IonGrid, IonRow, IonCol } from "@ionic/vue";
 export default {
