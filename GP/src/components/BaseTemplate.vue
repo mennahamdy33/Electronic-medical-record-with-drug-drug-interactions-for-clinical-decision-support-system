@@ -14,7 +14,7 @@
           <ion-item href="/bookDoctor">Book A Doctor</ion-item>
           <ion-item>Edit Patient's Profile</ion-item>
           <ion-item>Edit My Profile</ion-item>
-          <ion-item>System settings</ion-item>
+          <ion-item href="/Prescription">Prescription</ion-item>
         </ion-list>
       </ion-content>
     </ion-menu>

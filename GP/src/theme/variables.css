@@ -2,6 +2,9 @@
 http://ionicframework.com/docs/theming/ */
 
 /** Ionic CSS Variables **/
+.center {
+  text-align: center;
+}
 :root {
   /** primary **/
   --ion-color-primary: linear-gradient(#141e30, #243b55);

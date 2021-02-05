@@ -4,7 +4,7 @@ import BookDoctor from '../Pages/BookDoctor'
 
 import AddPatientPage from '../Pages/DSProfiles/AddPatientPage.vue'
 import Signup from '../Pages/Signup/Signup.vue'
-
+import Prescription from '@/Pages/Prescription.vue';
 const routes = [
   {
     path: '/',
@@ -27,6 +27,10 @@ const routes = [
     {
         path:'/doctorProfile',
         component:() => import('../Pages/DSProfiles/DoctorProfilePage')
+    },
+    {
+        path: '/Prescription',
+        component:Prescription
     },
 ]
 
