@@ -1,17 +1,10 @@
 <template>
   <base-template>
-  <ion-header>
-    <ion-toolbar color="light">
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Prescription</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
+
     <ion-grid>
       <ion-row class="ion-justify-content-center">
         <ion-col class="ion-padding " size-lg="6" size-sm="12" size-md="8">
+          <h2>Prescription</h2>
           <ion-card>
             <ion-card-header>
               <ion-avatar>
@@ -58,11 +51,10 @@
               </ion-list>
             </ion-card-content>
           </ion-card>
-          <ion-card>
-            <div class="center">
-              <ion-button color="danger">Check Interaction</ion-button>
-            </div>
-          </ion-card>
+          <ion-col>
+
+            <FormButton buttonText="Check Interaction" type="button" />
+          </ion-col>
           <ion-card>
             <ion-card-header>
               <ion-card-subtitle>Doctor Signature</ion-card-subtitle>
@@ -71,26 +63,26 @@
               <ion-textarea placeholder="Please sign here..."></ion-textarea>
             </ion-card-content>
           </ion-card>
-          <ion-card>
-            <div class="center">
-              <ion-button color="danger">Exit</ion-button>
-            </div>
-          </ion-card>
+         <ion-col>
+
+              <FormButton buttonText="Exit" type="button" />
+         </ion-col>
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-content>
+
   </base-template>
 </template>
 <script>
 import { IonCard } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios from "axios";
-
+import FormButton from "../components/FormButton"
 export default defineComponent({
   name: "nancy",
   components: {
     IonCard,
+      FormButton
   },
   data() {
     return { patientInfo: { patientPhoto: "" }, drugsInfo: [] };
@@ -120,4 +112,13 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped></style>
+<style scoped>
+  h2{
+    margin: 0 0 30px;
+    padding: 0;
+    color: #ffffff;
+
+    text-align: center;
+    font-weight: bold;
+  }
+</style>

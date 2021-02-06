@@ -1,44 +1,11 @@
 <template >
-    <ion-page >
-        <ion-menu side="start" menu-id="first" content-id="main"  >
-            <ion-header>
-                <ion-toolbar color="primary">
-                    <ion-title >Start Menu</ion-title>
-                </ion-toolbar>
-            </ion-header>
-            <ion-content >
-                <ion-list >
-
-                    <ion-item router-link="/addpatient" class="menu"> Add Patient</ion-item>
-                    <ion-item router-link="/" class="menu">Book A Doctor</ion-item>
-                    <ion-item router-link="/patientProfile" class="menu">Edit Patient's Profile</ion-item>
-                    <ion-item class="menu" router-link="/doctorProfile">Edit My Profile</ion-item>
-                    <ion-item class="menu">System settings</ion-item>
-                </ion-list>
-            </ion-content>
-        </ion-menu>        <ion-header >
-            <ion-toolbar >
-                <ion-buttons slot="start">
-                    <ion-menu-button auto-hide="false" disabled="false"  ></ion-menu-button>
-                </ion-buttons>
-
-
-
-                <ion-title>
-                    Add a Patient
-                </ion-title>
-            </ion-toolbar>
-        </ion-header>
-
-        <ion-content class="content" id="main" color="primary">
-
-
-
+<base-template>
                 <ion-grid  >
                     <ion-row>
 
                         <ion-col offset-lg="2" size-lg="8">
                             <div class="login-box">
+                                <h2>Add a new Patient</h2>
                                 <form @submit.prevent="sendPatientData">
                                     <ion-grid class="FormGrid">
                                         <ion-row>
@@ -130,22 +97,18 @@
                                         </ion-row>
                                         <ion-row>
                                             <ion-col size="12" class="medication" size-sm>
-                                                <IonLabel>Medications</IonLabel>
+                                                <label>Medications</label>
+                                            </ion-col>
+                                        </ion-row>
+                                                <ion-row>
+                                                    <ion-col size="12" class="medication" size-sm>
                                                 <ion-searchbar    v-model="filterTerm" />
 
-                                                <IonList interface="sheet-action" placeholder="search..."   >
+                                                <IonList interface="sheet-action" v-show="filterTerm != ''"   >
 
-                                                    <IonItem button="true" @click="showMed(med)" v-for="med in resultQuery" :key="med" value="{{med}}"  >{{med}}</IonItem>
+                                                    <IonItem v-show="filterTerm != ''" button="true" @click="showMed(med)" v-for="med in resultQuery" :key="med" value="{{med}}"  >{{med}}</IonItem>
                                                 </IonList>
-                                                <!--<div>-->
-                                                    <!--<advanced-search-->
-                                                            <!--v-model="model"-->
-                                                            <!--:options="options"-->
-                                                            <!--select-->
-                                                            <!--multiple-->
-                                                    <!--&gt;-->
-                                                    <!--</advanced-search>-->
-                                                <!--</div>-->
+
                                             </ion-col>
                                         </ion-row>
                                     </ion-grid>
@@ -162,23 +125,30 @@
 
 
                 </ion-grid>
-
-            </ion-content>
-    </ion-page>
+</base-template>
 </template>
 <script>
 import axios from 'axios';
 import FormButton from '../../components/FormButton';
 
-    import {IonMenu,
+    import {//IonMenu,
         IonSearchbar,
-        IonGrid,IonRow,IonCol,IonLabel,IonPage,IonHeader,IonContent,IonList,IonItem,IonToolbar,IonTitle ,IonButtons,IonMenuButton   } from "@ionic/vue";
+        IonGrid,IonRow,IonCol,IonLabel,
+        //IonPage,IonHeader,IonContent,
+        IonList,IonItem,
+        //IonToolbar,IonTitle ,IonButtons,IonMenuButton
+           } from "@ionic/vue";
+import BaseTemplate from "../../components/BaseTemplate";
     export default {
         components:{
+            BaseTemplate,
             //AdvancedSearch ,
-            IonMenu,
+            //IonMenu,
             IonSearchbar,
-            FormButton,IonGrid,IonRow,IonLabel,IonCol, IonButtons,IonMenuButton,IonHeader,IonTitle,IonToolbar,IonContent,IonList,IonItem,IonPage
+            FormButton,IonGrid,IonRow,IonLabel,IonCol,
+            //IonButtons,IonMenuButton,IonHeader,IonTitle,IonToolbar,IonContent,
+             IonList,IonItem,
+            //IonPage
                 },
         data(){
             return {
@@ -412,4 +382,3 @@ import FormButton from '../../components/FormButton';
     }
 
 </style>
-<style src="../../../node_modules/vue-advanced-search/dist/AdvancedSearch.css"></style>
