@@ -1,4 +1,5 @@
 <template >
+
 <base-template>
                 <ion-grid  >
                     <ion-row>
@@ -125,19 +126,23 @@
 
 
                 </ion-grid>
+
 </base-template>
 </template>
 <script>
 import axios from 'axios';
 import FormButton from '../../components/FormButton';
 
-    import {//IonMenu,
-        IonSearchbar,
-        IonGrid,IonRow,IonCol,IonLabel,
-        //IonPage,IonHeader,IonContent,
-        IonList,IonItem,
-        //IonToolbar,IonTitle ,IonButtons,IonMenuButton
-           } from "@ionic/vue";
+import {//IonMenu,
+    IonSearchbar,
+    IonGrid,IonRow,IonCol,
+    // IonLabel,
+    // IonPage,
+    // IonHeader,
+    // IonContent,
+    IonList,IonItem,
+    //IonToolbar,IonTitle ,IonButtons,IonMenuButton
+        } from "@ionic/vue";
 import BaseTemplate from "../../components/BaseTemplate";
     export default {
         components:{
@@ -145,10 +150,11 @@ import BaseTemplate from "../../components/BaseTemplate";
             //AdvancedSearch ,
             //IonMenu,
             IonSearchbar,
-            FormButton,IonGrid,IonRow,IonLabel,IonCol,
-            //IonButtons,IonMenuButton,IonHeader,IonTitle,IonToolbar,IonContent,
+            FormButton,IonGrid,IonRow,IonCol,
+            //IonButtons,IonMenuButton,IonHeader,IonTitle,IonToolbar,
+            // IonContent,
              IonList,IonItem,
-            //IonPage
+            // IonPage
                 },
         data(){
             return {
@@ -206,7 +212,7 @@ import BaseTemplate from "../../components/BaseTemplate";
 
     }
     .login-box h2 {
-        margin: 0 0 30px;
+        margin: 30px 0 30px ;
         padding: 0;
         color: #ffffff;
 

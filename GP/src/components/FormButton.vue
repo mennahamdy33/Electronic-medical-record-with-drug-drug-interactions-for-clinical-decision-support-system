@@ -45,6 +45,7 @@ export default defineComponent({
   
   /* width: 25%; */
   color: #03e9f4;
+  /* color: #a6dbe2; */
   /* color: #05545a; */
   /* font-weight: bold; */
   /* color:  #333333; */
@@ -77,10 +78,10 @@ ion-button:hover {
               0 0 25px  #00e1ff,
               0 0 50px  #00e1ff,
               0 0 100px  #00e1ff; */
-  /* box-shadow: 0 0 5px  #5c5c5c,
-              0 0 25px  #5c5c5c,
-              0 0 50px  #5c5c5c,
-              0 0 100px  #5c5c5c; */
+  /* box-shadow: 0 0 5px  #a6dbe2,
+              0 0 25px  #a6dbe2,
+              0 0 50px  #a6dbe2,
+              0 0 100px  #a6dbe2; */
   box-shadow: 0 0 5px #03e9f4,
               0 0 25px #03e9f4,
               0 0 50px #03e9f4,
@@ -98,7 +99,7 @@ ion-button span:nth-child(1) {
   width: 100%;
   height: 3px;
   background: linear-gradient(90deg, transparent, #03e9f4);
-  /* background: linear-gradient(90deg, transparent, #05545a); */
+  /* background: linear-gradient(90deg, transparent, #a6dbe2); */
   animation: btn-anim1 1s linear infinite;
 }
 
