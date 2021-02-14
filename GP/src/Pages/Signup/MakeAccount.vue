@@ -143,12 +143,15 @@ export default defineComponent({
 
 
 .login-box h2 {
+  font-family: 'Monoton';
   margin: 0 0 30px;
   padding: 0;
   color: #ffffff;
   /* color: #05545a; */
+  font-size: 45px;
+  letter-spacing: 9px;
   text-align: center;
-  font-weight: bold;
+  font-weight: 100;
 }
 
 .user-box {
@@ -174,7 +177,8 @@ export default defineComponent({
   
   left: 0;
   padding: 10px 0;
-  font-size: 16px;
+  font-size: 18px;
+  letter-spacing: 1.5px;
   color: #fff;
   pointer-events: none;
   transition: .5s;

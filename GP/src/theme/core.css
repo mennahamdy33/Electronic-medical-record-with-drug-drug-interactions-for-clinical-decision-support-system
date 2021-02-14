@@ -1,3 +1,16 @@
+@font-face {
+    font-family: 'Monoton';
+    src: url('../../public/assets/Monoton-Regular.ttf');
+  }
+@font-face {
+    font-family: 'Righteous';
+    src: url('../../public/assets/Righteous-Regular.ttf');
+  }
+@font-face {
+    font-family: 'Architects Daughter';
+    src: url('../../public/assets/ArchitectsDaughter-Regular.ttf');
+  }
+
 ion-toolbar {
     --background:var(--ion-color-secondary);
     --color:var(--ion-color-secondary-contrast);

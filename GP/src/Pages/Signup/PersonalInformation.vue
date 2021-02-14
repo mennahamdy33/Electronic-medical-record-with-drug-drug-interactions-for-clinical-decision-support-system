@@ -31,7 +31,7 @@
                         <ion-row>
                         
                           <ion-col size="12" size-sm  >
-                            <label style="color:white; fontSize:18px;">Gender</label>
+                            <label class= 'custom' >Gender</label>
 
                                 <!-- <radio-form id="Male" name='gender'/>
 
@@ -43,14 +43,14 @@
                               
                                 <li>
                                   <input type="radio" id="Male" name="gender" v-model="personalInformation.gender" value="male"  >
-                                  <label for="Male"> Male </label>
+                                  <label class= 'custom' for="Male"> Male </label>
                                     
                                   <div class="check"><div class="inside"></div></div>
                                 </li>
 
                                 <li>
                                   <input type="radio" id="Female" name="gender" v-model="personalInformation.gender" value="female">
-                                  <label for="Female"> Female </label>
+                                  <label class= 'custom' for="Female"> Female </label>
   
                                   <div class="check"><div class="inside"></div></div>
                                 </li>
@@ -62,7 +62,7 @@
 
 
                           <ion-col size="12" size-sm  >
-                            <label style="color:white; fontSize:18px;">I am</label>
+                            <label class= 'custom' >I am</label>
 
                                 <!-- <radio-form id="Male" name='gender'/>
 
@@ -74,14 +74,14 @@
                               
                                 <li>
                                   <input type="radio" id="Doctor" name="proficiency" v-model="personalInformation.proficiency" value="doctor"  >
-                                  <label for="Doctor"> Doctor </label>
+                                  <label class= 'custom' for="Doctor"> Doctor </label>
                                     
                                   <div class="check"><div class="inside"></div></div>
                                 </li>
 
                                 <li>
                                   <input type="radio" id="Secretary" name="proficiency" v-model="personalInformation.proficiency" value="secretary">
-                                  <label for="Secretary"> Secretary </label>
+                                  <label class= 'custom' for="Secretary"> Secretary </label>
   
                                   <div class="check"><div class="inside"></div></div>
                                 </li>
@@ -272,12 +272,15 @@ export default defineComponent({
 
 
 .login-box h2 {
+  font-family: 'Monoton';
   margin: 0 0 30px;
   padding: 0;
   color: #ffffff;
-  
+  font-size: 45px;
+  letter-spacing: 9px;
+
   text-align: center;
-  font-weight: bold;
+  font-weight: 100;
 }
 
 .user-box {
@@ -300,17 +303,30 @@ export default defineComponent({
 }
 .user-box label {
   position: absolute;
-  
+  /* font-family: 'Righteous'; */
+  /* font-family: 'Architects Daughter'; */
   left: 0;
   padding: 10px 0;
-  font-size: 16px;
+  font-size: 18px;
+  letter-spacing: 1.5px;
   color: #fff;
   pointer-events: none;
   transition: .5s;
+  /* font-weight: 600; */
 }
 
+.custom{
+  /* font-family: 'Righteous'; */
+  /* font-family: 'Architects Daughter'; */
+  font-size: 18px;
+
+  letter-spacing: 1.5px;
+  color: #fff;
+  /* font-weight: 600; */
+
+}
 .Up{
-  top:-20px;
+  top:-25px;
 }
 
 .Down{
