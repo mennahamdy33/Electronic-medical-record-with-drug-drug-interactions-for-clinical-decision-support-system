@@ -133,7 +133,8 @@ import FormButton from '../../components/FormButton';
 
     import {//IonMenu,
         IonSearchbar,
-        IonGrid,IonRow,IonCol,IonLabel,
+        IonGrid,IonRow,IonCol,
+        // IonLabel,
         //IonPage,IonHeader,IonContent,
         IonList,IonItem,
         //IonToolbar,IonTitle ,IonButtons,IonMenuButton
@@ -145,7 +146,7 @@ import BaseTemplate from "../../components/BaseTemplate";
             //AdvancedSearch ,
             //IonMenu,
             IonSearchbar,
-            FormButton,IonGrid,IonRow,IonLabel,IonCol,
+            FormButton,IonGrid,IonRow,IonCol,
             //IonButtons,IonMenuButton,IonHeader,IonTitle,IonToolbar,IonContent,
              IonList,IonItem,
             //IonPage
