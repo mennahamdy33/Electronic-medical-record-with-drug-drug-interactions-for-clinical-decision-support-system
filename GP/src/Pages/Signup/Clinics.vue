@@ -128,12 +128,15 @@ export default defineComponent({
 
 
 .login-box h2 {
+  font-family: 'Monoton';
   margin: 0 0 30px;
   padding: 0;
   color: #ffffff;
   /* color: #05545a; */
+  font-size: 40px;
+  letter-spacing: 9px;
   text-align: center;
-  font-weight: bold;
+  font-weight: 100;
 }
 
 ion-grid{
