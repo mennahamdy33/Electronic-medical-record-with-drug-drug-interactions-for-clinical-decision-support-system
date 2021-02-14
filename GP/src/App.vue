@@ -1,7 +1,7 @@
 <template>
   <ion-app>
     <!-- <ion-router-outlet /> -->
-    <landing-page></landing-page>    
+    <!-- <landing-page></landing-page>     -->
     <router-view></router-view>
     <!-- <signup></signup>     -->
     <!-- <progress-bar></progress-bar> -->
@@ -12,7 +12,7 @@
 
 <script>
 import { IonApp } from '@ionic/vue';
-import LandingPage from './Pages/LandingPage.vue'
+// import LandingPage from './Pages/LandingPage.vue'
 // import { IonApp, IonRouterOutlet } from '@ionic/vue';
 import { defineComponent } from 'vue';
 // import ProgressBar from './components/ProgressBar.vue';
@@ -24,7 +24,7 @@ export default defineComponent({
     // IonRouterOutlet,
     // ProgressBar,
     // Signup,
-    LandingPage
+    // LandingPage
     
   }
 });

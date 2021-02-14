@@ -1,15 +1,21 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 //import Home from '../Pages/Home.vue'
 import BookDoctor from '../Pages/BookDoctor'
-
+import LandingPage from '../Pages/LandingPage.vue'
 import AddPatientPage from '../Pages/DSProfiles/AddPatientPage.vue'
 import Signup from '../Pages/Signup/Signup.vue'
 import Prescription from '@/Pages/Prescription.vue';
 const routes = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/home',
   },
+  {
+    
+    path: '/home',
+    component: LandingPage,
+  },
+  
   {
     path: '/bookDoctor',
     name:'bookDoctor',

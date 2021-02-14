@@ -106,15 +106,10 @@ export default defineComponent({
   margin:0;
   padding:0;
   font-family: sans-serif;
-  /* background: linear-gradient(#a6dbe2, #79aebc); */
-  /* background: linear-gradient(#a4a8a8, #73a8a8); */
-  /* background: linear-gradient(#141e30, #6f92b8); */
-  /* background: linear-gradient(#c4c5c5a2, #8a8989); */
-  /* background: linear-gradient( #54af94c0,#aaf8e1c0); */
+  
+  /* --background: linear-gradient(#022f31, #064e53); */
   --background: linear-gradient(#141e30, #243b55);
-  /* --background: linear-gradient( #141e30,#28425f, #294361,#141e30); */
-  /* --background: linear-gradient( #336450,#398666, #3a8a69,#336450); */
-  /* --background: linear-gradient( #214436,#336450, #286d50,#336450); */
+  
   
 }
 .FormGrid ion-col{

@@ -19,8 +19,9 @@
       </ion-content>
     </ion-menu>
 
-    <ion-header>
-      <ion-toolbar color="primary">
+    <ion-header >
+      <ion-toolbar class="tool" >
+      <!-- <ion-toolbar color="primary"> -->
         <ion-buttons slot="start">
           <ion-menu-button auto-hide="false"></ion-menu-button>
         </ion-buttons>
@@ -40,7 +41,13 @@
         </ion-buttons>
 
         <ion-title>
-          <img :src="img" alt="logo" width="70" height="45" />
+          <ion-grid>
+            <ion-row>
+              <ion-col size-lg="1.7" size-md="3" size-sm="4" size-xs="12">
+                <img :src="img" alt="logo"  />
+              </ion-col>
+            </ion-row>
+          </ion-grid>
           <!-- {{ title }} -->
         </ion-title>
       </ion-toolbar>
@@ -66,6 +73,8 @@ import {
   IonItem,
   IonIcon,
   IonMenuButton,
+  IonCol,
+  IonGrid, IonRow
 } from "@ionic/vue";
 import {
   add,
@@ -92,6 +101,8 @@ export default {
     IonItem,
     IonIcon,
     IonMenuButton,
+    IonCol,
+    IonGrid, IonRow
   },
   data() {
     return {
@@ -104,13 +115,14 @@ export default {
       search,
       star,
       logOut,
-      img: require("../../public/logo.png"),
+      img: require("../../public/barlogo.png"),
       //icons end
     };
   },
 };
 </script>
-<style>
+<style scoped>
+
 .content {
   margin: 0;
   padding: 0;
@@ -131,8 +143,19 @@ export default {
 }
 img {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 5px;
+  /* margin-left: auto;
+  margin-right: auto; */
+  /* padding: 5px; */
+  /* width:13em; */
+}
+
+.tool{
+  --background: #141e30;
+  /* --border-color: #80fbff;
+  --border-width: 2px; */
+  
+}
+ion-title{
+  padding: 0;
 }
 </style>
