@@ -1,5 +1,6 @@
 <template>
   <ion-page>
+    
     <ion-menu side="start" menu-id="first" content-id="main">
       <ion-header>
         <ion-toolbar color="secondary">
@@ -19,7 +20,10 @@
       </ion-content>
     </ion-menu>
 
-    <ion-header >
+    
+
+    <ion-content id="main" class="content" fullscreen=true>
+      <ion-header >
       <ion-toolbar class="tool" >
       <!-- <ion-toolbar color="primary"> -->
         <ion-buttons slot="start">
@@ -48,12 +52,9 @@
               </ion-col>
             </ion-row>
           </ion-grid>
-          <!-- {{ title }} -->
         </ion-title>
       </ion-toolbar>
     </ion-header>
-
-    <ion-content id="main" class="content">
       <slot />
     </ion-content>
   </ion-page>
@@ -115,7 +116,7 @@ export default {
       search,
       star,
       logOut,
-      img: require("../../public/barlogo.png"),
+      img: require("../../public/logobig.png"),
       //icons end
     };
   },

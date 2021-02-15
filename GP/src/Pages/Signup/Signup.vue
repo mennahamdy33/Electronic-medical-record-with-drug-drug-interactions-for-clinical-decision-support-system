@@ -5,13 +5,14 @@
       <ion-grid  >      
 
         <ion-row >
-          <ion-col offset-lg="0" offset-xs="3.4" size-lg="2" size-xs="6">
+          <ion-col offset-lg="0.2" offset-xs="3.4" size-lg="1.5" size-xs="6">
             <div class="image">   
-              <img src="../../../public/assets/logo4.png"  >   
+              <img src="../../../public/assets/mainlogo.png"  >   
+              <!-- <img src="../../../public/assets/logo4.png"  >    -->
             </div>
           </ion-col>
           
-          <ion-col offset-lg="1" pull-xs="0"  size-lg="6" size-xs="15" >
+          <ion-col offset-lg="0.9" pull-xs="0"  size-lg="6" size-xs="15" >
             <progress-bar></progress-bar>
           </ion-col>
         </ion-row>
@@ -76,5 +77,8 @@ export default defineComponent({
   
 }
 
+img{
+  margin-top: 25%;
+}
 
 </style>

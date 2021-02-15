@@ -2,56 +2,22 @@
 <ion-page>
 <!-- <body> -->
   <ion-content class="content">
+    <ion-header class="ion-no-border">
+    <ion-toolbar>
+      <ion-title>Header - No Border</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
     <ion-grid>
       <ion-row style="margin-top: 2%" class="ion-justify-content-center" >
         <ion-col size-lg="2">
-          <!-- <h2> Sign up </h2> -->
           <form-button router-link="/Signup" type="button" buttonText="Signup"/>
         </ion-col>
         <ion-col size-lg="2">
-          <!-- <h2> Sign up </h2> -->
           <form-button router-link="/addpatient" type="button" buttonText="Log in"/>
         </ion-col>
       </ion-row>
-      <!-- <ion-row style="margin-top: 2%" class="ion-justify-content-center"> -->
-        <!-- <ion-col > -->
-          <!-- <h2> Sign up </h2> -->
-          
-        <!-- </ion-col> -->
-      <!-- </ion-row> -->
-      <!-- <ion-row style="margin-top: 2%" class="ion-justify-content-center"> -->
-        <!-- <ion-col size-lg="3" size-xs="11" > -->
-          <!-- <ion-card router-link="/Signup" button=true> -->
-            <!-- <img src="../../public/assets/Untitled-5.svg"  >  -->
-             <!-- <ion-card-header> -->
-              <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
-              <!-- <ion-card-title> As a Doctor</ion-card-title> -->
-            <!-- </ion-card-header> -->
-
-            <!-- <ion-card-content>
-              Keep close to Nature's heart... and break clear away, once in awhile,
-              and climb a mountain or spend a week in the woods. Wash your spirit clean.
-            </ion-card-content> -->
-          <!-- </ion-card> -->
-        <!-- </ion-col> -->
-
-        <!-- <ion-col offset-lg="1" size-lg="3" size-xs="11"> -->
-          <!-- <ion-card> -->
-            <!-- <img src="../../public/assets/Untitled-6.svg"  >  -->
-             <!-- <ion-card-header> -->
-              <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
-              <!-- <ion-card-title>As a Secretary</ion-card-title> -->
-            <!-- </ion-card-header> -->
-
-            <!-- <ion-card-content>
-              Keep close to Nature's heart... and break clear away, once in awhile,
-              and climb a mountain or spend a week in the woods. Wash your spirit clean.
-            </ion-card-content> -->
-          <!-- </ion-card> -->
-        <!-- </ion-col> -->
-      <!-- </ion-row> -->
-      <!-- <router-link to="/MakeAccount"><form-button type="button" buttonText="Signup"/></router-link> -->
+      
     </ion-grid>
 
     
@@ -62,7 +28,18 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { IonContent , IonPage, IonGrid , IonCol, IonRow} from '@ionic/vue';
+import { 
+  IonContent ,
+  IonPage,
+  IonGrid ,
+  IonCol, 
+  IonRow,
+  IonHeader,
+  IonTitle,
+  IonToolbar
+
+   
+} from '@ionic/vue';
 // import { IonContent , IonPage, IonGrid , IonCol, IonRow,IonCard ,IonCardTitle,IonCardHeader } from '@ionic/vue';
 import FormButton from '../components/FormButton.vue';
 // import FormField from '../components/FormField'
@@ -77,6 +54,9 @@ export default defineComponent({
     IonRow,
     IonContent,
     IonPage ,
+    IonHeader,
+    IonTitle,
+    IonToolbar
     // IonCard,
     // IonCardTitle,
     // IonCardHeader
