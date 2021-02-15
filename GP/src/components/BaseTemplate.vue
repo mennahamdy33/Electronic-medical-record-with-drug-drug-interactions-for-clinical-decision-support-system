@@ -22,39 +22,39 @@
 
     
 
-    <ion-content id="main" class="content" fullscreen=true>
+    <ion-content id="main" class="content" >
       <ion-header >
-      <ion-toolbar class="tool" >
-      <!-- <ion-toolbar color="primary"> -->
-        <ion-buttons slot="start">
-          <ion-menu-button auto-hide="false"></ion-menu-button>
-        </ion-buttons>
+        <ion-toolbar class="tool" >
+          <!-- <ion-toolbar color="primary"> -->
+            <ion-buttons slot="start">
+              <ion-menu-button auto-hide="false"></ion-menu-button>
+            </ion-buttons>
 
-        <ion-buttons slot="secondary">
-          <ion-button>
-            <ion-icon slot="icon-only" :icon="personCircle"></ion-icon>
-          </ion-button>
-          <ion-button>
-            <ion-icon slot="icon-only" :icon="search"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-        <ion-buttons slot="primary">
-          <ion-button color="danger">
-            <ion-icon slot="icon-only" :icon="logOut"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+            <ion-buttons slot="secondary">
+              <ion-button>
+                <ion-icon slot="icon-only" :icon="personCircle"></ion-icon>
+              </ion-button>
+              <ion-button>
+                <ion-icon slot="icon-only" :icon="search"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+            <ion-buttons slot="primary">
+              <ion-button color="danger">
+                <ion-icon slot="icon-only" :icon="logOut"></ion-icon>
+              </ion-button>
+            </ion-buttons>
 
-        <ion-title>
-          <ion-grid>
-            <ion-row>
-              <ion-col size-lg="1.7" size-md="3" size-sm="4" size-xs="12">
-                <img :src="img" alt="logo"  />
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-title>
-      </ion-toolbar>
-    </ion-header>
+            <ion-title>
+              <ion-grid>
+                <ion-row>
+                  <ion-col size-lg="1.7" size-md="3" size-sm="4" size-xs="12">
+                    <img :src="img" alt="logo"  />
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-title>
+        </ion-toolbar>
+      </ion-header>
       <slot />
     </ion-content>
   </ion-page>
