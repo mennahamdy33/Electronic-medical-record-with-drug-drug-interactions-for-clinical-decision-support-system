@@ -51,7 +51,7 @@ export default {
   provide: [],
 };
 </script>
-<style >
+<style scoped>
 .my-custom-class .modal-wrapper {
   background: rgb(141, 134, 134);
 }
