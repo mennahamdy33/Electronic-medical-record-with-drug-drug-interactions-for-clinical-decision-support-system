@@ -87,5 +87,7 @@
     }
 </script>
 <style scoped>
-
+    ion-label,h3,ion-icon{
+        color: #ffffff;
+    }
 </style>
