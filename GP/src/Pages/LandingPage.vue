@@ -9,7 +9,6 @@
     </ion-header>
     <ion-content>
       <ion-list>
-        <!-- <img :src="img" alt="logo" /> -->
 
         <ion-item href="/addpatient">Home</ion-item>
         <ion-item href="/bookDoctor">About</ion-item>
@@ -44,8 +43,6 @@
 
           <ion-buttons slot="secondary" id="bar">
                         
-            <!-- <ion-button router-link="/addpatient"> Log in</ion-button>
-            <ion-button class="signup" router-link="/Signup"> Sign up</ion-button> -->
 
             <ion-grid>
               <ion-row >
@@ -77,7 +74,6 @@
             </ion-grid>
           </ion-buttons>
         </ion-toolbar>
-        <!-- </ion-split-pane> -->
       </ion-header>
 
       
@@ -98,8 +94,7 @@
     </section>
 
     <section class ="sec2">
-      <!-- <h2> About</h2> -->
-      <!-- <p> -->
+      
       <ion-grid class="grid2"> 
         <!-- <ion-row class="ion-align-items-center ion-justify-content-center" > -->
           <ion-row class="ion-align-items-center ion-justify-content-center">
@@ -122,13 +117,6 @@
             </ion-col>
             <ion-col size-lg="3" offset-lg="0.4" size-xs="12">
               <ion-card>
-                <!-- <ion-card-content>
-                  Patients taking two or more drugs, become liable to severe harm that may reach death.
-                  There are some types of chemicals that are not preferable to be taken together because
-                  they interact with each other in a way that harms the patient’s health.
-                  In Egypt most hospitals and clinics, have no electronic information system
-                  to know the medical history and the medications the patient is taking.
-                </ion-card-content> -->
                 <img src="../../public/assets/interaction.png" alt="logo"  />
 
               </ion-card>
@@ -183,8 +171,59 @@
           </ion-row>
         
       </ion-grid>
-      <!-- </p> -->
+      
     </section>
+    
+    <section class="sec3">
+      <ion-grid>
+        <ion-row class="ion-align-items-center ion-justify-content-center">
+          <!-- <h2 id = "About" > DruGuide Features</h2> -->
+          <h2 id = "About" style="background-color :#ffffff;"> DruGuide Features</h2>
+        </ion-row>
+        <ion-row class= "ion-align-items-center ion-justify-content-center">
+          <!-- <ion-col > -->
+          <ion-card class="features">
+            <ion-card-content >
+              <ion-grid>
+                <ion-row>
+                  <ion-col >
+                    <p> 
+                      1- Registering patient personal information, medical history, 
+                      and medication list if existed. the data is filled by the receptionist.
+                    </p>
+                    <p>
+                      2- Registering the staff data electronically, like doctors, nurses and receptionists.
+                    </p>
+                    <p>3- Receptionist can edit patient data.</p>
+
+                    <p>4- Staff can edit their own data.</p>
+                    <p>5- Receptionist can  schedule a new appointment to a doctor.</p>
+                    <p> 6- Setting a physician’s visiting hours.</p>
+
+                  </ion-col>
+
+                  <ion-col offset-lg="0.4">
+                    <p> 7- Filling an encounter form, the physician enters the results of the encounter to the patient’s chart.</p>
+
+                    <p> 8- Doctors can see their scheduled patients on a particular day. </p>
+                    <p> 9- Doctors can view patients data.</p>
+
+                    <p> 10- Safely e-Prescribing a medication, the system checks for possible drug-drug interactions.</p>
+
+                    <p> 11- Searching for drugs and their detailed information.</p>
+
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+          
+          <!-- </ion-col> -->
+        </ion-row>
+      </ion-grid>
+      
+    </section>
+
 
   </ion-content>
 </ion-page>
@@ -192,7 +231,9 @@
 </template>
 
 <script>
+
 import { defineComponent } from 'vue';
+// import SliderContent from '../components/SliderContent'
 import { 
   IonContent ,
   IonPage,
@@ -209,20 +250,18 @@ import {
   IonList,
   IonMenuButton,
   IonCard,
-  IonCardContent
+  IonCardContent,
+  // IonSlides,
+  // IonSlide
+ 
   // IonSplitPane,
 
    
 } from '@ionic/vue';
-// import { IonContent , IonPage, IonGrid , IonCol, IonRow,IonCard ,IonCardTitle,IonCardHeader } from '@ionic/vue';
-// import FormButton from '../components/FormButton.vue';
-// import FormField from '../components/FormField'
-// import ProgressBar from '../components/ProgressBar.vue';
+
 export default defineComponent({
   name: 'LandingPage',
   components: {
-    // FormButton,
-    // FormField,
     IonCol,
     IonGrid,
     IonRow,
@@ -238,13 +277,17 @@ export default defineComponent({
     IonList,
     IonMenuButton,
     IonCard,
-    IonCardContent
+    IonCardContent,
+    // IonSlides,
+    // IonSlide
+    // SliderContent
+   
+   
     // IonSplitPane
     // IonCard,
     // IonCardTitle,
     // IonCardHeader
-    // ProgressBar,
-    
+   
     
    
   },
@@ -252,15 +295,20 @@ export default defineComponent({
   data(){
     return{
       img: require("../../public/logobig.png"),
+    
 
       
     }
   },
   methods: {
-    //  getURL(pic){
-    //    return require(pic)
-    //  }
+ 
+ 
   }
+,
+
+// mounted(){
+//   console.log(this.slides)
+// }
 });
 </script>
 
@@ -279,15 +327,9 @@ export default defineComponent({
 }
 
 .sec1 {
-  /* margin:0;
-  padding:0; */
+
   font-family: sans-serif;
   background: linear-gradient(#141e30, #243b55);
-
-  /* background-color:  #141e30; */
-  /* height: 500px; */
-  
-  
 }
 .grid1{
   margin-top: 50px;
@@ -313,9 +355,6 @@ export default defineComponent({
   padding: 15px;;
 }
 .sec1 p{
-  /* padding-top:100px; */
-  /* font-family:  'Architects Daughter'; */
-  /* font-family: 'Righteous'; */
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   color: #ffffff;
@@ -335,7 +374,6 @@ export default defineComponent({
 .sec2 {
  
   background-color:  #ffffff;
-  /* height: 500px; */
   padding-top: 50px;
   
 }
@@ -343,19 +381,11 @@ export default defineComponent({
 .sec2 h2{
   color: #000000;
 }
-/* .FormGrid ion-col{ */
-/* --ion-grid-column-padding: 20px; */
-  /* --ion-grid-padding: 50px; */
-/* } */
-
-
 
 h2 {
   margin: 0 0 30px;
   padding: 0;
   color: #ffffff;
-    
-  /* margin-top: 20px; */
   font-family: "Lucida Console", "Lucida Sans Typewriter", monaco, "Bitstream Vera Sans Mono", monospace; 
   text-align: center;
   font-weight: bold;
@@ -370,9 +400,6 @@ ion-card-title{
 
 .toolbar{
   --background: transparent;
-  /* --opacity: 100%; */
-    /* margin-top: 1%; */
-
     
 }
 
@@ -382,17 +409,8 @@ ion-buttons{
   margin-right: 13%;
 }
 
-img{
-  /* width: 13%; */
-  /* margin-top: 10%; */
-}
-
 ion-button{
     color: #ffffff;
-    /* margin-top: 10%; */
-  /* --background: #ffffff;
-  --border-radius: 300px;
-  --border-width: 50px; */
 }
 
 .signup , .login{
@@ -401,11 +419,7 @@ ion-button{
   border-radius: 300px;
   width: 140px;
   height: 55px;
- 
-  /* --padding-bottom	:40px;
-  --padding-top	:40px; */
-  /* height: 50px; */
-  /* margin-right: 100px; */
+
 }
 
 .signup:hover, .login:hover {
@@ -413,8 +427,7 @@ background: transparent;
 border : 2px solid #ffffff;
 color: #ffffff;
 transition-duration: 0.4s;
-/* border-color: #ffffff;
-border-width: 20px; */
+
 }
 .normal{
   margin-top: 15px;
@@ -434,11 +447,8 @@ ion-card{
 }
 
 .about1{
-  /* background-color: rgba(207, 203, 203, 0.329); */
   padding: 10px  0px 10px 20px; 
-  /* border-radius: 30px; */
   font-size: 18px;
-  /* margin-top: 100px; */
   color: #000000;
  
 }
@@ -453,4 +463,47 @@ ion-card{
   
 
 }
+
+.sec3{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  /* background-color: #9cbbf515; */
+    /* background: linear-gradient(#9cbbf554, #ffffff); */
+  background: linear-gradient(#141e30, #243b55);
+
+}
+
+
+.features p{
+  font-size: 20px;
+  /* color:rgb(11, 2, 63); */
+  margin-bottom: 20px;
+  /* font-family:   'Righteous'; */
+  font-family:  Arial, Helvetica, sans-serif;
+;
+  /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+
+
+  font-weight: 500;
+ letter-spacing: 0.9px;
+  color:#02153b;
+  /* background-color: #ffffffe8; */
+  background-color: #9cbbf554;
+  border-radius: 50px;
+  padding: 20px;;
+}
+
+.features{
+  width: 90%;
+  border-radius: 50px;
+  /* background-color: #7a7a7a07; */
+}
+
+.features p:hover{
+  background-color: #1b0d69;
+  color: #ffffff;
+  transition-duration: 0.4s;
+
+}
+
 </style>
