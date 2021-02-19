@@ -3,6 +3,8 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import BookDoctor from '../Pages/BookDoctor'
 import LandingPage from '../Pages/LandingPage/LandingPage.vue'
 import AddPatientPage from '../Pages/DSProfiles/AddPatientPage.vue'
+import MedicalHistory from '../Pages/DSProfiles/MedicalHistory.vue'
+
 import Signup from '../Pages/Signup/Signup.vue'
 import Prescription from '@/Pages/Prescription.vue';
 const routes = [
@@ -25,6 +27,10 @@ const routes = [
     {
         path : '/addpatient',
         component: AddPatientPage
+    },
+    {
+        path : '/medicalhistory',
+        component: MedicalHistory
     },
     {
         path:'/patientProfile',

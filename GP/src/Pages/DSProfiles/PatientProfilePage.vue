@@ -3,13 +3,13 @@
             <ion-grid  >
                 <ion-row>
 <ion-col offset-lg="2" size-lg="8">
-                        <div class="login-box" style="border-style: solid;
-  border-color: #03e9f4;" >
+                        <div class="login-box"  >
     <h2>Patient Profile</h2>
-                                <ion-grid class="FormGrid">
+                                <ion-grid class="FormGrid" style="border-style: solid;
+  border-color: #03e9f4;">
                                     <ion-row>
 
-                                            <h2> Name: {{patientInfo.FistName}} {{patientInfo.LastName}}</h2>
+                                            <h3> Name: {{patientInfo.FistName}} {{patientInfo.LastName}}</h3>
 
                                     </ion-row>
                                     <ion-row>
@@ -87,7 +87,21 @@
     }
 </script>
 <style scoped>
-    ion-label,h3,ion-icon{
+    .login-box h2,h3{
+        margin: 0 0 30px;
+        padding: 0;
+        color: #ffffff;
+        font-size: 30px;
+        text-align: center;
+        font-weight: 100;
+    }
+    .login-box h2 {
+        font-family: 'Monoton';
+        font-size: 45px;
+        letter-spacing: 5px;
+    }
+
+    ion-label,ion-icon{
         color: #ffffff;
     }
 </style>

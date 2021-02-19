@@ -13,7 +13,7 @@
           </ion-col>
           
           <ion-col offset-lg="0.9" pull-xs="0"  size-lg="6" size-xs="15" >
-            <progress-bar></progress-bar>
+            <progress-bar text="signup"></progress-bar>
           </ion-col>
         </ion-row>
 
