@@ -10,21 +10,19 @@
     <ion-content>
       <ion-list>
 
-        <ion-item href="/addpatient">Home</ion-item>
-        <ion-item href="/bookDoctor">About</ion-item>
-        <ion-item href="/patientProfile">Features</ion-item>
+        <ion-item @click="Goto('home')" button >Home</ion-item>
+        <ion-item @click="Goto('about')" button>About</ion-item>
+        <ion-item @click="Goto('features')" button>Features</ion-item>
         <ion-item href="/doctorProfile">Pershase</ion-item>
         <ion-item href="/Prescription">Log in</ion-item>
         <ion-item href="/Signup">Sign up</ion-item>
       </ion-list>
     </ion-content>
   </ion-menu>
-
-  <ion-content id="main" >
-    <section class="sec1" > 
-
-      <ion-header class="ion-no-border" >
-        <ion-toolbar class="toolbar"  >
+  <ion-content id="main" ref="content"  >
+  <section class="sec1"> 
+      <ion-header class="ion-no-border"   >
+        <ion-toolbar class="toolbar" >
 
           <ion-buttons slot="start" id="menu">
             <ion-menu-button auto-hide="false"></ion-menu-button>
@@ -47,23 +45,23 @@
             <ion-grid>
               <ion-row >
                 <ion-col pull-lg="1.4" >
-                  <ion-button class="normal" router-link="/addpatient">Home</ion-button>
+                  <ion-button class="normal" @click="Goto('home')">Home</ion-button>
                 </ion-col>
 
                 <ion-col pull-lg="1.4" >
-                  <ion-button class="normal" router-link="/addpatient">About</ion-button>
+                  <ion-button class="normal" @click="Goto('about')" >About</ion-button>
                 </ion-col>
 
                 <ion-col pull-lg="1.4" >
-                  <ion-button class="normal" router-link="/addpatient">Features</ion-button>
+                  <ion-button class="normal" @click="Goto('features')">Features</ion-button>
                 </ion-col>
 
                 <ion-col pull-lg="1" >
-                  <ion-button class="normal" router-link="/addpatient">Purchase</ion-button>
+                  <ion-button class="normal" >Purchase</ion-button>
                 </ion-col>
 
                 <ion-col pull="0.1" >
-                  <ion-button class="login" router-link="/addpatient"> Log in</ion-button>
+                  <ion-button class="login" > Log in</ion-button>
                 </ion-col>
 
                 <ion-col >
@@ -76,14 +74,18 @@
         </ion-toolbar>
       </ion-header>
 
-      <home/>
+      <home id="home"/>
+      </section>
+    
+
+
       
 
-    </section>
+    
 
     
-    <about/>
-    <features/>
+    <about id="about"/>
+    <features id="features"/>
 
 
   </ion-content>
@@ -110,6 +112,7 @@ import {
   IonItem,
   IonList,
   IonMenuButton,
+  
   
  
 
@@ -147,13 +150,21 @@ export default defineComponent({
   data(){
     return{
       img: require("../../../public/logobig.png"),
-    
+      // content : IonContent,
 
       
     }
   },
   methods: {
- 
+    Goto(id){
+      const el = document.getElementById(id)
+      el.scrollIntoView({behavior: 'smooth' , block: 'start'});
+      // el.scrollToPoint(0,1200)
+      console.log(this.$refs.content)
+      // this.$refs.content.scrollToPoint(null, 500)
+      // this.content.scrollY(50)
+      // this.content.scrollToPoint(null, 500)
+    }
  
   }
 ,
@@ -184,9 +195,8 @@ export default defineComponent({
 
 .toolbar{
   --background: transparent;
-    
+  
 }
-
 
 
 ion-buttons{
