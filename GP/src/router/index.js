@@ -7,6 +7,7 @@ import MedicalHistory from '../Pages/DSProfiles/MedicalHistory.vue'
 
 import Signup from '../Pages/Signup/Signup.vue'
 import Prescription from '@/Pages/Prescription.vue';
+import Purchase from '../Pages/LandingPage/Purchase.vue'
 const routes = [
   {
     path: '/',
@@ -23,27 +24,32 @@ const routes = [
     name:'bookDoctor',
     component: BookDoctor
   },
-    {path: '/Signup' , component: Signup},
-    {
-        path : '/addpatient',
-        component: AddPatientPage
-    },
+
+  {path: '/Signup' , component: Signup},
+
+  {path: '/Purchase' , component: Purchase},
     {
         path : '/medicalhistory',
         component: MedicalHistory
     },
-    {
-        path:'/patientProfile',
-        component:() => import('../Pages/DSProfiles/PatientProfilePage')
-    },
-    {
-        path:'/doctorProfile',
-        component:() => import('../Pages/DSProfiles/DoctorProfilePage')
-    },
-    {
-        path: '/Prescription',
-        component:Prescription
-    },
+
+  {
+      path : '/addpatient',
+      component: AddPatientPage
+  },
+  {
+      path:'/patientProfile',
+      component:() => import('../Pages/DSProfiles/PatientProfilePage')
+  },
+  {
+      path:'/doctorProfile',
+      component:() => import('../Pages/DSProfiles/DoctorProfilePage')
+  },
+  {
+      path: '/Prescription',
+      component:Prescription
+  },
+
 ]
 
 
