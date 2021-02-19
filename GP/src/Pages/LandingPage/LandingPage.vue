@@ -13,8 +13,8 @@
         <ion-item @click="Goto('home')" button >Home</ion-item>
         <ion-item @click="Goto('about')" button>About</ion-item>
         <ion-item @click="Goto('features')" button>Features</ion-item>
-        <ion-item href="/doctorProfile">Pershase</ion-item>
-        <ion-item href="/Prescription">Log in</ion-item>
+        <ion-item href="/Purchase">Purchase</ion-item>
+        <ion-item href="/AddPatient">Log in</ion-item>
         <ion-item href="/Signup">Sign up</ion-item>
       </ion-list>
     </ion-content>
@@ -57,11 +57,11 @@
                 </ion-col>
 
                 <ion-col pull-lg="1" >
-                  <ion-button class="normal" >Purchase</ion-button>
+                  <ion-button class="normal" router-link="/Purchase" >Purchase</ion-button>
                 </ion-col>
 
                 <ion-col pull="0.1" >
-                  <ion-button class="login" > Log in</ion-button>
+                  <ion-button router-link="/AddPatient" class="login" > Log in</ion-button>
                 </ion-col>
 
                 <ion-col >
@@ -87,6 +87,25 @@
     <about id="about"/>
     <features id="features"/>
 
+    <div class="footer">
+      <ion-buttons>
+       
+        <ion-button style="margin-right: 20px;">
+          <ion-icon slot="icon-only" :icon="logoInstagram" ></ion-icon>
+        </ion-button>
+      
+        <ion-button style="margin-right: 20px;">
+          <ion-icon slot="icon-only" :icon="logoFacebook"></ion-icon>
+        </ion-button>
+    
+        <ion-button>
+
+          <ion-icon slot="icon-only" :icon="logoGoogle"></ion-icon>
+        </ion-button>
+       
+      </ion-buttons>
+    </div>
+    <!-- <footer-part/> -->
 
   </ion-content>
 </ion-page>
@@ -96,7 +115,12 @@
 <script>
 
 import { defineComponent } from 'vue';
-// import SliderContent from '../components/SliderContent'
+import {
+  logoInstagram,
+  logoFacebook,
+  logoGoogle
+ 
+} from "ionicons/icons";
 import { 
   IonContent ,
   IonPage,
@@ -112,6 +136,10 @@ import {
   IonItem,
   IonList,
   IonMenuButton,
+  IonIcon
+  
+  
+ 
   
   
  
@@ -121,6 +149,7 @@ import {
 import Features from './Features.vue';
 import About from './About'
 import Home from './Home.vue';
+// import FooterPart from './FooterPart'
 export default defineComponent({
   name: 'LandingPage',
   components: {
@@ -140,18 +169,20 @@ export default defineComponent({
     IonMenuButton,
     Features,
     About,
-    Home
+    Home,
+    IonIcon
+    // FooterPart,
     
-   
     
-   
+  
   },
     
   data(){
     return{
       img: require("../../../public/logobig.png"),
-      // content : IonContent,
-
+     logoInstagram,
+      logoFacebook,
+      logoGoogle
       
     }
   },
@@ -236,7 +267,25 @@ transition-duration: 0.4s;
   transition-duration: 0.4s;
 }
 
+.footer{
+  /* background-color: transparent; */
+  background-color: #000000;
+  height: 70px;
+  border-top: 2px solid rgba(255, 255, 255, 0.877);
+  /* border-color: aqua; */
+  
+  
+}
 
-
-
+.footer ion-button{
+  --background: transparent;
+  border-radius: 50px;
+  border:1px solid #ffffff;
+  
+}
+.footer ion-buttons{
+  
+  margin-top: 10px;
+  justify-content: center;
+}
 </style>
