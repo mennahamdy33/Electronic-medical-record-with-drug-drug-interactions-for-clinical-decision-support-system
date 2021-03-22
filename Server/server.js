@@ -12,7 +12,7 @@ const db = knex({
       host : 'localhost',
       user : 'root',
       password : 'mysql',
-      database : 'Drug_Data'
+      database : 'DruGuide'
     }
 });
 
