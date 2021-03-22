@@ -85,7 +85,7 @@ export default defineComponent({
   },
    methods: {
      onSubmit(){
-       console.log("Hello")
+       console.log(this.$store.getters['SignUpData'])
        fetch('http://localhost:3000/register', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},

@@ -12,7 +12,8 @@ const store = createStore({
         state.SignupPhase = payload.currentPhase;
     },
     FillData(state, payload){
-        state.SignUpData = {...payload, ...state.SignUpData};
+       
+        state.SignUpData = { ...state.SignUpData, ...payload};
 
       }
     } ,

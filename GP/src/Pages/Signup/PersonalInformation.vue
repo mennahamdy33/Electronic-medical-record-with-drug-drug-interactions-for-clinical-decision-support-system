@@ -169,7 +169,7 @@
 
                         <ion-row>
                           <ion-col size-lg="2" size-xs="6" >
-                            <form-button @click="changePhase({currentPhase: 'MakeAccount'})" type="button" buttonText="Next"/>
+                            <form-button @click="changePhaseNext({currentPhase: 'MakeAccount'})" type="button" buttonText="Next"/>
                           </ion-col>
                         </ion-row>
                     </ion-grid>
@@ -228,11 +228,11 @@ export default defineComponent({
      
    },
 
-   changePhase(phase){
+   changePhaseNext(phase){
       const personalInformation = Object.entries(this.personalInformation)
       let complete = true;
         for (const [key, value] of personalInformation  ) {
-          console.log(key , value);
+          // console.log(key , value);
           if(value === '' ){
             if(key === 'speciality' && this.personalInformation.proficiency ==='secretary' ){
               //do nothing
@@ -245,7 +245,7 @@ export default defineComponent({
         if(complete){
 
           this.$store.dispatch('FillData', this.personalInformation);
-          console.log(this.$store.getters['SignUpData'])
+          // console.log(this.$store.getters['SignUpData'])
           this.$store.dispatch('changePhase', phase);
         }else{
           alert("Please fill all the fields");

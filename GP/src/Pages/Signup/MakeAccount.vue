@@ -52,10 +52,10 @@
           </ion-grid>
           <ion-row class="ion-justify-content-center">
             <ion-col size-lg="2" size-xs="6" >
-            <form-button @click="changePhase({currentPhase: 'Clinics'})" type="button" buttonText="Next"/>
+            <form-button @click="changePhaseNext({currentPhase: 'Clinics'})" type="button" buttonText="Next"/>
             </ion-col>
             <ion-col size-lg="2" size-xs="6" >
-            <form-button @click="changePhase({currentPhase: 'PersonalInformation'})" type="button" buttonText="Back"/>
+            <form-button @click="changePhaseBack({currentPhase: 'PersonalInformation'})" type="button" buttonText="Back"/>
             </ion-col>
           </ion-row>
         </form>
@@ -105,7 +105,7 @@ export default defineComponent({
   },
   methods: {
     
-      changePhase(phase){
+      changePhaseNext(phase){
       const Account = Object.entries(this.Account)
       let complete = true;
         for (const [key, value] of Account  ) {
@@ -118,7 +118,7 @@ export default defineComponent({
           if(this.Account.password === this.Account.confirmPassword && this.emailFormat.test(this.Account.email)){
 
             this.$store.dispatch('FillData', {email: this.Account.email, password: this.Account.password});
-            console.log(this.$store.getters['SignUpData'])
+            // console.log(this.$store.getters['SignUpData'])
             this.$store.dispatch('changePhase', phase);
           }else{
             alert("Please enter a vaild email or make sure that the passwords are the same")
@@ -127,6 +127,12 @@ export default defineComponent({
           alert("Please fill all the fields");
 
         }
+   },
+
+      changePhaseBack(phase){
+     
+        this.$store.dispatch('changePhase', phase);
+       
    },
     // ...mapActions(['changePhase'])
   }
