@@ -16,17 +16,24 @@
             <progress-bar></progress-bar>
           </ion-col>
         </ion-row>
+        <keep-alive>
+          <personal-information v-if=" SignupPhase === 'PersonalInformation'" />
+        </keep-alive>
 
-        <personal-information v-if=" SignupPhase === 'PersonalInformation'" />
-        <make-account v-if=" SignupPhase === 'MakeAccount'" />
-         <clinics v-if=" SignupPhase === 'Clinics'" /> 
+        <keep-alive>
+          <make-account v-if=" SignupPhase === 'MakeAccount'" />
+        </keep-alive>
+        
+        <keep-alive>
+          <clinics v-if=" SignupPhase === 'Clinics'" /> 
+        </keep-alive>
       </ion-grid>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent , KeepAlive} from 'vue';
 import { IonPage,IonContent,IonCol, IonGrid, IonRow } from '@ionic/vue';
 import ProgressBar from '../../components/ProgressBar.vue';
 import PersonalInformation from './PersonalInformation.vue';
@@ -46,7 +53,8 @@ export default defineComponent({
     IonPage,
     PersonalInformation,
     MakeAccount ,
-    Clinics 
+    Clinics,
+    KeepAlive 
     
    
   },
@@ -73,6 +81,7 @@ export default defineComponent({
   padding:0;
   font-family: sans-serif;
   
+  /* --background: linear-gradient(#02379991, #243b55); */
   --background: linear-gradient(#141e30, #243b55);
   
 }
