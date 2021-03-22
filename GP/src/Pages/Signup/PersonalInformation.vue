@@ -243,10 +243,16 @@ export default defineComponent({
           }
         }
         if(complete){
+          if(!this.personalInformation.phone_number.match(/^\d{11}$/) || !this.personalInformation.national_id.match(/^\d{14}$/) ){
 
-          this.$store.dispatch('FillData', this.personalInformation);
-          // console.log(this.$store.getters['SignUpData'])
-          this.$store.dispatch('changePhase', phase);
+            alert("invalid Phone number or National ID")
+
+          }
+          else{
+            this.$store.dispatch('FillData', this.personalInformation);
+            // console.log(this.$store.getters['SignUpData'])
+            this.$store.dispatch('changePhase', phase);
+          }
         }else{
           alert("Please fill all the fields");
 
@@ -299,6 +305,7 @@ export default defineComponent({
   border: none;
   border-bottom: 1px solid #fff;
   outline: none;
+  /* background: rgba(250, 103, 103, 0.342); */
   background: transparent;
 }
 .user-box label {
