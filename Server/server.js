@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt');
 const cors = require('cors');
 // const Sequelize = require('sequelize');
 const knex = require('knex')
+const { v4: uuidv4 } = require('uuid');
+// console.log(uuidv4()); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
 
 const db = knex({
     // Enter your own database information here based on what you created
@@ -21,6 +23,7 @@ const app = express();
 
 app.use(cors())
 app.use(bodyParser.json());
+
 
 // db.select('*').from('doctors').then(data => {
 //     console.log(data[0].first_name);
@@ -44,11 +47,11 @@ app.post('/register', (req, res) => {
     education,
     speciality,
     address, email, password,proficiency} = req.body;
-    
+
   const hash = bcrypt.hashSync(password, 10);
   // const isValid = bcrypt.compareSync(password, hash);
-  if(proficiency === 'doctor'){
 
+  if(proficiency === 'doctor'){
     db.insert({
       first_name: first_name, last_name: last_name,
       gender: gender, ssn: national_id,
@@ -57,7 +60,7 @@ app.post('/register', (req, res) => {
       address:address, email: email,
       password: hash})
     .into('doctors')
-    .catch(err => console.log(err))
+    .catch(err => res.status(400).send('unable to register'))
 
   }else if(proficiency === 'secretary'){
     db.insert({
@@ -68,10 +71,10 @@ app.post('/register', (req, res) => {
       address:address, email: email,
       password: hash})
     .into('secretary')
-    .catch(err => console.log(err))
+    .catch(err => res.status(400).send('unable to register'))
   }
-  res.status(200).json('Register done')
-  // .catch(err => res.status(400).json('unable to register'))
+  // res.status(200).json('Register done')
+  // .catch(err => {res.status(400).json('unable to register')})
 })
 
 app.get('/clinics', (req, res) => {
@@ -84,6 +87,21 @@ app.get('/clinics', (req, res) => {
       }
     })
     .catch(err => res.status(400).json('error getting clinics'))
+})
+
+app.post('/isAuthorized', (req, res) => {
+  const {uuid} = req.body;
+  db.select('*').from('authorized_users').where('uuid', uuid)
+    .then(user => {
+      if (user.length) {
+        console.log("yes user")
+        res.json(user)
+      } else {
+        console.log("no user")
+        res.status(400).json('no user')
+      }
+    })
+    .catch(err => res.status(400))
 })
 
 
