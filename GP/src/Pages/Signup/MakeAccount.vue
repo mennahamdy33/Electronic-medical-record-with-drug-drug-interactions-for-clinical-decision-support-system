@@ -72,7 +72,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { IonCol, IonGrid, IonRow } from '@ionic/vue';
+import { IonCol, IonGrid, IonRow,alertController } from '@ionic/vue';
 import FormButton from '../../components/FormButton.vue';
 // import FormField from '../../components/FormField'
 // import { mapActions } from 'vuex';
@@ -104,6 +104,17 @@ export default defineComponent({
     }
   },
   methods: {
+    async presentAlert(msg) {
+      const alert = await alertController
+        .create({
+          cssClass: 'alert',
+          header: 'Alert',
+          // subHeader: 'Subtitle',
+          message: msg,
+          buttons: ['OK'],
+        });
+      return alert.present();
+    },
     
       changePhaseNext(phase){
       const Account = Object.entries(this.Account)
@@ -121,10 +132,12 @@ export default defineComponent({
             // console.log(this.$store.getters['SignUpData'])
             this.$store.dispatch('changePhase', phase);
           }else{
-            alert("Please enter a vaild email or make sure that the passwords are the same")
+            // alert("Please enter a vaild email or make sure that the passwords are the same")
+            this.presentAlert("Please enter a vaild email or make sure that the passwords are the same")
           }
         }else{
-          alert("Please fill all the fields");
+          // alert("Please fill all the fields");
+          this.presentAlert("Please fill all the fields")
 
         }
    },

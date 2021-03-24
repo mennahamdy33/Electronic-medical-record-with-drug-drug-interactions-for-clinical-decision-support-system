@@ -51,7 +51,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { IonGrid,IonCol, IonRow , IonCard, IonCardTitle, IonCardHeader,  IonCardContent} from '@ionic/vue';
+import { IonGrid,IonCol, IonRow , IonCard, IonCardTitle, IonCardHeader,  IonCardContent,alertController} from '@ionic/vue';
 import FormButton from '../../components/FormButton.vue';
 // import FormField from '../../components/FormField'
 import { mapActions } from 'vuex';
@@ -84,13 +84,35 @@ export default defineComponent({
     }
   },
    methods: {
+
+     async presentAlert(msg) {
+      const alert = await alertController
+        .create({
+          cssClass: 'alert',
+          header: 'Alert',
+          // subHeader: 'Subtitle',
+          message: msg,
+          buttons: ['OK'],
+        });
+      return alert.present();
+    },
+
      onSubmit(){
        console.log(this.$store.getters['SignUpData'])
-       fetch('http://localhost:3000/register', {
-      method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(this.$store.getters['SignUpData'])
-    })
+       const pickedClinics = this.clinics.filter( clinic => clinic.active === true );
+       console.log(pickedClinics)
+       if (pickedClinics.length === 0){
+          this.presentAlert("Please pick a clinic")
+       }
+       else{
+
+        fetch('http://localhost:3000/register', {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(this.$store.getters['SignUpData'])
+        })
+       }
+
       //  fetch('http://localhost:3000/')
      },
     ...mapActions(['changePhase']),
@@ -111,11 +133,12 @@ export default defineComponent({
     .then(response => response.json())
     .then(clinics => {
       clinics.forEach(clinic => {
-        clinic = {...clinic , active: false}
-        console.log(clinic)
+        // clinic = {...clinic , active: false}
+        clinic.active = false
+        
       });
       this.clinics = clinics
-      // console.log(clinics)
+      console.log(clinics)
     } )
   }
 });
