@@ -314,8 +314,10 @@ export default defineComponent({
           else{
             
             this.$store.dispatch('FillData', this.personalInformation);
-            // console.log(this.$store.getters['SignUpData'])
             this.$store.dispatch('changePhase', phase);
+
+            // console.log(this.user[0])
+            this.$store.dispatch('fill_userData', this.user[0]);
           }
         }else{
           // alert("Please fill all the fields");

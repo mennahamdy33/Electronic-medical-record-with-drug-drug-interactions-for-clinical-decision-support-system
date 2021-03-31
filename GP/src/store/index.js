@@ -5,6 +5,7 @@ const store = createStore({
       return {
         SignupPhase: 'PersonalInformation',
         SignUpData: {},
+        user :{}
       };
     },
     mutations: {
@@ -15,7 +16,17 @@ const store = createStore({
        
         state.SignUpData = { ...state.SignUpData, ...payload};
 
-      }
+      },
+
+    fill_userData(state, payload){
+       
+        state.user = payload;
+        // console.log(state.user)
+        // console.log(payload)
+
+      },
+
+
     } ,
   
     actions: {
@@ -25,6 +36,10 @@ const store = createStore({
 
       FillData(context , payload){
         context.commit('FillData' , payload )
+      },
+
+      fill_userData(context , payload){
+        context.commit('fill_userData' , payload )
       }
     },
     getters: {
@@ -33,6 +48,9 @@ const store = createStore({
       },
       SignUpData(state){
           return state.SignUpData ;
+      },
+      user(state){
+        return state.user ;
       }
     }
   });

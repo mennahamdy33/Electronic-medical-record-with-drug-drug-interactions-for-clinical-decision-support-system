@@ -55,6 +55,7 @@ import { IonGrid,IonCol, IonRow , IonCard, IonCardTitle, IonCardHeader,  IonCard
 import FormButton from '../../components/FormButton.vue';
 // import FormField from '../../components/FormField'
 import { mapActions } from 'vuex';
+// import { mapGetters } from 'vuex';
 export default defineComponent({
   name: 'Signup2',
   components: {
@@ -116,6 +117,8 @@ export default defineComponent({
       //  fetch('http://localhost:3000/')
      },
     ...mapActions(['changePhase']),
+    // ...mapGetters(['user'])
+    // ,
 
     activate(clinic)
     {
@@ -129,7 +132,10 @@ export default defineComponent({
   
   
   mounted(){
-    fetch('http://localhost:3000/clinics')
+    const user = this.$store.getters['user']
+    console.log(user.customer_id)
+    fetch(`http://localhost:3000/clinics/${user.customer_id}`)
+    // fetch(`http://localhost:3000/clinics?id=${user.customer_id}`)
     .then(response => response.json())
     .then(clinics => {
       clinics.forEach(clinic => {
