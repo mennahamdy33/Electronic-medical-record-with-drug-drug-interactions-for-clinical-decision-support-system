@@ -77,8 +77,12 @@ app.post('/register', (req, res) => {
   // .catch(err => {res.status(400).json('unable to register')})
 })
 
-app.get('/clinics', (req, res) => {
-  db.select('*').from('clinics')
+app.get('/clinics/:id', (req, res) => {
+
+  const  id  = req.params.id;
+  
+  // db.select('*').from('clinics')
+  db.select('*').from('clinics').where('customer_id', id)
     .then(clinics => {
       if (clinics.length) {
         res.json(clinics)
@@ -86,7 +90,8 @@ app.get('/clinics', (req, res) => {
         res.status(400).json('Not found')
       }
     })
-    .catch(err => res.status(400).json('error getting clinics'))
+    .catch(err => console.log(err))
+    // .catch(err => res.status(400).json('error getting clinics'))
 })
 
 app.post('/isAuthorized', (req, res) => {
