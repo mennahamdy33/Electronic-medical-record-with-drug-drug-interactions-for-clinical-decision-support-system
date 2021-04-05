@@ -46,21 +46,69 @@ app.post('/register', (req, res) => {
     birth_date,
     education,
     speciality,
-    address, email, password,proficiency} = req.body;
+    address, email, password,proficiency, auth_id , pickedClinics} = req.body;
 
   const hash = bcrypt.hashSync(password, 10);
+  let doc_id = ''
   // const isValid = bcrypt.compareSync(password, hash);
 
   if(proficiency === 'doctor'){
-    db.insert({
-      first_name: first_name, last_name: last_name,
-      gender: gender, ssn: national_id,
-      phone_number:phone_number, birth_date: birth_date,
-      education: education, specialty:speciality,
-      address:address, email: email,
-      password: hash})
-    .into('doctors')
-    .catch(err => res.status(400).send('unable to register'))
+
+ 
+
+    db.transaction(async trx => {
+
+      await trx.insert({
+        first_name: first_name, last_name: last_name,
+        gender: gender, ssn: national_id,
+        phone_number:phone_number, birth_date: birth_date,
+        education: education, specialty:speciality,
+        address:address, email: email,
+        password: hash , auth_id: auth_id} )
+
+      .into('doctors')
+      .then(doctor_id => {
+        
+        doc_id = doctor_id;
+        if(pickedClinics.length){
+          pickedClinics.forEach(clinc => {
+
+            
+              return trx('doctor_works_in')
+              // .returning('*')
+              .insert({
+                doctor_id: doctor_id[0],
+                clinic_id: clinc.clinic_id,
+                
+              }).then(()=>{
+                  //empty
+                }).catch(err => console.log(err))
+          });
+         
+        }
+
+      })
+      // .then(trx.commit)
+      // .catch(trx.rollback)
+    })
+    .then(()=>{
+      // console.log(doc_id)
+      res.json(doc_id[0]);
+
+    }).catch(err => console.log(err))
+    .catch(err => console.log(err))
+    // .catch(err => res.status(400).json('unable to register'))
+
+
+    // db.insert({
+    //   first_name: first_name, last_name: last_name,
+    //   gender: gender, ssn: national_id,
+    //   phone_number:phone_number, birth_date: birth_date,
+    //   education: education, specialty:speciality,
+    //   address:address, email: email,
+    //   password: hash})
+    // .into('doctors')
+    // .catch(err => res.status(400).send('unable to register'))
 
   }else if(proficiency === 'secretary'){
     db.insert({
@@ -136,3 +184,6 @@ app.post('/isAuthorized', (req, res) => {
 app.listen(3000, ()=> {
     console.log('app is running on port 3000');
   })
+
+
+
