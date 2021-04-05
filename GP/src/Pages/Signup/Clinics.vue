@@ -99,19 +99,23 @@ export default defineComponent({
     },
 
      onSubmit(){
-       console.log(this.$store.getters['SignUpData'])
+       
        const pickedClinics = this.clinics.filter( clinic => clinic.active === true );
        console.log(pickedClinics)
        if (pickedClinics.length === 0){
           this.presentAlert("Please pick a clinic")
        }
        else{
+        let auth_id = this.$store.getters['user'].auth_id
+        let data = {...this.$store.getters['SignUpData'], auth_id: auth_id , pickedClinics: pickedClinics }
+        console.log(data)
 
         fetch('http://localhost:3000/register', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(this.$store.getters['SignUpData'])
-        })
+        body: JSON.stringify(data)
+        }).then(res => res.json()).then(res=> console.log(res))
+        .catch(() => console.log("Unable to register"))
        }
 
       //  fetch('http://localhost:3000/')
