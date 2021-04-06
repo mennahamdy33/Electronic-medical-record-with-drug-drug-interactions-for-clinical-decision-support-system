@@ -5,7 +5,8 @@ const store = createStore({
       return {
         SignupPhase: 'PersonalInformation',
         SignUpData: {},
-        user :{}
+        user :{},
+        staffID: ''
       };
     },
     mutations: {
@@ -26,6 +27,14 @@ const store = createStore({
 
       },
 
+      set_staffID(state, payload){
+       
+        state.staffID = payload;
+        console.log(state.staffID)
+        // console.log(payload)
+
+      },
+
 
     } ,
   
@@ -40,6 +49,9 @@ const store = createStore({
 
       fill_userData(context , payload){
         context.commit('fill_userData' , payload )
+      },
+      set_staffID(context , payload){
+        context.commit('set_staffID' , payload )
       }
     },
     getters: {
@@ -51,7 +63,10 @@ const store = createStore({
       },
       user(state){
         return state.user ;
-      }
+      },
+      staffID(state){
+        return state.staffID ;
+      },
     }
   });
 

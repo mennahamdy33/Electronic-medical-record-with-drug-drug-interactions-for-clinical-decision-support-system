@@ -4,6 +4,7 @@ import BookDoctor from '../Pages/BookDoctor'
 import LandingPage from '../Pages/LandingPage/LandingPage.vue'
 import AddPatientPage from '../Pages/DSProfiles/AddPatientPage.vue'
 import Signup from '../Pages/Signup/Signup.vue'
+import Login from '../Pages/Login/Login.vue'
 import Prescription from '@/Pages/Prescription.vue';
 import Purchase from '../Pages/LandingPage/Purchase.vue'
 const routes = [
@@ -24,6 +25,8 @@ const routes = [
   },
 
   {path: '/Signup' , component: Signup},
+
+  {path: '/Login' , component: Login},
 
   {path: '/Purchase' , component: Purchase},
 

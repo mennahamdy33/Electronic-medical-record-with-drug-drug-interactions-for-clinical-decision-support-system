@@ -54,6 +54,7 @@ import { defineComponent } from 'vue';
 import { IonGrid,IonCol, IonRow , IonCard, IonCardTitle, IonCardHeader,  IonCardContent,alertController} from '@ionic/vue';
 import FormButton from '../../components/FormButton.vue';
 // import FormField from '../../components/FormField'
+import {useRouter} from 'vue-router';
 import { mapActions } from 'vuex';
 // import { mapGetters } from 'vuex';
 export default defineComponent({
@@ -114,8 +115,19 @@ export default defineComponent({
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
-        }).then(res => res.json()).then(res=> console.log(res))
-        .catch(() => console.log("Unable to register"))
+        }).then(res => res.json()).
+        then(res=> {
+          console.log(res)
+          this.router.push('/Login')
+          })
+        .catch(() =>
+         { 
+           console.log("Unable to register")
+           this.presentAlert("Register Failed")
+
+         })
+         
+         
        }
 
       //  fetch('http://localhost:3000/')
@@ -150,6 +162,10 @@ export default defineComponent({
       this.clinics = clinics
       console.log(clinics)
     } )
+  }, 
+  setup(){
+    const router = useRouter();
+    return { router };
   }
 });
 </script>
