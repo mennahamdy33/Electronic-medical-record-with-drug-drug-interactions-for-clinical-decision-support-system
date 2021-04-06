@@ -36,7 +36,7 @@ app.get('/', (req, res)=> {
 
 
 
-app.post('/register', (req, res) => {
+app.post('/register', async (req, res) => {
   const {
     first_name,
     last_name,
@@ -48,81 +48,73 @@ app.post('/register', (req, res) => {
     speciality,
     address, email, password,proficiency, auth_id , pickedClinics} = req.body;
 
-  const hash = bcrypt.hashSync(password, 10);
-  let doc_id = ''
+  const hash = await bcrypt.hashSync(password, 10);
   // const isValid = bcrypt.compareSync(password, hash);
 
   if(proficiency === 'doctor'){
-
- 
-
-    db.transaction(async trx => {
-
-      await trx.insert({
-        first_name: first_name, last_name: last_name,
-        gender: gender, ssn: national_id,
-        phone_number:phone_number, birth_date: birth_date,
-        education: education, specialty:speciality,
-        address:address, email: email,
-        password: hash , auth_id: auth_id} )
-
-      .into('doctors')
-      .then(doctor_id => {
-        
-        doc_id = doctor_id;
-        if(pickedClinics.length){
-          pickedClinics.forEach(clinc => {
-
-            
-              return trx('doctor_works_in')
-              // .returning('*')
-              .insert({
-                doctor_id: doctor_id[0],
-                clinic_id: clinc.clinic_id,
-                
-              }).then(()=>{
-                  //empty
-                }).catch(err => console.log(err))
-          });
+    let work = []
+    //Start transaction
+    try {
+      await db.transaction (async trx => {
+        //Insert into login table
+        const doctor_id = await trx('doctors')
+        .insert({
+          first_name: first_name, last_name: last_name,
+          gender: gender, ssn: national_id,
+          phone_number:phone_number, birth_date: birth_date,
+          education: education, specialty:speciality,
+          address:address, email: email,
+          password: hash , auth_id: auth_id});
          
-        }
-
+        if(pickedClinics.length){
+  
+          pickedClinics.forEach((clinc) =>{ 
+            work.push({doctor_id: doctor_id[0], clinic_id: clinc.clinic_id})
+          });
+        }  
+        const user = await trx('doctor_works_in')
+          .insert(work);
+        res.json(doctor_id[0]);
       })
-      // .then(trx.commit)
-      // .catch(trx.rollback)
-    })
-    .then(()=>{
-      // console.log(doc_id)
-      res.json(doc_id[0]);
-
-    }).catch(err => console.log(err))
-    .catch(err => console.log(err))
-    // .catch(err => res.status(400).json('unable to register'))
-
-
-    // db.insert({
-    //   first_name: first_name, last_name: last_name,
-    //   gender: gender, ssn: national_id,
-    //   phone_number:phone_number, birth_date: birth_date,
-    //   education: education, specialty:speciality,
-    //   address:address, email: email,
-    //   password: hash})
-    // .into('doctors')
-    // .catch(err => res.status(400).send('unable to register'))
+    }
+    catch (err){
+      console.log(err);
+      res.status(400).json('Unable to register');
+    }
 
   }else if(proficiency === 'secretary'){
-    db.insert({
-      first_name: first_name, last_name: last_name,
-      gender: gender, ssn: national_id,
-      phone_number:phone_number, birth_date: birth_date,
-      education: education,
-      address:address, email: email,
-      password: hash})
-    .into('secretary')
-    .catch(err => res.status(400).send('unable to register'))
+    let work = []
+    //Start transaction
+    try {
+      await db.transaction (async trx => {
+        const secretary_id = await trx('secretary')
+        .insert({
+          first_name: first_name, last_name: last_name,
+          gender: gender, ssn: national_id,
+          phone_number:phone_number, birth_date: birth_date,
+          education: education,
+          address:address, email: email,
+          password: hash, auth_id: auth_id});
+         
+        if(pickedClinics.length){
+  
+          pickedClinics.forEach((clinc) =>{ 
+            work.push({secretary_id: secretary_id[0], clinic_id: clinc.clinic_id})
+          });
+        }  
+        const user = await trx('secretary_works_in')
+          .insert(work);
+          // .returning('*');      
+        res.json(secretary_id[0]);
+      })
+    }
+    catch (err){
+      console.log(err);
+      res.status(400).json('Unable to register');
+    }
+
   }
-  // res.status(200).json('Register done')
-  // .catch(err => {res.status(400).json('unable to register')})
+
 })
 
 app.get('/clinics/:id', (req, res) => {
@@ -184,6 +176,7 @@ app.post('/isAuthorized', (req, res) => {
 app.listen(3000, ()=> {
     console.log('app is running on port 3000');
   })
+
 
 
 
