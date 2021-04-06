@@ -64,7 +64,7 @@ app.post('/register', async (req, res) => {
           phone_number:phone_number, birth_date: birth_date,
           education: education, specialty:speciality,
           address:address, email: email,
-          password: hash , auth_id: auth_id});
+          password: hash });
          
         if(pickedClinics.length){
   
@@ -72,6 +72,8 @@ app.post('/register', async (req, res) => {
             work.push({doctor_id: doctor_id[0], clinic_id: clinc.clinic_id})
           });
         }  
+
+        const update_authrized = await trx('authorized_users').where({auth_id: auth_id}).update({doctor_id: doctor_id[0]}) ;
         const user = await trx('doctor_works_in')
           .insert(work);
         res.json(doctor_id[0]);
@@ -94,7 +96,7 @@ app.post('/register', async (req, res) => {
           phone_number:phone_number, birth_date: birth_date,
           education: education,
           address:address, email: email,
-          password: hash, auth_id: auth_id});
+          password: hash});
          
         if(pickedClinics.length){
   
@@ -102,6 +104,9 @@ app.post('/register', async (req, res) => {
             work.push({secretary_id: secretary_id[0], clinic_id: clinc.clinic_id})
           });
         }  
+
+        const update_authrized = await trx('authorized_users').where({auth_id: auth_id}).update({secretary_id: secretary_id[0]}) ;
+
         const user = await trx('secretary_works_in')
           .insert(work);
           // .returning('*');      
