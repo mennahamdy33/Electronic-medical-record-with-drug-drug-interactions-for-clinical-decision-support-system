@@ -13,7 +13,7 @@
         <ion-item @click="Goto('home')" button >Home</ion-item>
         <ion-item @click="Goto('about')" button>About</ion-item>
         <ion-item @click="Goto('features')" button>Features</ion-item>
-        <ion-item href="/Purchase">Purchase</ion-item>
+        <ion-item href="/SignupPurchase">Purchase</ion-item>
         <ion-item href="/Login">Log in</ion-item>
         <ion-item href="/Signup">Sign up</ion-item>
       </ion-list>
@@ -57,7 +57,7 @@
                 </ion-col>
 
                 <ion-col pull-lg="1" >
-                  <ion-button class="normal" router-link="/Purchase" >Purchase</ion-button>
+                  <ion-button class="normal" router-link="/SignupPurchase" >Purchase</ion-button>
                 </ion-col>
 
                 <ion-col pull="0.1" >

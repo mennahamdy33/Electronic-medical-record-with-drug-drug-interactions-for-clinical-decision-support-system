@@ -6,7 +6,8 @@ import AddPatientPage from '../Pages/DSProfiles/AddPatientPage.vue'
 import Signup from '../Pages/Signup/Signup.vue'
 import Login from '../Pages/Login/Login.vue'
 import Prescription from '@/Pages/Prescription.vue';
-import Purchase from '../Pages/LandingPage/Purchase.vue'
+import SignupPurchase from '../Pages/Purchase/Signup.vue'
+import LoginPurchase from '../Pages/Purchase/Login.vue'
 const routes = [
   {
     path: '/',
@@ -28,7 +29,8 @@ const routes = [
 
   {path: '/Login' , component: Login},
 
-  {path: '/Purchase' , component: Purchase},
+  {path: '/SignupPurchase' , component: SignupPurchase},
+  {path: '/LoginPurchase' , component: LoginPurchase},
 
   {
       path : '/addpatient',

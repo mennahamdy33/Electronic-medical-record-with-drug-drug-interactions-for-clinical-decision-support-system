@@ -11,9 +11,27 @@
                         <!-- <img src="../../../public/assets/logo4.png"  >    -->
                         </div>
                     </ion-col>
-                    
-                    <ion-col offset-lg="0.9" pull-xs="0"  size-lg="6" size-xs="15" >
-                        <progress-bar></progress-bar>
+                    <ion-col size-lg="3" offset-lg="0.9">
+                            <!-- <ion-grid class="grid"> -->
+                                <!-- <ion-row> -->
+                                    <!-- <ion-col  pull-xs="0"  size-lg="3" size-xs="15"  > -->
+                                        
+                        <ion-button   class="signup" router-link="/Signup"> Sign up</ion-button>
+              
+                                    <!-- </ion-col> -->
+                                    <!-- <ion-col  pull-xs="0"  size-lg="3" size-xs="15"  > -->
+                                        
+                                        <!-- <ion-button   class="signup" router-link="/Signup"> Sign up</ion-button> -->
+                                
+                                    <!-- </ion-col> -->
+                                <!-- </ion-row> -->
+                            <!-- </ion-grid> -->
+                    </ion-col>
+
+                     <ion-col pull-lg="1.5"  pull-xs="0"  size-lg="3" size-xs="15"  >
+                                        
+                        <ion-button router-link="/Login" class="login" > Log in</ion-button>
+     
                     </ion-col>
                 </ion-row>
 
@@ -90,8 +108,8 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { IonPage,IonContent,IonCol, IonGrid, IonRow } from '@ionic/vue';
-import ProgressBar from '../../components/ProgressBar.vue';
+import { IonPage,IonContent,IonCol, IonGrid, IonRow , IonButton } from '@ionic/vue';
+// import ProgressBar from '../../components/ProgressBar.vue';
 import FormButton from '../../components/FormButton'
 // import { mapGetters } from 'vuex';
 
@@ -103,9 +121,11 @@ export default defineComponent({
     IonGrid,
     IonRow,
     IonContent,
-    ProgressBar,
+    // ProgressBar,
     IonPage,
-    FormButton
+    FormButton,
+    IonButton,
+   
    
     
    
@@ -141,8 +161,48 @@ export default defineComponent({
   
 }
 
-img{
+img , .button{
   margin-top: 25%;
 }
 
+.login-box h2 {
+  font-family: 'Monoton';
+  margin: 0 0 30px;
+  padding: 0;
+  color: #ffffff;
+  font-size: 45px;
+  letter-spacing: 9px;
+
+  text-align: center;
+  font-weight: 100;
+}
+/* ion-button{
+    color: #ffffff;
+} */
+.signup , .login{
+  color: #000000;
+  --background: #ffffff;
+  /* --background-hover: transparent; */
+
+  /* background: #ffffff; */
+  --border-radius: 300px;
+  width: 140px;
+  height: 55px;
+
+}
+
+.signup:hover, .login:hover {
+
+--background: transparent ;
+border : 2px solid #ffffff;
+border-radius: 300px;
+color: #ffffff;
+transition-duration: 0.4s;
+
+}
+
+.grid ion-col{
+    --ion-grid-column-padding: 5px;
+   
+}
 </style>
