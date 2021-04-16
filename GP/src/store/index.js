@@ -22,7 +22,7 @@ const store = createStore({
     fill_userData(state, payload){
        
         state.user = payload;
-        // console.log(state.user)
+        console.log(state.user)
         // console.log(payload)
 
       },

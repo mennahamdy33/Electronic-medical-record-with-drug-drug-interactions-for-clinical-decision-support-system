@@ -13,6 +13,44 @@
                     </ion-col>
                    
                 </ion-row>
+                  
+                <ion-row class="ion-justify-content-center">
+    
+                 <ion-col  size-lg="6" class="login-box">
+                    <div >
+                        <h2>Add a new stuff member</h2>
+                        <form v-on:submit.prevent="">
+                            <ion-grid class="FormGrid">
+
+                            
+                                <ion-row class="ion-justify-content-center" >
+                                    <ion-col size="12" size-sm size-lg="8" >
+                                        <!-- <form-field type="text" LableText="Email"/> -->
+                                        <div class="user-box">
+                                        <input  type="text"   required="" v-model="email">
+                                        
+                                        <label  class="Down"> Stuff Email </label>
+                                                        
+                                        </div>
+                                    </ion-col>
+                                
+                                </ion-row>
+
+                                
+                    
+
+                                <ion-row class="ion-justify-content-center">
+                                
+                                    <ion-col size-lg="3" size-xs="6" >
+                                        <form-button  @click="SendCode" type="button" buttonText="Send Code"/>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </form>
+                    </div>
+                </ion-col>
+
+            </ion-row>
 
 
                 
@@ -25,9 +63,9 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { IonPage,IonContent,IonCol, IonGrid, IonRow  } from '@ionic/vue';
+import { IonPage,IonContent,IonCol, IonGrid, IonRow,alertController  } from '@ionic/vue';
 // import ProgressBar from '../../components/ProgressBar.vue';
-// import FormButton from '../../components/FormButton'
+import FormButton from '../../components/FormButton'
 // import { mapGetters } from 'vuex';
 
 export default defineComponent({
@@ -40,7 +78,7 @@ export default defineComponent({
     IonContent,
     // ProgressBar,
     IonPage,
-    // FormButton,
+    FormButton,
     // IonButton,
    
    
@@ -50,15 +88,62 @@ export default defineComponent({
   
   data(){
     return{
-      Account:{
-        email:'',
-        password:'',
-        confirmPassword:''
-      },
       
+      email:'',
+      emailFormat: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ 
+            
     }
   },
   methods: {
+    async presentAlert(msg) {
+      const alert = await alertController
+        .create({
+          cssClass: 'alert',
+          header: 'Alert',
+          // subHeader: 'Subtitle',
+          message: msg,
+          buttons: ['OK'],
+        });
+      return alert.present();
+    },
+
+    SendCode(){
+      if(this.email){
+        if(!this.email.match(this.emailFormat)){
+          this.presentAlert("Please Enter a Valid Email")
+        }else{
+          const customer_data = this.$store.getters['user'];
+          const data = {customer_id:customer_data.customer_id , email:this.email};
+
+           fetch('http://localhost:3000/sendcode', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+            }).then(res => {
+                
+            if(!res.ok){
+                throw new Error(res.status)
+            }else{
+                // return res.json();
+                this.presentAlert("Code sent successfuly")
+                this.email = '';
+                console.log("success" )
+                // this.router.push('/LoginPurchase')
+               
+            }
+            })
+            .catch(() =>
+            { 
+            console.log("Unable to send Code ")
+            this.presentAlert("Unable to send Code")
+
+            })
+          
+        }
+      }else{
+        this.presentAlert("Please Enter an Email")
+      }
+    }
     
   },
   computed: {
