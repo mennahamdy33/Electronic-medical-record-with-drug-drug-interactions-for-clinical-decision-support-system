@@ -115,8 +115,15 @@ export default defineComponent({
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
-        }).then(res => res.json()).
-        then(res=> {
+        }).then((res) => {
+          if(!res.ok){
+            throw new Error(res.status)
+          }else{
+            
+            return res.json()
+          }
+          }).
+        then((res)=> {
           console.log(res)
           this.router.push('/Login')
           })

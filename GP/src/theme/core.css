@@ -214,4 +214,7 @@ ion-item menu{
     input[type=radio]:checked ~ label{
       color: #03e9f4;
     }
-    
+    .pas{
+      margin-top: -20px; 
+      color: #ccc5c57c;
+   }    

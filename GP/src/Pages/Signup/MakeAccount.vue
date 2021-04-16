@@ -28,7 +28,7 @@
                   <input  type="password"   required="" v-model="Account.password">
                   
                   <label  class="Down"> Password </label>
-                                
+                  <p class="pas">at least 8 characters with one letter, one number</p>              
                 </div>
               </ion-col>
               
@@ -99,8 +99,8 @@ export default defineComponent({
         password:'',
         confirmPassword:''
       },
-      emailFormat: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ 
-      
+      emailFormat: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ ,
+      passFormat: /(?=.*\d)(?=.*[a-z]).{8,}/,
     }
   },
   methods: {
@@ -126,7 +126,12 @@ export default defineComponent({
           }
         }
         if(complete){
-          if(this.Account.password === this.Account.confirmPassword && this.emailFormat.test(this.Account.email)){
+
+          if(!this.Account.password.match(this.passFormat)){
+            this.presentAlert("Please enter a strong password at leat 8 characters containig one lower case letter and one number");
+            }
+          else if(this.Account.password === this.Account.confirmPassword && this.Account.email.match(this.emailFormat)){
+          // if(this.Account.password === this.Account.confirmPassword && this.emailFormat.test(this.Account.email)){
 
             this.$store.dispatch('FillData', {email: this.Account.email, password: this.Account.password});
             // console.log(this.$store.getters['SignUpData'])

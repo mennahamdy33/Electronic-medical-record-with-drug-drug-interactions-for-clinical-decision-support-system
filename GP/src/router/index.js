@@ -8,6 +8,7 @@ import Login from '../Pages/Login/Login.vue'
 import Prescription from '@/Pages/Prescription.vue';
 import SignupPurchase from '../Pages/Purchase/Signup.vue'
 import LoginPurchase from '../Pages/Purchase/Login.vue'
+import ProfilePurchase from '../Pages/Purchase/ProfilePurchase.vue'
 const routes = [
   {
     path: '/',
@@ -31,6 +32,7 @@ const routes = [
 
   {path: '/SignupPurchase' , component: SignupPurchase},
   {path: '/LoginPurchase' , component: LoginPurchase},
+  {path: '/ProfilePurchase' , component:  ProfilePurchase},
 
   {
       path : '/addpatient',

@@ -12,20 +12,10 @@
                         </div>
                     </ion-col>
                     <ion-col size-lg="3" offset-lg="0.9">
-                            <!-- <ion-grid class="grid"> -->
-                                <!-- <ion-row> -->
-                                    <!-- <ion-col  pull-xs="0"  size-lg="3" size-xs="15"  > -->
+
                                         
                         <ion-button   class="signup" router-link="/SignupPurchase"> Sign up</ion-button>
               
-                                    <!-- </ion-col> -->
-                                    <!-- <ion-col  pull-xs="0"  size-lg="3" size-xs="15"  > -->
-                                        
-                                        <!-- <ion-button   class="signup" router-link="/Signup"> Sign up</ion-button> -->
-                                
-                                    <!-- </ion-col> -->
-                                <!-- </ion-row> -->
-                            <!-- </ion-grid> -->
                     </ion-col>
 
                      <ion-col pull-lg="1.5"  pull-xs="0"  size-lg="3" size-xs="15"  >
@@ -74,7 +64,7 @@
                                 <ion-row class="ion-justify-content-center">
                                 
                                     <ion-col size-lg="3" size-xs="6" >
-                                        <form-button  type="button" buttonText="Submit"/>
+                                        <form-button  @click="Login" type="button" buttonText="Submit"/>
                                     </ion-col>
                                 </ion-row>
                             </ion-grid>
@@ -98,6 +88,7 @@ import { IonCol, IonGrid, IonRow,alertController , IonContent, IonPage, IonButto
 import FormButton from '../../components/FormButton.vue';
 // import FormField from '../../components/FormField'
 // import { mapActions } from 'vuex';
+import {useRouter} from 'vue-router';
 
 export default defineComponent({
   name: 'LoginPurchase',
@@ -122,10 +113,9 @@ export default defineComponent({
       Account:{
         email:'',
         password:'',
-        proficiency:''
         
       },
-      emailFormat: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ 
+      // emailFormat: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ 
       
     }
   },
@@ -141,8 +131,40 @@ export default defineComponent({
         });
       return alert.present();
     },
+
+    Login(){
+      fetch('http://localhost:3000/signinPurchase', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(this.Account)
+            }).then(res => {
+                
+            if(!res.ok){
+                throw new Error(res.status)
+            }else{
+                return res.json();
+                // console.log("success" )
+                // this.router.push('/LoginPurchase')
+               
+            }
+            }).then(res =>{
+               console.log(res)
+                this.router.push('/ProfilePurchase')
+            })
+            .catch(() =>
+            { 
+            console.log("Unable to Login")
+            this.presentAlert("Login Failed")
+
+            })
+    }
     
       
+  },
+
+   setup(){
+    const router = useRouter();
+    return { router };
   }
 });
 </script>
@@ -153,29 +175,19 @@ export default defineComponent({
   margin:0;
   padding:0;
   font-family: sans-serif;
-  
-  /* --background: linear-gradient(#02379991, #243b55); */
-  --background: linear-gradient(#141e30, #243b55);
-  
+  --background: linear-gradient(#141e30, #243b55); 
 }
-
 img , .button{
   margin-top: 25%;
 }
 .signup , .login{
   color: #000000;
   --background: #ffffff;
-  /* --background-hover: transparent; */
-
-  /* background: #ffffff; */
   --border-radius: 300px;
   width: 140px;
   height: 55px;
-
 }
-
 .signup:hover, .login:hover {
-
 --background: transparent ;
 border : 2px solid #ffffff;
 border-radius: 300px;
@@ -183,19 +195,8 @@ color: #ffffff;
 transition-duration: 0.4s;
 
 }
-
-
-
-
-
-.login-box {
-  /* position: absolute; */
-  /* top: 50%; */
-  /* left: 50%; */
-  /* width: 100px; */
-  
+.login-box {  
   padding: 35px;
-  /* transform: translate(-50%, -50%); */
   background: rgba(0,0,0,.5);
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0,0,0,.6);

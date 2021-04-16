@@ -47,7 +47,7 @@
                                     <ion-row class="ion-justify-content-center" >
                                         <ion-col size="12" size-sm  >
                                             <div class="user-box">
-                                            <input  type="text"   required="" v-model="Account.email">
+                                            <input  type="text"   required="" v-model="Account.first_name">
                                             
                                             <label  class="Down"> First Name </label>
                                                             
@@ -56,7 +56,7 @@
 
                                         <ion-col size="12" size-sm  >
                                             <div class="user-box">
-                                            <input  type="text"   required="" v-model="Account.email">
+                                            <input  type="text"   required="" v-model="Account.last_name">
                                             
                                             <label  class="Down"> Last Name </label>
                                                             
@@ -67,7 +67,7 @@
                                     <ion-row>
                                         <ion-col size="12" size-sm  >
                                             <div class="user-box">
-                                            <input  type="text"   required="" v-model="Account.email">
+                                            <input  type="text"   required="" v-model="Account.phone_number">
                                             
                                             <label  class="Down"> Phone number </label>
                                                             
@@ -85,14 +85,14 @@
                                             
                                             
                                                 <li>
-                                                <input type="radio" id="Male" name="gender"  value="male"  >
+                                                <input type="radio" id="Male" name="gender" v-model="Account.gender" value="male"  >
                                                 <label class= 'custom' for="Male"> Male </label>
                                                     
                                                 <div class="check"><div class="inside"></div></div>
                                                 </li>
 
                                                 <li>
-                                                <input type="radio" id="Female" name="gender"  value="female">
+                                                <input type="radio" id="Female" name="gender"  v-model="Account.gender" value="female">
                                                 <label class= 'custom' for="Female"> Female </label>
                 
                                                 <div class="check"><div class="inside"></div></div>
@@ -117,7 +117,7 @@
                                             <!-- <form-field type="password" LableText="Password"/> -->
                                             <div class="user-box">
                                             <input  type="password"   required="" v-model="Account.password">
-                                            
+                                            <p class="pas">at least 8 characters with one letter, one number</p>
                                             <label  class="Down"> Password </label>
                                                             
                                             </div>
@@ -133,7 +133,7 @@
                                         <ion-col size="12" size-sm size-lg="6">
                                             <!-- <form-field type="password" LableText="Confirm Password"/> -->
                                             <div class="user-box">
-                                            <input  type="password"   required="" v-model="Account.confirmPassword">
+                                            <input  type="password"   required="" v-model="confirmPassword">
                                             
                                             <label  class="Down"> Confirm Password </label>
                                                             
@@ -145,7 +145,7 @@
 
                                     <ion-row class="ion-justify-content-center">
                                         <ion-col size-lg="2" size-xs="6" >
-                                            <form-button  type="button" buttonText="Submit"/>
+                                            <form-button @click="Register" type="button" buttonText="Submit"/>
                                         </ion-col>
                                         
                                     </ion-row>
@@ -163,9 +163,11 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { IonPage,IonContent,IonCol, IonGrid, IonRow , IonButton } from '@ionic/vue';
+import { IonPage,IonContent,IonCol, IonGrid, IonRow , IonButton ,alertController} from '@ionic/vue';
 // import ProgressBar from '../../components/ProgressBar.vue';
 import FormButton from '../../components/FormButton'
+import {useRouter} from 'vue-router';
+
 // import { mapGetters } from 'vuex';
 
 export default defineComponent({
@@ -189,18 +191,102 @@ export default defineComponent({
   data(){
     return{
       Account:{
-        email:'',
+        first_name:'',
+        last_name: '',
+        gender:'',
+        phone_number:'',
         password:'',
-        confirmPassword:''
+        email:'',
+        
       },
-      
+      confirmPassword:'',
+      emailFormat: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ ,
+      passFormat: /(?=.*\d)(?=.*[a-z]).{8,}/,
+
     }
   },
   methods: {
+
+  async presentAlert(msg) {
+      const alert = await alertController
+        .create({
+          cssClass: 'alert',
+          header: 'Alert',
+          // subHeader: 'Subtitle',
+          message: msg,
+          buttons: ['OK'],
+        });
+      return alert.present();
+    },
+
+     Register(){
+   
+      const Account = Object.entries(this.Account)
+      let complete = true;
+        for (const [key, value] of Account  ) {
+          console.log(key , value);
+          if(value === '' ){
+                 
+            complete = false;
+            
+          }
+        }
+        if(complete && this.confirmPassword === ''){
+          complete = false;
+        }
+        if(complete){
+          
+          if(!this.Account.phone_number.match(/^\d{11}$/) ){
+
+            // alert("invalid Phone number or National ID")
+            this.presentAlert("invalid Phone number");
+
+          }
+          else if(!this.Account.password.match(this.passFormat)){
+            this.presentAlert("Please enter a strong password at leat 8 characters containig one lower case letter and one number");
+            }
+          else if(!(this.Account.password === this.confirmPassword && this.Account.email.match(this.emailFormat))){
+            this.presentAlert("Please enter a vaild email or make sure that the passwords are the same");
+          }
+          else{
+            
+           //send to database
+             fetch('http://localhost:3000/registerPurchase', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(this.Account)
+            }).then(res => {
+                
+            if(!res.ok){
+                throw new Error(res.status)
+            }else{
+                // return res.json();
+                console.log("success" )
+                this.router.push('/LoginPurchase')
+               
+            }
+            })
+            .catch(() =>
+            { 
+            console.log("Unable to register")
+            this.presentAlert("Register Failed")
+
+            })
+          }
+        }else{
+          // alert("Please fill all the fields");
+          this.presentAlert("Please fill all the fields");
+
+        }
+   }
     
   },
   computed: {
     // ...mapGetters(['SignupPhase'])
+  } ,
+  setup(){
+    const router = useRouter();
+    return { router };
   }
 });
 </script>
@@ -243,4 +329,8 @@ transition-duration: 0.4s;
 
 }
 
+/* .pas{
+   margin-top: -20px; 
+   color: #ccc5c57c;
+} */
 </style>
