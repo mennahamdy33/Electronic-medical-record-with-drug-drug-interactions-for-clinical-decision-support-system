@@ -5,6 +5,7 @@ const cors = require('cors');
 // const Sequelize = require('sequelize');
 const knex = require('knex')
 const { v4: uuidv4 } = require('uuid');
+const nodemailer = require("nodemailer");
 // console.log(uuidv4()); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
 
 const db = knex({
@@ -18,6 +19,14 @@ const db = knex({
     }
 });
 
+const transporter = nodemailer.createTransport({
+  host: "smtp.ethereal.email",
+  service: "hotmail",
+  auth: {
+    user: "DruGuide@outlook.com", // generated ethereal user
+    pass: "drug123456", // generated ethereal password
+  },
+});
 
 const app = express();
 
@@ -247,6 +256,42 @@ app.post('/signinPurchase', (req, res) => {
     })
     .catch(err => res.status(400).json('wrong credentials'))
 })
+
+
+app.post('/sendcode', (req, res) => {
+  const {customer_id , email} = req.body;
+  const uuid = uuidv4();
+
+  const options = {
+    from: "DruGuide@outlook.com",
+    to: email,
+    subject: "DruGuide Registration Code",
+    text: `Dear user Please use this code when registering to 
+    DruGuide :  ${uuid}`
+  };
+
+
+  
+
+  db.insert({
+    customer_id: customer_id, uuid: uuid ,email: email
+    })
+  .into('authorized_users')
+  .then(()=>{
+    return transporter.sendMail(options);
+    
+  }).then((info)=>{
+    console.log("Message sent: %s", info.messageId);
+    res.status(200).json('Success')
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(400).json('unable to send code')
+  }
+    )
+})
+
+
 // const db = new Sequelize('Drug_Data', 'root', 'mysql', {
 //     host: 'localhost',
 //     dialect: 'mysql' 
