@@ -156,7 +156,51 @@ app.post('/isAuthorized', (req, res) => {
 
 
 
+app.post('/registerPurchase', async (req, res) => {
 
+  const {
+    first_name,
+    last_name,
+    gender,
+    phone_number,
+    password,email} = req.body;
+
+  const hash = await bcrypt.hashSync(password, 10);
+
+  db.insert({
+    first_name: first_name, last_name: last_name,
+    gender: gender, phone_number:phone_number, password: hash ,email: email
+    })
+  .into('purchasing_accounts')
+  .then(()=>{
+    res.status(200).json('Success')
+  })
+  .catch(err =>  res.status(400).json('unable to register'))
+  
+  // res.status(200).json('Success')
+
+})
+
+
+app.post('/signinPurchase', (req, res) => {
+  db.select('email', 'password').from('purchasing_accounts')
+    .where('email', '=', req.body.email)
+    .then(async (data) => {
+      const isValid = await bcrypt.compareSync(req.body.password, data[0].password);
+      if (isValid) {
+        return db.select( 'customer_id', 'first_name', 'last_name').from('purchasing_accounts')
+          .where('email', '=', req.body.email)
+          .then(user => {
+            console.log(user[0])
+            res.json(user[0])
+          })
+          .catch(err => res.status(400).json('unable to get user'))
+      } else {
+        res.status(400).json('wrong credentials')
+      }
+    })
+    .catch(err => res.status(400).json('wrong credentials'))
+})
 // const db = new Sequelize('Drug_Data', 'root', 'mysql', {
 //     host: 'localhost',
 //     dialect: 'mysql' 
