@@ -52,6 +52,57 @@
 
             </ion-row>
 
+                <ion-row class="ion-justify-content-center">
+    
+                 <ion-col  size-lg="6" class="login-box">
+                    <div >
+                        <h2>Add a Clinic</h2>
+                        <form v-on:submit.prevent="">
+                            <ion-grid class="FormGrid">
+
+                            
+                                <ion-row class="ion-justify-content-center" >
+                                    <ion-col size="12" size-sm size-lg="8" >
+                                        <!-- <form-field type="text" LableText="Email"/> -->
+                                        <div class="user-box">
+                                        <input  type="text"   required="" v-model="clinic.clinic_name">
+                                        
+                                        <label  class="Down"> Clinic Name </label>
+                                                        
+                                        </div>
+                                    </ion-col>
+                                
+                                </ion-row>
+
+                                <ion-row class="ion-justify-content-center" >
+                                    <ion-col size="12" size-sm size-lg="8" >
+                                        <!-- <form-field type="text" LableText="Email"/> -->
+                                        <div class="user-box">
+                                        <input  type="text"   required="" v-model="clinic.address">
+                                        
+                                        <label  class="Down"> Clinic Address </label>
+                                                        
+                                        </div>
+                                    </ion-col>
+                                
+                                </ion-row>
+
+                                
+                    
+
+                                <ion-row class="ion-justify-content-center">
+                                
+                                    <ion-col size-lg="3" size-xs="6" >
+                                        <form-button  @click="AddClinic" type="button" buttonText="Add"/>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </form>
+                    </div>
+                </ion-col>
+
+            </ion-row>
+
 
                 
         
@@ -90,8 +141,13 @@ export default defineComponent({
     return{
       
       email:'',
-      emailFormat: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ 
-            
+      emailFormat: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ ,
+      clinic: {
+        clinic_name: '',
+        address: '',
+        
+        } ,
+        myclincs:''     
     }
   },
   methods: {
@@ -107,15 +163,68 @@ export default defineComponent({
       return alert.present();
     },
 
-    SendCode(){
+    async SendCode(){
       if(this.email){
-        if(!this.email.match(this.emailFormat)){
-          this.presentAlert("Please Enter a Valid Email")
-        }else{
-          const customer_data = this.$store.getters['user'];
-          const data = {customer_id:customer_data.customer_id , email:this.email};
+        const user = this.$store.getters['user']
+        await fetch(`http://localhost:3000/clinics/${user.customer_id}`)
+        // fetch(`http://localhost:3000/clinics?id=${user.customer_id}`)
+        .then(response => response.json())
+        .then(clinics => {
+        
+          this.myclincs = clinics
+          console.log(clinics)
+        } )
+        
+        if(this.myclincs.length === 0){
 
-           fetch('http://localhost:3000/sendcode', {
+          this.presentAlert("Cant Add stuff while having no clinics")
+        } else {
+
+
+          if(!this.email.match(this.emailFormat)){
+            this.presentAlert("Please Enter a Valid Email")
+          }else{
+            const customer_data = this.$store.getters['user'];
+            const data = {customer_id:customer_data.customer_id , email:this.email};
+  
+             fetch('http://localhost:3000/sendcode', {
+              method: 'post',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify(data)
+              }).then(res => {
+                  
+              if(!res.ok){
+                  throw new Error(res.status)
+              }else{
+                  // return res.json();
+                  this.presentAlert("Code sent successfuly")
+                  this.email = '';
+                  console.log("success" )
+                  // this.router.push('/LoginPurchase')
+                 
+              }
+              })
+              .catch(() =>
+              { 
+              console.log("Unable to send Code ")
+              this.presentAlert("Unable to send Code")
+  
+              })
+            
+        }
+
+        }
+      }else{
+        this.presentAlert("Please Enter an Email")
+      }
+    },
+
+    AddClinic(){
+      if(!(this.clinic.clinic_name === '' && this.clinic.address === '' )){
+        const customer_data = this.$store.getters['user'];
+          const data = {...this.clinic , customer_id:customer_data.customer_id };
+
+           fetch('http://localhost:3000/addClinic', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
@@ -125,8 +234,9 @@ export default defineComponent({
                 throw new Error(res.status)
             }else{
                 // return res.json();
-                this.presentAlert("Code sent successfuly")
-                this.email = '';
+                this.presentAlert("Clinic Added successfuly")
+                this.clinic.clinic_name = '';
+                this.clinic.address = '';
                 console.log("success" )
                 // this.router.push('/LoginPurchase')
                
@@ -134,21 +244,32 @@ export default defineComponent({
             })
             .catch(() =>
             { 
-            console.log("Unable to send Code ")
-            this.presentAlert("Unable to send Code")
+            console.log("Unable to Add Clinic ")
+            this.presentAlert("Unable to Add Clinic")
 
             })
-          
-        }
       }else{
-        this.presentAlert("Please Enter an Email")
+        this.presentAlert("Please Fill all data")
       }
     }
     
   },
   computed: {
     // ...mapGetters(['SignupPhase'])
-  }
+  },
+
+  // mounted(){
+  //   const user = this.$store.getters['user']
+    
+  //   fetch(`http://localhost:3000/clinics/${user.customer_id}`)
+  //   // fetch(`http://localhost:3000/clinics?id=${user.customer_id}`)
+  //   .then(response => response.json())
+  //   .then(clinics => {
+     
+  //     this.myclincs = clinics
+  //     console.log(clinics)
+  //   } )
+  // }, 
 });
 </script>
 
