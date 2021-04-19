@@ -7,7 +7,11 @@
                         <ion-col offset-lg="2" size-lg="8">
                             <div class="login-box">
                                 <h2>Add a new Patient</h2>
-                                <form @submit.prevent="sendPatientData">
+
+                                <ion-col style=" position: relative; left: 20%;" offset-lg="0.9" pull-xs="0"  size-lg="6" size-xs="15" >
+                                    <progress-bar  level="PersonalInformation"  text="addPatient"></progress-bar>
+                                </ion-col>
+                                <form @submit="sendPatientData">
                                     <ion-grid class="FormGrid">
                                         <ion-row>
                                             <ion-col size="12" size-sm>
@@ -115,7 +119,7 @@
                                     </ion-grid>
                                     <ion-row>
                                         <ion-col size-lg="2" size-xs="6" >
-                                            <form-button @click="sendPatientData"  buttonText="Submit" type="button"/>
+                                            <form-button @click="sendPatientData" href='/medicalhistory'  buttonText="Submit" type="button"/>
                                         </ion-col>
                                     </ion-row>
 
@@ -132,7 +136,7 @@
 <script>
 import axios from 'axios';
 import FormButton from '../../components/FormButton';
-
+import ProgressBar from '../../components/ProgressBar.vue';
 import {//IonMenu,
     IonSearchbar,
     IonGrid,IonRow,IonCol,
@@ -154,6 +158,7 @@ import BaseTemplate from "../../components/BaseTemplate";
             //IonButtons,IonMenuButton,IonHeader,IonTitle,IonToolbar,
             // IonContent,
              IonList,IonItem,
+            ProgressBar
             // IonPage
                 },
         data(){
@@ -211,14 +216,24 @@ import BaseTemplate from "../../components/BaseTemplate";
         --ion-grid-column-padding: 20px;
 
     }
+    .FormGrid ion-col{
+        --ion-grid-column-padding: 20px;
+
+    }
+
+
+
     .login-box h2 {
-        margin: 30px 0 30px ;
+        font-family: 'Monoton';
+        margin: 0 0 30px;
         padding: 0;
         color: #ffffff;
-
+        font-size: 45px;
+        letter-spacing: 3px;
         text-align: center;
-        font-weight: bold;
+        font-weight: 100;
     }
+
     .user-box {
         position: relative;
     }

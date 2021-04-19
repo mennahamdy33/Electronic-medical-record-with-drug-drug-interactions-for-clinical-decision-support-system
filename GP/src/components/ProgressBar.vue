@@ -1,6 +1,6 @@
 <template>
 
-    <div class="container">
+    <div class="container" v-if="text == 'signup'" >
       <ul class="progressbar">
           <li :class="{ active : SignupPhase === 'PersonalInformation'}">Personal information</li>
           <li :class="{ active : SignupPhase === 'MakeAccount'}">Make an account</li>
@@ -8,7 +8,14 @@
           <!-- <li>View map</li> -->
         </ul>
     </div>
+    <div class="container" v-if="text == 'addPatient'" >
+        <ul class="progressbar">
+            <li :class="{ active : level === 'PersonalInformation'}">Personal information</li>
+            <li :class="{ active : level === 'MedicalHistory'}">Medical History</li>
 
+            <!-- <li>View map</li> -->
+        </ul>
+    </div>
 
 </template>
 
@@ -18,7 +25,7 @@ import { defineComponent } from 'vue';
 import { mapGetters } from 'vuex';
 export default defineComponent({
   name: 'ProgressBar',
-  
+    props: [ 'text','level'],
   components: {
     
     // IonContent
@@ -37,13 +44,16 @@ export default defineComponent({
 
 <style scoped>
 .container {
-      /* width: 600px; */
-      margin: 100px auto; 
+
+      margin: 100px auto ;
+
       padding-bottom: 40px;
-      
+
+
   }
   .progressbar {
       counter-reset: step;
+
   }
   .progressbar li {
       list-style-type: none;
@@ -54,7 +64,7 @@ export default defineComponent({
       text-align: center;
       text-transform: uppercase;
       color: #7d7d7d;
-      
+
   }
   .progressbar li:before {
       width: 30px;
