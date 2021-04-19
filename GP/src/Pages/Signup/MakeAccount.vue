@@ -28,7 +28,7 @@
                   <input  type="password"   required="" v-model="Account.password">
                   
                   <label  class="Down"> Password </label>
-                                
+                  <p class="pas">at least 8 characters with one letter, one number</p>              
                 </div>
               </ion-col>
               
@@ -72,7 +72,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { IonCol, IonGrid, IonRow } from '@ionic/vue';
+import { IonCol, IonGrid, IonRow,alertController } from '@ionic/vue';
 import FormButton from '../../components/FormButton.vue';
 // import FormField from '../../components/FormField'
 // import { mapActions } from 'vuex';
@@ -99,11 +99,22 @@ export default defineComponent({
         password:'',
         confirmPassword:''
       },
-      emailFormat: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ 
-      
+      emailFormat: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ ,
+      passFormat: /(?=.*\d)(?=.*[a-z]).{8,}/,
     }
   },
   methods: {
+    async presentAlert(msg) {
+      const alert = await alertController
+        .create({
+          cssClass: 'alert',
+          header: 'Alert',
+          // subHeader: 'Subtitle',
+          message: msg,
+          buttons: ['OK'],
+        });
+      return alert.present();
+    },
     
       changePhaseNext(phase){
       const Account = Object.entries(this.Account)
@@ -115,16 +126,23 @@ export default defineComponent({
           }
         }
         if(complete){
-          if(this.Account.password === this.Account.confirmPassword && this.emailFormat.test(this.Account.email)){
+
+          if(!this.Account.password.match(this.passFormat)){
+            this.presentAlert("Please enter a strong password at leat 8 characters containig one lower case letter and one number");
+            }
+          else if(this.Account.password === this.Account.confirmPassword && this.Account.email.match(this.emailFormat)){
+          // if(this.Account.password === this.Account.confirmPassword && this.emailFormat.test(this.Account.email)){
 
             this.$store.dispatch('FillData', {email: this.Account.email, password: this.Account.password});
             // console.log(this.$store.getters['SignUpData'])
             this.$store.dispatch('changePhase', phase);
           }else{
-            alert("Please enter a vaild email or make sure that the passwords are the same")
+            // alert("Please enter a vaild email or make sure that the passwords are the same")
+            this.presentAlert("Please enter a vaild email or make sure that the passwords are the same")
           }
         }else{
-          alert("Please fill all the fields");
+          // alert("Please fill all the fields");
+          this.presentAlert("Please fill all the fields")
 
         }
    },

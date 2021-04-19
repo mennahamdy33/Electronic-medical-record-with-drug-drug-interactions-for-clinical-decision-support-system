@@ -6,8 +6,11 @@ import AddPatientPage from '../Pages/DSProfiles/AddPatientPage.vue'
 import MedicalHistory from '../Pages/DSProfiles/MedicalHistory.vue'
 
 import Signup from '../Pages/Signup/Signup.vue'
+import Login from '../Pages/Login/Login.vue'
 import Prescription from '@/Pages/Prescription.vue';
-import Purchase from '../Pages/LandingPage/Purchase.vue'
+import SignupPurchase from '../Pages/Purchase/Signup.vue'
+import LoginPurchase from '../Pages/Purchase/Login.vue'
+import ProfilePurchase from '../Pages/Purchase/ProfilePurchase.vue'
 const routes = [
   {
     path: '/',
@@ -27,11 +30,19 @@ const routes = [
 
   {path: '/Signup' , component: Signup},
 
-  {path: '/Purchase' , component: Purchase},
+
+  {path: '/Login' , component: Login},
+
+  {path: '/SignupPurchase' , component: SignupPurchase},
+  {path: '/LoginPurchase' , component: LoginPurchase},
+  {path: '/ProfilePurchase' , component:  ProfilePurchase},
+
+  
     {
         path : '/medicalhistory',
         component: MedicalHistory
     },
+
 
   {
       path : '/addpatient',

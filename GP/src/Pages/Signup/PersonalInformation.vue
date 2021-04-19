@@ -11,7 +11,7 @@
                             <ion-col size="12" size-sm>
                                 <!-- <form-field type="text" LableText="First Name"/> -->
                                 <div class="user-box">
-                                    <input  type="text"   required="" v-model="personalInformation.first_name">
+                                    <input  type="text"   required="" v-model.trim="personalInformation.first_name">
                                     
                                     <label  class="Down"> First Name </label>
                                 
@@ -20,7 +20,7 @@
                             <ion-col size="12" size-sm>
                                 <!-- <form-field type="text" LableText="Last Name"/> -->
                                 <div class="user-box">
-                                    <input  type="text"   required="" v-model="personalInformation.last_name">
+                                    <input  type="text"   required="" v-model.trim="personalInformation.last_name">
                                     
                                     <label  class="Down"> Last Name </label>
                                 
@@ -100,7 +100,7 @@
                           <ion-col size="12" size-sm>
                               <!-- <form-field type="text" LableText="Phone Number"/> -->
                             <div class="user-box">
-                              <input  type="text"   required="" v-model="personalInformation.phone_number">
+                              <input  type="number"   required="" v-model.trim="personalInformation.phone_number">
                               
                               <label  class="Down"> Phone Number </label>
                           
@@ -121,12 +121,14 @@
                         </ion-row>
 
                         <ion-row>
+                            
+
                             <ion-col size="12" size-sm>
                                 <!-- <form-field type="text" LableText="Education"/> -->
                                  <div class="user-box">
-                                    <input  type="text"   required="" v-model="personalInformation.education">
+                                    <input  type="text"   required="" v-model.trim="uuid">
                                     
-                                    <label  class="Down"> Education </label>
+                                    <label  class="Down"> Your Code </label>
                                 
                                 </div>
                             </ion-col>
@@ -134,7 +136,7 @@
                             <ion-col size="12" size-sm>
                               <!-- <form-field  type="text" LableText="National ID"/> -->
                               <div class="user-box">
-                                <input  type="text"   required="" v-model="personalInformation.national_id">
+                                <input  type="number"   required="" v-model.trim="personalInformation.national_id">
                                 
                                 <label  class="Down"> National ID </label>
                               
@@ -145,26 +147,40 @@
                         </ion-row>
 
                         <ion-row>
-                          <ion-col size="12" size-sm v-if="personalInformation.proficiency === 'doctor'">
-                            <!-- <form-field type="text" LableText="Speciality"/> -->
-                            <div class="user-box">
-                              <input  type="text"   required="" v-model="personalInformation.speciality">
-                                
-                              <label  class="Down"> Speciality </label>
-                            
-                            </div>
-                          </ion-col>
                           
+
+                          <ion-col size="12" size-sm>
+                                <!-- <form-field type="text" LableText="Education"/> -->
+                                 <div class="user-box">
+                                    <input  type="text"   required="" v-model.trim="personalInformation.education">
+                                    
+                                    <label  class="Down"> Education </label>
+                                
+                                </div>
+                            </ion-col>
+
                           <ion-col size="12" size-sm>
                             <!-- <form-field type="text" LableText="Address"/> -->
                             <div class="user-box">
-                              <input  type="text"   required="" v-model="personalInformation.address">
+                              <input  type="text"   required="" v-model.trim="personalInformation.address">
                               
                               <label  class="Down"> Address </label>
                             
                             </div>
                           </ion-col>
                         
+                        </ion-row>
+                        
+                        <ion-row>
+                          <ion-col size="12" size-sm v-if="personalInformation.proficiency === 'doctor'">
+                            <!-- <form-field type="text" LableText="Speciality"/> -->
+                            <div class="user-box">
+                              <input  type="text"   required="" v-model.trim="personalInformation.speciality">
+                                
+                              <label  class="Down"> Speciality </label>
+                            
+                            </div>
+                          </ion-col>
                         </ion-row>
 
                         <ion-row>
@@ -184,7 +200,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { IonCol, IonGrid, IonRow } from '@ionic/vue';
+import { IonCol, IonGrid, IonRow, alertController  } from '@ionic/vue';
 import FormButton from '../../components/FormButton.vue';
 // import FormField from '../../components/FormField'
 // import RadioForm from '../../components/RadioForm'
@@ -215,20 +231,59 @@ export default defineComponent({
       education: '',
       speciality:'',
       address:'',
-      proficiency:''}
+      proficiency:''},
+      uuid:'',
+      user:'',
+      result: ''
       
     }
   },
   methods: {
-      get(){
-        
-       
+
+
+    async presentAlert(msg) {
+      const alert = await alertController
+        .create({
+          cssClass: 'alert',
+          header: 'Alert',
+          // subHeader: 'Subtitle',
+          message: msg,
+          buttons: ['OK'],
+        });
+      return alert.present();
+    },
+
+    get(){
     
      console.log(this.personalInformation);
      
    },
 
-   changePhaseNext(phase){
+   async isAuthorized(){
+       
+    await fetch('http://localhost:3000/isAuthorized', {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({uuid: this.uuid})
+    })
+    .then(response => response.json())
+    .then(user => {
+      
+      if(user[0].auth_id){
+        this.user = user;
+        this.result = true;
+      }else{ 
+        this.result = false;
+        console.log("no") 
+      }
+    } )
+   
+      
+   },
+
+   async changePhaseNext(phase){
+     await this.isAuthorized();
+     
       const personalInformation = Object.entries(this.personalInformation)
       let complete = true;
         for (const [key, value] of personalInformation  ) {
@@ -237,24 +292,36 @@ export default defineComponent({
             if(key === 'speciality' && this.personalInformation.proficiency ==='secretary' ){
               //do nothing
             }else{
-
+              
               complete = false;
             }
           }
         }
+        if(complete && this.uuid === ''){
+          complete = false;
+        }
         if(complete){
+          
           if(!this.personalInformation.phone_number.match(/^\d{11}$/) || !this.personalInformation.national_id.match(/^\d{14}$/) ){
 
-            alert("invalid Phone number or National ID")
+            // alert("invalid Phone number or National ID")
+            this.presentAlert("invalid Phone number or National ID");
 
           }
+          else if(!this.result){
+            this.presentAlert("Not Authorized user");
+          }
           else{
+            
             this.$store.dispatch('FillData', this.personalInformation);
-            // console.log(this.$store.getters['SignUpData'])
             this.$store.dispatch('changePhase', phase);
+
+            // console.log(this.user[0])
+            this.$store.dispatch('fill_userData', this.user[0]);
           }
         }else{
-          alert("Please fill all the fields");
+          // alert("Please fill all the fields");
+          this.presentAlert("Please fill all the fields");
 
         }
    }
@@ -456,5 +523,6 @@ input[type=radio]:checked ~ .check::before{
 input[type=radio]:checked ~ label{
   color: #03e9f4;
 }
+
 
 </style>

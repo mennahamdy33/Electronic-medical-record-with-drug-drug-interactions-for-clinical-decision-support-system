@@ -51,10 +51,12 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { IonGrid,IonCol, IonRow , IonCard, IonCardTitle, IonCardHeader,  IonCardContent} from '@ionic/vue';
+import { IonGrid,IonCol, IonRow , IonCard, IonCardTitle, IonCardHeader,  IonCardContent,alertController} from '@ionic/vue';
 import FormButton from '../../components/FormButton.vue';
 // import FormField from '../../components/FormField'
+import {useRouter} from 'vue-router';
 import { mapActions } from 'vuex';
+// import { mapGetters } from 'vuex';
 export default defineComponent({
   name: 'Signup2',
   components: {
@@ -84,16 +86,62 @@ export default defineComponent({
     }
   },
    methods: {
+
+     async presentAlert(msg) {
+      const alert = await alertController
+        .create({
+          cssClass: 'alert',
+          header: 'Alert',
+          // subHeader: 'Subtitle',
+          message: msg,
+          buttons: ['OK'],
+        });
+      return alert.present();
+    },
+
      onSubmit(){
-       console.log(this.$store.getters['SignUpData'])
-       fetch('http://localhost:3000/register', {
-      method: 'post',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(this.$store.getters['SignUpData'])
-    })
+       
+       const pickedClinics = this.clinics.filter( clinic => clinic.active === true );
+       console.log(pickedClinics)
+       if (pickedClinics.length === 0){
+          this.presentAlert("Please pick a clinic")
+       }
+       else{
+        let auth_id = this.$store.getters['user'].auth_id
+        let data = {...this.$store.getters['SignUpData'], auth_id: auth_id , pickedClinics: pickedClinics }
+        console.log(data)
+
+        fetch('http://localhost:3000/register', {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+        }).then((res) => {
+          if(!res.ok){
+            throw new Error(res.status)
+          }else{
+            
+            return res.json()
+          }
+          }).
+        then((res)=> {
+          console.log(res)
+          this.router.push('/Login')
+          })
+        .catch(() =>
+         { 
+           console.log("Unable to register")
+           this.presentAlert("Register Failed")
+
+         })
+         
+         
+       }
+
       //  fetch('http://localhost:3000/')
      },
     ...mapActions(['changePhase']),
+    // ...mapGetters(['user'])
+    // ,
 
     activate(clinic)
     {
@@ -107,16 +155,24 @@ export default defineComponent({
   
   
   mounted(){
-    fetch('http://localhost:3000/clinics')
+    const user = this.$store.getters['user']
+    console.log(user.customer_id)
+    fetch(`http://localhost:3000/clinics/${user.customer_id}`)
+    // fetch(`http://localhost:3000/clinics?id=${user.customer_id}`)
     .then(response => response.json())
     .then(clinics => {
       clinics.forEach(clinic => {
-        clinic = {...clinic , active: false}
-        console.log(clinic)
+        // clinic = {...clinic , active: false}
+        clinic.active = false
+        
       });
       this.clinics = clinics
-      // console.log(clinics)
+      console.log(clinics)
     } )
+  }, 
+  setup(){
+    const router = useRouter();
+    return { router };
   }
 });
 </script>
