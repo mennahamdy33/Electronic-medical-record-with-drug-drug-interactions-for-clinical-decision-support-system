@@ -164,11 +164,7 @@ import BaseTemplate from "../../components/BaseTemplate";
         data(){
             return {
                 model: null,
-                options: [
-                    { label: 'label1', value: 'value1' },
-                    { label: 'label2', value: 'value2' },
-                    { label: 'label3', value: 'value3' }
-                ],
+
                 PatientInfo:{
                     firstName:  "",
                     lastName: "",
@@ -177,11 +173,14 @@ import BaseTemplate from "../../components/BaseTemplate";
                     gender: "",
                     birthdate:"",
                     address:"",
-                    Medications:[]
+                    Medications:''
 
                 },
-                //  medications:[],
-                //  filterTerm: '',
+
+              
+                medications:[],
+                filterTerm: '',
+
             };
         },
         methods:{
@@ -195,20 +194,22 @@ import BaseTemplate from "../../components/BaseTemplate";
               .then(response=> console.log(response))
               .catch(error => console.log(error));
         },
-        
-        // medicationsData() {
-        //         // Simple GET request using axios
-        //         const headers = { "Content-Type": "application/json" };
-        //         axios.get('http://localhost:8000/addpatient', { headers })
-        //             .then(response => {this.medications =response.data.slice();
-        //                 });
-        //     },
+            medicationsData() {
+                // Simple GET request using axios
+                const headers = { "Content-Type": "application/json" };
+                axios.get('http://localhost:8000/addpatient', { headers })
+                    .then(response => {this.medications =response.data.slice();
+                        });
+
+            },
 
         },
         computed: {
             resultQuery(){
+
                 if(this.filterTerm){
                     return this.medications.filter((item)=>{
+
                         return this.filterTerm.toLowerCase().split(' ').every(v => item.toLowerCase().includes(v))
                     })
                 }else{
@@ -216,10 +217,9 @@ import BaseTemplate from "../../components/BaseTemplate";
                 }
             }
         },
-
-        // mounted(){
-        //     this.medicationsData();
-        // }
+        beforeMount(){
+            this.medicationsData()
+        },
     }
 </script>
 <style scoped>
