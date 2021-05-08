@@ -166,7 +166,7 @@ export default defineComponent({
     async SendCode(){
       if(this.email){
         const user = this.$store.getters['user']
-        await fetch(`http://localhost:3000/clinics/${user.customer_id}`)
+        await fetch(process.env.VUE_APP_ROOT_API+`clinics/${user.customer_id}`)
         // fetch(`http://localhost:3000/clinics?id=${user.customer_id}`)
         .then(response => response.json())
         .then(clinics => {
@@ -187,7 +187,7 @@ export default defineComponent({
             const customer_data = this.$store.getters['user'];
             const data = {customer_id:customer_data.customer_id , email:this.email};
   
-             fetch('http://localhost:3000/sendcode', {
+             fetch(process.env.VUE_APP_ROOT_API+'sendcode', {
               method: 'post',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify(data)
@@ -224,7 +224,7 @@ export default defineComponent({
         const customer_data = this.$store.getters['user'];
           const data = {...this.clinic , customer_id:customer_data.customer_id };
 
-           fetch('http://localhost:3000/addClinic', {
+           fetch(process.env.VUE_APP_ROOT_API+'addClinic', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
