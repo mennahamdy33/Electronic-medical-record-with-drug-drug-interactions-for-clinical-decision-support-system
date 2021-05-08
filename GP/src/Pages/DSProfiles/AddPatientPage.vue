@@ -176,8 +176,11 @@ import BaseTemplate from "../../components/BaseTemplate";
                     Medications:''
 
                 },
+
+              
                 medications:[],
                 filterTerm: '',
+
             };
         },
         methods:{

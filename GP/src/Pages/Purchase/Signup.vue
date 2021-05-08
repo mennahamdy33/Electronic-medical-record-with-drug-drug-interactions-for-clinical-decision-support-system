@@ -251,7 +251,7 @@ export default defineComponent({
           else{
             
            //send to database
-             fetch('http://localhost:3000/registerPurchase', {
+             fetch(process.env.VUE_APP_ROOT_API+'registerPurchase', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(this.Account)
