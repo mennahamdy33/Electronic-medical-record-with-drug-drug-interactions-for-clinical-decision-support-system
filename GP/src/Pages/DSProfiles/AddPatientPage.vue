@@ -175,8 +175,8 @@ import BaseTemplate from "../../components/BaseTemplate";
                     Medications:[]
 
                 },
-                medications:["med1","med2","med3","med4","med5","med5","med5","med5","med5","med5","med5","med5","med5"],
-                filterTerm: '',
+                //  medications:[],
+                //  filterTerm: '',
             };
         },
         methods:{
@@ -190,6 +190,14 @@ import BaseTemplate from "../../components/BaseTemplate";
               .then(response=> console.log(response))
               .catch(error => console.log(error));
         },
+        
+        // medicationsData() {
+        //         // Simple GET request using axios
+        //         const headers = { "Content-Type": "application/json" };
+        //         axios.get('http://localhost:8000/addpatient', { headers })
+        //             .then(response => {this.medications =response.data.slice();
+        //                 });
+        //     },
 
         },
         computed: {
@@ -202,7 +210,11 @@ import BaseTemplate from "../../components/BaseTemplate";
                     return this.medications;
                 }
             }
-        }
+        },
+
+        // mounted(){
+        //     this.medicationsData();
+        // }
     }
 </script>
 <style scoped>
