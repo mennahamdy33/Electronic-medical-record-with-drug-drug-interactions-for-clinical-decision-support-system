@@ -111,7 +111,7 @@ export default defineComponent({
         let data = {...this.$store.getters['SignUpData'], auth_id: auth_id , pickedClinics: pickedClinics }
         console.log(data)
 
-        fetch('http://localhost:3000/register', {
+        fetch(process.env.VUE_APP_ROOT_API+'register', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
@@ -157,7 +157,7 @@ export default defineComponent({
   mounted(){
     const user = this.$store.getters['user']
     console.log(user.customer_id)
-    fetch(`http://localhost:3000/clinics/${user.customer_id}`)
+    fetch(process.env.VUE_APP_ROOT_API+`clinics/${user.customer_id}`)
     // fetch(`http://localhost:3000/clinics?id=${user.customer_id}`)
     .then(response => response.json())
     .then(clinics => {
