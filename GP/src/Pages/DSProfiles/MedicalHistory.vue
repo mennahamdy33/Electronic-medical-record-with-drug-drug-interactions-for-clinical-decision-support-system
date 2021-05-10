@@ -93,7 +93,7 @@
 
                                                 <ul>
 
-cd GP
+cd GPcd
                                                     <li>
                                                         <input type="radio" id="Yes" name="gender" v-model=" MedicalHistory.tobacco" value="yes"  >
                                                         <label for="Yes"> Yes </label>

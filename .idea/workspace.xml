@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9cedb8e7-e9c7-4135-a7a4-c500cfbdd849" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GP/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/GP/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GP/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/GP/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GP/src/Pages/DSProfiles/AddPatientPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/DSProfiles/AddPatientPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GP/src/Pages/DSProfiles/MedicalHistory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/DSProfiles/MedicalHistory.vue" afterDir="false" />
     </list>
@@ -17,14 +19,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.8825372">
+    <splitter split-orientation="horizontal" split-proportion="0.8779343">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="AddPatientPage.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/GP/src/Pages/DSProfiles/AddPatientPage.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-23">
-                  <caret line="199" selection-start-line="199" selection-end-line="199" />
+                <state relative-caret-position="348">
+                  <caret line="210" column="21" selection-start-line="210" selection-start-column="21" selection-end-line="210" selection-end-column="21" />
                   <folding>
                     <element signature="n#style#0;n#ion-col#0;n#div#0;n#ion-col#0;n#ion-row#0;n#ion-grid#0;n#base-template#0;n#template#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#label#0;n#ion-col#1;n#ion-row#2;n#ion-grid#0;n#form#0;n#div#0;n#ion-col#0;n#ion-row#0;n#ion-grid#0;n#base-template#0;n#template#0;n#!!top" expanded="true" />
@@ -129,7 +131,7 @@
             <entry file="file://$PROJECT_DIR$/GP/src/Pages/DSProfiles/MedicalHistory.vue">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="245">
-                  <caret line="95" column="5" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
+                  <caret line="95" column="7" selection-start-line="95" selection-start-column="7" selection-end-line="95" selection-end-column="7" />
                   <folding>
                     <element signature="n#style#0;n#label#0;n#ion-col#0;n#ion-row#6;n#ion-grid#0;n#form#0;n#div#0;n#ion-col#0;n#ion-row#0;n#ion-grid#0;n#base-template#0;n#template#0;n#!!top" expanded="true" />
                   </folding>
@@ -159,8 +161,10 @@
       <find>gender</find>
       <find>PatientInfo</find>
       <find>options</find>
-      <find>resultQuery</find>
       <find>medications</find>
+      <find>resultQuery</find>
+      <find>!</find>
+      <find>cons</find>
     </findStrings>
     <replaceStrings>
       <replace>components</replace>
@@ -193,8 +197,8 @@
         <option value="$PROJECT_DIR$/GP/src/Pages/DSProfiles/MedicalHistory" />
         <option value="$PROJECT_DIR$/GP/src/components/ProgressBar.vue" />
         <option value="$PROJECT_DIR$/GP/src/router/index.js" />
-        <option value="$PROJECT_DIR$/GP/src/Pages/DSProfiles/AddPatientPage.vue" />
         <option value="$PROJECT_DIR$/GP/src/Pages/DSProfiles/MedicalHistory.vue" />
+        <option value="$PROJECT_DIR$/GP/src/Pages/DSProfiles/AddPatientPage.vue" />
       </list>
     </option>
   </component>
@@ -206,6 +210,7 @@
   </component>
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/GP/node_modules" />
+    <handled-path value="$PROJECT_DIR$/Server/node_modules" />
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths>
@@ -214,10 +219,9 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="230" />
-    <option name="y" value="-29" />
-    <option name="width" value="979" />
-    <option name="height" value="1040" />
+    <option name="x" value="952" />
+    <option name="width" value="977" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -237,6 +241,12 @@
               <item name="GPfirst" type="b2602c69:ProjectViewProjectNode" />
               <item name="GPfirst" type="462c0819:PsiDirectoryNode" />
               <item name="GP" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GPfirst" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GPfirst" type="462c0819:PsiDirectoryNode" />
+              <item name="GP" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GPfirst" type="b2602c69:ProjectViewProjectNode" />
@@ -315,12 +325,16 @@
       <workItem from="1619356036282" duration="3682000" />
       <workItem from="1619384571565" duration="8528000" />
       <workItem from="1619431161364" duration="1402000" />
-      <workItem from="1619515907231" duration="965000" />
+      <workItem from="1619515907231" duration="11690000" />
+      <workItem from="1620591684014" duration="1077000" />
+      <workItem from="1620593824491" duration="5907000" />
+      <workItem from="1620626421831" duration="9078000" />
+      <workItem from="1620637046413" duration="1328000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79468000" />
+    <option name="totallyTimeSpent" value="107583000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -333,7 +347,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15532055" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32905984" />
@@ -342,7 +355,7 @@
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32905984" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.16239317" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.38603988" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32905984" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -553,8 +566,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GP/src/Pages/DSProfiles/MedicalHistory.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="95" column="5" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
+        <state relative-caret-position="125">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="4" />
           <folding>
             <element signature="n#style#0;n#label#0;n#ion-col#0;n#ion-row#6;n#ion-grid#0;n#form#0;n#div#0;n#ion-col#0;n#ion-row#0;n#ion-grid#0;n#base-template#0;n#template#0;n#!!top" expanded="true" />
           </folding>
@@ -577,8 +590,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GP/src/Pages/DSProfiles/AddPatientPage.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23">
-          <caret line="199" selection-start-line="199" selection-end-line="199" />
+        <state relative-caret-position="348">
+          <caret line="210" column="21" selection-start-line="210" selection-start-column="21" selection-end-line="210" selection-end-column="21" />
           <folding>
             <element signature="n#style#0;n#ion-col#0;n#div#0;n#ion-col#0;n#ion-row#0;n#ion-grid#0;n#base-template#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#label#0;n#ion-col#1;n#ion-row#2;n#ion-grid#0;n#form#0;n#div#0;n#ion-col#0;n#ion-row#0;n#ion-grid#0;n#base-template#0;n#template#0;n#!!top" expanded="true" />
