@@ -10,12 +10,19 @@
       <ion-content>
         <ion-list>
           <!-- <img :src="img" alt="logo" /> -->
-
-          <ion-item href="/addpatient">Add Patient</ion-item>
-          <ion-item href="/bookDoctor">Book A Doctor</ion-item>
-          <ion-item href="/patientProfile">Edit Patient's Profile</ion-item>
-          <ion-item href="/doctorProfile">Edit My Profile</ion-item>
-          <ion-item href="/Prescription">Prescription</ion-item>
+            <ion-grid>
+                <ion-row class= "ion-justify-content-center">
+                    <ion-col size-lg="6" size-md="6" size-sm="4" size-xs="12">
+                        <ion-item ><img src="../../../public/logo9.png" alt="logo"  /></ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+          
+          <ion-item button router-link="/MainPageDoctor/MySchedules">My Schedules</ion-item>
+          <ion-item href="/bookDoctor">Search a Patient</ion-item>
+          <ion-item href="/patientProfile">Prescription</ion-item>
+          <ion-item button router-link="/MainPageDoctor/MyProfileDoctor">My Profile</ion-item>
+          <!-- <ion-item href="/Prescription">Prescription</ion-item> -->
         </ion-list>
       </ion-content>
     </ion-menu>
@@ -31,7 +38,7 @@
 
             <ion-buttons slot="secondary">
               <ion-button>
-                <ion-icon slot="icon-only" :icon="personCircle"></ion-icon>
+                <ion-icon slot="icon-only"></ion-icon>
               </ion-button>
               <ion-button>
                 <ion-icon slot="icon-only" :icon="search"></ion-icon>
@@ -55,11 +62,15 @@
           </ion-toolbar>
         </ion-header>
       </div>
-      <slot />
+      <MySchedules v-if="$route.path ==='/MainPageDoctor'"/>
+      <router-view > </router-view>
+      <!-- <router-view > <MyProfileDoctor/> </router-view> -->
     </ion-content>
   </ion-page>
 </template>
 <script>
+    import { defineComponent } from 'vue';
+    import MySchedules from './Schedules.vue'
     import {
         IonPage,
         IonHeader,
@@ -87,7 +98,8 @@
         star,
         logOut,
     } from "ionicons/icons";
-    export default {
+    export default defineComponent({
+        name: 'MainPageDoctor',
         props: ["title"],
         components: {
             IonPage,
@@ -103,7 +115,8 @@
             IonIcon,
             IonMenuButton,
             IonCol,
-            IonGrid, IonRow
+            IonGrid, IonRow,
+            MySchedules
         },
         data() {
             return {
@@ -116,11 +129,11 @@
                 search,
                 star,
                 logOut,
-                img: require("../../public/logobig.png"),
+                img: require("../../../public/logobig.png"),
                 //icons end
             };
         },
-    };
+    });
 </script>
 <style scoped>
   .content {
