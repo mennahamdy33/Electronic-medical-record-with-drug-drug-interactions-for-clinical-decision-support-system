@@ -11,7 +11,7 @@
         </ion-row>
         <ion-row>
           <ion-col class="ion-padding">
-            <ion-label>Patient's SSN </ion-label>{{ ssn }}
+            <ion-label>Patient's SSN </ion-label>{{ SSN }}
           </ion-col>
         </ion-row>
         <ion-row >
@@ -43,7 +43,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "Modal",
-  props: ["name", "ssn"],
+  props: ["name", "SSN"],
   components: {
     IonContent,
     IonLabel,

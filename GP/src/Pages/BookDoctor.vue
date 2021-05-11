@@ -6,7 +6,7 @@
           <div class="login-box">
             <h2>Book A Doctor</h2>
             <div class="user-box">
-              <input type="number" name="ssn" required="" />
+              <input type="number" name="patientSSN" v-model="patientSSN" required="" />
               <label>Patient's SSN </label>
             </div>
             <div class="user-box">
@@ -20,9 +20,11 @@
         <doctor-card
           v-for="doctor in resultedDoctors"
           :key="doctor.id"
-          :title="doctor.role"
+          :title="doctor.specialty"
           :doctorName="doctor.fullName"
           :workingHours="doctor.time"
+          :ssn="patientSSN"
+
         ></doctor-card>
       </ion-row>
     </ion-grid>
@@ -56,7 +58,7 @@ export default {
     },
   },
   methods: {
-    testBack() {
+    retrieveDoctors() {
       fetch("http://localhost:3000")
         .then((response) => {
           if (response.ok) {
@@ -65,8 +67,15 @@ export default {
         })
         .then((data) => {
           console.log(data);
-          // retrieve data from nodeJS
+          // retrieve data from nodeJS, DB
           this.doctorsList = data;
+        })
+        .then(() => {
+          //make fullname element in doctors list
+          this.doctorsList.forEach((element) => {
+            element.fullName = element.first_name + " " + element.last_name;
+          });
+          console.log(this.doctorsList);
         })
         .catch((err) => {
           console.log(err);
@@ -76,13 +85,19 @@ export default {
   data() {
     return {
       searchQuery: null,
+      patientSSN: null,
       doctorsList: [
-        { id: "u1", fullName: "Schwarz", role: "Surgeon", time: "all day" },
+        {
+          id: "u1",
+          fullName: "Schwarz",
+          specialty: "Surgeon",
+          time: "all day",
+        },
       ],
     };
   },
   beforeMount() {
-    this.testBack();
+    this.retrieveDoctors();
   },
 };
 </script>
