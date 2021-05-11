@@ -2,7 +2,7 @@
   <ion-content class="ion-padding">
     <ion-grid>
       <form @submit.prevent="submitBooking">
-        <ion-row >
+        <ion-row>
           <ion-col size-md="8" offset-md="4">
             <ion-chip color="primary">
               <h2><ion-label>Doctor </ion-label>{{ name }}</h2>
@@ -14,7 +14,7 @@
             <ion-label>Patient's SSN </ion-label>{{ SSN }}
           </ion-col>
         </ion-row>
-        <ion-row >
+        <ion-row>
           <ion-col class="ion-padding" size="6">
             <ion-label>Pick Date & Time</ion-label>
           </ion-col>
@@ -27,6 +27,7 @@
           </ion-col>
         </ion-row>
         <ion-button class="primary">Confirm</ion-button>
+        <ion-button @click="cancelBooking">Cancel</ion-button>
       </form>
     </ion-grid>
   </ion-content>
@@ -36,6 +37,7 @@
 import {
   IonContent,
   IonLabel,
+  modalController,
   // IonRow,
   //  IonCol
 } from "@ionic/vue";
@@ -68,6 +70,9 @@ export default defineComponent({
   methods: {
     submitBooking() {
       console.log("submitted");
+    },
+    cancelBooking() {
+      modalController.dismiss();
     },
   },
 });
