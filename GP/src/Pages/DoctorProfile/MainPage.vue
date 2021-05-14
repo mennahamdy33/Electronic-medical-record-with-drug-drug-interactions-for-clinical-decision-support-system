@@ -2,15 +2,15 @@
   <ion-page>
 
     <ion-menu side="start" menu-id="first" content-id="main">
-      <ion-header>
+      <!-- <ion-header>
         <ion-toolbar color="secondary">
           <ion-title>Options</ion-title>
         </ion-toolbar>
-      </ion-header>
+      </ion-header> -->
       <ion-content>
         <ion-list>
           <!-- <img :src="img" alt="logo" /> -->
-            <ion-grid>
+            <ion-grid  >
                 <ion-row class= "ion-align-items-center ion-justify-content-center">
                     <!-- <ion-col > -->
                     <ion-col size-lg="4" size-md="4" size-sm="4" size-xs="4">
@@ -198,7 +198,8 @@
     /* width: 80px; */
     /* height: 80px; */
     border-radius: 50%;
-    border: 3px solid #42f3ea;
+    border: 3px solid #33bbb4;
+    /* border: 3px solid #42f3ea; */
   }
   .personal_photo_bar{
     max-height:35px;
@@ -213,7 +214,9 @@
     max-height:25px;
     max-width:25px;
     border-radius: 50%;
+    
     border: 1px solid #42f3ea;
   }
 }
+
 </style>
