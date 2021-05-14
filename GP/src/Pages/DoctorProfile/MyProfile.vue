@@ -117,6 +117,16 @@
                                     
 
                                 </ion-row>
+                                
+                                <ion-row  >
+                                    <ion-col offset-lg="10" size="12" size-sm>
+                                        <ion-button   class="button">Edit</ion-button>
+
+                                    </ion-col>
+
+                                    
+
+                                </ion-row>
                               
                                 
                             </ion-grid>
@@ -139,7 +149,8 @@
         IonIcon,
         IonRow,
         IonCol,
-        IonAvatar    } from "@ionic/vue";
+        IonAvatar ,
+        IonButton   } from "@ionic/vue";
     // import BaseTemplate from "../../components/BaseTemplate";
     export default defineComponent({
         name: 'MyProfileDoctor',
@@ -152,7 +163,8 @@
             IonIcon,
             IonRow,
             IonCol,
-            IonAvatar
+            IonAvatar,
+            IonButton
         },
 
         data(){
@@ -297,5 +309,16 @@
   
     
 
+}
+.button{
+    --background: #2fcbce; 
+    color: #fff;
+    font-size: 16px;
+    font-family: 'Josefin Sans', sans-serif;
+   margin-top: 10px;
+  
+  
+  
+    
 }
 </style>
