@@ -11,12 +11,25 @@
         <ion-list>
           <!-- <img :src="img" alt="logo" /> -->
             <ion-grid>
-                <ion-row class= "ion-justify-content-center">
-                    <ion-col size-lg="6" size-md="6" size-sm="4" size-xs="12">
-                        <ion-item ><img src="../../../public/logo9.png" alt="logo"  /></ion-item>
+                <ion-row class= "ion-align-items-center ion-justify-content-center">
+                    <!-- <ion-col > -->
+                    <ion-col size-lg="4" size-md="4" size-sm="4" size-xs="4">
+                      <!-- <img class="personal_photo" src="../../../public/me.jpg" alt="logo"  /> -->
+                       <ion-avatar>
+                        <img  class="personal_photo" src="../../../public/me.jpg" alt="logo"  />
+                       </ion-avatar>
+                      
+                    </ion-col>
+                </ion-row>
+                <ion-row class= "ion-align-items-center ion-justify-content-center">
+                    <ion-col class="ion-text-center" size-lg="12" size-md="12" size-sm="12" size-xs="12" >
+                      <h2> Noran Tharowat </h2>
                     </ion-col>
                 </ion-row>
             </ion-grid>
+          
+
+           
           
           <ion-item button router-link="/MainPageDoctor/MySchedules">My Schedules</ion-item>
           <ion-item href="/bookDoctor">Search a Patient</ion-item>
@@ -37,9 +50,13 @@
             </ion-buttons>
 
             <ion-buttons slot="secondary">
-              <ion-button>
-                <ion-icon slot="icon-only"></ion-icon>
-              </ion-button>
+              
+      
+               
+              <ion-avatar class="personal_photo_bar" >
+                <img  src="../../../public/me.jpg" alt="logo"  />
+              </ion-avatar>
+         
               <ion-button>
                 <ion-icon slot="icon-only" :icon="search"></ion-icon>
               </ion-button>
@@ -51,10 +68,12 @@
             </ion-buttons>
 
             <ion-title>
+      
+
               <ion-grid>
                 <ion-row>
                   <ion-col size-lg="1.7" size-md="3" size-sm="4" size-xs="12">
-                    <img :src="img" alt="logo"  />
+                    <img :src="img" alt="logo" />
                   </ion-col>
                 </ion-row>
               </ion-grid>
@@ -86,7 +105,8 @@
         IonIcon,
         IonMenuButton,
         IonCol,
-        IonGrid, IonRow
+        IonGrid, IonRow,
+        IonAvatar
     } from "@ionic/vue";
     import {
         add,
@@ -97,6 +117,7 @@
         search,
         star,
         logOut,
+        closeCircle
     } from "ionicons/icons";
     export default defineComponent({
         name: 'MainPageDoctor',
@@ -116,7 +137,8 @@
             IonMenuButton,
             IonCol,
             IonGrid, IonRow,
-            MySchedules
+            MySchedules,
+            IonAvatar
         },
         data() {
             return {
@@ -129,6 +151,7 @@
                 search,
                 star,
                 logOut,
+                closeCircle,
                 img: require("../../../public/logobig.png"),
                 //icons end
             };
@@ -169,4 +192,28 @@
   ion-title{
     padding: 0;
   }
+
+  .personal_photo{
+    /* vertical-align: middle; */
+    /* width: 80px; */
+    /* height: 80px; */
+    border-radius: 50%;
+    border: 3px solid #42f3ea;
+  }
+  .personal_photo_bar{
+    max-height:35px;
+    max-width:35px;
+    border-radius: 50%;
+    border: 1px solid #42f3ea;
+  }
+
+
+@media only screen and (max-width: 992px) {
+    .personal_photo_bar{
+    max-height:25px;
+    max-width:25px;
+    border-radius: 50%;
+    border: 1px solid #42f3ea;
+  }
+}
 </style>
