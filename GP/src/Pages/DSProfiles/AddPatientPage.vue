@@ -111,7 +111,7 @@
 
                                         <IonList interface="sheet-action" v-show="filterTerm != ''"   >
 
-                                            <IonItem v-show="filterTerm != ''" button="true"  v-for="med in medications" :key="med" value="{{med}}"  >{{med}}</IonItem>
+                                            <IonItem v-show="filterTerm != ''" button="true"   @clicked="showmed(med)" v-for="med in medications" :key="med" value="{{med}}"  >{{med}}</IonItem>
                                         </IonList>
 
                                     </ion-col>
@@ -150,42 +150,57 @@
     } from "@ionic/vue";
     import BaseTemplate from "../../components/BaseTemplate";
     export default {
-        components:{
+        components: {
             BaseTemplate,
             IonSearchbar,
-            FormButton,IonGrid,IonRow,IonCol,
-            IonList,IonItem,
+            FormButton, IonGrid, IonRow, IonCol,
+            IonList, IonItem,
             ProgressBar
         },
-        data(){
+        data() {
             return {
                 model: null,
 
-                PatientInfo:{
-                    firstName:  "",
+                PatientInfo: {
+                    firstName: "",
                     lastName: "",
-                    ssn:"",
-                    phoneNumber:"",
+                    ssn: "",
+                    phoneNumber: "",
                     gender: "",
-                    birthdate:"",
-                    address:"",
-                    Medications:''
-
+                    birthdate: "",
+                    address: "",
+                    Medications: ["Refludan"],
                 },
 
-              
-                medications:[],
+
+                medications: [],
                 filterTerm: '',
 
             };
         },
-        methods:{
+        methods: {
+            showmed(med){
+                this.PatientInfo.Medications.push(med);
+                console.log("aa",this.PatientInfo.Medications);},
+            sendMedications() {
 
-            sendPatientData(){
-
-                axios.post('http://localhost:8000/addpatient',this.PatientInfo)
-                    .then(response=> console.log(response))
+                console.log("bbb");
+                axios.post('http://localhost:8000/addmedication', {medications: this.PatientInfo.Medications})
+                    .then(response => console.log(response))
                     .catch(error => console.log(error));
+            },
+            sendPatientData() {
+
+                axios.post('http://localhost:8000/addpatient', this.PatientInfo)
+                    .then()
+                    .catch(error => console.log(error));
+            },
+            sendAllData() {
+
+                Promise.all([this.sendPatientData(), this.sendMedications()])
+                    .then(axios.spread(function () {
+                        // Both requests are now complete
+                    }));
             },
             medicationsData() {
                 if (this.timer) {
@@ -195,58 +210,25 @@
                 this.timer = setTimeout(() => {
                     if (this.filterTerm) {
 
-                        axios.post('http://localhost:8000/medications', {"x": this.filterTerm},[headers])
+                        axios.post('http://localhost:8000/medications', {"x": this.filterTerm}, [headers])
                             .then(response => {
-                         console.log(response);
+                                console.log(response);
                             });
 
 
-                            const headers = {"Content-Type": "application/json"};
-                            axios.get('http://localhost:8000/addpatient', {headers})
-                                .then(response => {
-                                    let uniqueChars = [...new Set(response.data.map(a => a.name))];
-                                    this.medications = uniqueChars;
+                        const headers = {"Content-Type": "application/json"};
+                        axios.get('http://localhost:8000/addpatient', {headers})
+                            .then(response => {
+                                let uniqueChars = [...new Set(response.data.map(a => a.name))];
+                                this.medications = uniqueChars;
 
-                                });
+                            });
 
                     }
                 }, 100);
             },
         },
-        // asyncComputed: {
-        //     resultQuery() {
-        //         if (this.filterTerm) {
-        //             const headers = {"Content-Type": "application/json"};
-        //             axios.get('http://localhost:8000/addpatient', {headers})
-        //                 .then(response => {
-        //                     let uniqueChars = [...new Set(response.data.map(a => a.name))];
-        //                     this.medications = uniqueChars;
-        //                     return this.medications;
-        //
-        //                 });
-        //         }
-        //         else {
-        //             return this.medications;
-        //         }
-
-           // }
-        }
-        // resultQuery(){
-        //
-        //     if(this.filterTerm){
-        //         return this.medications.filter((item)=>{
-        //
-        //                 return this.filterTerm.toLowerCase().split(' ').every(v => item.toLowerCase().includes(v))
-        //         })
-        //     }else{
-        //         return this.medications;
-        //     }
-        // }
-
-        // mounted(){
-        //     this.medicationsData()
-        // },
-   // }
+    }
 </script>
 <style scoped>
 
