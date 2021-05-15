@@ -8,7 +8,7 @@ router.get('/', function (req, res, next) {
     const page = req.query.page;
     
     knex.from('drug_products')
-        .where('name','like', `%${name}%`)
+        .where('name','like', `${name}%`)
         .paginate({ perPage: 10, currentPage: page })
         .then((results) => {
             if(name==""){
