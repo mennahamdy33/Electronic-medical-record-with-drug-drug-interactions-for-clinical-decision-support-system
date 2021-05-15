@@ -11,7 +11,6 @@ app.get('/', (req, res)=> {
   res.send(console.log('Hi'));
 })
 
-
 app.use('/', require("./routes/register"));
 app.use('/', require("./routes/signin"));
 app.use('/', require("./routes/clinics"));
