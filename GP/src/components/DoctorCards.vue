@@ -30,7 +30,7 @@ export default {
     IonCardTitle,
     IonCol,
   },
-  props: ["title", "doctorName", "workingHours"],
+  props: ["title", "doctorName", "workingHours","ssn"],
   methods: {
     async openModal() {
       const modal = await modalController.create({
@@ -41,7 +41,7 @@ export default {
         backdropDismiss: true,
         componentProps: {
           name: this.doctorName,
-          ssn: 123456,
+          SSN: this.ssn,
           modal: modal
         },
       });
