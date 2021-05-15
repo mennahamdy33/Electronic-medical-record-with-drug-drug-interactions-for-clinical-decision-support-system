@@ -14,6 +14,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "knex": "^0.21.16",
+    "knex-paginate": "^2.1.0",
     "mysql2": "^2.2.5",
     "nodemailer": "^6.5.0",
     "sequelize": "^6.5.0",

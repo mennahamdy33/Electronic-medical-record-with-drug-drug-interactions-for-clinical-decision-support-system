@@ -4,13 +4,16 @@ import BookDoctor from '../Pages/BookDoctor'
 import LandingPage from '../Pages/LandingPage/LandingPage.vue'
 import AddPatientPage from '../Pages/DSProfiles/AddPatientPage.vue'
 import MedicalHistory from '../Pages/DSProfiles/MedicalHistory.vue'
-
 import Signup from '../Pages/Signup/Signup.vue'
 import Login from '../Pages/Login/Login.vue'
 import Prescription from '@/Pages/Prescription.vue';
 import SignupPurchase from '../Pages/Purchase/Signup.vue'
 import LoginPurchase from '../Pages/Purchase/Login.vue'
 import ProfilePurchase from '../Pages/Purchase/ProfilePurchase.vue'
+import MainPageDoctor from '../Pages/DoctorProfile/MainPage.vue'
+import MyProfileDoctor from '../Pages/DoctorProfile/MyProfile.vue'
+import MySchedules from '../Pages/DoctorProfile/Schedules.vue'
+
 const routes = [
   {
     path: '/',
@@ -59,6 +62,27 @@ const routes = [
   {
       path: '/Prescription',
       component:Prescription
+  },
+  {
+      path: '/MainPageDoctor',
+      component:MainPageDoctor,
+      // redirect: '/MainPageDoctor/MyProfileDoctor',
+      children: 
+      [
+        {
+          path: 'MyProfileDoctor',
+          component: MyProfileDoctor,
+             
+          
+        },
+        {
+          path: 'MySchedules',
+          component: MySchedules,
+             
+          
+        },
+
+      ]
   },
 
 ]
