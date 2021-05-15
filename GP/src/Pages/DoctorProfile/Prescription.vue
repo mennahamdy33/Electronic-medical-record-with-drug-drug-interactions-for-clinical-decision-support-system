@@ -145,6 +145,7 @@ export default defineComponent({
         )
         .then((response) => {
           this.drugsInfo = response.data.data;
+          console.log(this.drugsInfo)
           mode == "reset" ? (this.drugpage = 1) : null;
         });
     },

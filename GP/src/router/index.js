@@ -11,7 +11,11 @@ import SignupPurchase from '../Pages/Purchase/Signup.vue'
 import LoginPurchase from '../Pages/Purchase/Login.vue'
 import ProfilePurchase from '../Pages/Purchase/ProfilePurchase.vue'
 import MainPageDoctor from '../Pages/DoctorProfile/MainPage.vue'
+import MainPageSecretery from '../Pages/SecreteryProfile/MainPage.vue'
 import MyProfileDoctor from '../Pages/DoctorProfile/MyProfile.vue'
+import MyProfileSecretery from '../Pages/SecreteryProfile/MyProfile.vue'
+import AddPatient from '../Pages/SecreteryProfile/AddPatient.vue'
+import BookVisit from '../Pages/SecreteryProfile/BookVisit.vue'
 import MySchedules from '../Pages/DoctorProfile/Schedules.vue'
 import Prescription from '../Pages/DoctorProfile/Prescription.vue'
 
@@ -88,6 +92,35 @@ const routes = [
              
           
         },
+
+      ]
+  },
+  {
+      path: '/MainPageSecretery',
+      component:MainPageSecretery,
+      // redirect: '/MainPageDoctor/MyProfileDoctor',
+      children: 
+      [
+        {
+          path: 'MyProfileSecretery',
+          component: MyProfileSecretery,
+             
+          
+        },
+        {
+          path: 'AddPatient',
+          component: AddPatient,
+             
+          
+        },
+        {
+          path: 'BookVisit',
+          component: BookVisit,
+             
+          
+        },
+        
+        
 
       ]
   },
