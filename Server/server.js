@@ -314,6 +314,7 @@ app.post('/addClinic', (req, res) => {
 })
 
 
+
 // const db = new Sequelize('Drug_Data', 'root', 'mysql', {
 //     host: 'localhost',
 //     dialect: 'mysql' 
