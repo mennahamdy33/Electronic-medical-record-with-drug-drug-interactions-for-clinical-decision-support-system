@@ -1,5 +1,4 @@
 <template>
-  <base-template>
     <ion-grid>
       <ion-row class="ion-justify-content-center">
         <ion-col class="ion-padding" size-lg="6" size-sm="12" size-md="8">
@@ -83,7 +82,6 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </base-template>
 </template>
 <script>
 import { IonCard ,
