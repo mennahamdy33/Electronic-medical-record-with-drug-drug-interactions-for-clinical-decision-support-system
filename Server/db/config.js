@@ -8,8 +8,8 @@ const db=knex({
     connection: {
         host: 'localhost',
         user: 'root',
-        password: 'mysql',
-        database: 'DruGuide'
+        password: 'what',
+        database: 'druguide'
     }
 });
 

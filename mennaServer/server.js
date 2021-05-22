@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 const cors = require('cors');
 var x ;
@@ -36,16 +36,33 @@ app.post('/medications',(req,res)=>{
     x=req.body.x;
     console.log("asd",x);
     });
-
-app.get('/addpatient',(req,res)=>{
-
-
-    knex.from('drug_products').select("name").where('name','like', `${x}%`).limit(100)
-        .then((rows) => {
-            res.send(Object.values(rows));
-        }).catch((err) => { console.log(err);  })
-
-});
+// app.get('/drugs?name', function (req, res, next) {
+//     const name = req.query.name;
+//     const page = req.query.page;
+//
+//     knex.from('drug_products')
+//         .where('name','like', `${name}%`)
+//         .paginate({ perPage: 10, currentPage: page })
+//         .then((results) => {
+//             if(name==""){
+//                 res.send({data:[]});
+//             }else{
+//                 res.send(results);
+//             }
+//         })
+//         .catch((err) => { res.status(500).send('server error please come back later'); throw err })
+//
+// });
+//
+// app.get('/addpatient',(req,res)=>{
+//
+//
+//     knex.from('drug_products').select("name").where('name','like', `${x}%`).limit(100)
+//         .then((rows) => {
+//             res.send(Object.values(rows));
+//         }).catch((err) => { console.log(err);  })
+//
+// });
 
 
 

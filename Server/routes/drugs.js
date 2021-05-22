@@ -9,12 +9,14 @@ router.get('/', function (req, res, next) {
     
     knex.from('drug_products')
         .where('name','like', `${name}%`)
-        .paginate({ perPage: 10, currentPage: page })
+        .select('name')
+        .paginate({ perPage: 50, currentPage: page })
         .then((results) => {
             if(name==""){
                 res.send({data:[]});
             }else{
                 res.send(results);
+              //  console.log(results);
             }
         })
         .catch((err) => { res.status(500).send('server error please come back later'); throw err })

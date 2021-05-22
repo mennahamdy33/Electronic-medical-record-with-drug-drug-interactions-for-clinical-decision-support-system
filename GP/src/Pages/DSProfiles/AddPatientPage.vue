@@ -107,12 +107,32 @@
                                 </ion-row>
                                 <ion-row>
                                     <ion-col size="12" class="medication" size-sm>
-                                        <ion-searchbar    v-model="filterTerm" @keyup="medicationsData()" />
+                                        <ion-searchbar
+                                                debounce="500"
+                                                show-cancel-button="never"
+                                                @ionChange="
+                  ($event) => {
+                    drugname = $event.target.value;
+                    get_drugs('reset');
+                  }
+                "
+                                        ></ion-searchbar>
+                                        <ion-list v-show="drugname != ''">
+                                            <ion-button v-if="drugsInfo.length >= 10" @click="next()"
+                                            ><ion-text>next</ion-text></ion-button>
+                                            <ion-button v-if="drugpage >= 2" @click="prev()" color="dark"
+                                            ><ion-text>prev</ion-text></ion-button>
+                                            <ion-item
+                                                    @click="chooseMedication(item)"
+                                                    :key="item.id"
+                                                    v-for="item in drugsInfo"
+                                            >
+                                                <ion-card>
+                                                    <ion-label> {{ item }}</ion-label>
 
-                                        <IonList interface="sheet-action" v-show="filterTerm != ''"   >
-
-                                            <IonItem v-show="filterTerm != ''" button="true"   @clicked="showmed(med)" v-for="med in medications" :key="med" value="{{med}}"  >{{med}}</IonItem>
-                                        </IonList>
+                                                </ion-card>
+                                            </ion-item>
+                                        </ion-list>
 
                                     </ion-col>
                                 </ion-row>
@@ -141,20 +161,21 @@
     import {//IonMenu,
         IonSearchbar,
         IonGrid,IonRow,IonCol,
-        // IonLabel,
-        // IonPage,
-        // IonHeader,
-        // IonContent,
+
+        IonLabel,
+        IonText,
+        IonCard,
         IonList,IonItem,
-        //IonToolbar,IonTitle ,IonButtons,IonMenuButton
+         IonButton
     } from "@ionic/vue";
     import BaseTemplate from "../../components/BaseTemplate";
     export default {
         components: {
             BaseTemplate,
             IonSearchbar,
-            FormButton, IonGrid, IonRow, IonCol,
-            IonList, IonItem,
+            FormButton, IonGrid, IonRow, IonCol,IonButton,
+            IonList, IonItem,IonText,
+            IonCard,IonLabel,
             ProgressBar
         },
         data() {
@@ -169,64 +190,73 @@
                     gender: "",
                     birthdate: "",
                     address: "",
-                    Medications: ["Refludan"],
+                    Medications: [],
                 },
 
-
-                medications: [],
-                filterTerm: '',
-
+                drugsInfo: [],
+                drugname: "",
+                drugpage: 1,
             };
         },
+        async mounted() {
+            await this.get_drugs();
+        },
         methods: {
-            showmed(med){
-                this.PatientInfo.Medications.push(med);
-                console.log("aa",this.PatientInfo.Medications);},
-            sendMedications() {
+            chooseMedication(item){
+                console.log(item);
+            this.PatientInfo['Medications'].push(item);
 
-                console.log("bbb");
-                axios.post('http://localhost:8000/addmedication', {medications: this.PatientInfo.Medications})
-                    .then(response => console.log(response))
-                    .catch(error => console.log(error));
+            },
+            async get_drugs(mode = "") {
+                axios
+                    .get(
+                        `http://localhost:3000/drugs?name=${this.drugname}&page=${this.drugpage}`
+                    )
+                    .then((response) => {
+                     let uniqueChars = [...new Set(response.data.data.map(a => a.name))];
+                        this.drugsInfo = uniqueChars;
+                        mode == "reset" ? (this.drugpage = 1) : null;
+                    });
+            },
+            async prev() {
+                this.drugpage--;
+                this.get_drugs();
+            },
+            async next() {
+                this.drugpage++;
+                this.get_drugs();
             },
             sendPatientData() {
 
-                axios.post('http://localhost:8000/addpatient', this.PatientInfo)
+                axios.post('http://localhost:3000/addpatient', this.PatientInfo)
                     .then()
                     .catch(error => console.log(error));
             },
-            sendAllData() {
-
-                Promise.all([this.sendPatientData(), this.sendMedications()])
-                    .then(axios.spread(function () {
-                        // Both requests are now complete
-                    }));
-            },
-            medicationsData() {
-                if (this.timer) {
-                    clearTimeout(this.timer);
-                    this.timer = null;
-                }
-                this.timer = setTimeout(() => {
-                    if (this.filterTerm) {
-
-                        axios.post('http://localhost:8000/medications', {"x": this.filterTerm}, [headers])
-                            .then(response => {
-                                console.log(response);
-                            });
-
-
-                        const headers = {"Content-Type": "application/json"};
-                        axios.get('http://localhost:8000/addpatient', {headers})
-                            .then(response => {
-                                let uniqueChars = [...new Set(response.data.map(a => a.name))];
-                                this.medications = uniqueChars;
-
-                            });
-
-                    }
-                }, 100);
-            },
+            // medicationsData() {
+            //     if (this.timer) {
+            //         clearTimeout(this.timer);
+            //         this.timer = null;
+            //     }
+            //     this.timer = setTimeout(() => {
+            //         if (this.filterTerm) {
+            //
+            //             axios.post('http://localhost:8000/medications', {"x": this.filterTerm}, [headers])
+            //                 .then(response => {
+            //                     console.log(response);
+            //                 });
+            //
+            //
+            //             const headers = {"Content-Type": "application/json"};
+            //             axios.get('http://localhost:8000/addpatient', {headers})
+            //                 .then(response => {
+            //                     let uniqueChars = [...new Set(response.data.map(a => a.name))];
+            //                     this.medications = uniqueChars;
+            //
+            //                 });
+            //
+            //         }
+            //     }, 100);
+            // },
         },
     }
 </script>
