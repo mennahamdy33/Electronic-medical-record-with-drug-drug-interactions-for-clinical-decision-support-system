@@ -1,17 +1,6 @@
 <template >
 
-    <base-template>
-        <ion-grid  >
-            <ion-row>
-
-                <ion-col offset-lg="2" size-lg="8">
-                    <div class="login-box">
-                        <h2>Add a new Patient</h2>
-
-                        <ion-col style=" position: relative; left: 20%;" offset-lg="0.9" pull-xs="0"  size-lg="6" size-xs="15" >
-                            <progress-bar  level="PersonalInformation"  text="addPatient"></progress-bar>
-                        </ion-col>
-                        <form @submit="sendPatientData">
+                        <form v-on:submit.prevent="">
                             <ion-grid class="FormGrid">
                                 <ion-row>
                                     <ion-col size="12" size-sm>
@@ -139,26 +128,19 @@
                             </ion-grid>
                             <ion-row>
                                 <ion-col size-lg="2" size-xs="6" >
-                                    <form-button @click="sendPatientData" href='/medicalhistory'  buttonText="Submit" type="button"/>
+                                    <form-button @click="changePhaseNext({currentPhase: 'MedicalHistory'})"   type="button" buttonText="Next"/>
                                 </ion-col>
                             </ion-row>
 
                         </form>
-                    </div>
-                </ion-col>
-            </ion-row>
 
-
-        </ion-grid>
-
-    </base-template>
 </template>
 <script>
     import axios from 'axios';
     import FormButton from '../../components/FormButton';
-    import ProgressBar from '../../components/ProgressBar.vue';
+    import {alertController} from '@ionic/vue';
 
-    import {//IonMenu,
+    import {
         IonSearchbar,
         IonGrid,IonRow,IonCol,
 
@@ -166,21 +148,23 @@
         IonText,
         IonCard,
         IonList,IonItem,
-         IonButton
+        IonButton,
+
     } from "@ionic/vue";
-    import BaseTemplate from "../../components/BaseTemplate";
-    export default {
+
+    import { defineComponent } from 'vue';
+    export default defineComponent({
+        name: "PersonalInfo",
         components: {
-            BaseTemplate,
             IonSearchbar,
             FormButton, IonGrid, IonRow, IonCol,IonButton,
             IonList, IonItem,IonText,
             IonCard,IonLabel,
-            ProgressBar
+
         },
         data() {
             return {
-                model: null,
+                //model: null,
 
                 PatientInfo: {
                     firstName: "",
@@ -202,9 +186,22 @@
             await this.get_drugs();
         },
         methods: {
+
+            async presentAlert(msg) {
+                const alert = await alertController
+                    .create({
+                        cssClass: 'alert',
+                        header: 'Alert',
+                        // subHeader: 'Subtitle',
+                        message: msg,
+                        buttons: ['OK'],
+                    });
+                return alert.present();
+            },
+
             chooseMedication(item){
                 console.log(item);
-            this.PatientInfo['Medications'].push(item);
+                this.PatientInfo['Medications'].push(item);
 
             },
             async get_drugs(mode = "") {
@@ -213,7 +210,7 @@
                         `http://localhost:3000/drugs?name=${this.drugname}&page=${this.drugpage}`
                     )
                     .then((response) => {
-                     let uniqueChars = [...new Set(response.data.data.map(a => a.name))];
+                        let uniqueChars = [...new Set(response.data.data.map(a => a.name))];
                         this.drugsInfo = uniqueChars;
                         mode == "reset" ? (this.drugpage = 1) : null;
                     });
@@ -226,39 +223,49 @@
                 this.drugpage++;
                 this.get_drugs();
             },
-            sendPatientData() {
+            changePhaseNext(phase){
 
-                axios.post('http://localhost:3000/addpatient', this.PatientInfo)
-                    .then()
-                    .catch(error => console.log(error));
+                const personalInformation = Object.entries(this.PatientInfo);
+                let complete = true;
+                for (const  value of personalInformation.values()  ) {
+                    // console.log(key , value);
+                    if(value === '' ){
+
+                            complete = false;
+                        }
+
+                }
+                if(complete){
+
+                    if(!this.PatientInfo.phoneNumber.match(/^\d{11}$/) || !this.PatientInfo.national_id.match(/^\d{14}$/) ){
+
+
+                        this.presentAlert("invalid Phone number or National ID");
+
+                    }
+
+                    else{
+
+                        this.$store.dispatch('patient/FillData', this.PatientInfo);
+                        this.$store.dispatch('patient/changePhase', phase);
+
+                    }
+                }else{
+
+                    this.presentAlert("Please fill all the fields");
+
+                }
             },
-            // medicationsData() {
-            //     if (this.timer) {
-            //         clearTimeout(this.timer);
-            //         this.timer = null;
-            //     }
-            //     this.timer = setTimeout(() => {
-            //         if (this.filterTerm) {
+            // async sendPatientInfo() {
             //
-            //             axios.post('http://localhost:8000/medications', {"x": this.filterTerm}, [headers])
-            //                 .then(response => {
-            //                     console.log(response);
-            //                 });
-            //
-            //
-            //             const headers = {"Content-Type": "application/json"};
-            //             axios.get('http://localhost:8000/addpatient', {headers})
-            //                 .then(response => {
-            //                     let uniqueChars = [...new Set(response.data.map(a => a.name))];
-            //                     this.medications = uniqueChars;
-            //
-            //                 });
-            //
-            //         }
-            //     }, 100);
+            //     await axios.post(process.env.VUE_APP_ROOT_API+"addpatient", this.PatientInfo)
+            //         .then()
+            //         .catch(error => console.log(error));
             // },
+
         },
-    }
+
+    });
 </script>
 <style scoped>
 

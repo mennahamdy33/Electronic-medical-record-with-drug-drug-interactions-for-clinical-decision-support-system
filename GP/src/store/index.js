@@ -1,6 +1,9 @@
 import { createStore } from 'vuex';
-
+import patientModule from './Patient/index.js';
 const store = createStore({
+    modules: {
+        patient: patientModule
+    },
     state() {
       return {
         SignupPhase: 'PersonalInformation',

@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
-//import Home from '../Pages/Home.vue'
 import BookDoctor from '../Pages/BookDoctor'
 import LandingPage from '../Pages/LandingPage/LandingPage.vue'
-import AddPatientPage from '../Pages/DSProfiles/AddPatientPage.vue'
 import MedicalHistory from '../Pages/DSProfiles/MedicalHistory.vue'
 import Signup from '../Pages/Signup/Signup.vue'
 import Login from '../Pages/Login/Login.vue'
@@ -52,10 +50,6 @@ const routes = [
     },
 
 
-  {
-      path : '/addpatient',
-      component: AddPatientPage
-  },
   {
       path:'/patientProfile',
       component:() => import('../Pages/DSProfiles/PatientProfilePage')

@@ -1,17 +1,5 @@
 <template >
-
-    
-        <ion-grid  >
-            <ion-row>
-
-                <ion-col offset-lg="2" size-lg="8">
-                    <div class="login-box">
-                        <h2>Add a new Patient</h2>
-
-                        <ion-col style=" position: relative; left: 20%;" offset-lg="0.9" pull-xs="0"  size-lg="6" size-xs="15" >
-                            <progress-bar    text="addPatient" level="MedicalHistory"></progress-bar>
-                        </ion-col>
-                        <form @submit.prevent="sendPatientData">
+                        <form v-on:submit.prevent="">
                             <ion-grid class="FormGrid">
                                 <ion-row>
                                     <ion-col size="12" size-sm>
@@ -90,7 +78,6 @@
 
                                                 <ul>
 
-cd GPcd
                                                     <li>
                                                         <input type="radio" id="Yes" name="gender" v-model=" MedicalHistory.tobacco" value="yes"  >
                                                         <label for="Yes"> Yes </label>
@@ -119,18 +106,18 @@ cd GPcd
                             </ion-row>
 
                         </form>
-                    </div>
-                </ion-col>
-            </ion-row>
+                    <!--</div>-->
+                <!--</ion-col>-->
+            <!--</ion-row>-->
 
-        </ion-grid>
+            <!--</ion-grid>-->
 
     
 </template>
 <script>
     import axios from 'axios';
     import FormButton from '../../components/FormButton';
-    import ProgressBar from '../../components/ProgressBar.vue';
+    import { mapActions } from 'vuex';
     import {//IonMenu,
 
         IonGrid,IonRow,IonCol,
@@ -142,7 +129,7 @@ cd GPcd
         components:{
             
             FormButton,IonGrid,IonRow,IonCol,
-            ProgressBar
+
         },
         data(){
             return {
@@ -168,6 +155,7 @@ cd GPcd
                     .then(response=> console.log(response))
                     .catch(error => console.log(error));
             },
+            ...mapActions(['patient/changePhase']),
 
         },
         computed: {
