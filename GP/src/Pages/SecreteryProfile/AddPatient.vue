@@ -10,7 +10,7 @@
                         <h2>Add a new Patient</h2>
 
                         <ion-col style=" position: relative; left: 20%;" offset-lg="0.9" pull-xs="0"  size-lg="6" size-xs="15" >
-                            <progress-bar  level={{PatientPhase}}  text="addPatient"></progress-bar>
+                            <progress-bar    text="addPatient"></progress-bar>
                         </ion-col>
                         <keep-alive>
                             <personal-info v-if=" PatientPhase === 'PersonalInfo'" />
@@ -34,7 +34,7 @@
     import ProgressBar from '../../components/ProgressBar.vue';
 
     import MedicalHistory from './MedicalHistory.vue';
-    import PersonalInfo from './PersonalInfo';
+    import PersonalInfo from './PersonalInfo.vue';
     import { mapGetters } from 'vuex';
 
     import {
@@ -61,7 +61,7 @@
             };
         },
         computed: {
-            ...mapGetters(['patient/PatientPhase'])
+            ...mapGetters('patient',['PatientPhase'])
 
         }
     });

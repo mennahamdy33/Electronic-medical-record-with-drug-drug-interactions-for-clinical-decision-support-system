@@ -10,8 +10,8 @@
     </div>
     <div class="container" v-if="text == 'addPatient'" >
         <ul class="progressbar">
-            <li :class="{ active : level === 'PersonalInformation'}">Personal information</li>
-            <li :class="{ active : level === 'MedicalHistory'}">Medical History</li>
+            <li :class="{ active : PatientPhase === 'PersonalInfo'}">Personal information</li>
+            <li :class="{ active : PatientPhase === 'MedicalHistory'}">Medical History</li>
 
             <!-- <li>View map</li> -->
         </ul>
@@ -37,7 +37,9 @@ export default defineComponent({
      
   },
   computed: {
-    ...mapGetters(['SignupPhase'])
+    ...mapGetters(['SignupPhase']),
+      ...mapGetters('patient',['PatientPhase'])
+
   }
 });
 </script>
