@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import BookDoctor from '../Pages/BookDoctor'
 import LandingPage from '../Pages/LandingPage/LandingPage.vue'
-import MedicalHistory from '../Pages/DSProfiles/MedicalHistory.vue'
+
 import Signup from '../Pages/Signup/Signup.vue'
 import Login from '../Pages/Login/Login.vue'
 // import Prescription from '@/Pages/Prescription.vue';
@@ -44,20 +44,13 @@ const routes = [
   {path: '/ProfilePurchase' , component:  ProfilePurchase},
 
   
-    {
-        path : '/medicalhistory',
-        component: MedicalHistory
-    },
 
 
   {
-      path:'/patientProfile',
-      component:() => import('../Pages/DSProfiles/PatientProfilePage')
+      path:'/PatientProfile',
+      component:() => import('../Pages/PatientProfile/PatientProfile')
   },
-  {
-      path:'/doctorProfile',
-      component:() => import('../Pages/DSProfiles/DoctorProfilePage')
-  },
+
   // {
   //     path: '/Prescription',
   //     component:Prescription
@@ -119,14 +112,14 @@ const routes = [
       ]
   },
 
-]
+];
 
 
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
-})
+});
 
 export default router
 

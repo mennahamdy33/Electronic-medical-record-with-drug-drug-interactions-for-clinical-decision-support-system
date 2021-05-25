@@ -6,21 +6,9 @@ const knex = require('../db/config');
 let med=[];
 let m;
 
-let patient = [
-    {
-        first_name: "",
-        last_name: "",
-        ssn: "",
-        phone_number: "",
-        gender: "",
-        address: "",
-        birth_date: ""
-    }];
-
-
 router.post('/addpatient', async (req, res) => {
 
-    patient = [
+    let patient = [
         {
             first_name: req.body.firstName,
             last_name: req.body.lastName,
@@ -28,8 +16,21 @@ router.post('/addpatient', async (req, res) => {
             phone_number: req.body.phoneNumber,
             gender: req.body.gender,
             address: req.body.address,
-            birth_date: req.body.birthdate
+            birth_date: req.body.birthdate,
+
+
         }];
+
+    var medicalHistory =[{
+        patient_id :'',
+        major_illnesses: req.body.majorillnesses,
+        previous_surgey: req.body.previoussurgery,
+        previous_illnessess: req.body.previousillnesses,
+        diabetes:  new Boolean(req.body.diabetes === 'yes') ? 1 : 0,
+        family_diseases:req.body.familydiseases,
+        allergies: req.body.allergies,
+        tobacco: new Boolean(req.body.tobacco === 'yes') ? 1 : 0
+    }];
     try {
         await knex.transaction (async trx => {
             //Insert into login table
@@ -50,6 +51,14 @@ router.post('/addpatient', async (req, res) => {
                 const add2 = await trx('medications').insert(medication);
 
             }
+            console.log(patient_id[0]);
+            console.log()
+            medicalHistory[0].patient_id = patient_id[0];
+
+
+            const medicalhistory = await trx('medical_history')
+                .insert(medicalHistory);
+
         })
     }
     catch (err){

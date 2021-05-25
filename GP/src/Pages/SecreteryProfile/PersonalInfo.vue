@@ -237,10 +237,10 @@
                 }
                 if(complete){
 
-                    if(!this.PatientInfo.phoneNumber.match(/^\d{11}$/) || !this.PatientInfo.national_id.match(/^\d{14}$/) ){
+                    if(!this.PatientInfo.phoneNumber.match(/^\d{11}$/) || !this.PatientInfo.ssn.match(/^\d{14}$/) ){
 
 
-                        this.presentAlert("invalid Phone number or National ID");
+                        this.presentAlert("invalid Phone number or National ID ");
 
                     }
 
@@ -256,12 +256,7 @@
 
                 }
             },
-            // async sendPatientInfo() {
-            //
-            //     await axios.post(process.env.VUE_APP_ROOT_API+"addpatient", this.PatientInfo)
-            //         .then()
-            //         .catch(error => console.log(error));
-            // },
+
 
         },
 

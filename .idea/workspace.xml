@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cedb8e7-e9c7-4135-a7a4-c500cfbdd849" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GP/src/Pages/DSProfiles/DoctorProfilePage.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GP/src/Pages/DSProfiles/MedicalHistory.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GP/src/Pages/DSProfiles/PatientProfilePage.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/AddPatient.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/AddPatient.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/components/ProgressBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/components/ProgressBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MedicalHistory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MedicalHistory.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/PersonalInfo.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/PersonalInfo.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GP/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GP/src/store/Patient/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/store/Patient/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/routes/addpatient.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/routes/addpatient.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/routes/isAuthorized.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/routes/isAuthorized.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,35 +25,18 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6587171">
+    <splitter split-orientation="horizontal" split-proportion="0.8592201">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="MedicalHistory.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="MedicalHistory.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MedicalHistory.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="25">
-                  <caret line="1" column="52" selection-start-line="1" selection-start-column="52" selection-end-line="1" selection-end-column="52" />
+                <state relative-caret-position="34">
+                  <caret line="192" column="82" selection-start-line="192" selection-start-column="82" selection-end-line="192" selection-end-column="87" />
                   <folding>
-                    <element signature="e#5597#5623#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="PersonalInfo.vue" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/PersonalInfo.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-512">
-                  <caret line="234" column="25" lean-forward="true" selection-start-line="231" selection-start-column="38" selection-end-line="234" selection-end-column="25" />
-                  <folding>
-                    <element signature="n#style#0;n#label#0;n#ion-col#1;n#ion-row#2;n#ion-grid#0;n#form#0;n#div#0;n#ion-col#0;n#ion-row#0;n#ion-grid#0;n#base-template#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="e#7534#7560#0" expanded="true" />
-                    <element signature="e#8141#8432#0" />
-                    <element signature="e#8677#8788#0" />
-                    <element signature="e#8829#9295#0" />
-                    <element signature="e#9322#9404#0" />
-                    <element signature="e#9431#9513#0" />
-                    <element signature="n#style#0;n#!!top" />
+                    <element signature="e#5261#5287#0" expanded="true" />
+                    <element signature="e#5849#6101#0" />
+                    <element signature="e#7510#7531#0" />
                   </folding>
                 </state>
               </provider>
@@ -53,12 +45,11 @@
           <file leaf-file-name="AddPatient.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/AddPatient.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-950">
-                  <caret line="12" column="43" lean-forward="true" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+                <state relative-caret-position="-872">
+                  <caret lean-forward="true" />
                   <folding>
                     <element signature="n#style#0;n#ion-col#0;n#div#0;n#ion-col#0;n#ion-row#0;n#ion-grid#0;n#base-template#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="e#968#1027#0" expanded="true" />
-                    <element signature="n#style#0;n#!!top" />
+                    <element signature="e#942#1001#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -67,22 +58,11 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/GP/src/router/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-24">
-                  <caret line="14" column="64" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
+                <state relative-caret-position="155">
+                  <caret line="49" column="27" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="27" />
                   <folding>
                     <element signature="e#0#67#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ProgressBar.vue" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/GP/src/components/ProgressBar.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-276">
-                  <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
-                  <folding>
-                    <element signature="n#style#0;n#!!top" />
+                    <element signature="e#326#383#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -91,17 +71,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/GP/src/store/Patient/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1325">
-                  <caret line="53" column="1" lean-forward="true" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BaseTemplate.vue" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/GP/src/components/BaseTemplate.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="627">
-                  <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+                <state relative-caret-position="350">
+                  <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
                 </state>
               </provider>
             </entry>
@@ -113,8 +84,24 @@
           <file leaf-file-name="PersonalInformation.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/GP/src/Pages/Signup/PersonalInformation.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2898">
-                  <caret line="203" column="40" selection-start-line="203" selection-start-column="40" selection-end-line="203" selection-end-column="40" />
+                <state relative-caret-position="574">
+                  <caret line="322" column="6" lean-forward="true" selection-start-line="322" selection-start-column="6" selection-end-line="322" selection-end-column="6" />
+                  <folding>
+                    <element signature="e#8957#8995#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PersonalInfo.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/PersonalInfo.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="208">
+                  <caret line="239" column="95" selection-start-line="239" selection-start-column="92" selection-end-line="239" selection-end-column="95" />
+                  <folding>
+                    <element signature="e#8453#8564#0" />
+                    <element signature="e#8605#9071#0" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -122,20 +109,30 @@
           <file leaf-file-name="MakeAccount.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/GP/src/Pages/Signup/MakeAccount.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="209">
-                  <caret line="54" column="57" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="57" />
+                <state relative-caret-position="574">
+                  <caret line="241" column="8" lean-forward="true" selection-start-line="241" selection-start-column="8" selection-end-line="241" selection-end-column="8" />
                   <folding>
                     <element signature="e#2376#2414#0" expanded="true" />
+                    <element signature="e#3112#3364#0" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Clinics.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/GP/src/store/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="375">
+                  <caret line="45" column="35" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="35" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Clinics.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/GP/src/Pages/Signup/Clinics.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="209">
-                  <caret line="36" column="47" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="47" />
+                <state relative-caret-position="34">
+                  <caret line="116" column="34" selection-start-line="116" selection-start-column="14" selection-end-line="116" selection-end-column="34" />
                   <folding>
                     <element signature="e#1413#1451#0" expanded="true" />
                     <element signature="e#1688#1725#0" expanded="true" />
@@ -144,11 +141,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Signup.vue" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Signup.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/GP/src/Pages/Signup/Signup.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="67" selection-start-line="67" selection-end-line="69" />
+                <state relative-caret-position="-239">
+                  <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
                   <folding>
                     <element signature="e#991#1040#0" expanded="true" />
                     <element signature="n#style#0;n#!!top" />
@@ -170,36 +167,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Ion-label</find>
-      <find>drugsInfo</find>
-      <find>filterTerm</find>
-      <find>medications</find>
-      <find>patientInfo</find>
-      <find>AddPatient</find>
-      <find>phase</find>
-      <find>presentAlert</find>
+      <find>router</find>
+      <find>alert</find>
+      <find>set_staffID</find>
+      <find>phoneNumber</find>
+      <find>email</find>
+      <find>set_PatientID</find>
       <find>alertController</find>
-      <find>phone_number</find>
-      <find>phonenumber</find>
-      <find>uuid</find>
-      <find>model</find>
+      <find>mapActions</find>
       <find>MedicalHistory</find>
+      <find>staffID</find>
+      <find>changePhaseNext</find>
+      <find>PersonalInfo</find>
+      <find>phase</find>
+      <find>medication</find>
+      <find>ul</find>
+      <find>FormGrid</find>
+      <find>login-box</find>
+      <find>container</find>
+      <find>ul li</find>
+      <find>input</find>
+      <find>down</find>
       <find>changePhase</find>
-      <find>methods</find>
-      <find>meth</find>
-      <find>data</find>
-      <find>SignupPhase</find>
-      <find>curre</find>
-      <find>progress</find>
-      <find>personalInformation</find>
-      <find>if</find>
-      <find>current</find>
-      <find>cur</find>
-      <find>signup</find>
-      <find>computed</find>
+      <find>user-box</find>
+      <find>MedicalHistory</find>
+      <find>patient</find>
       <find>PatientPhase</find>
-      <find>PersonalInformation</find>
-      <find>base-template</find>
+      <find>yes</find>
+      <find>ssn</find>
+      <find>dia</find>
+      <find>IonList</find>
     </findStrings>
     <replaceStrings>
       <replace>components</replace>
@@ -232,15 +229,15 @@
         <option value="$PROJECT_DIR$/GP/src/Pages/DSProfiles/MedicalHistory" />
         <option value="$PROJECT_DIR$/GP/src/Pages/DSProfiles/MedicalHistory.vue" />
         <option value="$PROJECT_DIR$/GP/src/Pages/DSProfiles/AddPatientPage.vue" />
-        <option value="$PROJECT_DIR$/GP/src/store/index.js" />
         <option value="$PROJECT_DIR$/GP/src/Pages/Signup/PersonalInformation.vue" />
-        <option value="$PROJECT_DIR$/GP/src/store/Patient/index.js" />
-        <option value="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MedicalHistory.vue" />
         <option value="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/AddPatient" />
-        <option value="$PROJECT_DIR$/GP/src/router/index.js" />
-        <option value="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/PersonalInfo.vue" />
         <option value="$PROJECT_DIR$/GP/src/components/ProgressBar.vue" />
+        <option value="$PROJECT_DIR$/GP/src/router/index.js" />
+        <option value="$PROJECT_DIR$/GP/src/store/index.js" />
+        <option value="$PROJECT_DIR$/GP/src/store/Patient/index.js" />
+        <option value="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/PersonalInfo.vue" />
         <option value="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/AddPatient.vue" />
+        <option value="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MedicalHistory.vue" />
       </list>
     </option>
   </component>
@@ -263,8 +260,8 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
-    <option name="width" value="979" />
-    <option name="height" value="1049" />
+    <option name="width" value="980" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -295,13 +292,6 @@
               <item name="GPfirst" type="462c0819:PsiDirectoryNode" />
               <item name="GP" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GPfirst" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GPfirst" type="462c0819:PsiDirectoryNode" />
-              <item name="GP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Pages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -310,15 +300,7 @@
               <item name="GP" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Pages" type="462c0819:PsiDirectoryNode" />
-              <item name="DSProfiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GPfirst" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GPfirst" type="462c0819:PsiDirectoryNode" />
-              <item name="GP" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Pages" type="462c0819:PsiDirectoryNode" />
-              <item name="PatientProfile" type="462c0819:PsiDirectoryNode" />
+              <item name="DoctorProfile" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GPfirst" type="b2602c69:ProjectViewProjectNode" />
@@ -446,12 +428,14 @@
       <workItem from="1620773300934" duration="7166000" />
       <workItem from="1621077072519" duration="12073000" />
       <workItem from="1621675951589" duration="12843000" />
-      <workItem from="1621754416772" duration="16958000" />
+      <workItem from="1621754416772" duration="17209000" />
+      <workItem from="1621807699222" duration="1145000" />
+      <workItem from="1621935973805" duration="13910000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174876000" />
+    <option name="totallyTimeSpent" value="190182000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -464,16 +448,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19629875" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32905984" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32905984" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.16239317" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.06410257" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.7877493" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -497,7 +480,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Front_end/public/index.html" />
     <entry file="file://$PROJECT_DIR$/Front_end/src/Signup.vue" />
     <entry file="file://$PROJECT_DIR$/Front_end/src/Components/FormButton.vue" />
     <entry file="file://$PROJECT_DIR$/Front_end/src/Components/FormField.vue" />
@@ -572,20 +554,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GP/src/Pages/LandingPage.vue" />
-    <entry file="file://$PROJECT_DIR$/GP/src/Pages/DSProfiles/DoctorProfilePage.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="114" column="25" selection-start-line="114" selection-start-column="25" selection-end-line="114" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GP/src/Pages/DSProfiles/PatientProfilePage.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GP/src/components/FormButton.vue">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -608,75 +576,62 @@
     <entry file="file://$PROJECT_DIR$/GP/src/Pages/Home.vue">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/GP/src/Pages/PatientProfile/PatientProfile.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1215">
-          <caret line="106" column="8" lean-forward="true" selection-start-line="106" selection-start-column="8" selection-end-line="106" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GP/src/Pages/Signup/MakeAccount.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="54" column="57" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="57" />
-          <folding>
-            <element signature="e#2376#2414#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GP/src/Pages/Signup/PersonalInformation.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2898">
-          <caret line="203" column="40" selection-start-line="203" selection-start-column="40" selection-end-line="203" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GP/src/store/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="4" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GP/src/Pages/Signup/Clinics.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="36" column="47" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="47" />
-          <folding>
-            <element signature="e#1413#1451#0" expanded="true" />
-            <element signature="e#1688#1725#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GP/src/Pages/DSProfiles/MedicalHistory.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
           <caret line="5" column="4" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GP/src/components/ProgressBar.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
           <folding>
-            <element signature="n#style#0;n#label#0;n#ion-col#0;n#ion-row#6;n#ion-grid#0;n#form#0;n#div#0;n#ion-col#0;n#ion-row#0;n#ion-grid#0;n#base-template#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MedicalHistory.vue">
+    <entry file="file://$PROJECT_DIR$/GP/src/Pages/DSProfiles/DoctorProfilePage.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" column="52" selection-start-line="1" selection-start-column="52" selection-end-line="1" selection-end-column="52" />
-          <folding>
-            <element signature="e#5597#5623#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="2775">
+          <caret line="114" column="25" selection-start-line="114" selection-start-column="25" selection-end-line="114" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GP/src/Pages/DSProfiles/PatientProfilePage.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-436">
+          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GP/src/Pages/DoctorProfile/MyProfile.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GP/src/Pages/PatientProfile/PatientProfile.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="106" column="8" lean-forward="true" selection-start-line="106" selection-start-column="8" selection-end-line="106" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GP/src/components/BaseTemplate.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GP/src/Pages/Signup/Signup.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="67" selection-start-line="67" selection-end-line="69" />
+        <state relative-caret-position="-239">
+          <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
           <folding>
             <element signature="e#991#1040#0" expanded="true" />
             <element signature="n#style#0;n#!!top" />
@@ -684,65 +639,93 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GP/src/components/BaseTemplate.vue">
+    <entry file="file://$PROJECT_DIR$/GP/src/Pages/Signup/MakeAccount.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GP/src/store/Patient/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1325">
-          <caret line="53" column="1" lean-forward="true" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/PersonalInfo.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-512">
-          <caret line="234" column="25" lean-forward="true" selection-start-line="231" selection-start-column="38" selection-end-line="234" selection-end-column="25" />
+        <state relative-caret-position="574">
+          <caret line="241" column="8" lean-forward="true" selection-start-line="241" selection-start-column="8" selection-end-line="241" selection-end-column="8" />
           <folding>
-            <element signature="n#style#0;n#label#0;n#ion-col#1;n#ion-row#2;n#ion-grid#0;n#form#0;n#div#0;n#ion-col#0;n#ion-row#0;n#ion-grid#0;n#base-template#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#7534#7560#0" expanded="true" />
-            <element signature="e#8141#8432#0" />
-            <element signature="e#8677#8788#0" />
-            <element signature="e#8829#9295#0" />
-            <element signature="e#9322#9404#0" />
-            <element signature="e#9431#9513#0" />
-            <element signature="n#style#0;n#!!top" />
+            <element signature="e#2376#2414#0" expanded="true" />
+            <element signature="e#3112#3364#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GP/src/store/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="45" column="35" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GP/src/Pages/Signup/PersonalInformation.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="574">
+          <caret line="322" column="6" lean-forward="true" selection-start-line="322" selection-start-column="6" selection-end-line="322" selection-end-column="6" />
+          <folding>
+            <element signature="e#8957#8995#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GP/src/router/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-24">
-          <caret line="14" column="64" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
+        <state relative-caret-position="155">
+          <caret line="49" column="27" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="27" />
           <folding>
             <element signature="e#0#67#0" expanded="true" />
+            <element signature="e#326#383#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GP/src/store/Patient/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/PersonalInfo.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="239" column="95" selection-start-line="239" selection-start-column="92" selection-end-line="239" selection-end-column="95" />
+          <folding>
+            <element signature="e#8453#8564#0" />
+            <element signature="e#8605#9071#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GP/src/Pages/Signup/Clinics.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="116" column="34" selection-start-line="116" selection-start-column="14" selection-end-line="116" selection-end-column="34" />
+          <folding>
+            <element signature="e#1413#1451#0" expanded="true" />
+            <element signature="e#1688#1725#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/AddPatient.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-950">
-          <caret line="12" column="43" lean-forward="true" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
+        <state relative-caret-position="-872">
+          <caret lean-forward="true" />
           <folding>
             <element signature="n#style#0;n#ion-col#0;n#div#0;n#ion-col#0;n#ion-row#0;n#ion-grid#0;n#base-template#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#968#1027#0" expanded="true" />
-            <element signature="n#style#0;n#!!top" />
+            <element signature="e#942#1001#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GP/src/components/ProgressBar.vue">
+    <entry file="file://$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MedicalHistory.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-276">
-          <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+        <state relative-caret-position="34">
+          <caret line="192" column="82" selection-start-line="192" selection-start-column="82" selection-end-line="192" selection-end-column="87" />
           <folding>
-            <element signature="n#style#0;n#!!top" />
+            <element signature="e#5261#5287#0" expanded="true" />
+            <element signature="e#5849#6101#0" />
+            <element signature="e#7510#7531#0" />
           </folding>
         </state>
       </provider>
