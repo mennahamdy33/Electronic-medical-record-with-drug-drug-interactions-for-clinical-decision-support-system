@@ -5,8 +5,40 @@
         <ion-col offset-lg="2" size-lg="8">
             <div class="login-box">
                 <h2>Sign Up</h2>
+               
+                <ion-grid>
+                  <ion-row class= "ion-align-items-center ion-justify-content-center">
+                     <ion-col size="12" size-sm  >
+                      <ion-avatar >
+                          
+                          <img v-if="photo === null"  class="personal_photo"  :src="default_photo" alt="logo"  />
+                          <img  v-else class="personal_photo"  :src="photo" alt="logo"  />
+                          
+                        </ion-avatar>
+                        
+                    </ion-col>
+                   </ion-row>
+                </ion-grid>
+                <ion-grid style="margin-top:50px;">
+                  <ion-row>
+                     
+                    <ion-col size="12" size-sm >
+                      <!-- <form-field type="text" LableText="Speciality"/> -->
+                      <div class="image-input">
+
+                          <input style="display: none;" type="file" accept="image/*" id="imageInput" @change="get_photo($event)">
+                          <label for="imageInput" class="image-button"><i class="far fa-image"></i> Choose image</label>
+                        <!-- 	<img src="" class="image-preview"> -->
+                          <span class="change-image">Choose different image</span>
+                     
+                      </div>
+                    </ion-col>
+                  
+                   </ion-row>
+                </ion-grid>
                 <form v-on:submit.prevent="">
-                    <ion-grid class="FormGrid">
+                    <!-- <ion-grid class="FormGrid" > -->
+                    <ion-grid class="FormGrid" style="margin-top:50px;">
                         <ion-row>
                             <ion-col size="12" size-sm>
                                 <!-- <form-field type="text" LableText="First Name"/> -->
@@ -183,6 +215,8 @@
                           </ion-col>
                         </ion-row>
 
+                        
+
                         <ion-row>
                           <ion-col size-lg="2" size-xs="6" >
                             <form-button @click="changePhaseNext({currentPhase: 'MakeAccount'})" type="button" buttonText="Next"/>
@@ -200,7 +234,12 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { IonCol, IonGrid, IonRow, alertController  } from '@ionic/vue';
+import { IonCol, IonGrid, IonRow, alertController ,
+// IonInput,
+IonAvatar } from '@ionic/vue';
+ import {
+        // personCircle,
+    } from "ionicons/icons";
 import FormButton from '../../components/FormButton.vue';
 // import FormField from '../../components/FormField'
 // import RadioForm from '../../components/RadioForm'
@@ -213,6 +252,11 @@ export default defineComponent({
     IonCol,
     IonGrid,
     IonRow,
+    // IonInput,
+    IonAvatar
+    // IonIcon,
+    
+    // IonItem
     // RadioForm,
     
     
@@ -234,8 +278,11 @@ export default defineComponent({
       proficiency:''},
       uuid:'',
       user:'',
-      result: ''
-      
+      result: '',
+      fileInfo:'',
+      photo: null,
+      default_photo: require("../../../public/me.jpg"),
+      // personCircle
     }
   },
   methods: {
@@ -324,6 +371,17 @@ export default defineComponent({
           this.presentAlert("Please fill all the fields");
 
         }
+   },
+
+   get_photo(event){
+     const image = event.target.files[0];
+     const reader = new FileReader();
+     reader.readAsDataURL(image);
+     reader.onload = event =>{
+       this.photo = event.target.result;
+       console.log(this.photo);
+     }
+     
    }
     // ...mapActions(['changePhase'])
 
@@ -335,5 +393,43 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.personal_photo{
+  min-height:110px;
+  min-width:110px;
+}
 
+/* .image-input{ */
+
+	/* text-align: center; */
+  /* display: none; */
+/* } */
+	
+	.image-button{
+
+		/* display: block; */
+		color: #FFF;
+    width:150px;
+		background: rgb(0, 173, 204)	;
+		padding: .5rem .6rem;
+		font-size: 115%;
+    border-radius: 500px;
+		cursor: pointer;
+  }
+		i
+			{
+        font-size: 125%;
+			/* margin-right: .3rem; */
+      }
+		.image-button:hover
+			{
+        border: 1px solid #ffff;
+			/* margin-right: .3rem; */
+      }
+	
+
+	span
+		{
+    display: none;
+		/* text-align: center; */
+		cursor: pointer;}
 </style>
