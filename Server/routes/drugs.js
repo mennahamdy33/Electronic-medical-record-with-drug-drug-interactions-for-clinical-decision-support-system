@@ -8,14 +8,34 @@ router.get('/', function (req, res, next) {
     const page = req.query.page;
     
     knex.from('drug_products')
-        .where('name','like', `${name}%`)
-        .select('name')
-        .paginate({ perPage: 50, currentPage: page })
+        .where('name','like', `${name}%`).groupBy('parent_key')
+        .select('*')
+        .paginate({ perPage: 5, currentPage: page })
         .then((results) => {
             if(name==""){
-                res.send({data:[]});
+                res.json({data:[]});
             }else{
-                res.send(results);
+                res.json(results);
+              //  console.log(results);
+            }
+        })
+        .catch((err) => { res.status(500).send('server error please come back later'); throw err })
+
+});
+/* GET PARENT KEY . */
+router.get('/parents/:name', function (req, res, next) {
+    const name = req.params.name;
+    const page = req.query.page;
+    
+    knex.from('drug_products')
+        .where('parent_key',name)
+        .select('*')
+        .paginate({ perPage: 5, currentPage: page })
+        .then((results) => {
+            if(name==""){
+                res.json({data:[]});
+            }else{
+                res.json(results);
               //  console.log(results);
             }
         })
@@ -31,7 +51,7 @@ router.get('/:id', function (req, res, next) {
         .where('id',id)
         .first()
         .then((results) => {
-            res.send(results);
+            res.json({drug:results});
         })
         .catch((err) => { res.status(500).send('server error please come back later'); throw err })
 
