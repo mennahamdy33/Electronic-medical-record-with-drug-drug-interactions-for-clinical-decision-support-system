@@ -8,7 +8,7 @@ import Login from '../Pages/Login/Login.vue'
 import SignupPurchase from '../Pages/Purchase/Signup.vue'
 import LoginPurchase from '../Pages/Purchase/Login.vue'
 import ProfilePurchase from '../Pages/Purchase/ProfilePurchase.vue'
-import MainPageDoctor from '../Pages/DoctorProfile/MainPage.vue'
+//import MainPageDoctor from '../Pages/DoctorProfile/MainPage.vue'
 import MainPageSecretery from '../Pages/SecreteryProfile/MainPage.vue'
 import MyProfileDoctor from '../Pages/DoctorProfile/MyProfile.vue'
 import MyProfileSecretery from '../Pages/SecreteryProfile/MyProfile.vue'
@@ -57,7 +57,7 @@ const routes = [
   // },
   {
       path: '/MainPageDoctor',
-      component:MainPageDoctor,
+      component:() => import('../Pages/DoctorProfile/MainPage.vue'),
       // redirect: '/MainPageDoctor/MyProfileDoctor',
       children: 
       [
