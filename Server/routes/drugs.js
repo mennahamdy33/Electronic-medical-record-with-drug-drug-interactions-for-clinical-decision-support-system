@@ -7,10 +7,12 @@ router.get('/', function (req, res, next) {
     const name = req.query.name;
     const page = req.query.page;
     
+    
     knex.from('drug_products')
-        .where('name','like', `${name}%`)
+        .where('name','like', `${name}%`).groupBy('parent_key')
         .paginate({ perPage: 10, currentPage: page })
         .then((results) => {
+            console.log(results)
             if(name==""){
                 res.send({data:[]});
             }else{
