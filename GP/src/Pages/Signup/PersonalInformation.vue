@@ -335,16 +335,16 @@ export default defineComponent({
       const personalInformation = Object.entries(this.personalInformation)
       let complete = true;
         for (const [key, value] of personalInformation  ) {
-          // console.log(key , value);
-          if(value === '' ){
-            if(key === 'speciality' && this.personalInformation.proficiency ==='secretary' ){
-              //do nothing
-            }else{
-              
-              complete = false;
-            }
-          }
-        }
+           // console.log(key , value);
+           if(value === '' ){
+               if(key === 'speciality' && this.personalInformation.proficiency ==='secretary' ){
+                   //do nothing
+               }else{
+
+                   complete = false;
+               }
+           }
+       }
         if(complete && this.uuid === ''){
           complete = false;
         }

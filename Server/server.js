@@ -24,7 +24,11 @@ app.use('/', require("./routes/signinPurchase"));
 app.use('/', require("./routes/sendcode"));
 app.use('/', require("./routes/addClinic"));
 app.use('/', require('./routes/index'));
+
 app.use('/', require('./routes/doctorProfile'));
+
+app.use('/', require('./routes/addpatient'));
+
 // starting the server
 app.listen(3000, ()=> {
     console.log('app is running on port 3000');

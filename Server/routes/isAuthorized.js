@@ -14,6 +14,7 @@ router.post('/isAuthorized', (req, res) => {
           console.log("no user")
           res.status(400).json('no user')
         }
+        
       })
       .catch(err => res.status(400))
   })
