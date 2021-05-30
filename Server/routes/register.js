@@ -13,9 +13,10 @@ router.post('/register', async (req, res) => {
       phone_number,
       birth_date,
       education,
-      speciality,
+      speciality,photo,
       address, email, password,proficiency, auth_id , pickedClinics} = req.body;
-  
+      
+      console.log(photo)
     const hash = await bcrypt.hashSync(password, 10);
     // const isValid = bcrypt.compareSync(password, hash);
   
@@ -31,7 +32,7 @@ router.post('/register', async (req, res) => {
             gender: gender, ssn: national_id,
             phone_number:phone_number, birth_date: birth_date,
             education: education, specialty:speciality,
-            address:address, email: email,
+            address:address,photo:photo, email: email,
             password: hash });
            
           if(pickedClinics.length){

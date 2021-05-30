@@ -1,5 +1,5 @@
 <template>
-  <base-template>
+  <!-- <base-template> -->
     <ion-grid>
       <ion-row>
         <ion-col offset-lg="2" size-lg="6">
@@ -28,7 +28,7 @@
         ></doctor-card>
       </ion-row>
     </ion-grid>
-  </base-template>
+  <!-- </base-template> -->
 </template>
 <script>
 import DoctorCard from "../../components/DoctorCards";

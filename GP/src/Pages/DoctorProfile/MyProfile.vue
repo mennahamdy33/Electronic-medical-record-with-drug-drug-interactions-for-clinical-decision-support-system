@@ -15,7 +15,9 @@
                                 <!-- <img class="personal_photo" src="../../../public/me.jpg" alt="logo"  /> -->
                                 <ion-avatar class="personal_photo2" >
                                 <!-- <div class="personal_photo2" > -->
-                                    <img   class="personal_photo"  src="../../../public/me.jpg" alt="logo"  />
+                                    <!-- <img   class="personal_photo"  :src="`data:image/jpeg;base64, ${doctorInfo.photo.data}`" alt="logo"  /> -->
+                                    <img v-if="doctorInfo.photo != 'null'"  class="personal_photo"  :src="doctorInfo.photo" alt="logo"  />
+                                    <img  v-else class="personal_photo"  src="../../../public/me.jpg" alt="logo"  />
                                 <!-- </div> -->
                                 </ion-avatar>
                                 
@@ -184,10 +186,28 @@
                     Address:"hth,ggrgr,geg",
                     Education:'Cairo University',
                     Specialty:'Cardiology',
-                    Patients:['patient1','patient2','patient3']
+                    Patients:['patient1','patient2','patient3'],
+                    photo: []
                 },
             };
+        },
+
+    mounted(){
+    
+     fetch(process.env.VUE_APP_ROOT_API+`doctorProfile/20`) .then(response => response.json())
+    .then(photo => {
+
+        
+        if(photo.length)
+        {
+
+            this.doctorInfo.photo = photo[0].photo
+        }else{
+            this.doctorInfo.photo = 'null'
         }
+    } )
+    
+  }, 
     });
 </script>
 <style scoped>
