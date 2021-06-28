@@ -9,7 +9,7 @@ const store = createStore({
         SignupPhase: 'PersonalInformation',
         SignUpData: {},
         user :{},
-        staffID: ''
+        staffID: null
       };
     },
     mutations: {
@@ -33,7 +33,7 @@ const store = createStore({
       set_staffID(state, payload){
        
         state.staffID = payload;
-        // console.log(state.staffID)
+        console.log(state.staffID)
         // console.log(payload)
 
       },
