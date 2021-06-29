@@ -84,7 +84,7 @@
                                 <ion-row>
                                     <ion-col size="12" size-sm>
                                         <ion-label>Phone Number </ion-label>
-                                        <p> {{doctorInfo.Phone_number}}</p>
+                                        <p> {{doctorInfo.phone_number}}</p>
                                     </ion-col>
 
                                     <ion-col size="12" size-sm>
