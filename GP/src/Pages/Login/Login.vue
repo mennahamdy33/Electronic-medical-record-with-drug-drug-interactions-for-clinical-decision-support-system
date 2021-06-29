@@ -165,7 +165,8 @@ export default defineComponent({
             }
             }).then(res =>{
                console.log(res)
-                this.router.push('/doctorProfile')
+               this.$store.dispatch('set_staffID', res);
+                this.router.push('/MainPageDoctor')
             })
             .catch(() =>
             { 

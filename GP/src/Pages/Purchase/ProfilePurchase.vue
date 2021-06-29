@@ -254,9 +254,7 @@ export default defineComponent({
     }
     
   },
-  computed: {
-    // ...mapGetters(['SignupPhase'])
-  },
+ 
 
   // mounted(){
   //   const user = this.$store.getters['user']
