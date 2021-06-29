@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import BookDoctor from '../Pages/BookDoctor'
 import LandingPage from '../Pages/LandingPage/LandingPage.vue'
-
+import store from '../store/index.js'
 import Signup from '../Pages/Signup/Signup.vue'
 import Login from '../Pages/Login/Login.vue'
 // import Prescription from '@/Pages/Prescription.vue';
@@ -41,7 +41,17 @@ const routes = [
 
   {path: '/SignupPurchase' , component: SignupPurchase},
   {path: '/LoginPurchase' , component: LoginPurchase},
-  {path: '/ProfilePurchase' , component:  ProfilePurchase},
+
+  {path: '/ProfilePurchase' ,
+   component:  ProfilePurchase ,
+    beforeEnter: (to, from, next) => {
+      if(store.getters['user'] === null) {
+          next('/LoginPurchase');
+      } else {
+          next();
+      }
+    }
+},
 
   
 
@@ -58,6 +68,13 @@ const routes = [
   {
       path: '/MainPageDoctor',
       component:MainPageDoctor,
+      beforeEnter: (to, from, next) => {
+        if(store.getters['staffID'] === null) {
+            next('/Login');
+        } else {
+            next();
+        }
+      },
       // redirect: '/MainPageDoctor/MyProfileDoctor',
       children: 
       [
@@ -85,6 +102,13 @@ const routes = [
   {
       path: '/MainPageSecretery',
       component:MainPageSecretery,
+      beforeEnter: (to, from, next) => {
+        if(store.getters['staffID'] === null) {
+            next('/Login');
+        } else {
+            next();
+        }
+      },
       // redirect: '/MainPageDoctor/MyProfileDoctor',
       children: 
       [

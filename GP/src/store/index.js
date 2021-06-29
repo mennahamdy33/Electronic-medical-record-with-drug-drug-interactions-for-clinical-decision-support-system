@@ -8,7 +8,7 @@ const store = createStore({
       return {
         SignupPhase: 'PersonalInformation',
         SignUpData: {},
-        user :{},
+        user :null,
         staffID: null
       };
     },
