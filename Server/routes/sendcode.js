@@ -11,7 +11,24 @@ const transporter = nodemailer.createTransport({
       user: "DruGuide@outlook.com", // generated ethereal user
       pass: "drug123456", // generated ethereal password
     },
+   
   });
+// const transporter = nodemailer.createTransport({
+//     // host: "smtp.ethereal.email",
+//     service: "hotmail",
+//     port: 465,
+//     secure:true,
+//     logger:true,
+//     debug:true,
+//     secureConnection:false,
+//     auth: {
+//       user: "DruGuide@outlook.com", // generated ethereal user
+//       pass: "drug123456", // generated ethereal password
+//     },
+//    tls:{
+//      rejectUnauthorized: false
+//    }
+//   });
   
   router.post('/sendcode', (req, res) => {
     const {customer_id , email} = req.body;
@@ -33,6 +50,7 @@ const transporter = nodemailer.createTransport({
       })
     .into('authorized_users')
     .then(()=>{
+      console.log(options)
       return transporter.sendMail(options);
       
     }).then((info)=>{
