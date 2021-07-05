@@ -16,7 +16,7 @@ import AddPatient from '../Pages/SecreteryProfile/AddPatient.vue'
 import BookVisit from '../Pages/SecreteryProfile/BookVisit.vue'
 import MySchedules from '../Pages/DoctorProfile/Schedules.vue'
 import Prescription from '../Pages/DoctorProfile/Prescription.vue'
-
+import AllPatients from '../Pages/PatientProfile/AllPatients.vue'
 const routes = [
   {
     path: '/',
@@ -40,7 +40,8 @@ const routes = [
   {path: '/Login' , component: Login},
 
   {path: '/SignupPurchase' , component: SignupPurchase},
-  {path: '/LoginPurchase' , component: LoginPurchase},
+    {path: '/AllPatients' , component: AllPatients},
+    {path: '/LoginPurchase' , component: LoginPurchase},
   {path: '/ProfilePurchase' , component:  ProfilePurchase},
 
   

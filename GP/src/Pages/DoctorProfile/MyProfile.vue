@@ -7,7 +7,6 @@
                     <!-- <ion-col class="left"  size-lg="4" offset-lg="2" size-xs="12"> -->
                         
 
-                        
                         <ion-grid  >
                             <ion-row >
                                 <!-- <ion-col > -->
