@@ -7,7 +7,7 @@
                 <ion-row >
                     <ion-col offset-lg="0.2" offset-xs="3.4" size-lg="1.5" size-xs="6">
                         <div class="image">   
-                        <img src="../../../public/assets/mainlogo.png"  >   
+                        <img src="../../../public/assets/mainlogo.png" @click="router.push('/')"  >   
                         <!-- <img src="../../../public/assets/logo4.png"  >    -->
                         </div>
                     </ion-col>
@@ -118,7 +118,7 @@ import { IonPage,IonContent,IonCol, IonGrid, IonRow,alertController  } from '@io
 // import ProgressBar from '../../components/ProgressBar.vue';
 import FormButton from '../../components/FormButton'
 // import { mapGetters } from 'vuex';
-
+import {useRouter} from 'vue-router';
 export default defineComponent({
   name: ' ProfilePurchase',
   components: {
@@ -255,7 +255,10 @@ export default defineComponent({
     
   },
  
-
+  setup(){
+    const router = useRouter();
+    return { router };
+  }
   // mounted(){
   //   const user = this.$store.getters['user']
     
@@ -285,7 +288,9 @@ export default defineComponent({
 img , .button{
   margin-top: 25%;
 }
-
+img:hover{
+  cursor: pointer;
+}
 .login-box h2 {
   font-family: 'Monoton';
   margin: 0 0 30px;
