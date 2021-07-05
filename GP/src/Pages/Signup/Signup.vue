@@ -7,7 +7,7 @@
         <ion-row >
           <ion-col offset-lg="0.2" offset-xs="3.4" size-lg="1.5" size-xs="6">
             <div class="image">   
-              <img src="../../../public/assets/mainlogo.png"  >
+              <img src="../../../public/assets/mainlogo.png" @click="router.push('/')" >
               <!-- <img src="../../../public/assets/logo4.png"  >    -->
             </div>
           </ion-col>
@@ -40,6 +40,7 @@ import PersonalInformation from './PersonalInformation.vue';
 import MakeAccount from './MakeAccount.vue';
 import Clinics from './Clinics.vue'
 import { mapGetters } from 'vuex';
+import {useRouter} from 'vue-router';
 
 export default defineComponent({
   name: 'Signup',
@@ -70,6 +71,10 @@ export default defineComponent({
   },
   computed: {
     ...mapGetters(['SignupPhase'])
+  },
+    setup(){
+    const router = useRouter();
+    return { router };
   }
 });
 </script>
@@ -89,5 +94,7 @@ export default defineComponent({
 img{
   margin-top: 25%;
 }
-
+img:hover{
+  cursor: pointer;
+}
 </style>
