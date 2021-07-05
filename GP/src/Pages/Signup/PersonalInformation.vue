@@ -11,8 +11,8 @@
                      <ion-col size="12" size-sm  >
                       <ion-avatar >
                           
-                          <img v-if="photo === null"  class="personal_photo"  :src="default_photo" alt="logo"  />
-                          <img  v-else class="personal_photo"  :src="photo" alt="logo"  />
+                          <img v-if="personalInformation.photo === 'null'"  class="personal_photo"  :src="default_photo" alt="logo"  />
+                          <img  v-else class="personal_photo"  :src="personalInformation.photo" alt="logo"  />
                           
                         </ion-avatar>
                         
@@ -275,12 +275,13 @@ export default defineComponent({
       education: '',
       speciality:'',
       address:'',
+      photo: 'null',
       proficiency:''},
       uuid:'',
       user:'',
       result: '',
       fileInfo:'',
-      photo: null,
+      // photo: null,
       default_photo: require("../../../public/me.jpg"),
       // personCircle
     }
@@ -373,15 +374,17 @@ export default defineComponent({
         }
    },
 
-   get_photo(event){
+   async get_photo(event){
+     
      const image = event.target.files[0];
-     const reader = new FileReader();
+     const reader = new FileReader();  
      reader.readAsDataURL(image);
      reader.onload = event =>{
-       this.photo = event.target.result;
-       console.log(this.photo);
+       this.personalInformation.photo = event.target.result;
+       console.log(this.personalInformation.photo);
      }
-     
+
+    
    }
     // ...mapActions(['changePhase'])
 

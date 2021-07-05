@@ -1,43 +1,44 @@
 <template>
-  <base-template>
-    <ion-grid>
-      <ion-row>
-        <ion-col offset-lg="2" size-lg="6">
-          <div class="login-box">
-            <h2>Book A Doctor</h2>
-            <div class="user-box">
-              <input type="number" name="patientSSN" v-model="patientSSN" required="" />
-              <label>Patient's SSN </label>
-            </div>
-            <div class="user-box">
-              <input v-model="searchQuery" name="doctor" required="" />
-              <label>Doctor's Name</label>
-            </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col offset-lg="2" size-lg="6">
+        <div class="login-box">
+          <h2>Book A Doctor</h2>
+          <div class="user-box">
+            <input
+              type="number"
+              name="patientSSN"
+              v-model="patientSSN"
+              required=""
+            />
+            <label>Patient's SSN </label>
           </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <doctor-card
-          v-for="doctor in resultedDoctors"
-          :key="doctor.id"
-          :title="doctor.specialty"
-          :doctorName="doctor.fullName"
-          :workingHours="doctor.time"
-          :ssn="patientSSN"
-
-        ></doctor-card>
-      </ion-row>
-    </ion-grid>
-  </base-template>
+          <div class="user-box">
+            <input v-model="searchQuery" name="doctor" required="" />
+            <label>Doctor's Name</label>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <doctor-card
+        v-for="doctor in resultedDoctors"
+        :key="doctor.id"
+        :title="doctor.specialty"
+        :doctorName="doctor.fullName"
+        :workingHours="doctor.time"
+        :ssn="patientSSN"
+      ></doctor-card>
+    </ion-row>
+  </ion-grid>
+  <!-- </base-template> -->
 </template>
 <script>
 import DoctorCard from "../../components/DoctorCards";
 // import FormField from "../components/FormField";
 import { IonGrid, IonRow, IonCol } from "@ionic/vue";
-import { defineComponent } from 'vue';
 
-export default defineComponent({
-  name: "BookVisit",
+export default {
   components: {
     // FormField,
     DoctorCard,
@@ -62,7 +63,7 @@ export default defineComponent({
   },
   methods: {
     retrieveDoctors() {
-      fetch("http://localhost:3000")
+      fetch("http://localhost:5000")
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -102,7 +103,7 @@ export default defineComponent({
   beforeMount() {
     this.retrieveDoctors();
   },
-});
+};
 </script>
 <style scoped>
 .content {
@@ -111,7 +112,4 @@ export default defineComponent({
   font-family: sans-serif;
   --background: linear-gradient(#141e30, #243b55);
 }
-
-
-
 </style>

@@ -1,7 +1,12 @@
 <template>
   <ion-content class="ion-padding">
     <ion-grid>
-      <form @submit.prevent="submitBooking">
+      <form
+        @submit.prevent="submitBooking"
+        action="http://localhost:5000/submitBooking"
+        method="post"
+        novalidate="true"
+      >
         <ion-row>
           <ion-col size-md="8" offset-md="4">
             <ion-chip color="primary">
@@ -26,7 +31,7 @@
             ></ion-datetime>
           </ion-col>
         </ion-row>
-        <ion-button class="primary">Confirm</ion-button>
+        <ion-button type="submit">Confirm</ion-button>
         <ion-button @click="cancelBooking">Cancel</ion-button>
       </form>
     </ion-grid>
@@ -38,8 +43,12 @@ import {
   IonContent,
   IonLabel,
   modalController,
-  // IonRow,
-  //  IonCol
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonButton,
+  IonChip,
+  IonDatetime,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 
@@ -49,8 +58,18 @@ export default defineComponent({
   components: {
     IonContent,
     IonLabel,
-    // IonRow,
-    // IonCol,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonButton,
+    IonChip,
+    IonDatetime,
+  },
+  data() {
+    return {
+      doctorName: this.name,
+      patientSSN: this.SSN,
+    };
   },
   computed: {
     currentDate() {
@@ -69,7 +88,22 @@ export default defineComponent({
   },
   methods: {
     submitBooking() {
-      console.log("submitted");
+      const url = "http://localhost:5000/submitBooking";
+      let data = {
+        name: this.doctorName,
+        patientSSN: this.patientSSN,
+      };
+
+      var request = new Request(url, {
+        method: "POST",
+        body: data,
+        headers: new Headers(),
+      });
+      console.log(data);
+      // Handle response we get from the API
+      fetch(request).then(() => {
+        console.log("success");
+      });
     },
     cancelBooking() {
       modalController.dismiss();

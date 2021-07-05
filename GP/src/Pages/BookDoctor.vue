@@ -6,7 +6,12 @@
           <div class="login-box">
             <h2>Book A Doctor</h2>
             <div class="user-box">
-              <input type="number" name="patientSSN" v-model="patientSSN" required="" />
+              <input
+                type="number"
+                name="patientSSN"
+                v-model="patientSSN"
+                required=""
+              />
               <label>Patient's SSN </label>
             </div>
             <div class="user-box">
@@ -24,7 +29,6 @@
           :doctorName="doctor.fullName"
           :workingHours="doctor.time"
           :ssn="patientSSN"
-
         ></doctor-card>
       </ion-row>
     </ion-grid>
@@ -59,7 +63,7 @@ export default {
   },
   methods: {
     retrieveDoctors() {
-      fetch("http://localhost:3000")
+      fetch("http://localhost:5000")
         .then((response) => {
           if (response.ok) {
             return response.json();

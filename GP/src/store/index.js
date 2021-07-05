@@ -8,8 +8,8 @@ const store = createStore({
       return {
         SignupPhase: 'PersonalInformation',
         SignUpData: {},
-        user :{},
-        staffID: ''
+        user :null,
+        staffID: null
       };
     },
     mutations: {
@@ -33,7 +33,7 @@ const store = createStore({
       set_staffID(state, payload){
        
         state.staffID = payload;
-        // console.log(state.staffID)
+        console.log(state.staffID)
         // console.log(payload)
 
       },

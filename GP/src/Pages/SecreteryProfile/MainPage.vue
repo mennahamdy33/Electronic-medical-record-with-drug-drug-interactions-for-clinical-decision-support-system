@@ -16,14 +16,15 @@
                     <ion-col size-lg="4" size-md="4" size-sm="4" size-xs="4">
                       <!-- <img class="personal_photo" src="../../../public/me.jpg" alt="logo"  /> -->
                        <ion-avatar>
-                        <img  class="personal_photo" src="../../../public/me.jpg" alt="logo"  />
+                        <img v-if="profilePhoto === 'null'"  class="personal_photo" src="../../../public/me.jpg" alt="logo"  />
+                        <img v-else  class="personal_photo" :src="profilePhoto" alt="logo"  />
                        </ion-avatar>
                       
                     </ion-col>
                 </ion-row>
                 <ion-row class= "ion-align-items-center ion-justify-content-center">
                     <ion-col class="ion-text-center" size-lg="12" size-md="12" size-sm="12" size-xs="12" >
-                      <h2> Noran Tharowat </h2>
+                      <h2> {{ first_name }} {{ last_name }} </h2>
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -54,7 +55,8 @@
       
                
               <ion-avatar class="personal_photo_bar" >
-                <img  src="../../../public/me.jpg" alt="logo"  />
+                <img v-if="profilePhoto === 'null'" src="../../../public/me.jpg" alt="logo"  />
+                <img v-else  class="personal_photo" :src="profilePhoto" alt="logo"  />
               </ion-avatar>
          
               <ion-button>
@@ -152,10 +154,22 @@
                 star,
                 logOut,
                 closeCircle,
+                profilePhoto: '',
+                first_name: '',
+                last_name: '',
                 img: require("../../../public/logobig.png"),
                 //icons end
             };
         },
+
+         mounted(){
+          this.profilePhoto = this.$store.getters['staffID'].photo
+          this.first_name = this.$store.getters['staffID'].first_name
+          this.last_name = this.$store.getters['staffID'].last_name
+          console.log(this.profilePhoto)
+         
+              
+      },
     });
 </script>
 <style scoped>

@@ -7,7 +7,7 @@
                 <ion-row >
                     <ion-col offset-lg="0.2" offset-xs="3.4" size-lg="1.5" size-xs="6">
                         <div class="image">   
-                        <img src="../../../public/assets/mainlogo.png"  >   
+                        <img src="../../../public/assets/mainlogo.png"  @click="router.push('/')">   
                         <!-- <img src="../../../public/assets/logo4.png"  >    -->
                         </div>
                     </ion-col>
@@ -305,7 +305,9 @@ export default defineComponent({
 img , .button{
   margin-top: 25%;
 }
-
+img:hover{
+  cursor: pointer;
+}
 
 .signup , .login{
   color: #000000;

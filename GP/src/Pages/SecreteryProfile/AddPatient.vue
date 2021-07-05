@@ -1,6 +1,6 @@
 <template >
 
-    <base-template>
+    <!-- <base-template> -->
 
         <ion-grid>
             <ion-row>
@@ -28,7 +28,7 @@
 
         </ion-grid>
 
-    </base-template>
+    <!-- </base-template> -->
 </template>
 <script>
     import ProgressBar from '../../components/ProgressBar.vue';
@@ -42,13 +42,13 @@
         IonGrid,IonRow,IonCol,
 
     } from "@ionic/vue";
-    import BaseTemplate from "../../components/BaseTemplate";
+    // import BaseTemplate from "../../components/BaseTemplate";
     import { defineComponent,KeepAlive } from 'vue';
     export default defineComponent({
         name: "AddPatient",
         components: {
             PersonalInfo,
-            BaseTemplate,
+            // BaseTemplate,
             IonGrid, IonRow, IonCol,
             ProgressBar,
             MedicalHistory,

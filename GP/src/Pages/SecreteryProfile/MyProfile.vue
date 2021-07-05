@@ -15,7 +15,8 @@
                                 <!-- <img class="personal_photo" src="../../../public/me.jpg" alt="logo"  /> -->
                                 <ion-avatar class="personal_photo2" >
                                 <!-- <div class="personal_photo2" > -->
-                                    <img   class="personal_photo"  src="../../../public/me.jpg" alt="logo"  />
+                                    <img v-if="secInfo.photo != 'null'"  class="personal_photo"  :src="secInfo.photo" alt="logo"  />
+                                    <img  v-else class="personal_photo"  src="../../../public/me.jpg" alt="logo"  />
                                 <!-- </div> -->
                                 </ion-avatar>
                                 
@@ -23,7 +24,7 @@
                             </ion-row>
                             <ion-row >
                                 <ion-col  >
-                                <ion-label> Noran Tharowat </ion-label>
+                                <ion-label> {{secInfo.first_name}} {{secInfo.last_name}} </ion-label>
                                 </ion-col>
                             </ion-row>
                         </ion-grid>
@@ -41,26 +42,26 @@
                                 <ion-row>
                                     <ion-col size-lg="" size-xs="12" >
                                         <ion-label> First Name </ion-label>
-                                        <p>  {{doctorInfo.FistName}} </p>
+                                        <p>  {{secInfo.first_name}} </p>
                                     </ion-col>
                                     
                                     <ion-col size-lg="" size-xs="12" >
                                     
                                         <ion-label> Last Name </ion-label>
-                                         <p>  {{doctorInfo.LastName}} </p>
+                                         <p>  {{secInfo.last_name}} </p>
                                     </ion-col>
 
                                 </ion-row>
                                 <ion-row>
                                     <ion-col size-lg="" size-xs="12" >
                                         <ion-label> Email </ion-label>
-                                        <p>  {{doctorInfo.email}} </p>
+                                        <p>  {{secInfo.email}} </p>
                                     </ion-col>
                                     
                                     <ion-col size-lg="" size-xs="12" >
                                     
                                         <ion-label> Birth Date </ion-label>
-                                         <p>  {{doctorInfo.birthdate}} </p>
+                                         <p>  {{secInfo.birth_date}} </p>
                                     </ion-col>
 
                                 </ion-row>
@@ -68,26 +69,26 @@
                                     <ion-col size="12" size-sm>
 
                                         <ion-label>Gender </ion-label>
-                                        <ion-icon v-if="doctorInfo.Gender === 'Female'"  :icon="female" ></ion-icon>
-                                        <ion-icon v-if="doctorInfo.Gender === 'Male'"  :icon="male" ></ion-icon>
-                                        <p>  {{doctorInfo.Gender}}</p>
+                                        <ion-icon v-if="secInfo.gender === 'female'"  :icon="female" ></ion-icon>
+                                        <ion-icon v-if="secInfo.gender === 'male'"  :icon="male" ></ion-icon>
+                                        <p>  {{secInfo.gender}}</p>
                                     </ion-col>
 
                                     <ion-col size="12" size-sm>
                                         <ion-label>SSN </ion-label>
-                                        <p> {{doctorInfo.ssn}}</p>
+                                        <p> {{secInfo.ssn}}</p>
 
                                     </ion-col>
                                 </ion-row>
                                 <ion-row>
                                     <ion-col size="12" size-sm>
                                         <ion-label>Phone Number </ion-label>
-                                        <p> {{doctorInfo.PhoneNumber}}</p>
+                                        <p> {{secInfo.phone_number}}</p>
                                     </ion-col>
 
                                     <ion-col size="12" size-sm>
                                         <ion-label>Address </ion-label>
-                                        <p> {{doctorInfo.Address}}</p>
+                                        <p> {{secInfo.address}}</p>
 
                                     </ion-col>
 
@@ -95,21 +96,17 @@
                                 <ion-row>
                                     <ion-col size="12" size-sm>
                                         <ion-label>Education </ion-label>
-                                        <p> {{doctorInfo.Education}}</p>
+                                        <p> {{secInfo.education}}</p>
 
                                     </ion-col>
 
-                                    <ion-col size="12" size-sm>
-                                        <ion-label>Specialty </ion-label>
-                                        <p>{{doctorInfo.Specialty}}</p>
-
-                                    </ion-col>
+                                   
 
                                 </ion-row>
                                 <ion-row>
                                     <ion-col size="12" size-sm>
-                                        <ion-label>Work In </ion-label>
-                                        <p v-for="clinic in doctorInfo.clinics " :key="clinic"> {{clinic}}</p>
+                                       <ion-label>Work In </ion-label>
+                                        <p v-for="clinic in clinics " :key="clinic.clinic_id"> {{clinic.clinic_name}} , address: {{clinic.address }}</p>
                                         <!-- <p :v-for="clinic in doctorInfo.clinics "> {{clinic}}</p> -->
 
                                     </ion-col>
@@ -171,23 +168,26 @@
             return {
                 female,
                 male,
-                doctorInfo:{
-                    FistName:  "Menna",
-                    LastName: "Hamdy",
-                    ssn:"242423435t4",
-                    email:"manna@gmail.com",
-                    birthdate:"2021-04-14",
-                    clinics:['clinic1' , 'clinic2'],
-                    Gender: "Female",
-                    Birthdate:"5/12/1998",
-                    PhoneNumber:"01224235423",
-                    Address:"hth,ggrgr,geg",
-                    Education:'Cairo University',
-                    Specialty:'Cardiology',
-                    Patients:['patient1','patient2','patient3']
-                },
+                secInfo:{},
+                clinics:[]
             };
-        }
+        },
+
+
+        mounted(){
+
+        this.secInfo = this.$store.getters['staffID']
+
+     fetch(process.env.VUE_APP_ROOT_API+`secretaryProfile/`+this.doctorInfo.secretary_id) .then(response => response.json())
+    .then(clinics => {
+
+        
+        
+        this.clinics = clinics
+       
+    } )}
+
+        
     });
 </script>
 <style scoped>
