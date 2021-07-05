@@ -1,34 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9cedb8e7-e9c7-4135-a7a4-c500cfbdd849" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/GP/public/me1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/routes/doctorProfile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Server/routes/secretaryProfile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/public/me.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/GP/public/me.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/BookDoctor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/BookDoctor.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/DoctorProfile/MainPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/DoctorProfile/MainPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/DoctorProfile/MyProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/DoctorProfile/MyProfile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/Login/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/Login/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/Purchase/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/Purchase/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/Purchase/ProfilePurchase.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/Purchase/ProfilePurchase.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/Purchase/Signup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/Purchase/Signup.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/AddPatient.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/AddPatient.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/BookVisit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/BookVisit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MainPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MainPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MyProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MyProfile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/Signup/PersonalInformation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/Signup/PersonalInformation.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/Signup/Signup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/Signup/Signup.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/components/modal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/components/modal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/db/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/db/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/routes/drugs.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/routes/drugs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/routes/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/routes/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/routes/sendcode.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/routes/sendcode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/routes/signin.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/routes/signin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/server.js" afterDir="false" />
-    </list>
+    <list default="true" id="9cedb8e7-e9c7-4135-a7a4-c500cfbdd849" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -40,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.68425393">
+    <splitter split-orientation="horizontal" split-proportion="0.5074135">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="MedicalHistory.vue" pinned="false" current-in-tab="false">
@@ -63,8 +36,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/GP/src/router/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="402">
-                  <caret line="164" lean-forward="true" selection-start-line="164" selection-end-line="164" />
+                <state relative-caret-position="250">
+                  <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
                 </state>
               </provider>
             </entry>
@@ -145,11 +118,18 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="modal.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="modal.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/GP/src/components/modal.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="850">
+                <state relative-caret-position="197">
                   <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
+                  <folding>
+                    <element signature="n#ion-row#0;n#form#0;n#ion-grid#0;n#ion-content#0;n#template#0;n#!!top" />
+                    <element signature="n#ion-row#1;n#form#0;n#ion-grid#0;n#ion-content#0;n#template#0;n#!!top" />
+                    <element signature="n#ion-row#2;n#form#0;n#ion-grid#0;n#ion-content#0;n#template#0;n#!!top" />
+                    <element signature="n#ion-col#0;n#ion-row#2;n#form#0;n#ion-grid#0;n#ion-content#0;n#template#0;n#!!top" />
+                    <element signature="n#ion-col#1;n#ion-row#2;n#form#0;n#ion-grid#0;n#ion-content#0;n#template#0;n#!!top" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -163,11 +143,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Login.vue" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Login.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/GP/src/Pages/Purchase/Login.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="4" selection-start-column="4" selection-end-column="4" />
+                <state relative-caret-position="300">
+                  <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
                 </state>
               </provider>
             </entry>
@@ -404,11 +384,6 @@
               <item name="GP" type="462c0819:PsiDirectoryNode" />
               <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="GPfirst" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GPfirst" type="462c0819:PsiDirectoryNode" />
-              <item name="Server" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -495,12 +470,12 @@
       <workItem from="1624898372778" duration="14819000" />
       <workItem from="1624963705300" duration="1203000" />
       <workItem from="1624980160443" duration="2224000" />
-      <workItem from="1625476691847" duration="696000" />
+      <workItem from="1625476691847" duration="1911000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222171000" />
+    <option name="totallyTimeSpent" value="223386000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -515,14 +490,14 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19828156" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19762062" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32905984" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32905984" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.16239317" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2877493" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.10541311" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -619,13 +594,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GP/src/Pages/Prescription.vue" />
-    <entry file="file://$PROJECT_DIR$/Server/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GP/src/Pages/DSProfiles/AddPatientPage.vue" />
     <entry file="file://$PROJECT_DIR$/GP/src/Pages/DSProfiles/MedicalHistory.vue" />
     <entry file="file://$PROJECT_DIR$/GP/src/components/ProgressBar.vue">
@@ -784,13 +752,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GP/src/components/modal.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GP/src/Pages/PatientProfile/AllPatients.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3000">
@@ -819,13 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GP/src/Pages/Purchase/Login.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="4" selection-start-column="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GP/src/Pages/DoctorProfile/MyProfile.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -833,10 +787,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/GP/src/Pages/Purchase/Login.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GP/src/components/modal.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
+          <folding>
+            <element signature="n#ion-row#0;n#form#0;n#ion-grid#0;n#ion-content#0;n#template#0;n#!!top" />
+            <element signature="n#ion-row#1;n#form#0;n#ion-grid#0;n#ion-content#0;n#template#0;n#!!top" />
+            <element signature="n#ion-row#2;n#form#0;n#ion-grid#0;n#ion-content#0;n#template#0;n#!!top" />
+            <element signature="n#ion-col#0;n#ion-row#2;n#form#0;n#ion-grid#0;n#ion-content#0;n#template#0;n#!!top" />
+            <element signature="n#ion-col#1;n#ion-row#2;n#form#0;n#ion-grid#0;n#ion-content#0;n#template#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/GP/src/router/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="164" lean-forward="true" selection-start-line="164" selection-end-line="164" />
+        <state relative-caret-position="250">
+          <caret line="24" column="3" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
         </state>
       </provider>
     </entry>
