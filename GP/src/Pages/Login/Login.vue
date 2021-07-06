@@ -164,9 +164,18 @@ export default defineComponent({
                
             }
             }).then(res =>{
-               console.log(res)
+              //  console.log(res)
                this.$store.dispatch('set_staffID', res);
-                this.router.push('/MainPageDoctor')
+              
+               if(this.Account.proficiency === 'doctor')
+               {
+
+                 this.router.push('/MainPageDoctor')
+               }else if(this.Account.proficiency === 'secretary'){
+                 this.router.push('/MainPageSecretery')
+               }else{
+                 this.router.push('/')
+               }
             })
             .catch(() =>
             { 

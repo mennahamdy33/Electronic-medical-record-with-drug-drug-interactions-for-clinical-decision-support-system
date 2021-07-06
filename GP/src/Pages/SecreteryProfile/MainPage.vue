@@ -64,7 +64,7 @@
               </ion-button>
             </ion-buttons>
             <ion-buttons slot="primary">
-              <ion-button color="danger">
+              <ion-button router-link="/" color="danger">
                 <ion-icon slot="icon-only" :icon="logOut"></ion-icon>
               </ion-button>
             </ion-buttons>
