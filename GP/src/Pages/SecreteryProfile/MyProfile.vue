@@ -178,7 +178,7 @@
 
         this.secInfo = this.$store.getters['staffID']
 
-     fetch(process.env.VUE_APP_ROOT_API+`secretaryProfile/`+this.doctorInfo.secretary_id) .then(response => response.json())
+     fetch(process.env.VUE_APP_ROOT_API+`secretaryProfile/`+this.secInfo.secretary_id) .then(response => response.json())
     .then(clinics => {
 
         
