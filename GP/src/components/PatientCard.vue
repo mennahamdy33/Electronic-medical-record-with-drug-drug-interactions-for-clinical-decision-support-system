@@ -31,10 +31,17 @@
             IonCardTitle,
             IonCol,
         },
-        props: ["ssn", "FirstName","Address", "LastName","PhoneNumber","birthdate","Medications","Gender"],
+        props: ["ssn", "FirstName","Address", "LastName","PhoneNumber","birthdate","Medications","Gender","major_illnesses",
+            "previous_surgey",
+            "previous_illnessess",
+            "diabetes",
+            "family_diseases",
+            "allergies",
+            "tobacco"],
         methods: {
+
             async openModal() {
-                const modal = await modalController.create({
+                const patientModal = await modalController.create({
                     component: PatientModal,
                     cssClass: "my-custom-class",
                     // mode: 'ios',
@@ -48,18 +55,22 @@
                         Gender: this.Gender,
                         Address:this.Address,
                         SSN: this.ssn,
-                        PhoneNumber:"01224235423",
-                        modal: modal
+                        PhoneNumber:this.PhoneNumber,
+                        major_illnesses: this.major_illnesses,
+                        previous_surgey: this.previous_surgey,
+                        previous_illnessess: this.previous_illnessess,
+                        diabetes: this.diabetes,
+                        family_diseases: this.family_diseases,
+                        allergies: this.allergies,
+                        tobacco: this.tobacco,
+                        modal: patientModal
                     },
                 });
-                return modal.present();
+                return patientModal.present();
             },
         },
         provide: [],
+
+
     };
 </script>
-<style scoped>
-    .my-custom-class .modal-wrapper {
-        background: rgb(141, 134, 134);
-    }
-</style>
