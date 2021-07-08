@@ -119,7 +119,9 @@
                 return {daysofweek: daysofweek[today.getDay()],full:full} ;
                 // return daysofweek[today.getDay()],full ;
             }
-        }
+        },
+
+        
     });
 </script>
 <style scoped>
@@ -157,18 +159,7 @@
         
     }
 
-    /* .login-box h2 {
-        font-family: 'Monoton';
-        margin: 0 0 30px;
-        padding: 0;
-        color: #ffffff;
-        font-size: 45px;
-        letter-spacing: 5px;
-
-        text-align: center;
-        font-weight: 100;
-    } */
-
+    
     ion-label,h3,ion-icon{
     color: #000000;
 }
@@ -189,32 +180,9 @@
     
     color: rgb(0, 0, 0);
 }
-.personal_photo{
-    /* margin-top: 2px; */
-    /* border-radius: 50%; */
-    border: 3px solid rgb(0, 251, 255)
-}
-.personal_photo2{
-    min-height:150px;
-    min-width:150px;  
-    margin-bottom: 30px ;
-    /* max-height:40px;
-    max-width:40px;   */
-    /* border-radius: 50%; */
-    border: 3px solid rgb(3, 127, 136)
-}
 
 
-@media only screen and (max-width: 600px) {
-    .personal_photo2{
-    min-height:90px;
-    min-width:90px;  
-    
-   
-    border: 3px solid rgb(3, 127, 136)
-}
 
-}
  .right h2{
     margin-bottom: 15px;
     padding-bottom: 5px;
@@ -231,12 +199,7 @@
   font-size: 28px;
     font-weight: 700;
     font-family: 'Josefin Sans', sans-serif;
-    /* background-color: rgba(3, 127, 136, 0.664); */
-    /* border-radius: 20px; */
-    
-    /* padding: 9px; */
-    
-  /* border : 2px solid rgba(3, 127, 136, 0.664); */
+   
   margin-left: -10px;
   
     
