@@ -274,13 +274,13 @@ export default defineComponent({
   setup() {},
   methods: {
     async get_patient() {
-      axios.get(`http://localhost:3000/patients/2`).then((response) => {
+      axios.get(process.env.VUE_APP_ROOT_API+`patients/2`).then((response) => {
         this.patientInfo = response.data;
       });
     },
     async post_check() {
       axios
-        .post(`http://localhost:3000/patients/2/check_interactions`, {
+        .post(process.env.VUE_APP_ROOT_API+`patients/2/check_interactions`, {
           drugs: this.drugs,
         })
         .then((response) => {
@@ -289,7 +289,7 @@ export default defineComponent({
     },
     async get_medications() {
       axios
-        .get(`http://localhost:3000/patients/2/medications`)
+        .get(process.env.VUE_APP_ROOT_API+`patients/2/medications`)
         .then((response) => {
           this.medications = response.data;
         });
@@ -297,7 +297,7 @@ export default defineComponent({
     async get_drugs(mode = "") {
       axios
         .get(
-          `http://localhost:3000/drugs?name=${this.drugname}&page=${this.drugpage}`
+          process.env.VUE_APP_ROOT_API+`drugs?name=${this.drugname}&page=${this.drugpage}`
         )
         .then((response) => {
           this.drugsInfo = response.data.data;
