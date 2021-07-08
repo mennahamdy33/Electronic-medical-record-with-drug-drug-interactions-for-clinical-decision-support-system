@@ -11,24 +11,15 @@
                         <!-- <img src="../../../public/assets/logo4.png"  >    -->
                         </div>
                     </ion-col>
-                    <ion-col size-lg="3" offset-lg="0.9">
-                            <!-- <ion-grid class="grid"> -->
-                                <!-- <ion-row> -->
-                                    <!-- <ion-col  pull-xs="0"  size-lg="3" size-xs="15"  > -->
+                    <ion-col size-lg="3" offset-lg="0.9" size-xs="6"  >
+                            
                                         
                         <ion-button   class="signup" router-link="/SignupPurchase"> Sign up</ion-button>
               
-                                    <!-- </ion-col> -->
-                                    <!-- <ion-col  pull-xs="0"  size-lg="3" size-xs="15"  > -->
-                                        
-                                        <!-- <ion-button   class="signup" router-link="/Signup"> Sign up</ion-button> -->
-                                
-                                    <!-- </ion-col> -->
-                                <!-- </ion-row> -->
-                            <!-- </ion-grid> -->
+                                    
                     </ion-col>
 
-                     <ion-col pull-lg="1.5"  pull-xs="0"  size-lg="3" size-xs="15"  >
+                     <ion-col pull-lg="1.5"  pull-xs="0"  size-lg="3" size-xs="6" pull-md="3" >
                                         
                         <ion-button router-link="/LoginPurchase" class="login" > Log in</ion-button>
      
