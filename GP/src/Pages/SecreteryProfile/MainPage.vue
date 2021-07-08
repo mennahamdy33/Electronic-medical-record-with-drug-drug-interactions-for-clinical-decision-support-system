@@ -36,6 +36,7 @@
           <ion-item href="/bookDoctor">Search a Patient</ion-item>
           <ion-item button router-link="/MainPageSecretery/BookVisit">Book Visit</ion-item>
           <ion-item button router-link="/MainPageSecretery/MyProfileSecretery">My Profile</ion-item>
+          <ion-item button router-link="/MainPageSecretery/AllPatients">All Patients</ion-item>
           <!-- <ion-item href="/Prescription">Prescription</ion-item> -->
         </ion-list>
       </ion-content>

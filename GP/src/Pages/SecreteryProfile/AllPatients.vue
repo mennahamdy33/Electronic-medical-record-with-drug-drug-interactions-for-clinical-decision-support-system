@@ -1,83 +1,5 @@
 <template>
-    <ion-page>
-
-        <ion-menu side="start" menu-id="first" content-id="main">
-
-            <ion-content>
-                <ion-list>
-                    <!-- <img :src="img" alt="logo" /> -->
-                    <ion-grid  >
-                        <ion-row class= "ion-align-items-center ion-justify-content-center">
-                            <!-- <ion-col > -->
-                            <ion-col size-lg="4" size-md="4" size-sm="4" size-xs="4">
-                                <!-- <img class="personal_photo" src="../../../public/me.jpg" alt="logo"  /> -->
-                                <ion-avatar>
-                                    <img  class="personal_photo" src="../../../public/me.jpg" alt="logo"  />
-                                </ion-avatar>
-
-                            </ion-col>
-                        </ion-row>
-                        <ion-row class= "ion-align-items-center ion-justify-content-center">
-                            <ion-col class="ion-text-center" size-lg="12" size-md="12" size-sm="12" size-xs="12" >
-                                <h2> Noran Tharowat </h2>
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
-
-
-
-
-                    <ion-item button router-link="/MainPageSecretery/AddPatient">Add Patient</ion-item>
-                    <ion-item href="/bookDoctor">Search a Patient</ion-item>
-                    <ion-item button router-link="/MainPageSecretery/BookVisit">Book Visit</ion-item>
-                    <ion-item button router-link="/MainPageSecretery/MyProfileSecretery">My Profile</ion-item>
-                    <!-- <ion-item href="/Prescription">Prescription</ion-item> -->
-                </ion-list>
-            </ion-content>
-        </ion-menu>
-
-        <ion-content id="main" class="content"    >
-            <div style=" position: -webkit-sticky;position: sticky;  top: 0;">
-                <ion-header   >
-                    <ion-toolbar class="tool"  >
-                        <!-- <ion-toolbar color="primary"> -->
-                        <ion-buttons slot="start">
-                            <ion-menu-button auto-hide="false"></ion-menu-button>
-                        </ion-buttons>
-
-                        <ion-buttons slot="secondary">
-
-
-
-                            <ion-avatar class="personal_photo_bar" >
-                                <img  src="../../../public/me.jpg" alt="logo"  />
-                            </ion-avatar>
-
-                            <ion-button>
-                                <ion-icon slot="icon-only" :icon="search"></ion-icon>
-                            </ion-button>
-                        </ion-buttons>
-                        <ion-buttons slot="primary">
-                            <ion-button color="danger">
-                                <ion-icon slot="icon-only" :icon="logOut"></ion-icon>
-                            </ion-button>
-                        </ion-buttons>
-
-                        <ion-title>
-
-
-                            <ion-grid>
-                                <ion-row>
-                                    <ion-col size-lg="1.7" size-md="3" size-sm="4" size-xs="12">
-                                        <img :src="img" alt="logo" />
-                                    </ion-col>
-                                </ion-row>
-                            </ion-grid>
-                        </ion-title>
-                    </ion-toolbar>
-                </ion-header>
-            </div>
-           <ion-grid>
+       <ion-grid>
 
                <ion-row>
                <ion-col offset-lg="2" size-lg="6">
@@ -117,29 +39,16 @@
             ></patient-card>
             </ion-row>
            </ion-grid>
-        </ion-content>
-    </ion-page>
+
 </template>
 <script>
     import { defineComponent } from 'vue';
     // import MySchedules from './Schedules.vue'
     import {
-        IonPage,
-        IonHeader,
-        IonContent,
-        IonToolbar,
-        IonTitle,
-        IonMenu,
-        IonButton,
-        IonButtons,
-        // IonThumbnail,
-        IonList,
-        IonItem,
-        IonIcon,
-        IonMenuButton,
+
         IonCol,
         IonGrid, IonRow,
-        IonAvatar
+
     } from "@ionic/vue";
     import {
         add,
@@ -165,23 +74,12 @@ import PatientCard from "../../components/PatientCard";
         "tobacco"
     ],
         components: {
-            IonPage,
-            IonHeader,
-            IonContent,
-            IonToolbar,
-            IonTitle,
-            IonMenu,
-            IonButton,
-            IonButtons,
-            IonList,
-            IonItem,
-            IonIcon,
-            IonMenuButton,
+
+
+
             IonCol,
             IonGrid, IonRow,
-            // MySchedules,
-            IonAvatar,
-            PatientCard
+             PatientCard
         },
         data() {
             return {
@@ -200,8 +98,7 @@ import PatientCard from "../../components/PatientCard";
                 searchQuerywithPhoneNumber: null,
                 searchQuerywithssn:null,
                 pa:[],
-                 Patients: [
-                     ],
+                 Patients: [],
 
             };
         },
@@ -210,9 +107,9 @@ import PatientCard from "../../components/PatientCard";
                 axios.get(process.env.VUE_APP_ROOT_API+"allPatients")
                   .then(patients => {
 
-                //   console.log(patients.data);
+
                     this.pa = JSON.parse(JSON.stringify(patients.data));
-                  //                  console.log(this.pa);
+
 
                       for (const med of this.pa) {
 
@@ -248,15 +145,16 @@ import PatientCard from "../../components/PatientCard";
                 console.log("computing");
                 if ( this.searchQuerywithssn) {
                     return this.Patients.filter((item) => {
+
                         return this.searchQuerywithssn
                             .split(" ")
-                            .every((v) => item.ssn.startsWith(v))
+                            .every((v) => (item.ssn).toString().startsWith(v))
                     });
                 }
                 else if( this.searchQuerywithPhoneNumber){
                     return this.Patients.filter((item) => {
 
-                       return this.searchQuerywithPhoneNumber.split(" ").every((v) => item.PhoneNumber.startsWith(v))
+                       return this.searchQuerywithPhoneNumber.split(" ").every((v) => (item.phoneNumber).toString().startsWith(v))
                     });  }
                 else {
                     return this.Patients;

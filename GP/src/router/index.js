@@ -16,7 +16,7 @@ import AddPatient from '../Pages/SecreteryProfile/AddPatient.vue'
 import BookVisit from '../Pages/SecreteryProfile/BookVisit.vue'
 import MySchedules from '../Pages/DoctorProfile/Schedules.vue'
 import Prescription from '../Pages/DoctorProfile/Prescription.vue'
-import AllPatients from '../Pages/PatientProfile/AllPatients.vue'
+//import AllPatients from '../Pages/PatientProfile/AllPatients.vue'
 const routes = [
   {
     path: '/',
@@ -40,7 +40,6 @@ const routes = [
 
   {path: '/SignupPurchase' , component: SignupPurchase},
 
-    {path: '/AllPatients' , component: AllPatients},
     {path: '/LoginPurchase' , component: LoginPurchase},
 
 
@@ -58,16 +57,8 @@ const routes = [
   
 
 
-  {
-      path:'/PatientProfile',
-      component:() => import('../Pages/PatientProfile/PatientProfile')
-  },
 
-  // {
-  //     path: '/Prescription',
-  //     component:Prescription
-  // },
-  {
+   {
       path: '/MainPageDoctor',
       component:MainPageDoctor,
       beforeEnter: (to, from, next) => {
@@ -132,8 +123,14 @@ const routes = [
              
           
         },
-        
-        
+          {
+              path: 'AllPatients',
+              component:() => import('../Pages/SecreteryProfile/AllPatients')
+
+
+          },
+
+
 
       ]
   },

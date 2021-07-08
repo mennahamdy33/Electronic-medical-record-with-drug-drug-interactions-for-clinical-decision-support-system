@@ -232,7 +232,7 @@
                 this.menuOpen = true;
                 axios
                     .get(
-                        `http://localhost:3000/drugs?name=${this.drugname}&page=${this.drugpage}`
+                        process.env.VUE_APP_ROOT_API+`drugs?name=${this.drugname}&page=${this.drugpage}`
                     )
                     .then((response) => {
                         let uniqueChars = [...new Set(response.data.data.map(a => a.name))];

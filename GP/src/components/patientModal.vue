@@ -109,7 +109,7 @@
                     <!-- <ion-row class= "ion-justify-content-center"> -->
 
                     <ion-col class="right" size-lg="10" pull-lg="0.1" size-xs="12">
-                        <!-- <ion-col class="right" size-lg="6" pull-lg="2" size-xs="12"> -->
+
                         <h2>Patient Profile</h2>
 
 
@@ -120,13 +120,13 @@
 
                                 <ion-row>
                                     <ion-col size-lg="" size-xs="12" >
-                                        <ion-label> major_illnesses </ion-label>
+                                        <ion-label> Major Illnesses </ion-label>
                                         <p>  {{major_illnesses}} </p>
                                     </ion-col>
 
                                     <ion-col size-lg="" size-xs="12" >
 
-                                        <ion-label> previous_surgey </ion-label>
+                                        <ion-label> Previous Surgey </ion-label>
                                         <p>  {{previous_surgey}} </p>
 
                                     </ion-col>
@@ -136,12 +136,12 @@
 
                                     <ion-col size-lg="" size-xs="12" >
 
-                                        <ion-label> previous_illnessess </ion-label>
+                                        <ion-label> Previous Illnessess </ion-label>
                                         <p>  {{previous_illnessess}} </p>
                                     </ion-col>
                                     <ion-col size="12" size-sm>
 
-                                        <ion-label>diabetes </ion-label>
+                                        <ion-label>Diabetes </ion-label>
                                         <p>  {{diabetes}}</p>
                                     </ion-col>
 
@@ -149,12 +149,12 @@
                                 <ion-row>
 
                                     <ion-col size="12" size-sm>
-                                        <ion-label>tobacco </ion-label>
+                                        <ion-label>Smoker </ion-label>
                                         <p> {{tobacco}}</p>
 
                                     </ion-col>
                                     <ion-col size="12" size-sm>
-                                        <ion-label>allergies </ion-label>
+                                        <ion-label>Allergies </ion-label>
                                         <p> {{allergies}}</p>
                                     </ion-col>
 
@@ -162,7 +162,7 @@
                                 <ion-row>
 
                                     <ion-col size="12" size-sm>
-                                        <ion-label>family_diseases </ion-label>
+                                        <ion-label>Family Diseases </ion-label>
                                         <p> {{family_diseases}}</p>
 
                                     </ion-col>
