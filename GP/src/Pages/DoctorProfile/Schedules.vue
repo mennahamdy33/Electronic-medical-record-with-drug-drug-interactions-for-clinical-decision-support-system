@@ -34,11 +34,11 @@
                                 
                                
                                
-                                <ion-row v-for="visit in visits " :key="visit.Time">
+                                <ion-row v-for="visit in visits " :key="visit.visit_id">
                                     <ion-col  size="12" size-sm>
                                     <!-- <ion-col size="12" size-sm> -->
                                         <!-- <ion-label >Work In </ion-label> -->
-                                        <ion-label >Patient: {{visit.PatientName}}, Time: {{visit.Time}} </ion-label>
+                                        <ion-label >Patient: {{visit.first_name}} {{visit.last_name}}, Time: {{visit.time}} </ion-label>
                                         <!-- <p v-for="clinic in doctorInfo.clinics " :key="clinic"> {{clinic}}</p> -->
                                         <!-- <p :v-for="clinic in doctorInfo.clinics "> {{clinic}}</p> -->
 
@@ -94,7 +94,7 @@
                 
                   
                 // visits:[]
-                visits:[{PatientName:"Noran" , Time:"03:30:00"},{PatientName:"Noran2" , Time:"03:45:00"}]
+                visits:[]
                 
             };
         },
@@ -121,7 +121,21 @@
             }
         },
 
+       
+    mounted(){
+
+        const id = this.$store.getters['staffID'].doctor_id
+
+     fetch(process.env.VUE_APP_ROOT_API+`doctorVisits/`+id) .then(response => response.json())
+    .then(visits => {
+
         
+        
+        this.visits = visits
+       
+    } )
+    
+  }, 
     });
 </script>
 <style scoped>
