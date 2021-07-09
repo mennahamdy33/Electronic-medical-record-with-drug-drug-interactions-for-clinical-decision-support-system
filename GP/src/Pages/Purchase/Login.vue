@@ -150,7 +150,8 @@ export default defineComponent({
             }
             }).then(res =>{
               //  console.log(res)
-               this.$store.dispatch('fill_userData', res);
+               localStorage.setItem('tokenPurchase', res.accessToken)
+              //  this.$store.dispatch('fill_userData', res);
                 this.router.push('/ProfilePurchase')
             })
             .catch(() =>

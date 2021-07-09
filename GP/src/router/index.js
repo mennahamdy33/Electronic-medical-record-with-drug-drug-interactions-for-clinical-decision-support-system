@@ -46,7 +46,8 @@ const routes = [
   {path: '/ProfilePurchase' ,
    component:  ProfilePurchase ,
     beforeEnter: (to, from, next) => {
-      if(store.getters['user'] === null) {
+      if(localStorage.getItem('tokenPurchase') === null) {
+
           next('/LoginPurchase');
       } else {
           next();
@@ -63,6 +64,7 @@ const routes = [
       component:MainPageDoctor,
       beforeEnter: (to, from, next) => {
         if(store.getters['staffID'] === null) {
+          console.log(localStorage.getItem('token'))
             next('/Login');
         } else {
             next();
