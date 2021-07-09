@@ -108,8 +108,9 @@ import PatientCard from "../../components/PatientCard";
         },
         mounted(){
 
-                this.DoctorID = this.$store.getters['staffID'].doctor_id;
-                axios.get(process.env.VUE_APP_ROOT_API+`allPatients/`+this.DoctorID)
+           //     this.DoctorID = '1';
+            axios.defaults.headers.common['Authorization'] = 'Bearer '+localStorage.getItem('tokenDoctor');
+                axios.get(process.env.VUE_APP_ROOT_API+`allPatients`)
                   .then(patients => {
 
 
