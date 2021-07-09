@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import BookDoctor from '../Pages/BookDoctor'
 import LandingPage from '../Pages/LandingPage/LandingPage.vue'
-import store from '../store/index.js'
+// import store from '../store/index.js'
 import Signup from '../Pages/Signup/Signup.vue'
 import Login from '../Pages/Login/Login.vue'
 // import Prescription from '@/Pages/Prescription.vue';
@@ -97,7 +97,7 @@ const routes = [
       path: '/MainPageSecretery',
       component:MainPageSecretery,
       beforeEnter: (to, from, next) => {
-        if(store.getters['staffID'] === null) {
+        if(localStorage.getItem('tokensecretary') === null) {
             next('/Login');
         } else {
             next();

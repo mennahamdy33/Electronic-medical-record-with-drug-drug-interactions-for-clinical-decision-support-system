@@ -65,7 +65,7 @@
               </ion-button>
             </ion-buttons>
             <ion-buttons slot="primary">
-              <ion-button router-link="/" color="danger">
+              <ion-button @click="logout"  color="danger">
                 <ion-icon slot="icon-only"   :icon="logOut" ></ion-icon>
               </ion-button>
             </ion-buttons>
@@ -93,6 +93,7 @@
 <script>
     import { defineComponent } from 'vue';
     import MySchedules from './Schedules.vue'
+    import {useRouter} from 'vue-router';
     import {
         IonPage,
         IonHeader,
@@ -162,7 +163,12 @@
                 //icons end
             };
         },
-
+        methods:{
+          logout(){
+            localStorage.removeItem('tokendoctor');
+            this.router.push('/');
+          }
+        },
          mounted(){
           fetch(process.env.VUE_APP_ROOT_API+`doctorProfile`,{
             method: 'get',
@@ -180,7 +186,11 @@
           
          
               
-      }, 
+      },
+      setup(){
+      const router = useRouter();
+      return { router };
+      } 
     });
 </script>
 <style scoped>
