@@ -174,18 +174,33 @@
         },
 
 
-        mounted(){
+        async mounted(){
 
-        this.secInfo = this.$store.getters['staffID']
+          await fetch(process.env.VUE_APP_ROOT_API+`secretaryProfile`,{
+            method: 'get',
+            headers: {'Content-Type': 'application/json', 'authorization': 'Bearer '+localStorage.getItem('tokensecretary')},
+          })
+          .then(response => response.json())
+          .then(sec => {
+              sec.birth_date = sec.birth_date.split('T')[0];
+              this.secInfo = sec
+            // console.log(this.profilePhoto)
+            
+          } )
 
-     fetch(process.env.VUE_APP_ROOT_API+`secretaryProfile/`+this.secInfo.secretary_id) .then(response => response.json())
-    .then(clinics => {
+        // this.secInfo = this.$store.getters['staffID']
+
+         await fetch(process.env.VUE_APP_ROOT_API+`secworksIn`, {
+            method: 'get',
+            headers: {'Content-Type': 'application/json', 'authorization': 'Bearer '+localStorage.getItem('tokensecretary')},
+        }) .then(response => response.json())
+        .then(clinics => {
 
         
         
-        this.clinics = clinics
+            this.clinics = clinics
        
-    } )}
+         } )}
 
         
     });

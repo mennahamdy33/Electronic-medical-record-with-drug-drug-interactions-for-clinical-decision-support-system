@@ -124,9 +124,12 @@
        
     mounted(){
 
-        const id = this.$store.getters['staffID'].doctor_id
+        // const id = this.$store.getters['staffID'].doctor_id
 
-     fetch(process.env.VUE_APP_ROOT_API+`doctorVisits/`+id) .then(response => response.json())
+     fetch(process.env.VUE_APP_ROOT_API+`doctorVisits`, {
+            method: 'get',
+            headers: {'Content-Type': 'application/json', 'authorization': 'Bearer '+localStorage.getItem('tokendoctor')},
+        }) .then(response => response.json())
     .then(visits => {
 
         

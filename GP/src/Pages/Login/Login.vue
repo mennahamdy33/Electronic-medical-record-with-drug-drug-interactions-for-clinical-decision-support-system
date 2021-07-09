@@ -165,13 +165,14 @@ export default defineComponent({
             }
             }).then(res =>{
               //  console.log(res)
-               this.$store.dispatch('set_staffID', res);
+              //  this.$store.dispatch('set_staffID', res);
               
                if(this.Account.proficiency === 'doctor')
                {
-                 
+                 localStorage.setItem('tokendoctor', res.accessToken)
                  this.router.push('/MainPageDoctor')
                }else if(this.Account.proficiency === 'secretary'){
+                 localStorage.setItem('tokensecretary', res.accessToken)
                  this.router.push('/MainPageSecretery')
                }else{
                  this.router.push('/')
