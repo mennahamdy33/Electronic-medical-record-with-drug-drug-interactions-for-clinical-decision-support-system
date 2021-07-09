@@ -71,7 +71,7 @@ import PatientCard from "../../components/PatientCard";
         "diabetes",
         "family_diseases",
         "allergies",
-        "tobacco"
+        "tobacco",
     ],
         components: {
 
@@ -99,12 +99,14 @@ import PatientCard from "../../components/PatientCard";
                 searchQuerywithssn:null,
                 pa:[],
                  Patients: [],
+                Secretary_id:null,
 
             };
         },
         mounted(){
-
-                axios.get(process.env.VUE_APP_ROOT_API+"allPatients")
+                this.Secretary_id = '2';
+            axios.defaults.headers.common['Authorization'] = 'Bearer '+localStorage.getItem('tokensecretary');
+            axios.get(process.env.VUE_APP_ROOT_API+`allPatients/`+this.Secretary_id)
                   .then(patients => {
 
 

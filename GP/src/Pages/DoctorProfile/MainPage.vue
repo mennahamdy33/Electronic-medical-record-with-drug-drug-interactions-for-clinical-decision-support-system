@@ -170,6 +170,7 @@
           }
         },
          mounted(){
+
           fetch(process.env.VUE_APP_ROOT_API+`doctorProfile`,{
             method: 'get',
             headers: {'Content-Type': 'application/json', 'authorization': 'Bearer '+localStorage.getItem('tokendoctor')},

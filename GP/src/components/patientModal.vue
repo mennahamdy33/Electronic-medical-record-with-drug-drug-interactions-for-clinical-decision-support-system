@@ -5,7 +5,7 @@
 
                 <span :class="{ active1 : (active===1)}" button=true @click="activate(1)" >Personal Info</span>
                 <span :class="{ active2 : (active===2)}" button=true @click="activate(2)">Medical History</span>
-                <span :class="{ active2 : (active===3)}" button=true @click="activate(3)">Previous Visits</span>
+                <span v-show="visits" :class="{ active3 : (active===3)}" button=true @click="activate(3)">Previous Visits</span>
                 <ion-row class= "ion-justify-content-center" v-show="active === 1">
                     <!-- <ion-row class= "ion-justify-content-center"> -->
 
@@ -280,7 +280,7 @@
         position: relative;
         overflow: scroll ;
         height: 100%;
-
+        text-align: center;
     }
 
     span{
@@ -289,7 +289,7 @@
         background-color: white;
         color:black;
         position: relative;
-        left: 20%;
+
         border-radius: 5px 5px 0 0;
 
     }
@@ -372,5 +372,6 @@
         text-transform: uppercase;
         letter-spacing: 5px;
     }
+
 
 </style>
