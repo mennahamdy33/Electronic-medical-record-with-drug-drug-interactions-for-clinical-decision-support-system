@@ -177,18 +177,29 @@
             };
         },
 
-    mounted(){
+    async mounted(){
 
-        this.doctorInfo = this.$store.getters['staffID']
+        // this.doctorInfo = this.$store.getters['staffID']
+        await fetch(process.env.VUE_APP_ROOT_API+`doctorProfile`,{
+            method: 'get',
+            headers: {'Content-Type': 'application/json', 'authorization': 'Bearer '+localStorage.getItem('tokendoctor')},
+          })
+          .then(response => response.json())
+          .then(doctor => {
+              doctor.birth_date = doctor.birth_date.split('T')[0];
+              this.doctorInfo = doctor
+            // console.log(this.profilePhoto)
+            
+          } )
 
-     fetch(process.env.VUE_APP_ROOT_API+`doctorProfile/`+this.doctorInfo.doctor_id) .then(response => response.json())
-    .then(clinics => {
-
-        
-        
-        this.clinics = clinics
-       
-    } )
+       await fetch(process.env.VUE_APP_ROOT_API+`docworksIn`,{
+            method: 'get',
+            headers: {'Content-Type': 'application/json', 'authorization': 'Bearer '+localStorage.getItem('tokendoctor')},
+        }) .then(response => response.json())
+        .then(clinics => {
+    
+            this.clinics = clinics    
+        } )
     
   }, 
     });

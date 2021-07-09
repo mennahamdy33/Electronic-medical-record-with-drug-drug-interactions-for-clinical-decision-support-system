@@ -63,8 +63,7 @@ const routes = [
       path: '/MainPageDoctor',
       component:MainPageDoctor,
       beforeEnter: (to, from, next) => {
-        if(store.getters['staffID'] === null) {
-          console.log(localStorage.getItem('token'))
+        if(localStorage.getItem('tokendoctor') === null) {
             next('/Login');
         } else {
             next();
