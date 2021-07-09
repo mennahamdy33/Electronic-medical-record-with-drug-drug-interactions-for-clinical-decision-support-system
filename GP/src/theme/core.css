@@ -10,7 +10,6 @@
     font-family: 'Architects Daughter';
     src: url('../../public/assets/ArchitectsDaughter-Regular.ttf');
   }
-
 ion-toolbar {
     --background:var(--ion-color-secondary);
     --color:var(--ion-color-secondary-contrast);
@@ -217,4 +216,4 @@ ion-item menu{
     .pas{
       margin-top: -20px; 
       color: #ccc5c57c;
-   }    
+   }

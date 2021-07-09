@@ -1,11 +1,12 @@
-<template>
+<template >
 
-        <div class="bigBox" >
-            <ion-grid class="bigGrid" style="margin-top:40px; margin-bottom:40px;" >
+        <div class="bigBox"  >
+            <ion-grid class="bigGrid"  style="margin-top:40px; margin-bottom:40px;" >
 
-                <span :class="{ active1 : !active}" button=true @click="activate()" >Personal Info</span>
-                <span :class="{ active2 : active}" button=true @click="activate()">Medical History</span>
-                <ion-row class= "ion-justify-content-center" v-show="!active">
+                <span :class="{ active1 : (active===1)}" button=true @click="activate(1)" >Personal Info</span>
+                <span :class="{ active2 : (active===2)}" button=true @click="activate(2)">Medical History</span>
+                <span :class="{ active2 : (active===3)}" button=true @click="activate(3)">Previous Visits</span>
+                <ion-row class= "ion-justify-content-center" v-show="active === 1">
                     <!-- <ion-row class= "ion-justify-content-center"> -->
 
                     <ion-col class="right" size-lg="10" pull-lg="0.1" size-xs="12">
@@ -105,7 +106,7 @@
                 </ion-row>
 
 
-                <ion-row class= "ion-justify-content-center" v-show="active">
+                <ion-row class= "ion-justify-content-center" v-show="active === 2">
                     <!-- <ion-row class= "ion-justify-content-center"> -->
 
                     <ion-col class="right" size-lg="10" pull-lg="0.1" size-xs="12">
@@ -190,7 +191,34 @@
 
                     </ion-col>
                 </ion-row>
+
+                <ion-row class= "ion-justify-content-center" v-show="active === 3">
+                    <!-- <ion-row class= "ion-justify-content-center"> -->
+
+                    <ion-col class="right" size-lg="10" pull-lg="0.1" size-xs="12">
+
+                        <h2>Patient Profile</h2>
+
+
+                        <div class="login-box"  >
+
+                            <ion-grid class="FormGrid"  >
+
+
+                                <ion-row >
+                                    <ion-col size-lg="" size-xs="12" >
+                                        <ion-label>Visits Datess </ion-label>
+                                        <p v-for="visit in visits " :key="visit"> {{visit}}</p>
+
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </div>
+                    </ion-col>
+                </ion-row>
+
             </ion-grid>
+
         </div>
 
 </template>
@@ -214,7 +242,8 @@
             "diabetes",
             "family_diseases",
             "allergies",
-            "tobacco"],
+            "tobacco",
+            "visits"],
         components: {
             IonLabel,
              IonRow,
@@ -222,7 +251,7 @@
             IonGrid
         },
         data(){return {
-            active:false
+            active:1
     };},
         computed: {
 
@@ -232,9 +261,10 @@
             cancel() {
                 modalController.dismiss();
             },
-            activate()
+            activate(num)
             {
-                this.active = !this.active;
+                this.active = num;
+                console.log(this.visits);
             },
             test(id){
                 console.log(id)
@@ -244,29 +274,26 @@
     });
 </script>
 <style scoped>
+
     .bigBox{
 
         position: relative;
         overflow: scroll ;
+        height: 100%;
+
     }
+
     span{
         padding-right: 10px;
 
         background-color: white;
         color:black;
         position: relative;
-        left: 30%;
+        left: 20%;
         border-radius: 5px 5px 0 0;
 
     }
-    .active1 {
-        border: 5px solid #000000;
-        box-shadow: 0 0 5px #000000,
-        0 0 5px #03e9f4,
-        0 0 5px #03e9f4,
-        0 0 5px #03e9f4;
-    }
-    .active2 {
+    .active1, .active2, .active3 {
         border: 5px solid #000000;
         box-shadow: 0 0 5px #000000,
         0 0 5px #03e9f4,

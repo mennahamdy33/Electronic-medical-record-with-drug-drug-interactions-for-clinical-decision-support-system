@@ -33,7 +33,7 @@
            
           
           <ion-item button router-link="/MainPageDoctor/MySchedules">My Schedules</ion-item>
-          <ion-item href="/bookDoctor">Search a Patient</ion-item>
+          <ion-item button router-link="/MainPageDoctor/myPatients">Search a Patient</ion-item>
           <ion-item button router-link="/MainPageDoctor/Prescription">Prescription</ion-item>
           <ion-item button router-link="/MainPageDoctor/MyProfileDoctor">My Profile</ion-item>
           <!-- <ion-item href="/Prescription">Prescription</ion-item> -->

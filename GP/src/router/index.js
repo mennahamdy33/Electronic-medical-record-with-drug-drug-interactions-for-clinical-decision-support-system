@@ -89,6 +89,12 @@ const routes = [
              
           
         },
+          {
+              path: 'myPatients',
+              component:() => import('../Pages/DoctorProfile/myPatients')
+
+
+          },
 
       ]
   },

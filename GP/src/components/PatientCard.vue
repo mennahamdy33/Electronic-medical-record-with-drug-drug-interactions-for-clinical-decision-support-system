@@ -1,11 +1,11 @@
 <template>
-    <ion-col size-md="6" size="12">
-        <ion-card @click="openModal">
+    <ion-col size-md="6" size="12" >
+        <ion-card @click="openModal" >
             <ion-card-header>
                 <ion-card-subtitle>SSN: {{ssn}}</ion-card-subtitle>
                 <ion-card-title>NAME: {{ FirstName }} {{LastName}}</ion-card-title>
             </ion-card-header>
-            <ion-card-content> Phone Number : {{ PhoneNumber }} </ion-card-content>
+            <ion-card-content > Phone Number : {{ PhoneNumber }} </ion-card-content>
         </ion-card>
     </ion-col>
 </template>
@@ -37,7 +37,8 @@
             "diabetes",
             "family_diseases",
             "allergies",
-            "tobacco"],
+            "tobacco",
+            "visits"],
         methods: {
 
             async openModal() {
@@ -63,7 +64,9 @@
                         family_diseases: this.family_diseases,
                         allergies: this.allergies,
                         tobacco: this.tobacco,
-                        modal: patientModal
+                        visits:this.visits,
+                        modal: patientModal,
+
                     },
                 });
                 return patientModal.present();
@@ -74,3 +77,6 @@
 
     };
 </script>
+<style>
+
+</style>
