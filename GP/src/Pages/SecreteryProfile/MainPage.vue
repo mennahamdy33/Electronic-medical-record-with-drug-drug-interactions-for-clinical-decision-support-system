@@ -65,7 +65,7 @@
               </ion-button>
             </ion-buttons>
             <ion-buttons slot="primary">
-              <ion-button router-link="/" color="danger">
+              <ion-button @click="logout" color="danger">
                 <ion-icon slot="icon-only" :icon="logOut"></ion-icon>
               </ion-button>
             </ion-buttons>
@@ -92,6 +92,8 @@
 </template>
 <script>
     import { defineComponent } from 'vue';
+    import {useRouter} from 'vue-router';
+
     // import MySchedules from './Schedules.vue'
     import {
         IonPage,
@@ -163,14 +165,34 @@
             };
         },
 
+         methods:{
+          logout(){
+            localStorage.removeItem('tokensecretary');
+            this.router.push('/');
+          }
+        },
          mounted(){
-          this.profilePhoto = this.$store.getters['staffID'].photo
-          this.first_name = this.$store.getters['staffID'].first_name
-          this.last_name = this.$store.getters['staffID'].last_name
-          console.log(this.profilePhoto)
+          fetch(process.env.VUE_APP_ROOT_API+`secretaryProfile`,{
+            method: 'get',
+            headers: {'Content-Type': 'application/json', 'authorization': 'Bearer '+localStorage.getItem('tokensecretary')},
+          })
+          .then(response => response.json())
+          .then(sec => {
+            this.profilePhoto = sec.photo
+            this.first_name = sec.first_name
+            this.last_name = sec.last_name
+            // console.log(this.profilePhoto)
+            
+          } )
+
+          
          
               
       },
+      setup(){
+      const router = useRouter();
+      return { router };
+      } 
     });
 </script>
 <style scoped>

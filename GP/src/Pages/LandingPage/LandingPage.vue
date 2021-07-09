@@ -15,7 +15,7 @@
         <ion-item @click="Goto('features')" button>Features</ion-item>
         <ion-item button  @click="isloggedin">Purchase</ion-item>
         <!-- <ion-item button router-link="/SignupPurchase">Purchase</ion-item> -->
-        <ion-item button router-link="/Login">Log in</ion-item>
+        <ion-item button @click="islogged" >Log in</ion-item>
         <ion-item button router-link="/Signup">Sign up</ion-item>
       </ion-list>
     </ion-content>
@@ -62,7 +62,7 @@
                 </ion-col>
 
                 <ion-col pull="0.1" >
-                  <ion-button router-link="/Login" class="login" > Log in</ion-button>
+                  <ion-button @click="islogged" class="login" > Log in</ion-button>
                 </ion-col>
 
                 <ion-col >
@@ -205,6 +205,26 @@ export default defineComponent({
          this.router.push('/SignupPurchase')
       } else {
           this.router.push('/ProfilePurchase')
+      }
+      
+    }
+ 
+  ,
+    islogged(){
+      if(localStorage.getItem('tokendoctor') === null && localStorage.getItem('tokensecretary') === null) {
+
+         this.router.push('/Login')
+      }else if(localStorage.getItem('tokendoctor') !== null && localStorage.getItem('tokensecretary') === null){
+        this.router.push('/MainPageDoctor')
+      }
+      else if(localStorage.getItem('tokendoctor') === null && localStorage.getItem('tokensecretary') !== null){
+        this.router.push('/MainPageSecretery')
+      }
+      
+      else {
+        localStorage.removeItem('tokendoctor');
+        localStorage.removeItem('tokensecretary');
+        this.router.push('/Login')
       }
       
     }
