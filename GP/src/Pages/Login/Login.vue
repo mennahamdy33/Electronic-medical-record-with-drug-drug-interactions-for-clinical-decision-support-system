@@ -169,7 +169,7 @@ export default defineComponent({
               
                if(this.Account.proficiency === 'doctor')
                {
-
+                 
                  this.router.push('/MainPageDoctor')
                }else if(this.Account.proficiency === 'secretary'){
                  this.router.push('/MainPageSecretery')

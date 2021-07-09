@@ -11,6 +11,10 @@
                         <!-- <img src="../../../public/assets/logo4.png"  >    -->
                         </div>
                     </ion-col>
+
+                    <ion-col size-lg="3" size-xs="6" >
+                      <form-button  @click="logout" type="button" buttonText="Log out"/>
+                    </ion-col>
                    
                 </ion-row>
                   
@@ -162,11 +166,17 @@ export default defineComponent({
         });
       return alert.present();
     },
-
+    logout(){
+      localStorage.removeItem('tokenPurchase');
+      this.router.push('/');
+    },
     async SendCode(){
       if(this.email){
-        const user = this.$store.getters['user']
-        await fetch(process.env.VUE_APP_ROOT_API+`clinics/${user.customer_id}`)
+        // const user = this.$store.getters['user']
+        await fetch(process.env.VUE_APP_ROOT_API+`myclinics`,{
+          method: 'get',
+          headers: {'Content-Type': 'application/json', 'authorization': 'Bearer '+localStorage.getItem('tokenPurchase')},
+        })
         // fetch(`http://localhost:3000/clinics?id=${user.customer_id}`)
         .then(response => response.json())
         .then(clinics => {
@@ -184,12 +194,13 @@ export default defineComponent({
           if(!this.email.match(this.emailFormat)){
             this.presentAlert("Please Enter a Valid Email")
           }else{
-            const customer_data = this.$store.getters['user'];
-            const data = {customer_id:customer_data.customer_id , email:this.email};
+            // const customer_data = this.$store.getters['user'];
+            const data = {email:this.email};
+            // const data = {customer_id:customer_data.customer_id , email:this.email};
   
              fetch(process.env.VUE_APP_ROOT_API+'sendcode', {
               method: 'post',
-              headers: {'Content-Type': 'application/json'},
+              headers: {'Content-Type': 'application/json', 'authorization': 'Bearer '+localStorage.getItem('tokenPurchase')},
               body: JSON.stringify(data)
               }).then(res => {
                   
@@ -221,12 +232,13 @@ export default defineComponent({
 
     AddClinic(){
       if(!(this.clinic.clinic_name === '' && this.clinic.address === '' )){
-        const customer_data = this.$store.getters['user'];
-          const data = {...this.clinic , customer_id:customer_data.customer_id };
-
+        // const customer_data = this.$store.getters['user'];
+          const data = this.clinic;
+          // const myHeaders = new Headers('application/json');
+          // myHeaders.append('Content-Type',)
            fetch(process.env.VUE_APP_ROOT_API+'addClinic', {
             method: 'post',
-            headers: {'Content-Type': 'application/json'},
+            headers: {'Content-Type': 'application/json', 'authorization': 'Bearer '+localStorage.getItem('tokenPurchase')},
             body: JSON.stringify(data)
             }).then(res => {
                 
