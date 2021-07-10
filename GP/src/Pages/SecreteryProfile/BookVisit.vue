@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     retrieveDoctors() {
-      fetch("http://localhost:5000")
+      fetch("http://localhost:3000/showDoctors")
         .then((response) => {
           if (response.ok) {
             return response.json();

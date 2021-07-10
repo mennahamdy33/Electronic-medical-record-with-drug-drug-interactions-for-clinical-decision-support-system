@@ -1,38 +1,36 @@
 <template>
-  <base-template>
-    <ion-grid>
-      <ion-row>
-        <ion-col offset-lg="2" size-lg="6">
-          <div class="login-box">
-            <h2>Book A Doctor</h2>
-            <div class="user-box">
-              <input
-                type="number"
-                name="patientSSN"
-                v-model="patientSSN"
-                required=""
-              />
-              <label>Patient's SSN </label>
-            </div>
-            <div class="user-box">
-              <input v-model="searchQuery" name="doctor" required="" />
-              <label>Doctor's Name</label>
-            </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col offset-lg="2" size-lg="6">
+        <div class="login-box">
+          <h2>Book A Doctor</h2>
+          <div class="user-box">
+            <input
+              type="number"
+              name="patientSSN"
+              v-model="patientSSN"
+              required=""
+            />
+            <label>Patient's SSN </label>
           </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <doctor-card
-          v-for="doctor in resultedDoctors"
-          :key="doctor.id"
-          :title="doctor.specialty"
-          :doctorName="doctor.fullName"
-          :workingHours="doctor.time"
-          :ssn="patientSSN"
-        ></doctor-card>
-      </ion-row>
-    </ion-grid>
-  </base-template>
+          <div class="user-box">
+            <input v-model="searchQuery" name="doctor" required="" />
+            <label>Doctor's Name</label>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <doctor-card
+        v-for="doctor in resultedDoctors"
+        :key="doctor.id"
+        :title="doctor.specialty"
+        :doctorName="doctor.fullName"
+        :workingHours="doctor.time"
+        :ssn="patientSSN"
+      ></doctor-card>
+    </ion-row>
+  </ion-grid>
 </template>
 <script>
 import DoctorCard from "../components/DoctorCards";
@@ -63,7 +61,7 @@ export default {
   },
   methods: {
     retrieveDoctors() {
-      fetch("http://localhost:5000")
+      fetch("${VUE_APP_ROOT_API}" + "/showDoctors")
         .then((response) => {
           if (response.ok) {
             return response.json();

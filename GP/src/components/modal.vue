@@ -88,7 +88,7 @@ export default defineComponent({
   },
   methods: {
     submitBooking() {
-      const url = "http://localhost:5000/submitBooking";
+      const url = "http://localhost:3000/submitBooking";
       let data = {
         name: this.doctorName,
         patientSSN: this.patientSSN,
@@ -96,8 +96,10 @@ export default defineComponent({
 
       var request = new Request(url, {
         method: "POST",
-        body: data,
-        headers: new Headers(),
+        body: JSON.stringify(data),
+        headers: {
+        'Content-Type': 'application/json'
+        },
       });
       console.log(data);
       // Handle response we get from the API
