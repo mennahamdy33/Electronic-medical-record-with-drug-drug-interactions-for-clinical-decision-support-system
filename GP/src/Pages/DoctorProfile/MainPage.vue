@@ -16,14 +16,15 @@
                     <ion-col size-lg="4" size-md="4" size-sm="4" size-xs="4">
                       <!-- <img class="personal_photo" src="../../../public/me.jpg" alt="logo"  /> -->
                        <ion-avatar>
-                        <img  class="personal_photo" src="../../../public/me.jpg" alt="logo"  />
+                        <img v-if="profilePhoto === 'null'"  class="personal_photo" src="../../../public/me.jpg" alt="logo"  />
+                        <img v-else  class="personal_photo" :src="profilePhoto" alt="logo"  />
                        </ion-avatar>
                       
                     </ion-col>
                 </ion-row>
                 <ion-row class= "ion-align-items-center ion-justify-content-center">
                     <ion-col class="ion-text-center" size-lg="12" size-md="12" size-sm="12" size-xs="12" >
-                      <h2> Noran Tharowat </h2>
+                      <h2> {{ first_name }} {{ last_name }} </h2>
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -32,7 +33,7 @@
            
           
           <ion-item button router-link="/MainPageDoctor/MySchedules">My Schedules</ion-item>
-          <ion-item href="/bookDoctor">Search a Patient</ion-item>
+          <ion-item button router-link="/MainPageDoctor/myPatients">Search a Patient</ion-item>
           <ion-item button router-link="/MainPageDoctor/Prescription">Prescription</ion-item>
           <ion-item button router-link="/MainPageDoctor/MyProfileDoctor">My Profile</ion-item>
           <!-- <ion-item href="/Prescription">Prescription</ion-item> -->
@@ -54,7 +55,9 @@
       
                
               <ion-avatar class="personal_photo_bar" >
-                <img  src="../../../public/me.jpg" alt="logo"  />
+                <img v-if="profilePhoto === 'null'" src="../../../public/me.jpg" alt="logo"  />
+                <img v-else  class="personal_photo" :src="profilePhoto" alt="logo"  />
+              
               </ion-avatar>
          
               <ion-button>
@@ -62,8 +65,8 @@
               </ion-button>
             </ion-buttons>
             <ion-buttons slot="primary">
-              <ion-button color="danger">
-                <ion-icon slot="icon-only" :icon="logOut"></ion-icon>
+              <ion-button @click="logout"  color="danger">
+                <ion-icon slot="icon-only"   :icon="logOut" ></ion-icon>
               </ion-button>
             </ion-buttons>
 
@@ -90,6 +93,7 @@
 <script>
     import { defineComponent } from 'vue';
     import MySchedules from './Schedules.vue'
+    import {useRouter} from 'vue-router';
     import {
         IonPage,
         IonHeader,
@@ -152,10 +156,42 @@
                 star,
                 logOut,
                 closeCircle,
+                profilePhoto: '',
+                first_name: '',
+                last_name: '',
                 img: require("../../../public/logobig.png"),
                 //icons end
             };
         },
+        methods:{
+          logout(){
+            localStorage.removeItem('tokendoctor');
+            this.router.push('/');
+          }
+        },
+         mounted(){
+
+          fetch(process.env.VUE_APP_ROOT_API+`doctorProfile`,{
+            method: 'get',
+            headers: {'Content-Type': 'application/json', 'authorization': 'Bearer '+localStorage.getItem('tokendoctor')},
+          })
+          .then(response => response.json())
+          .then(doctor => {
+            this.profilePhoto = doctor.photo
+            this.first_name = doctor.first_name
+            this.last_name = doctor.last_name
+            // console.log(this.profilePhoto)
+            
+          } )
+
+          
+         
+              
+      },
+      setup(){
+      const router = useRouter();
+      return { router };
+      } 
     });
 </script>
 <style scoped>

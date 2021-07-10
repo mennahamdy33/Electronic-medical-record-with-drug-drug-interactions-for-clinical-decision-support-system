@@ -1,8 +1,19 @@
 <template>
   <ion-grid>
+
+    <ion-row class="ion-justify-content-center">
+    
+      <ion-col  size-lg="8">
+        <div class="login-box">
+          <h2 class="text">Prescription</h2>
+          
+        </div>
+      </ion-col>
+  </ion-row>
+     
     <ion-row class="ion-justify-content-center">
       <ion-col class="ion-padding" size-lg="6" size-sm="12" size-md="8">
-        <h2>Prescription</h2>
+        
         <ion-card>
           <ion-card-header>
             <ion-row class="ion-align-items-center">
@@ -30,11 +41,17 @@
             <p>Mobile: {{ patientInfo.phone_number }}</p>
           </ion-card-content>
         </ion-card>
-        <FormButton
-          @click="openPatientModal"
-          buttonText="Patient Medications"
-          type="button"
-        />
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size-lg="5" size-md="7.5" size-xs="10.8">
+              <form-button
+                @click="openPatientModal"
+                buttonText="Patient Medications"
+                type="button"
+              />
+            </ion-col>
+          </ion-row>
+        </ion-grid>
         <ion-modal>
           <Modal title="Patient Medications"></Modal>
         </ion-modal>
@@ -129,12 +146,18 @@
           </ion-card>
         </div>
         <ion-col>
-          <FormButton
-            buttonText="Check Interaction"
-            @click="post_check"
-            type="button"
-          />
-
+          <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size-lg="4.5" size-md="7" size-xs="10">
+              <form-button
+          
+                buttonText="Check Interaction"
+                @click="post_check"
+                type="button"
+              />
+          </ion-col>
+        </ion-row>      
+        </ion-grid>
           <ion-card v-if="interactions.length >= 1">
             <ion-card-header>
               <ion-card-subtitle>Interactions</ion-card-subtitle>
@@ -165,9 +188,13 @@
             <ion-textarea placeholder="Please sign here..."></ion-textarea>
           </ion-card-content>
         </ion-card>
-        <ion-col>
-          <FormButton buttonText="Exit" type="button" />
-        </ion-col>
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <ion-col size-lg="2" size-md="3" size-xs="4">
+              <form-button buttonText="Exit" type="button" />
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -194,6 +221,7 @@ import {
   IonButton,
   IonModal,
   modalController,
+  
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios from "axios";
@@ -224,6 +252,7 @@ export default defineComponent({
     IonButton,
     IonModal,
     FormButton,
+    Modal
   },
   data() {
     return {
@@ -245,13 +274,13 @@ export default defineComponent({
   setup() {},
   methods: {
     async get_patient() {
-      axios.get(`http://localhost:3000/patients/2`).then((response) => {
+      axios.get(process.env.VUE_APP_ROOT_API+`patients/2`).then((response) => {
         this.patientInfo = response.data;
       });
     },
     async post_check() {
       axios
-        .post(`http://localhost:3000/patients/2/check_interactions`, {
+        .post(process.env.VUE_APP_ROOT_API+`patients/2/check_interactions`, {
           drugs: this.drugs,
         })
         .then((response) => {
@@ -260,7 +289,7 @@ export default defineComponent({
     },
     async get_medications() {
       axios
-        .get(`http://localhost:3000/patients/2/medications`)
+        .get(process.env.VUE_APP_ROOT_API+`patients/2/medications`)
         .then((response) => {
           this.medications = response.data;
         });
@@ -268,7 +297,7 @@ export default defineComponent({
     async get_drugs(mode = "") {
       axios
         .get(
-          `http://localhost:3000/drugs?name=${this.drugname}&page=${this.drugpage}`
+          process.env.VUE_APP_ROOT_API+`drugs?name=${this.drugname}&page=${this.drugpage}`
         )
         .then((response) => {
           this.drugsInfo = response.data.data;
@@ -299,13 +328,23 @@ export default defineComponent({
 });
 </script>
 <style scoped>
-h2 {
+/* h2 {
   margin: 0 0 30px;
   padding: 0;
   color: #ffffff;
 
   text-align: center;
   font-weight: bold;
+} */
+
+
+@media screen and (max-width: 600px) {
+  .text{
+      margin-top: 10px;
+      letter-spacing:5px;
+      font-size: 24px;
+  }
+  
 }
 ion-text {
   color: rebeccapurple;

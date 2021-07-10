@@ -1,4 +1,4 @@
-<template>
+    <template>
 <ion-page>
     <ion-content class="content">
 
@@ -7,18 +7,18 @@
             <ion-row >
                     <ion-col offset-lg="0.2" offset-xs="3.4" size-lg="1.5" size-xs="6">
                         <div class="image">   
-                        <img src="../../../public/assets/mainlogo.png"  >   
+                        <img src="../../../public/assets/mainlogo.png" @click="router.push('/')">   
                         <!-- <img src="../../../public/assets/logo4.png"  >    -->
                         </div>
                     </ion-col>
-                    <ion-col size-lg="3" offset-lg="0.9">
+                    <ion-col size-lg="3" offset-lg="0.9" size-xs="6" offset-md="0" >
 
                                         
                         <ion-button   class="signup" router-link="/SignupPurchase"> Sign up</ion-button>
               
                     </ion-col>
 
-                     <ion-col pull-lg="1.5"  pull-xs="0"  size-lg="3" size-xs="15"  >
+                     <ion-col pull-lg="1.5"  pull-xs="0"  size-lg="3" size-xs="6" pull-md="3" >
                                         
                         <ion-button router-link="/LoginPurchase" class="login" > Log in</ion-button>
      
@@ -150,7 +150,8 @@ export default defineComponent({
             }
             }).then(res =>{
               //  console.log(res)
-               this.$store.dispatch('fill_userData', res);
+               localStorage.setItem('tokenPurchase', res.accessToken)
+              //  this.$store.dispatch('fill_userData', res);
                 this.router.push('/ProfilePurchase')
             })
             .catch(() =>
@@ -181,6 +182,9 @@ export default defineComponent({
 }
 img , .button{
   margin-top: 25%;
+}
+img:hover{
+  cursor: pointer;
 }
 .signup , .login{
   color: #000000;

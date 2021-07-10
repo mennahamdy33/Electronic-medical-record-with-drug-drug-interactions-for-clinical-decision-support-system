@@ -7,7 +7,7 @@
             <ion-row >
                 <ion-col offset-lg="0.2" offset-xs="3.4" size-lg="1.5" size-xs="6">
                     <div class="image">   
-                    <img src="../../../public/assets/mainlogo.png"  >
+                    <img src="../../../public/assets/mainlogo.png" @click="router.push('/')" >
                     <!-- <img src="../../../public/assets/logo4.png"  >    -->
                     </div>
                 </ion-col>
@@ -164,8 +164,19 @@ export default defineComponent({
                
             }
             }).then(res =>{
-               console.log(res)
-                this.router.push('/doctorProfile')
+              //  console.log(res)
+              //  this.$store.dispatch('set_staffID', res);
+              
+               if(this.Account.proficiency === 'doctor')
+               {
+                 localStorage.setItem('tokendoctor', res.accessToken)
+                 this.router.push('/MainPageDoctor')
+               }else if(this.Account.proficiency === 'secretary'){
+                 localStorage.setItem('tokensecretary', res.accessToken)
+                 this.router.push('/MainPageSecretery')
+               }else{
+                 this.router.push('/')
+               }
             })
             .catch(() =>
             { 
@@ -198,7 +209,9 @@ export default defineComponent({
 img{
   margin-top: 25%;
 }
-
+img:hover{
+  cursor: pointer;
+}
 .login-box {
    
   padding: 35px;

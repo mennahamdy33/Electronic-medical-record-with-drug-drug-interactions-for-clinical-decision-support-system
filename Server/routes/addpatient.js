@@ -50,6 +50,7 @@ router.post('/addpatient', async (req, res) => {
                 console.log(addmedication[m]["parent_key"]);
                 const add2 = await trx('medications').insert(medication);
 
+
             }
             console.log(patient_id[0]);
             console.log()

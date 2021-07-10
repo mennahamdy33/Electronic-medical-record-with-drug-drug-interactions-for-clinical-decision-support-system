@@ -13,8 +13,9 @@
         <ion-item @click="Goto('home')" button >Home</ion-item>
         <ion-item @click="Goto('about')" button>About</ion-item>
         <ion-item @click="Goto('features')" button>Features</ion-item>
-        <ion-item button router-link="/SignupPurchase">Purchase</ion-item>
-        <ion-item button router-link="/Login">Log in</ion-item>
+        <ion-item button  @click="isloggedin">Purchase</ion-item>
+        <!-- <ion-item button router-link="/SignupPurchase">Purchase</ion-item> -->
+        <ion-item button @click="islogged" >Log in</ion-item>
         <ion-item button router-link="/Signup">Sign up</ion-item>
       </ion-list>
     </ion-content>
@@ -57,11 +58,11 @@
                 </ion-col>
 
                 <ion-col pull-lg="1" >
-                  <ion-button class="normal" router-link="/SignupPurchase" >Purchase</ion-button>
+                  <ion-button class="normal" @click="isloggedin" >Purchase</ion-button>
                 </ion-col>
 
                 <ion-col pull="0.1" >
-                  <ion-button router-link="/Login" class="login" > Log in</ion-button>
+                  <ion-button @click="islogged" class="login" > Log in</ion-button>
                 </ion-col>
 
                 <ion-col >
@@ -149,6 +150,8 @@ import {
 import Features from './Features.vue';
 import About from './About'
 import Home from './Home.vue';
+import {useRouter} from 'vue-router';
+
 // import FooterPart from './FooterPart'
 export default defineComponent({
   name: 'LandingPage',
@@ -195,10 +198,43 @@ export default defineComponent({
       // this.$refs.content.scrollToPoint(null, 500)
       // this.content.scrollY(50)
       // this.content.scrollToPoint(null, 500)
+    },
+    isloggedin(){
+      if(localStorage.getItem('tokenPurchase') === null) {
+
+         this.router.push('/SignupPurchase')
+      } else {
+          this.router.push('/ProfilePurchase')
+      }
+      
+    }
+ 
+  ,
+    islogged(){
+      if(localStorage.getItem('tokendoctor') === null && localStorage.getItem('tokensecretary') === null) {
+
+         this.router.push('/Login')
+      }else if(localStorage.getItem('tokendoctor') !== null && localStorage.getItem('tokensecretary') === null){
+        this.router.push('/MainPageDoctor')
+      }
+      else if(localStorage.getItem('tokendoctor') === null && localStorage.getItem('tokensecretary') !== null){
+        this.router.push('/MainPageSecretery')
+      }
+      
+      else {
+        localStorage.removeItem('tokendoctor');
+        localStorage.removeItem('tokensecretary');
+        this.router.push('/Login')
+      }
+      
     }
  
   }
 ,
+  setup(){
+    const router = useRouter();
+    return { router };
+  }
 
 });
 </script>

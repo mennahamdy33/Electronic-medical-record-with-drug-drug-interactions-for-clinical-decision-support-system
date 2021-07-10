@@ -28,6 +28,7 @@
               display-format="MMM DD, YYYY HH:mm	"
               placeholder="Select Time"
               min="2021-02-05"
+              v-model="time"
             ></ion-datetime>
           </ion-col>
         </ion-row>
@@ -69,6 +70,7 @@ export default defineComponent({
     return {
       doctorName: this.name,
       patientSSN: this.SSN,
+      time: ''
     };
   },
   computed: {
@@ -82,6 +84,7 @@ export default defineComponent({
       //   return {currentConvDate};
       // }
       // else{
+        
       return "2021-02-05";
       // }
     },
@@ -101,6 +104,7 @@ export default defineComponent({
         'Content-Type': 'application/json'
         },
       });
+      console.log(this.time.split('T')[0] , this.time.split('T')[1].split('.')[0] )
       console.log(data);
       // Handle response we get from the API
       fetch(request).then(() => {

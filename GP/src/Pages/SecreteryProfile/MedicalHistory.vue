@@ -133,6 +133,7 @@
     
 </template>
 <script>
+    import {useRouter} from 'vue-router';
     import axios from 'axios';
     import FormButton from '../../components/FormButton';
 
@@ -192,7 +193,10 @@
 
                     let data = {...this.$store.getters['patient/PatientData'], ...this.MedicalHistory  };
                     axios.post(process.env.VUE_APP_ROOT_API+"addpatient", data)
-                            .then()
+                            .then(()=> {
+                                this.$store.dispatch('patient/changePhase', {currentPhase: 'PersonalInfo'});
+                                // this.router.push('/MainPageSecretery')
+                            })
                             .catch(error => console.log(error));
 
                 }else{
@@ -207,17 +211,11 @@
                 this.$store.dispatch('patient/changePhase', phase);
 
             },
-            // sendPatientData(){
-            //
-            //     axios.post('http://localhost:8000/medicalhistory',this. MedicalHistory)
-            //         .then(response=> console.log(response))
-            //         .catch(error => console.log(error));
-            // },
             ...mapActions('patient',['changePhase']),
         },
-        computed: {
-
-
+        setup(){
+            const router = useRouter();
+            return { router };
         }
     })
 </script>

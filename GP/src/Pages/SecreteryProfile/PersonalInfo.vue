@@ -97,16 +97,16 @@
                                 <ion-row>
                                     <ion-col size="12" class="medication" size-sm>
                                         <ion-searchbar
+
                                                 debounce="500"
-                                                show-cancel-button="never"
                                                 @ionChange="
                   ($event) => {
                     drugname = $event.target.value;
                     get_drugs('reset');
                   }
                 "
-                                        ></ion-searchbar>
-                                        <ion-list v-show="drugname != ''">
+                                        ></ion-searchbar >
+                                        <ion-list v-show="drugname != '' && menuOpen">
                                             <ion-button v-if="drugsInfo.length >= 10" @click="next()"
                                             ><ion-text>next</ion-text></ion-button>
                                             <ion-button v-if="drugpage >= 2" @click="prev()" color="dark"
@@ -125,6 +125,18 @@
 
                                     </ion-col>
                                 </ion-row>
+                                <ion-row :key="item.id"
+                                         v-for="item in PatientInfo.Medications">
+                                    <ion-col  size="12" class="medicationlist" size-sm>
+
+                                    <ion-label
+                                               > {{ item }}
+                                        <ion-button fill="clear" @click="DeleteFromList(item)" size="small" class="ion-justify-content-center"
+                                        ><ion-icon :icon="closeCircleOutline"></ion-icon></ion-button>
+                                    </ion-label>
+
+                                    </ion-col>
+                                </ion-row>
                             </ion-grid>
                             <ion-row>
                                 <ion-col size-lg="2" size-xs="6" >
@@ -136,6 +148,8 @@
 
 </template>
 <script>
+    import { closeCircleOutline} from "ionicons/icons";
+
     import axios from 'axios';
     import FormButton from '../../components/FormButton';
     import {alertController} from '@ionic/vue';
@@ -143,7 +157,7 @@
     import {
         IonSearchbar,
         IonGrid,IonRow,IonCol,
-
+        IonIcon,
         IonLabel,
         IonText,
         IonCard,
@@ -156,7 +170,7 @@
     export default defineComponent({
         name: "PersonalInfo",
         components: {
-            IonSearchbar,
+            IonSearchbar,IonIcon,
             FormButton, IonGrid, IonRow, IonCol,IonButton,
             IonList, IonItem,IonText,
             IonCard,IonLabel,
@@ -165,7 +179,8 @@
         data() {
             return {
                 //model: null,
-
+                closeCircleOutline,
+                menuOpen: false,
                 PatientInfo: {
                     firstName: "",
                     lastName: "",
@@ -202,12 +217,22 @@
             chooseMedication(item){
                 console.log(item);
                 this.PatientInfo['Medications'].push(item);
+                this.menuOpen = false;
+
+
 
             },
+            DeleteFromList(item){
+                const index = this.PatientInfo.Medications.indexOf(item);
+                if (index > -1) {
+                    this.PatientInfo.Medications.splice(index, 1);
+                }
+            },
             async get_drugs(mode = "") {
+                this.menuOpen = true;
                 axios
                     .get(
-                        `http://localhost:3000/drugs?name=${this.drugname}&page=${this.drugpage}`
+                        process.env.VUE_APP_ROOT_API+`drugs?name=${this.drugname}&page=${this.drugpage}`
                     )
                     .then((response) => {
                         let uniqueChars = [...new Set(response.data.data.map(a => a.name))];
@@ -453,5 +478,19 @@
         cursor: pointer;
         background: #f1f1f1
     }
+    .medicationlist ion-label{
+        font-family:  Arial, Helvetica, sans-serif;
 
+
+        font-weight: 500;
+        letter-spacing: 0.9px;
+        color:#000000;
+        background-color: #ffffff;
+        border-radius: 50px;
+        padding: 20px;
+    }
+    .medicationlist ion-button{
+        background-color: #ffffff;
+
+    }
 </style>

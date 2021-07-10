@@ -7,7 +7,6 @@
                     <!-- <ion-col class="left"  size-lg="4" offset-lg="2" size-xs="12"> -->
                         
 
-                        
                         <ion-grid  >
                             <ion-row >
                                 <!-- <ion-col > -->
@@ -25,7 +24,7 @@
                             </ion-row>
                             <ion-row >
                                 <ion-col  >
-                                <ion-label> Noran Tharowat </ion-label>
+                                <ion-label> {{doctorInfo.first_name}} {{doctorInfo.last_name}} </ion-label>
                                 </ion-col>
                             </ion-row>
                         </ion-grid>
@@ -43,13 +42,13 @@
                                 <ion-row>
                                     <ion-col size-lg="" size-xs="12" >
                                         <ion-label> First Name </ion-label>
-                                        <p>  {{doctorInfo.FistName}} </p>
+                                        <p>  {{doctorInfo.first_name}} </p>
                                     </ion-col>
                                     
                                     <ion-col size-lg="" size-xs="12" >
                                     
                                         <ion-label> Last Name </ion-label>
-                                         <p>  {{doctorInfo.LastName}} </p>
+                                         <p>  {{doctorInfo.last_name}} </p>
                                     </ion-col>
 
                                 </ion-row>
@@ -62,7 +61,7 @@
                                     <ion-col size-lg="" size-xs="12" >
                                     
                                         <ion-label> Birth Date </ion-label>
-                                         <p>  {{doctorInfo.birthdate}} </p>
+                                         <p>  {{doctorInfo.birth_date}} </p>
                                     </ion-col>
 
                                 </ion-row>
@@ -70,9 +69,9 @@
                                     <ion-col size="12" size-sm>
 
                                         <ion-label>Gender </ion-label>
-                                        <ion-icon v-if="doctorInfo.Gender === 'Female'"  :icon="female" ></ion-icon>
-                                        <ion-icon v-if="doctorInfo.Gender === 'Male'"  :icon="male" ></ion-icon>
-                                        <p>  {{doctorInfo.Gender}}</p>
+                                        <ion-icon v-if="doctorInfo.gender === 'female'"  :icon="female" ></ion-icon>
+                                        <ion-icon v-if="doctorInfo.gender === 'male'"  :icon="male" ></ion-icon>
+                                        <p>  {{doctorInfo.gender}}</p>
                                     </ion-col>
 
                                     <ion-col size="12" size-sm>
@@ -84,12 +83,12 @@
                                 <ion-row>
                                     <ion-col size="12" size-sm>
                                         <ion-label>Phone Number </ion-label>
-                                        <p> {{doctorInfo.PhoneNumber}}</p>
+                                        <p> {{doctorInfo.phone_number}}</p>
                                     </ion-col>
 
                                     <ion-col size="12" size-sm>
                                         <ion-label>Address </ion-label>
-                                        <p> {{doctorInfo.Address}}</p>
+                                        <p> {{doctorInfo.address}}</p>
 
                                     </ion-col>
 
@@ -97,13 +96,13 @@
                                 <ion-row>
                                     <ion-col size="12" size-sm>
                                         <ion-label>Education </ion-label>
-                                        <p> {{doctorInfo.Education}}</p>
+                                        <p> {{doctorInfo.education}}</p>
 
                                     </ion-col>
 
                                     <ion-col size="12" size-sm>
                                         <ion-label>Specialty </ion-label>
-                                        <p>{{doctorInfo.Specialty}}</p>
+                                        <p>{{doctorInfo.specialty}}</p>
 
                                     </ion-col>
 
@@ -111,7 +110,7 @@
                                 <ion-row>
                                     <ion-col size="12" size-sm>
                                         <ion-label>Work In </ion-label>
-                                        <p v-for="clinic in doctorInfo.clinics " :key="clinic"> {{clinic}}</p>
+                                        <p v-for="clinic in clinics " :key="clinic.clinic_id"> {{clinic.clinic_name}} , address: {{clinic.address }}</p>
                                         <!-- <p :v-for="clinic in doctorInfo.clinics "> {{clinic}}</p> -->
 
                                     </ion-col>
@@ -173,39 +172,34 @@
             return {
                 female,
                 male,
-                doctorInfo:{
-                    FistName:  "Menna",
-                    LastName: "Hamdy",
-                    ssn:"242423435t4",
-                    email:"manna@gmail.com",
-                    birthdate:"2021-04-14",
-                    clinics:['clinic1' , 'clinic2'],
-                    Gender: "Female",
-                    Birthdate:"5/12/1998",
-                    PhoneNumber:"01224235423",
-                    Address:"hth,ggrgr,geg",
-                    Education:'Cairo University',
-                    Specialty:'Cardiology',
-                    Patients:['patient1','patient2','patient3'],
-                    photo: []
-                },
+                doctorInfo:{},
+                clinics: []
             };
         },
 
-    mounted(){
+    async mounted(){
+
+        // this.doctorInfo = this.$store.getters['staffID']
+        await fetch(process.env.VUE_APP_ROOT_API+`doctorProfile`,{
+            method: 'get',
+            headers: {'Content-Type': 'application/json', 'authorization': 'Bearer '+localStorage.getItem('tokendoctor')},
+          })
+          .then(response => response.json())
+          .then(doctor => {
+              doctor.birth_date = doctor.birth_date.split('T')[0];
+              this.doctorInfo = doctor
+            // console.log(this.profilePhoto)
+            
+          } )
+
+       await fetch(process.env.VUE_APP_ROOT_API+`docworksIn`,{
+            method: 'get',
+            headers: {'Content-Type': 'application/json', 'authorization': 'Bearer '+localStorage.getItem('tokendoctor')},
+        }) .then(response => response.json())
+        .then(clinics => {
     
-     fetch(process.env.VUE_APP_ROOT_API+`doctorProfile/20`) .then(response => response.json())
-    .then(photo => {
-
-        
-        if(photo.length)
-        {
-
-            this.doctorInfo.photo = photo[0].photo
-        }else{
-            this.doctorInfo.photo = 'null'
-        }
-    } )
+            this.clinics = clinics    
+        } )
     
   }, 
     });
