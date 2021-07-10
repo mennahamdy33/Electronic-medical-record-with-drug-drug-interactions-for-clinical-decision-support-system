@@ -7,11 +7,11 @@
                        <h2>Patients List</h2>
                        <div class="user-box">
                            <input type="text" name="patientSSN" v-model="searchQuerywithssn" required />
-                           <label>Patient's SSN </label>
+                           <label class="Down">Patient's SSN </label>
                        </div>
                        <div class="user-box">
                            <input type="text" v-model="searchQuerywithPhoneNumber" name="patientNumber" required />
-                           <label>Patient's Phone Number</label>
+                           <label class="Down">Patient's Phone Number</label>
                        </div>
                    </div>
                </ion-col>
@@ -195,94 +195,5 @@ import PatientCard from "../../components/PatientCard";
         --background: linear-gradient(#141e30, #243b55);
     }
 
-    .FormGrid ion-col {
-        --ion-grid-column-padding: 20px;
-    }
-    .login-box h2 {
-        margin: 0 0 30px;
-        padding: 0;
-        color: #ffffff;
-        /* color: #05545a; */
-        text-align: center;
-        font-weight: bold;
-    }
-    img {
-        display: block;
-        /* margin-left: auto;
-        margin-right: auto; */
-        /* padding: 5px; */
-        /* width:13em; */
-    }
-    .tool{
-        --background: #141e30;
-        /* --border-color: #80fbff;
-        --border-width: 2px; */
-
-    }
-    ion-title{
-        padding: 0;
-    }
-
-    .personal_photo{
-        /* vertical-align: middle; */
-        /* width: 80px; */
-        /* height: 80px; */
-        border-radius: 50%;
-        border: 3px solid #33bbb4;
-        /* border: 3px solid #42f3ea; */
-    }
-
-
-
-    .user-box input {
-        width: 100%;
-        padding: 10px 0;
-        font-size: 16px;
-        color: #fff;
-        margin-bottom: 30px;
-        border: none;
-        border-bottom: 1px solid #fff;
-        outline: none;
-        background: transparent;
-    }
-    .user-box label {
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 10px 0;
-        font-size: 16px;
-        color: #fff;
-        pointer-events: none;
-        transition: 0.5s;
-    }
-
-    .login-box .user-box input:focus ~ label,
-    .login-box .user-box input:valid ~ label {
-        top: -20px;
-        left: 0;
-        color: #03e9f4;
-
-        /* color: #05545a; */
-        /* color: #d1fdff; */
-        font-size: 16px;
-        font-weight: bold;
-    }
-    .personal_photo_bar{
-        max-height:35px;
-        max-width:35px;
-        border-radius: 50%;
-        border: 1px solid #42f3ea;
-    }
-
-
-    @media only screen and (max-width: 992px) {
-        .personal_photo_bar{
-            max-height:25px;
-            max-width:25px;
-            border-radius: 50%;
-
-            border: 1px solid #42f3ea;
-        }
-    }
 
 </style>
