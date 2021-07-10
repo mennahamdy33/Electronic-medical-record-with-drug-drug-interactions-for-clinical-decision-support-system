@@ -70,7 +70,7 @@ export default defineComponent({
     return {
       doctorName: this.name,
       patientSSN: this.SSN,
-      time: ''
+      time: "",
     };
   },
   computed: {
@@ -84,7 +84,7 @@ export default defineComponent({
       //   return {currentConvDate};
       // }
       // else{
-        
+
       return "2021-02-05";
       // }
     },
@@ -95,16 +95,18 @@ export default defineComponent({
       let data = {
         name: this.doctorName,
         patientSSN: this.patientSSN,
+        day: this.time.split("T")[0],
+        time: this.time.split("T")[1].split(".")[0],
       };
 
       var request = new Request(url, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
-        'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
       });
-      console.log(this.time.split('T')[0] , this.time.split('T')[1].split('.')[0] )
+      // console.log(this.time.split('T')[0] , this.time.split('T')[1].split('.')[0] )
       console.log(data);
       // Handle response we get from the API
       fetch(request).then(() => {
