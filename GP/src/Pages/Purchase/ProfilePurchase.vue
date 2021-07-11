@@ -12,10 +12,12 @@
                         </div>
                     </ion-col>
 
-                    <ion-col size-lg="3" size-xs="6" >
-                      <form-button  @click="logout" type="button" buttonText="Log out"/>
+                    
+                    <ion-col size-lg="3" offset-lg="0.9" size-xs="6" offset-md="0" >
+                 
+                        <ion-button   class="signup" @click="logout"> Log out</ion-button>
+              
                     </ion-col>
-                   
                 </ion-row>
                   
                 <ion-row class="ion-justify-content-center">
@@ -296,7 +298,22 @@ export default defineComponent({
   --background: linear-gradient(#141e30, #243b55);
   
 }
+.signup{
+  color: #000000;
+  --background: #ffffff;
+  --border-radius: 300px;
+  width: 140px;
+  height: 55px;
+}
 
+.signup:hover {
+--background: transparent ;
+border : 2px solid #ffffff;
+border-radius: 300px;
+color: #ffffff;
+transition-duration: 0.4s;
+
+}
 img , .button{
   margin-top: 25%;
 }

@@ -119,7 +119,7 @@
 
                                 </ion-row>
                                 
-                                <ion-row  >
+                                <!-- <ion-row  >
                                     <ion-col offset-lg="10" size="12" size-sm>
                                         <ion-button   class="button">Edit</ion-button>
 
@@ -127,7 +127,7 @@
 
                                     
 
-                                </ion-row>
+                                </ion-row> -->
                               
                                 
                             </ion-grid>
@@ -151,7 +151,8 @@
         IonRow,
         IonCol,
         IonAvatar ,
-        IonButton   } from "@ionic/vue";
+        // IonButton  
+         } from "@ionic/vue";
     // import BaseTemplate from "../../components/BaseTemplate";
     export default defineComponent({
         name: 'MyProfileDoctor',
@@ -165,7 +166,7 @@
             IonRow,
             IonCol,
             IonAvatar,
-            IonButton
+            // IonButton
         },
 
         data(){
