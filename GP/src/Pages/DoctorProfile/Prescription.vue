@@ -97,11 +97,11 @@
                 "
               ></ion-searchbar>
               <ion-list>
-                <ion-button v-if="drugsInfo.length >= 10" @click="next()"
-                  ><ion-text>next</ion-text></ion-button
+                <ion-button v-if="drugsInfo.length >= 5" @click="next()"
+                  ><ion-text class="white">next</ion-text></ion-button
                 >
                 <ion-button v-if="drugpage >= 2" @click="prev()" color="dark"
-                  ><ion-text>prev</ion-text></ion-button
+                  ><ion-text class="white">prev</ion-text></ion-button
                 >
                 <ion-item
                   style="d-flex align-items-center"
@@ -121,7 +121,7 @@
                       }}</ion-badge>
                     </ion-col>
                     <ion-button @click="drugs.push(item)" color="dark"
-                      ><ion-text>Add </ion-text></ion-button
+                      ><ion-text class="white">Add </ion-text></ion-button
                     >
                   </ion-row>
                 </ion-item>
@@ -401,5 +401,8 @@ export default defineComponent({
 }
 ion-text {
   color: rebeccapurple;
+}
+.white{
+  color: white;
 }
 </style>
