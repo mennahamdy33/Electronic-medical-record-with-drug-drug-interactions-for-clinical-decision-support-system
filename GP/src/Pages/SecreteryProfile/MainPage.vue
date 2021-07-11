@@ -43,7 +43,8 @@
     </ion-menu>
 
     <ion-content id="main" class="content"    >
-      <div style=" position: -webkit-sticky;position: sticky;  top: 0;">
+      <div style="top: 0;">
+      <!-- <div style=" position: -webkit-sticky;position: sticky;  top: 0;"> -->
         <ion-header   >
           <ion-toolbar class="tool"  >
             <!-- <ion-toolbar color="primary"> -->
