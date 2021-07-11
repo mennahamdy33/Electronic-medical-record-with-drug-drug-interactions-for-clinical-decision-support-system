@@ -1,63 +1,52 @@
 <template>
-
-
-<ion-grid  >      
-
-
-
-  <ion-row class="ion-justify-content-center">
-
-    <ion-col  size-lg="5.5" class="login-box">
-        <div >
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-lg="5.5" class="login-box">
+        <div>
           <h2>Book A Doctor</h2>
           <form v-on:submit.prevent="">
-              <ion-grid class="FormGrid">
+            <ion-grid class="FormGrid">
+              <ion-row class="ion-justify-content-center">
+                <ion-col size="12" size-sm size-lg="8">
+                  <!-- <form-field type="text" LableText="Email"/> -->
+                  <div class="user-box">
+                    <input
+                      type="number"
+                      name="patientSSN"
+                      v-model="patientSSN"
+                      required=""
+                    />
+                    <label class="Down">Patient's SSN </label>
+                  </div>
+                </ion-col>
+              </ion-row>
 
-                  <ion-row class="ion-justify-content-center" >
-                      <ion-col size="12" size-sm size-lg="8" >
-                          <!-- <form-field type="text" LableText="Email"/> -->
-                          <div class="user-box">
-                          <input
-                            type="number"
-                            name="patientSSN"
-                            v-model="patientSSN"
-                            required=""
-                          />
-                          <label class="Down">Patient's SSN </label>
-                                          
-                          </div>
-                      </ion-col>
-                  
-                  </ion-row>
+              <ion-row class="ion-justify-content-center">
+                <ion-col size="12" size-sm size-lg="8">
+                  <!-- <form-field type="password" LableText="Password"/> -->
+                  <div class="user-box">
+                    <input v-model="searchQuery" name="doctor" required="" />
+                    <label class="Down">Doctor's Name</label>
+                  </div>
+                </ion-col>
+              </ion-row>
 
-                  <ion-row class="ion-justify-content-center"> 
-                      <ion-col size="12" size-sm size-lg="8">
-                          <!-- <form-field type="password" LableText="Password"/> -->
-                          <div class="user-box">
-                            <input v-model="searchQuery" name="doctor" required="" />
-                            <label class="Down">Doctor's Name</label>
-                                          
-                          </div>
-                      </ion-col>
-                      
-                  </ion-row>
-      
-
-                  <ion-row class="ion-justify-content-center">
-                  
-                      <ion-col size-lg="3" size-xs="6" >
-                          <form-button  @click="Login"  type="button" buttonText="Submit"/>
-                      </ion-col>
-                  </ion-row>
-              </ion-grid>
+              <ion-row class="ion-justify-content-center">
+                <ion-col size-lg="3" size-xs="6">
+                  <form-button
+                    @click="Login"
+                    type="button"
+                    buttonText="Submit"
+                  />
+                </ion-col>
+              </ion-row>
+            </ion-grid>
           </form>
         </div>
-    </ion-col>
+      </ion-col>
+    </ion-row>
 
-  </ion-row>
-
-
-<ion-row>
+    <ion-row>
       <doctor-card
         v-for="doctor in resultedDoctors"
         :key="doctor.id"
@@ -67,9 +56,7 @@
         :ssn="patientSSN"
       ></doctor-card>
     </ion-row>
-
-</ion-grid>
-
+  </ion-grid>
 </template>
 
 
@@ -103,7 +90,7 @@ export default {
   },
   methods: {
     retrieveDoctors() {
-      fetch("http://localhost:3000/showDoctors")
+      fetch(process.env.VUE_APP_ROOT_API + "showDoctors")
         .then((response) => {
           if (response.ok) {
             return response.json();
