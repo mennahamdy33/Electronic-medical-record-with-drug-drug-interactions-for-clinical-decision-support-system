@@ -91,19 +91,20 @@ export default defineComponent({
   },
   methods: {
     submitBooking() {
-      const url = "http://localhost:3000/submitBooking";
+      const url = process.env.VUE_APP_ROOT_API + "submitBooking";
       let data = {
         name: this.doctorName,
         patientSSN: this.patientSSN,
         day: this.time.split("T")[0],
         time: this.time.split("T")[1].split(".")[0],
       };
-
+      console.log(localStorage.getItem(""))
       var request = new Request(url, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
+          "authorization": "Bearer " +localStorage.getItem('tokensecretary')
         },
       });
       // console.log(this.time.split('T')[0] , this.time.split('T')[1].split('.')[0] )
