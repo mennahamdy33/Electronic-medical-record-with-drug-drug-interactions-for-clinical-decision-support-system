@@ -15,16 +15,20 @@
         <ion-card-content>
           <ion-list>
             <ion-item
+              @click="selectPatient(item)"
               style="d-flex justify-items-between"
               :key="item.id"
               v-for="item in patients"
             >
-              <ion-card @click="selectPatient(item)">
+              <ion-col>
                 <ion-label>
                   {{ item.first_name }} {{ item.last_name }}</ion-label
                 >
                 <ion-text> SSN {{ item.ssn }}</ion-text>
-              </ion-card>
+              </ion-col>
+              <ion-item>
+                <ion-text> {{ item.time }}</ion-text>
+              </ion-item>
             </ion-item>
           </ion-list>
         </ion-card-content>
@@ -72,22 +76,11 @@
 
           <ion-card>
             <ion-card-header>
-              <ion-card-subtitle>Diagnosis</ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content>
-              <ion-textarea
-                placeholder="Enter more information here..."
-              ></ion-textarea>
-            </ion-card-content>
-          </ion-card>
-
-          <ion-card>
-            <ion-card-header>
               <ion-card-subtitle>Drugs List</ion-card-subtitle>
             </ion-card-header>
             <ion-card-content>
               <ion-searchbar
-                debounce="500"
+                debounce="100"
                 show-cancel-button="never"
                 @ionChange="
                   ($event) => {
@@ -97,7 +90,7 @@
                 "
               ></ion-searchbar>
               <ion-list>
-                <ion-button v-if="drugsInfo.length >= 10" @click="next()"
+                <ion-button v-if="drugsInfo.length >= 5" @click="next()"
                   ><ion-text>next</ion-text></ion-button
                 >
                 <ion-button v-if="drugpage >= 2" @click="prev()" color="dark"
@@ -120,9 +113,17 @@
                         item.parent_key
                       }}</ion-badge>
                     </ion-col>
-                    <ion-button @click="drugs.push(item)" color="dark"
-                      ><ion-text>Add </ion-text></ion-button
-                    >
+                    <ion-item>
+                      <ion-datetime
+                        value="2019-10-01T15:43:40.394Z"
+                        display-timezone="utc"
+                      ></ion-datetime>
+                    </ion-item>
+                    <ion-item>
+                      <ion-button @click="addDrug(item, date)" color="dark"
+                        ><ion-text>Add </ion-text></ion-button
+                      >
+                    </ion-item>
                   </ion-row>
                 </ion-item>
               </ion-list>
@@ -153,6 +154,10 @@
                           item.parent_key
                         }}</ion-badge>
                       </ion-col>
+
+                      <ion-button @click="removeDrug(item)" color="dark"
+                        ><ion-text>Remove </ion-text></ion-button
+                      >
                     </ion-row>
                   </ion-item>
                 </ion-list>
@@ -197,19 +202,27 @@
                 </ion-list>
               </ion-card-content>
             </ion-card>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-subtitle>Diagnosis</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-textarea
+                  v-model="diagnosis"
+                  placeholder="Enter more information here..."
+                ></ion-textarea>
+              </ion-card-content>
+            </ion-card>
           </ion-col>
-          <ion-card>
-            <ion-card-header>
-              <ion-card-subtitle>Doctor Signature</ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content>
-              <ion-textarea placeholder="Please sign here..."></ion-textarea>
-            </ion-card-content>
-          </ion-card>
           <ion-grid>
             <ion-row class="ion-justify-content-center">
               <ion-col size-lg="2" size-md="3" size-xs="4">
-                <form-button buttonText="Exit" type="button" />
+                <form-button
+                  v-if="drugs.length >= 1 && interactions.length <= 0"
+                  @click="post_diagnosis"
+                  buttonText="Submit"
+                  type="button"
+                />
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -245,6 +258,8 @@ import axios from "axios";
 import FormButton from "../../components/FormButton";
 import Modal from "../../components/Medications_Modal";
 import { earthOutline } from "ionicons/icons";
+import moment from "moment";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "Prescription",
@@ -283,6 +298,7 @@ export default defineComponent({
       patients: [],
       interactions_medications: [],
       interactions_drugs: [],
+      diagnosis: "",
     };
   },
   async mounted() {
@@ -290,12 +306,29 @@ export default defineComponent({
     // await this.get_patient();
     await this.get_drugs();
   },
-  setup() {},
+  setup() {
+    const router = useRouter();
+    return { router };
+  },
   methods: {
+    moment: function() {
+      return moment();
+    },
     async selectPatient(item) {
       this.patientInfo = item;
       await this.get_medications();
     },
+    async removeDrug(value) {
+      this.drugs = this.drugs.filter((item) => {
+        console.log(item.product_id);
+        return item.product_id != value.product_id;
+      });
+    },
+    async addDrug(item, to_date) {
+      this.drugs.push({ ...item, to_date: to_date });
+      console.log(this.drugs);
+    },
+
     async get_patients() {
       axios.defaults.headers.common["Authorization"] =
         "Bearer " + localStorage.getItem("tokendoctor");
@@ -331,6 +364,29 @@ export default defineComponent({
           this.interactions = response.data.results;
           this.interactions_medications = response.data.medications;
           this.interactions_drugs = response.data.drugs;
+        });
+    },
+    async post_diagnosis() {
+      axios
+        .put(
+          process.env.VUE_APP_ROOT_API +
+            `visits/` +
+            this.patientInfo.visit_id +
+            `/prescription`,
+          {
+            drugs: this.drugs,
+            diagnosis: this.diagnosis,
+          }
+        )
+        .then(() => {
+          this.router.push({
+            path: "PrescriptionPreview",
+            params: {
+              patinetInfo: this.patientInfo,
+              drugs: this.drugs,
+              diagnosis: this.diagnosis,
+            },
+          });
         });
     },
     async get_medications() {
@@ -398,8 +454,5 @@ export default defineComponent({
     letter-spacing: 5px;
     font-size: 24px;
   }
-}
-ion-text {
-  color: rebeccapurple;
 }
 </style>
