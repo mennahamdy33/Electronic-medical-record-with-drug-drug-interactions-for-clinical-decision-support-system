@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
-import BookDoctor from '../Pages/BookDoctor'
 import LandingPage from '../Pages/LandingPage/LandingPage.vue'
 // import store from '../store/index.js'
 import Signup from '../Pages/Signup/Signup.vue'
@@ -16,6 +15,7 @@ import AddPatient from '../Pages/SecreteryProfile/AddPatient.vue'
 import BookVisit from '../Pages/SecreteryProfile/BookVisit.vue'
 import MySchedules from '../Pages/DoctorProfile/Schedules.vue'
 import Prescription from '../Pages/DoctorProfile/Prescription.vue'
+import todaySchedules from '../Pages/SecreteryProfile/Schedules.vue'
 //import AllPatients from '../Pages/PatientProfile/AllPatients.vue'
 const routes = [
   {
@@ -26,116 +26,116 @@ const routes = [
     path: '/home',
     component: LandingPage,
   },
-  
+
+
+  { path: '/Signup', component: Signup },
+
+
+  { path: '/Login', component: Login },
+
+  { path: '/SignupPurchase', component: SignupPurchase },
+
+  { path: '/LoginPurchase', component: LoginPurchase },
+
+
   {
-    path: '/bookDoctor',
-    name:'bookDoctor',
-    component: BookDoctor
-  },
-
-  {path: '/Signup' , component: Signup},
-
-
-  {path: '/Login' , component: Login},
-
-  {path: '/SignupPurchase' , component: SignupPurchase},
-
-    {path: '/LoginPurchase' , component: LoginPurchase},
-
-
-  {path: '/ProfilePurchase' ,
-   component:  ProfilePurchase ,
+    path: '/ProfilePurchase',
+    component: ProfilePurchase,
     beforeEnter: (to, from, next) => {
-      if(localStorage.getItem('tokenPurchase') === null) {
+      if (localStorage.getItem('tokenPurchase') === null) {
 
-          next('/LoginPurchase');
+        next('/LoginPurchase');
       } else {
-          next();
+        next();
       }
     }
-},
-
-  
+  },
 
 
 
-   {
-      path: '/MainPageDoctor',
-      component:MainPageDoctor,
-      beforeEnter: (to, from, next) => {
-        if(localStorage.getItem('tokendoctor') === null) {
-            next('/Login');
-        } else {
-            next();
-        }
-      },
-      // redirect: '/MainPageDoctor/MyProfileDoctor',
-      children: 
+
+
+  {
+    path: '/MainPageDoctor',
+    component: MainPageDoctor,
+    beforeEnter: (to, from, next) => {
+      if (localStorage.getItem('tokendoctor') === null) {
+        next('/Login');
+      } else {
+        next();
+      }
+    },
+    // redirect: '/MainPageDoctor/MyProfileDoctor',
+    children:
       [
         {
           path: 'MyProfileDoctor',
           component: MyProfileDoctor,
-             
-          
+
+
         },
         {
           path: 'MySchedules',
           component: MySchedules,
-             
-          
+
+
         },
         {
           path: 'Prescription',
           component: Prescription,
-             
-          
+
+
         },
-          {
-              path: 'myPatients',
-              component:() => import('../Pages/DoctorProfile/myPatients')
+        {
+          path: 'myPatients',
+          component: () => import('../Pages/DoctorProfile/myPatients')
 
 
-          },
+        },
 
       ]
   },
   {
-      path: '/MainPageSecretery',
-      component:MainPageSecretery,
-      beforeEnter: (to, from, next) => {
-        if(localStorage.getItem('tokensecretary') === null) {
-            next('/Login');
-        } else {
-            next();
-        }
-      },
-      // redirect: '/MainPageDoctor/MyProfileDoctor',
-      children: 
+    path: '/MainPageSecretery',
+    component: MainPageSecretery,
+    beforeEnter: (to, from, next) => {
+      if (localStorage.getItem('tokensecretary') === null) {
+        next('/Login');
+      } else {
+        next();
+      }
+    },
+    // redirect: '/MainPageDoctor/MyProfileDoctor',
+    children:
       [
+        {
+          path: '/todaySchedule',
+          component: todaySchedules
+        }, 
         {
           path: 'MyProfileSecretery',
           component: MyProfileSecretery,
-             
-          
+
+
         },
         {
           path: 'AddPatient',
           component: AddPatient,
-             
-          
+
+
         },
         {
           path: 'BookVisit',
           component: BookVisit,
-             
-          
+
+
         },
-          {
-              path: 'AllPatients',
-              component:() => import('../Pages/SecreteryProfile/AllPatients')
+        {
+          path: 'AllPatients',
+          component: () => import('../Pages/SecreteryProfile/AllPatients')
 
 
-          },
+        },
 
 
 
@@ -147,8 +147,8 @@ const routes = [
 
 
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
-    routes
+  history: createWebHistory(process.env.BASE_URL),
+  routes
 });
 
 export default router

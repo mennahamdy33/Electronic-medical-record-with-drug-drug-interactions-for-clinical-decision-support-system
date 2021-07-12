@@ -106,9 +106,8 @@
           </ion-toolbar>
         </ion-header>
       </div>
-      <!-- <MySchedules v-if="$route.path ==='/MainPageDoctor'"/> -->
+      <todaySchedules v-if="$route.path ==='/MainPageSecretery'"/>
       <router-view> </router-view>
-      <!-- <router-view > <MyProfileDoctor/> </router-view> -->
     </ion-content>
   </ion-page>
 </template>
@@ -116,7 +115,7 @@
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 
-// import MySchedules from './Schedules.vue'
+import todaySchedules from './Schedules.vue'
 import {
   IonPage,
   IonHeader,
@@ -166,7 +165,7 @@ export default defineComponent({
     IonCol,
     IonGrid,
     IonRow,
-    // MySchedules,
+    todaySchedules,
     IonAvatar,
   },
   data() {
