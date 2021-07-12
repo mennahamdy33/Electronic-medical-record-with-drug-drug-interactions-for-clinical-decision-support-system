@@ -60,10 +60,13 @@
       </ion-content>
     </ion-menu>
 
-    <ion-content id="main" class="content">
-      <div style="position: -webkit-sticky; position: sticky; top: 0">
-        <ion-header>
-          <ion-toolbar class="tool">
+
+    <ion-content id="main" class="content"    >
+      <div style="top: 0;">
+      <!-- <div style=" position: -webkit-sticky;position: sticky;  top: 0;"> -->
+        <ion-header   >
+          <ion-toolbar class="tool"  >
+
             <!-- <ion-toolbar color="primary"> -->
             <ion-buttons slot="start">
               <ion-menu-button auto-hide="false"></ion-menu-button>

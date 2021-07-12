@@ -16,6 +16,8 @@ import BookVisit from '../Pages/SecreteryProfile/BookVisit.vue'
 import MySchedules from '../Pages/DoctorProfile/Schedules.vue'
 import Prescription from '../Pages/DoctorProfile/Prescription.vue'
 import todaySchedules from '../Pages/SecreteryProfile/Schedules.vue'
+import PrescriptionPreview from '../Pages/DoctorProfile/PrescriptionPreview.vue'
+
 //import AllPatients from '../Pages/PatientProfile/AllPatients.vue'
 const routes = [
   {
@@ -83,8 +85,14 @@ const routes = [
         {
           path: 'Prescription',
           component: Prescription,
-
-
+             
+          
+          },
+                {
+          path: 'PrescriptionPreview',
+          component: PrescriptionPreview,
+             
+          
         },
         {
           path: 'myPatients',

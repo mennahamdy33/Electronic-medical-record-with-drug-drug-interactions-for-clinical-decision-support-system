@@ -22,8 +22,8 @@
   </ion-menu>
   <ion-content id="main" ref="content"  >
   <section class="sec1"> 
-      <ion-header class="ion-no-border"   >
-        <ion-toolbar class="toolbar" >
+      <ion-header  class="ion-no-border"   >
+        <ion-toolbar  class="toolbar" >
 
           <ion-buttons slot="start" id="menu">
             <ion-menu-button auto-hide="false"></ion-menu-button>
