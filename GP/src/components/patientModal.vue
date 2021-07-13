@@ -207,11 +207,12 @@
 
                                 <ion-row >
                                     <ion-col size-lg="" size-xs="12" >
-                                        <ion-label>Visits Datess </ion-label>
-                                        <p v-for="visit in visits " :key="visit"> {{visit}}</p>
-
-                                    </ion-col>
+                                        <div v-for="(visit,index) in visits " :key="visit">
+                                        <h3> {{visit}}</h3>
+                                        <p > {{diagnosis[index]}}</p>
+                                        </div> </ion-col>
                                 </ion-row>
+
                             </ion-grid>
                         </div>
                     </ion-col>
@@ -243,7 +244,7 @@
             "family_diseases",
             "allergies",
             "tobacco",
-            "visits"],
+            "visits","diagnosis"],
         components: {
             IonLabel,
              IonRow,
@@ -264,7 +265,7 @@
             activate(num)
             {
                 this.active = num;
-                console.log(this.visits);
+                console.log(this.diagnosis);
             },
             test(id){
                 console.log(id)
