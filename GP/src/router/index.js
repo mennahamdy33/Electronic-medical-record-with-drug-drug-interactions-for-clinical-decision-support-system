@@ -88,8 +88,9 @@ const routes = [
              
           
           },
-                {
-          path: 'PrescriptionPreview',
+        {
+                  
+          path: 'PrescriptionPreview/:id',
           component: PrescriptionPreview,
              
           
