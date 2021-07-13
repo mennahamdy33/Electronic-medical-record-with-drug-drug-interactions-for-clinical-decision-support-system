@@ -10,7 +10,7 @@
     <ion-grid>
       <ion-card v-if="patients.length >= 1 && !patientInfo">
         <ion-card-header>
-          <ion-card-subtitle>Today's visits</ion-card-subtitle>
+          <ion-card-title>Today's visits</ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
@@ -53,7 +53,10 @@
 
             <ion-card-content>
               <p>Gender: {{ patientInfo.gender }}</p>
-              <p>Birth Date: {{ patientInfo.birth_date }}</p>
+              <p>
+                Birth Date:
+                {{ formatDate(patientInfo.birth_date) }}
+              </p>
               <p>Mobile: {{ patientInfo.phone_number }}</p>
               <ion-grid>
                 <ion-row class="ion-justify-content-center">
@@ -73,7 +76,7 @@
 
           <ion-card>
             <ion-card-header>
-              <ion-card-subtitle>Drugs List</ion-card-subtitle>
+              <ion-card-title>Drugs List</ion-card-title>
             </ion-card-header>
             <ion-card-content>
               <ion-searchbar
@@ -123,7 +126,11 @@
                         :value="moment().toISOString()"
                         display-timezone="utc"
                         :ref="'date' + item.product_id"
-                        :max="moment().add(10, 'Y').toISOString()"
+                        :max="
+                          moment()
+                            .add(10, 'Y')
+                            .toISOString()
+                        "
                         :min="moment().toISOString()"
                       ></ion-datetime>
                     </ion-item>
@@ -141,7 +148,7 @@
           <div v-if="drugs.length >= 1">
             <ion-card>
               <ion-card-header>
-                <ion-card-subtitle>Prescriptive drugs</ion-card-subtitle>
+                <ion-card-title>Prescriptive drugs</ion-card-title>
               </ion-card-header>
               <ion-card-content>
                 <ion-list>
@@ -179,47 +186,55 @@
                     </ion-grid>
                   </ion-item>
                 </ion-list>
-                <ion-row class="ion-justify-content-center">
-                  <form-button
-                    v-show="drugs.length >= 1"
-                    buttonText="Check Interaction"
-                    @click="post_check"
-                    type="button"
-                  />
-                </ion-row>
+                <ion-row class="ion-justify-content-center"> </ion-row>
                 <div class="ion-text-center">
                   <ion-spinner name="lines" v-if="inter_loading"></ion-spinner>
                 </div>
                 <ion-card v-if="interactions.length >= 1">
-                  <ion-card-header>
-                    <ion-card-subtitle>Interactions</ion-card-subtitle>
-                  </ion-card-header>
                   <ion-card-content>
+                    <ion-card-subtitle>Interactions</ion-card-subtitle>
                     <ion-list>
-                      <ion-item
+                      <ion-grid
                         style="d-flex justify-items-between"
-                        :key="item.id"
-                        v-for="(item, index) in interactions"
+                        v-for="(results, index) in interactions"
+                        :key="index"
                       >
-                        <div>
-                          <ion-label
-                            >
-                            <b>{{ interactions_drugs[index].name }} </b>
-                            conflict with
-                            <b>
-                              {{ interactions_medications[index].name }}
-                            </b></ion-label
-                          >
-                          <ion-badge style="margin-top: 10px" color="danger">{{
-                            item.parent_key
-                          }}</ion-badge>
-                          <ion-label color="danger"> <b >{{ item.name }}</b></ion-label>
+                        <ion-row style="width:100%">
+                          <ion-card-title style="padding:10px 0px">
+                            {{ results.drug.name }}
+                          </ion-card-title>
+                        </ion-row>
 
-                          <ion-text color="danger">
-                            {{ " " + item.description }}</ion-text
-                          >
-                        </div>
-                      </ion-item>
+                        <ion-row
+                          style="width:100%"
+                          v-for="(item, id) in results.results"
+                          :key="id"
+                        >
+                          <ion-label>
+                            conflict with
+
+                            <b>
+                              {{ item.name }}
+                            </b>
+                            <div class="ion-align-items-between">
+                              <ion-badge style="" color="danger">{{
+                                item.parent_key
+                              }}</ion-badge>
+                            </div>
+                          </ion-label>
+                          <ion-row style="width:100%">
+                            <ion-label color="danger">
+                              <b>{{ item.interaction_name }}</b></ion-label
+                            >
+                          </ion-row>
+
+                          <ion-item-divider>
+                            <ion-text color="danger">
+                              {{ " " + item.description }}</ion-text
+                            >
+                          </ion-item-divider>
+                        </ion-row>
+                      </ion-grid>
                     </ion-list>
                   </ion-card-content>
                 </ion-card>
@@ -234,7 +249,7 @@
           <ion-col>
             <ion-card>
               <ion-card-header>
-                <ion-card-subtitle>Diagnosis</ion-card-subtitle>
+                <ion-card-title>Diagnosis</ion-card-title>
               </ion-card-header>
               <ion-card-content>
                 <ion-textarea
@@ -248,13 +263,7 @@
             <ion-row class="ion-justify-content-center">
               <ion-col size-lg="2" size-md="3" size-xs="4">
                 <form-button
-                  :disabled="
-                    !(
-                      drugs.length >= 1 &&
-                      interactions.length <= 0 &&
-                      inter_once == true
-                    )
-                  "
+                  :disabled="!(drugs.length >= 1 && interactions.length <= 0)"
                   @click="post_diagnosis"
                   buttonText="Submit"
                   type="button"
@@ -283,11 +292,12 @@ import {
   IonCardHeader,
   IonSearchbar,
   IonText,
-  IonCardSubtitle,
   IonCardTitle,
   IonButton,
   IonModal,
   modalController,
+  IonSpinner,
+  IonDatetime,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios from "axios";
@@ -314,12 +324,13 @@ export default defineComponent({
     IonCardHeader,
     IonSearchbar,
     IonText,
-    IonCardSubtitle,
     IonCardTitle,
     IonButton,
     IonModal,
     FormButton,
     Modal,
+    IonSpinner,
+    IonDatetime,
   },
   data() {
     return {
@@ -354,7 +365,18 @@ export default defineComponent({
     showMe(value) {
       console.log(value);
     },
-    moment: function () {
+    formatDate(date) {
+      var d = new Date(date),
+        month = "" + (d.getMonth() + 1),
+        day = "" + d.getDate(),
+        year = d.getFullYear();
+
+      if (month.length < 2) month = "0" + month;
+      if (day.length < 2) day = "0" + day;
+
+      return [year, month, day].join("-");
+    },
+    moment: function() {
       return moment();
     },
     async selectPatient(item) {
@@ -364,15 +386,17 @@ export default defineComponent({
     async removeDrug(value) {
       this.inter_once = false;
       this.drugs = this.drugs.filter((item) => {
-        console.log(item.product_id);
         return item.product_id != value.product_id;
+      });
+      this.interactions = this.interactions.filter((item) => {
+        return item.drug.product_id != value.product_id;
       });
     },
     async addDrug(item) {
       let ref = "date" + item.product_id;
       this.inter_once = false;
+      this.post_check({ ...item, to_date: this.$refs[ref].value });
       this.drugs.push({ ...item, to_date: this.$refs[ref].value });
-      console.log(this.drugs);
     },
 
     async get_patients() {
@@ -395,7 +419,7 @@ export default defineComponent({
           this.patientInfo = response.data;
         });
     },
-    async post_check() {
+    async post_check(value) {
       this.inter_loading = true;
       await axios
         .post(
@@ -404,13 +428,16 @@ export default defineComponent({
             this.patientInfo.patient_id +
             `/check_interactions`,
           {
-            drugs: this.drugs,
+            drug: value,
           }
         )
         .then((response) => {
-          this.interactions = response.data.results;
-          this.interactions_medications = response.data.medications;
-          this.interactions_drugs = response.data.drugs;
+          response.data.results?.length >= 1
+            ? this.interactions.push({
+                drug: response.data.drug,
+                results: response.data.results,
+              })
+            : null;
         });
       this.inter_once = true;
 
