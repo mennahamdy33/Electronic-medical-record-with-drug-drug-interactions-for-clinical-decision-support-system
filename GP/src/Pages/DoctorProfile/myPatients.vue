@@ -37,6 +37,7 @@
                     :allergies= "patient.allergies"
                     :tobacco= "patient.tobacco"
                     :visits = "patient.dates"
+                    :diagnosis = "patient.diagnosis"
             ></patient-card>
             </ion-row>
            </ion-grid>
@@ -73,7 +74,8 @@ import PatientCard from "../../components/PatientCard";
         "family_diseases",
         "allergies",
         "tobacco",
-            "visits"
+            "visits",
+           "diagnosis"
     ],
         components: {
 
@@ -145,7 +147,8 @@ import PatientCard from "../../components/PatientCard";
                           if(med.visits){
                           this.Pvisits.push({
                               patient_id:med.patient_id,
-                            dates:med.visits.split(','),
+                              dates:med.visits.split(','),
+                              diagnosis:med.diagnosis.split(','),
                           })
                           }
                       }

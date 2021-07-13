@@ -38,7 +38,7 @@
             "family_diseases",
             "allergies",
             "tobacco",
-            "visits"],
+            "visits","diagnosis"],
         methods: {
 
             async openModal() {
@@ -65,6 +65,7 @@
                         allergies: this.allergies,
                         tobacco: this.tobacco,
                         visits:this.visits,
+                        diagnosis:this.diagnosis,
                         modal: patientModal,
 
                     },

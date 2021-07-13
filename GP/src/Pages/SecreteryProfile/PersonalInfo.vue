@@ -115,6 +115,7 @@
                                                     @click="chooseMedication(item)"
                                                     :key="item.id"
                                                     v-for="item in drugsInfo"
+
                                             >
                                                 <ion-card>
                                                     <ion-label> {{ item }}</ion-label>
