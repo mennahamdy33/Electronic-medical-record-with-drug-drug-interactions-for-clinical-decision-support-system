@@ -53,10 +53,10 @@
             <ion-card-header>
               <ion-card-title
                 style="text-transform: capitalize; line-height: 10px"
-                >Prescriptive drugs</ion-card-title
+                >Prescribed drugs</ion-card-title
               >
               <ion-card-subtitle
-                >These are prescription during this visit</ion-card-subtitle
+                >These are prescribed during this visit</ion-card-subtitle
               >
             </ion-card-header>
             <ion-card-content>

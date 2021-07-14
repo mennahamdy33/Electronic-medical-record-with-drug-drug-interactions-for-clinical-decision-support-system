@@ -10,7 +10,7 @@
     <ion-grid>
       <ion-card v-if="patients.length >= 1 && !patientInfo">
         <ion-card-header>
-          <ion-card-title>Today's visits</ion-card-title>
+          <ion-card-title>Today's Visits</ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
@@ -148,7 +148,7 @@
           <div v-if="drugs.length >= 1">
             <ion-card>
               <ion-card-header>
-                <ion-card-title>Prescriptive drugs</ion-card-title>
+                <ion-card-title>Prescribed drugs</ion-card-title>
               </ion-card-header>
               <ion-card-content>
                 <ion-list>
@@ -297,7 +297,6 @@ import {
   IonModal,
   modalController,
   IonSpinner,
-  IonDatetime,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios from "axios";
@@ -330,7 +329,6 @@ export default defineComponent({
     FormButton,
     Modal,
     IonSpinner,
-    IonDatetime,
   },
   data() {
     return {
@@ -362,9 +360,6 @@ export default defineComponent({
     return { router };
   },
   methods: {
-    showMe(value) {
-      console.log(value);
-    },
     formatDate(date) {
       var d = new Date(date),
         month = "" + (d.getMonth() + 1),
@@ -395,6 +390,7 @@ export default defineComponent({
     async addDrug(item) {
       let ref = "date" + item.product_id;
       this.inter_once = false;
+      console.log(this.$refs[ref]);
       this.post_check({ ...item, to_date: this.$refs[ref].value });
       this.drugs.push({ ...item, to_date: this.$refs[ref].value });
     },
