@@ -45,6 +45,9 @@ export default defineComponent({
   
   /* width: 25%; */
   color: #03e9f4;
+  border-radius: 5px;
+  border: solid 1px #ffffff;
+  /* border: solid 1px #03e9f4; */
   /* color: #a6dbe2; */
   /* color: #05545a; */
   /* font-weight: bold; */
@@ -70,10 +73,11 @@ export default defineComponent({
 }
 
 ion-button:hover {
-  background:  #03e9f4;
+  background:  #03e8f4b7;
   /* background: #356c84; */
   color: #fff;
   border-radius: 5px;
+  border: solid 2px rgb(255, 255, 255)
   /* box-shadow: 0 0 5px  #00e1ff,
               0 0 25px  #00e1ff,
               0 0 50px  #00e1ff,
@@ -82,10 +86,10 @@ ion-button:hover {
               0 0 25px  #a6dbe2,
               0 0 50px  #a6dbe2,
               0 0 100px  #a6dbe2; */
-  box-shadow: 0 0 5px #03e9f4,
+  /* box-shadow: 0 0 5px #03e9f4,
               0 0 25px #03e9f4,
               0 0 50px #03e9f4,
-              0 0 100px #03e9f4;
+              0 0 100px #03e9f4; */
 }
 
 ion-button span {
@@ -103,14 +107,14 @@ ion-button span:nth-child(1) {
   animation: btn-anim1 1s linear infinite;
 }
 
-@keyframes btn-anim1 {
+/* @keyframes btn-anim1 {
   0% {
     left: -100%;
   }
   50%,100% {
     left: 100%;
   }
-}
+} */
 
 ion-button span:nth-child(2) {
   top: -100%;
@@ -123,14 +127,14 @@ ion-button span:nth-child(2) {
   animation-delay: .25s
 }
 
-@keyframes btn-anim2 {
+/* @keyframes btn-anim2 {
   0% {
     top: -100%;
   }
   50%,100% {
     top: 100%;
   }
-}
+} */
 
 ion-button span:nth-child(3) {
   bottom: 0;
@@ -142,14 +146,14 @@ ion-button span:nth-child(3) {
   animation-delay: .5s
 }
 
-@keyframes btn-anim3 {
+/* @keyframes btn-anim3 {
   0% {
     right: -100%;
   }
   50%,100% {
     right: 100%;
   }
-}
+} */
 
 ion-button span:nth-child(4) {
   bottom: -100%;
@@ -161,12 +165,12 @@ ion-button span:nth-child(4) {
   animation-delay: .75s
 }
 
-@keyframes btn-anim4 {
+/* @keyframes btn-anim4 {
   0% {
     bottom: -100%;
   }
   50%,100% {
     bottom: 100%;
   }
-}
+} */
 </style>

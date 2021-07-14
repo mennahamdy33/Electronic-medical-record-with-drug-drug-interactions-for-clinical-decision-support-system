@@ -57,7 +57,7 @@
               <p>Mobile: {{ patientInfo.phone_number }}</p>
               <ion-grid>
                 <ion-row class="ion-justify-content-center">
-                  <form-button
+                  <form-button 
                     @click="openPatientModal"
                     buttonText="Patient Medications"
                     type="button"
@@ -511,4 +511,6 @@ export default defineComponent({
 .white {
   color: white;
 }
+
+
 </style>
