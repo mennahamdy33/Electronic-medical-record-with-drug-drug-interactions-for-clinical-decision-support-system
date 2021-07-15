@@ -245,7 +245,28 @@
           
           else{
             
-            //gg
+            fetch(process.env.VUE_APP_ROOT_API+'editDoctor', {
+                method: 'put',
+                headers: {'Content-Type': 'application/json', 'authorization': 'Bearer '+localStorage.getItem('tokendoctor')},
+                body: JSON.stringify(this.editedInfo)
+                }).then((res) => {
+                if(!res.ok){
+                    throw new Error(res.status)
+                }else{
+                    
+                    return res.json()
+                }
+                }).
+                then((res)=> {
+                console.log(res)
+                this.edit = false;
+                })
+                .catch(() =>
+                { 
+                console.log("Unable to edit")
+                this.presentAlert("edit Failed")
+
+                })
           }
         }else{
           this.presentAlert("Please fill all the fields");
@@ -268,6 +289,7 @@
               doctor.birth_date = doctor.birth_date.split('T')[0];
               this.doctorInfo = doctor
               this.editedInfo = {...doctor};
+              this.editedInfo.phone_number = '0'+ this.editedInfo.phone_number
             // console.log(this.profilePhoto)
             
           } )
