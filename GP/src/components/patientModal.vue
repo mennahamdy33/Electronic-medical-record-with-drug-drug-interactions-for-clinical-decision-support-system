@@ -14,6 +14,18 @@
                         <h2>Patient Profile</h2>
 
 
+                        <ion-row class= "ion-align-items-center ion-justify-content-center">
+                            <!-- <ion-col > -->
+                            <ion-col size-lg="2" size-xs="2" >
+                                <!-- <img class="personal_photo" src="../../../public/me.jpg" alt="logo"  /> -->
+                                <ion-avatar class="personal_photo2" >
+                                    <img v-if="PatientInfo.photo != 'null'"  class="personal_photo"  :src="PatientInfo.photo" alt="logo"  />
+                                    <img  v-else class="personal_photo"  src="../../public/me.jpg" alt="logo"  />
+                                    <!-- </div> -->
+                                </ion-avatar>
+
+                            </ion-col>
+                        </ion-row>
                         <div class="login-box" v-show="!edit" >
 
                             <ion-grid class="FormGrid" >
@@ -260,7 +272,6 @@
 
                         <h2>Patient Profile</h2>
 
-
                         <div class="login-box" v-show="!edit2" >
 
                             <ion-grid class="FormGrid" >
@@ -504,6 +515,7 @@
         modalController,
          IonRow,
           IonCol,
+        IonAvatar ,
         IonGrid
     } from "@ionic/vue";
     import { defineComponent } from "vue";
@@ -516,6 +528,7 @@
             IonLabel,
              IonRow,
              IonCol,
+            IonAvatar ,
             IonGrid
         },
         data(){return {
@@ -534,6 +547,7 @@
                 tobacco: this.PI.tobacco
             },
             PatientInfo: {
+                photo: this.PI.photo,
                 first_name: this.PI.first_name,
                 last_name: this.PI.last_name,
                 ssn: this.PI.ssn,
@@ -735,7 +749,6 @@
 input{
     background-color: darkseagreen;
 }
-
 
 
     .FormGrid ion-label{
