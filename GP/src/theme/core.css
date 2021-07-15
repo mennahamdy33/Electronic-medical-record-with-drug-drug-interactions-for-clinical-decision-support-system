@@ -49,7 +49,7 @@ ion-item menu {
   position: relative;
 }
 
-.user-box input {
+.user-box input , .user-box textarea  {
   width: 100%;
   padding: 10px 0;
   font-size: 16px;
@@ -93,7 +93,9 @@ ion-item menu {
 }
 
 .user-box input:focus ~ .Down,
-.user-box input:valid ~ .Down {
+.user-box textarea:focus ~ .Down,
+.user-box input:valid ~ .Down 
+.user-box textarea:valid ~ .Down {
   top: -20px;
   left: 0;
   color: #03e9f4;
@@ -103,6 +105,8 @@ ion-item menu {
 }
 
 .user-box input:focus ~ .Up,
+.user-box textarea:focus ~ .Up,
+.user-box textarea:valid ~ .Up 
 .user-box input:valid ~ .Up {
   top: -25px;
   left: 0;

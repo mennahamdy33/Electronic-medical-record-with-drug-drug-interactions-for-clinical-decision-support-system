@@ -2,10 +2,10 @@
     <ion-col size-md="6" size="12" >
         <ion-card @click="openModal" >
             <ion-card-header>
-                <ion-card-subtitle>SSN: {{ssn}}</ion-card-subtitle>
-                <ion-card-title>NAME: {{ FirstName }} {{LastName}}</ion-card-title>
+                <ion-card-subtitle>SSN: {{PI.ssn}}</ion-card-subtitle>
+                <ion-card-title>NAME: {{ PI.first_name }} {{PI.last_name}}</ion-card-title>
             </ion-card-header>
-            <ion-card-content > Phone Number : {{ PhoneNumber }} </ion-card-content>
+            <ion-card-content > Phone Number : {{ PI.phone_number }} </ion-card-content>
         </ion-card>
     </ion-col>
 </template>
@@ -31,14 +31,7 @@
             IonCardTitle,
             IonCol,
         },
-        props: ["ssn", "FirstName","Address", "LastName","PhoneNumber","birthdate","Medications","Gender","major_illnesses",
-            "previous_surgey",
-            "previous_illnessess",
-            "diabetes",
-            "family_diseases",
-            "allergies",
-            "tobacco",
-            "visits","diagnosis"],
+        props: ["PI"],
         methods: {
 
             async openModal() {
@@ -49,23 +42,7 @@
                     showBackdrop: true,
                     backdropDismiss: true,
                     componentProps: {
-                        FirstName: this.FirstName,
-                        LastName: this.LastName,
-                        birthdate:this.birthdate,
-                        Medications:this.Medications,
-                        Gender: this.Gender,
-                        Address:this.Address,
-                        SSN: this.ssn,
-                        PhoneNumber:this.PhoneNumber,
-                        major_illnesses: this.major_illnesses,
-                        previous_surgey: this.previous_surgey,
-                        previous_illnessess: this.previous_illnessess,
-                        diabetes: this.diabetes,
-                        family_diseases: this.family_diseases,
-                        allergies: this.allergies,
-                        tobacco: this.tobacco,
-                        visits:this.visits,
-                        diagnosis:this.diagnosis,
+                        PI:this.PI,
                         modal: patientModal,
 
                     },

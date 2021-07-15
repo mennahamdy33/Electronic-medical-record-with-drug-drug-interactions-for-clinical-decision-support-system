@@ -1,4 +1,34 @@
 <template >
+<ion-grid>
+                  <ion-row class= "ion-align-items-center ion-justify-content-center">
+                     <ion-col size="12" size-sm  >
+                      <ion-avatar >
+                          
+                          <img v-if="PatientInfo.photo === 'null'"  class="personal_photo"  :src="default_photo" alt="logo"  />
+                          <img  v-else class="personal_photo"  :src="PatientInfo.photo" alt="logo"  />
+                          
+                        </ion-avatar>
+                        
+                    </ion-col>
+                   </ion-row>
+                </ion-grid>
+                 <ion-grid style="margin-top:50px;">
+                  <ion-row>
+                     
+                    <ion-col size="12" size-sm >
+                      <!-- <form-field type="text" LableText="Speciality"/> -->
+                      <div class="image-input">
+
+                          <input style="display: none;" type="file" accept="image/*" id="imageInput" @change="get_photo($event)">
+                          <label for="imageInput" class="image-button"><i class="far fa-image"></i> Choose image</label>
+                        <!-- 	<img src="" class="image-preview"> -->
+                          <span class="change-image">Choose different image</span>
+                     
+                      </div>
+                    </ion-col>
+                  
+                   </ion-row>
+                </ion-grid>
 
                         <form v-on:submit.prevent="">
                             <ion-grid class="FormGrid">
@@ -50,14 +80,14 @@
 
 
                                                 <li>
-                                                    <input type="radio" id="Male" name="gender" v-model="PatientInfo.gender" value="male"  >
+                                                    <input type="radio" id="Male" name="gender" v-model="PatientInfo.gender" value="Male"  >
                                                     <label for="Male"> Male </label>
 
                                                     <div class="check"><div class="inside"></div></div>
                                                 </li>
 
                                                 <li>
-                                                    <input type="radio" id="Female" name="gender" v-model="PatientInfo.gender" value="female">
+                                                    <input type="radio" id="Female" name="gender" v-model="PatientInfo.gender" value="Female">
                                                     <label for="Female"> Female </label>
 
                                                     <div class="check"><div class="inside"></div></div>
@@ -164,6 +194,7 @@
         IonCard,
         IonList,IonItem,
         IonButton,
+        IonAvatar
 
     } from "@ionic/vue";
 
@@ -174,7 +205,7 @@
             IonSearchbar,IonIcon,
             FormButton, IonGrid, IonRow, IonCol,IonButton,
             IonList, IonItem,IonText,
-            IonCard,IonLabel,
+            IonCard,IonLabel,IonAvatar
 
         },
         data() {
@@ -188,6 +219,7 @@
                     ssn: "",
                     phoneNumber: "",
                     gender: "",
+                    photo: 'null',
                     birthdate: "",
                     address: "",
                     Medications: [],
@@ -196,6 +228,7 @@
                 drugsInfo: [],
                 drugname: "",
                 drugpage: 1,
+                default_photo: require("../../../public/me.jpg"),
             };
         },
         async mounted() {
@@ -283,6 +316,18 @@
                 }
             },
 
+             async get_photo(event){
+     
+                const image = event.target.files[0];
+                const reader = new FileReader();  
+                reader.readAsDataURL(image);
+                reader.onload = event =>{
+                this.PatientInfo.photo = event.target.result;
+                // console.log(this.PatientInfo.photo);
+                    }
+
+    
+            }
 
         },
 
@@ -290,156 +335,6 @@
 </script>
 <style scoped>
 
-    .FormGrid ion-col{
-        --ion-grid-column-padding: 20px;
-
-    }
-    .FormGrid ion-col{
-        --ion-grid-column-padding: 20px;
-
-    }
-
-
-
-    .login-box h2 {
-        font-family: 'Monoton';
-        margin: 0 0 30px;
-        padding: 0;
-        color: #ffffff;
-        font-size: 45px;
-        letter-spacing: 3px;
-        text-align: center;
-        font-weight: 100;
-    }
-
-    .user-box {
-        position: relative;
-    }
-    .user-box input {
-        width: 100%;
-        padding: 10px 0;
-        font-size: 16px;
-        color: #fff;
-        margin-bottom: 30px;
-        border: none;
-        border-bottom: 1px solid #fff;
-        outline: none;
-        background: transparent;
-    }
-    .user-box label {
-        position: absolute;
-
-        left: 0;
-        padding: 10px 0;
-        font-size: 16px;
-        color: #fff;
-        pointer-events: none;
-        transition: .5s;
-    }
-    .Up{
-        top:-20px;
-    }
-    .Down{
-        top: 0;
-    }
-    .user-box input:focus ~ .Down,
-    .user-box input:valid ~ .Down {
-        top: -20px;
-        left: 0;
-        color: #03e9f4;
-
-        font-size: 16px;
-        font-weight: bold;
-    }
-    .user-box input:focus ~ .Up,
-    .user-box input:valid ~ .Up {
-        top: -25px;
-        left: 0;
-        color: #03e9f4;
-
-        font-size: 16px;
-        font-weight: bold;
-    }
-    .container ul{
-        list-style: none;
-        margin: 0;
-        padding: 0;
-
-    }
-    ul li{
-
-        color: #ffffff;
-        /* display: block; */
-        position: relative;
-        float: left;
-        /* width: 100%; */
-        /* height: 100px; */
-    }
-    ul li input[type=radio]{
-        position: absolute;
-        visibility: hidden;
-    }
-    ul li label{
-        display: block;
-        position: relative;
-        /* font-weight: 300; */
-        font-size: 16px;
-        padding: 25px 25px 25px 80px;
-        margin: 10px auto;
-        height: 10px;
-        z-index: 9;
-        cursor: pointer;
-        /* -webkit-transition: all 0.25s linear; */
-    }
-    ul li:hover label{
-        /* color: #ffdcfc; */
-        font-size: 20px;
-    }
-    ul li .check{
-        display: block;
-        position: absolute;
-        border: 5px solid #AAAAAA;
-        border-radius: 100%;
-        height: 27px;
-        width: 27px;
-        top: 30px;
-        left: 20px;
-        z-index: 5;
-        transition: border .25s linear;
-        -webkit-transition: border .25s linear;
-    }
-    ul li:hover .check {
-        border: 5px solid #FFFFFF;
-    }
-    ul li .check::before {
-        display: block;
-        position: absolute;
-        content: '';
-        border-radius: 100%;
-        height: 12px;
-        width: 12px;
-        top: 2.4px;
-        left: 2.7px;
-        margin: auto;
-        /* transition: background 0.25s linear;
-        -webkit-transition: background 0.25s linear; */
-    }
-    input[type=radio]:checked ~ .check {
-        border: 5px solid #03e9f4;
-        box-shadow: 0 0 0 1px #03e9f4,
-        0 0 25px #03e9f4,
-        0 0 50px #03e9f4,
-        0 0 100px #03e9f4;
-
-    }
-    input[type=radio]:checked ~ .check::before{
-        background: #03e9f4;
-
-
-    }
-    input[type=radio]:checked ~ label{
-        color: #03e9f4;
-    }
     .medication{
         position: relative;
     }
@@ -494,4 +389,44 @@
         background-color: #ffffff;
 
     }
+
+    .personal_photo{
+  min-height:110px;
+  min-width:110px;
+}
+
+/* .image-input{ */
+
+	/* text-align: center; */
+  /* display: none; */
+/* } */
+	
+	.image-button{
+
+		/* display: block; */
+		color: #FFF;
+    width:150px;
+		background: rgb(0, 173, 204)	;
+		padding: .5rem .6rem;
+		font-size: 115%;
+    border-radius: 500px;
+		cursor: pointer;
+  }
+		i
+			{
+        font-size: 125%;
+			/* margin-right: .3rem; */
+      }
+		.image-button:hover
+			{
+        border: 1px solid #ffff;
+			/* margin-right: .3rem; */
+      }
+	
+
+	span
+		{
+    display: none;
+		/* text-align: center; */
+		cursor: pointer;}
 </style>

@@ -200,6 +200,7 @@
         .then(clinics => {
     
             this.clinics = clinics    
+            this.clinics = clinics
         } )
     
   }, 

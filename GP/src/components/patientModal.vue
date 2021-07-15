@@ -5,7 +5,7 @@
 
                 <span :class="{ active1 : (active===1)}" button=true @click="activate(1)" >Personal Info</span>
                 <span :class="{ active2 : (active===2)}" button=true @click="activate(2)">Medical History</span>
-                <span v-show="visits" :class="{ active3 : (active===3)}" button=true @click="activate(3)">Previous Visits</span>
+                <span v-show="PI.dates" :class="{ active3 : (active===3)}" button=true @click="activate(3)">Previous Visits</span>
                 <ion-row class= "ion-justify-content-center" v-show="active === 1">
                     <!-- <ion-row class= "ion-justify-content-center"> -->
 
@@ -14,7 +14,7 @@
                         <h2>Patient Profile</h2>
 
 
-                        <div class="login-box" >
+                        <div class="login-box" v-show="!edit" >
 
                             <ion-grid class="FormGrid" >
 
@@ -22,13 +22,13 @@
                                 <ion-row>
                                     <ion-col size-lg="" size-xs="12" >
                                         <ion-label> First Name </ion-label>
-                                        <p>  {{FirstName}} </p>
+                                        <p>  {{PI.first_name}} </p>
                                     </ion-col>
 
                                     <ion-col size-lg="" size-xs="12" >
 
                                         <ion-label> Last Name </ion-label>
-                                        <p>  {{LastName}} </p>
+                                        <p>  {{PI.last_name}} </p>
 
                                     </ion-col>
 
@@ -38,14 +38,14 @@
                                     <ion-col size-lg="" size-xs="12" >
 
                                         <ion-label> Birth Date </ion-label>
-                                        <p>  {{birthdate}} </p>
+                                        <p>  {{PI.birth_date}} </p>
                                     </ion-col>
                                     <ion-col size="12" size-sm>
 
                                         <ion-label>Gender </ion-label>
-                                        <ion-icon v-if="Gender === 'Female'"  :icon="female" ></ion-icon>
-                                        <ion-icon v-if="Gender === 'Male'"  :icon="male" ></ion-icon>
-                                        <p>  {{Gender}}</p>
+                                        <ion-icon v-if="PI.gender === 'Female'"  :icon="female" ></ion-icon>
+                                        <ion-icon v-if="PI.gender === 'Male'"  :icon="male" ></ion-icon>
+                                        <p>  {{PI.gender}}</p>
                                     </ion-col>
 
                                 </ion-row>
@@ -53,12 +53,12 @@
 
                                     <ion-col size="12" size-sm>
                                         <ion-label>SSN </ion-label>
-                                        <p> {{SSN}}</p>
+                                        <p> {{PI.ssn}}</p>
 
                                     </ion-col>
                                     <ion-col size="12" size-sm>
                                         <ion-label>Phone Number </ion-label>
-                                        <p> {{PhoneNumber}}</p>
+                                        <p> {{PI.phone_number}}</p>
                                     </ion-col>
 
                                 </ion-row>
@@ -66,7 +66,7 @@
 
                                     <ion-col size="12" size-sm>
                                         <ion-label>Address </ion-label>
-                                        <p> {{Address}}</p>
+                                        <p> {{PI.address}}</p>
 
                                     </ion-col>
 
@@ -74,7 +74,7 @@
                                 <ion-row>
                                     <ion-col size="12" size-sm>
                                         <ion-label>Medication </ion-label>
-                                        <p v-for="Medication in Medications " :key="Medication"> {{Medication}}</p>
+                                        <p v-for="Medication in PI.Medications " :key="Medication"> {{Medication}}</p>
                                         <!-- <p :v-for="clinic in doctorInfo.clinics "> {{clinic}}</p> -->
 
                                     </ion-col>
@@ -85,10 +85,157 @@
 
                                 <ion-row  >
                                     <ion-col  size="12" size-sm>
-                                        <ion-button   class="button">Edit</ion-button>
+                                        <ion-button  @click="editFn" class="button">Edit</ion-button>
 
                                     </ion-col>
                                        <ion-col  size="12" size-sm>
+                                        <ion-button  @click="cancel" class="button">Cancel</ion-button>
+
+                                    </ion-col>
+
+
+
+                                </ion-row>
+
+
+                            </ion-grid>
+                        </div>
+                        <div class="login-box" v-show="edit" >
+
+                            <ion-grid class="FormGrid" >
+
+
+                                <ion-row>
+                                    <ion-col size-lg="" size-xs="12" >
+                                        <ion-label> First Name </ion-label>
+                                        <input  type="text"  v-model="PatientInfo.first_name" >
+                                    </ion-col>
+
+                                    <ion-col size-lg="" size-xs="12" >
+
+                                        <ion-label> Last Name </ion-label>
+                                        <input  type="text"  v-model="PatientInfo.last_name" >
+
+                                    </ion-col>
+
+                                </ion-row>
+                                <ion-row>
+
+                                    <ion-col size-lg="" size-xs="12" >
+
+                                        <ion-label> Birth Date </ion-label>
+                                        <input  type="date"    v-model="PatientInfo.birth_date">
+                                    </ion-col>
+                                    <ion-col size="12" size-sm>
+
+                                        <ion-label>Gender </ion-label>
+                                        <div class="container">
+
+                                            <ul>
+
+
+                                                <li>
+                                                    <input  type="radio" id="Male" name="gender"  v-model="PatientInfo.gender" value="Male"  >
+                                                    <label style="color: #0d0d0d" for="Male"> Male </label>
+
+                                                    <div class="check"><div class="inside"></div></div>
+                                                </li>
+
+                                                <li>
+                                                    <input type="radio" id="Female" name="gender" v-model="PatientInfo.gender" value="Female">
+                                                    <label style="color: #0d0d0d" for="Female"> Female </label>
+
+                                                    <div class="check"><div class="inside"></div></div>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+
+                                    </ion-col>
+
+                                </ion-row>
+                                <ion-row>
+
+                                    <ion-col size="12" size-sm>
+                                        <ion-label>SSN </ion-label>
+                                        <input  type="text"    v-model="PatientInfo.ssn">
+                                    </ion-col>
+                                    <ion-col size="12" size-sm>
+                                        <ion-label>Phone Number </ion-label>
+                                        <input  type="text"    v-model="PatientInfo.phone_number">
+                                    </ion-col>
+
+                                </ion-row>
+                                <ion-row>
+
+                                    <ion-col size="12" size-sm>
+                                        <ion-label>Address </ion-label>
+                                        <input  type="text"    v-model="PatientInfo.address">
+
+                                    </ion-col>
+
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col size="12" size-sm>
+                                        <ion-label>Medication </ion-label>
+                                        <ion-row>
+                                            <ion-col size="12" class="medication" size-sm>
+                                                <ion-searchbar
+
+                                                        debounce="500"
+                                                        @ionChange="
+                  ($event) => {
+                    drugname = $event.target.value;
+                    get_drugs('reset');
+                  }
+                "
+                                                ></ion-searchbar >
+                                                <ion-list v-show="drugname != '' && menuOpen">
+                                                    <ion-button v-if="drugsInfo.length >= 10" @click="next()"
+                                                    ><ion-text>next</ion-text></ion-button>
+                                                    <ion-button v-if="drugpage >= 2" @click="prev()" color="dark"
+                                                    ><ion-text>prev</ion-text></ion-button>
+                                                    <ion-item
+                                                            @click="chooseMedication(item)"
+                                                            :key="item.id"
+                                                            v-for="item in drugsInfo"
+
+                                                    >
+                                                        <ion-card>
+                                                            <ion-label> {{ item }}</ion-label>
+
+                                                        </ion-card>
+                                                    </ion-item>
+                                                </ion-list>
+
+                                            </ion-col>
+                                        </ion-row>
+                                        <ion-row :key="item.id"
+                                                 v-for="item in PatientInfo.Medications">
+                                            <ion-col  size="12" class="medicationlist" size-sm>
+
+                                                <ion-label
+                                                > {{ item }}
+                                                    <ion-button fill="clear" @click="DeleteFromList(item)" size="small" class="ion-justify-content-center"
+                                                    ><ion-icon :icon="closeCircleOutline"></ion-icon></ion-button>
+                                                </ion-label>
+
+                                            </ion-col>
+                                        </ion-row>
+
+
+                                    </ion-col>
+
+
+
+                                </ion-row>
+
+                                <ion-row  >
+                                    <ion-col  size="12" size-sm>
+                                        <ion-button @click="submitFn" class="button">Submit</ion-button>
+
+                                    </ion-col>
+                                    <ion-col  size="12" size-sm>
                                         <ion-button  @click="cancel" class="button">Cancel</ion-button>
 
                                     </ion-col>
@@ -122,13 +269,13 @@
                                 <ion-row>
                                     <ion-col size-lg="" size-xs="12" >
                                         <ion-label> Major Illnesses </ion-label>
-                                        <p>  {{major_illnesses}} </p>
+                                        <p>  {{PI.major_illnesses}} </p>
                                     </ion-col>
 
                                     <ion-col size-lg="" size-xs="12" >
 
                                         <ion-label> Previous Surgey </ion-label>
-                                        <p>  {{previous_surgey}} </p>
+                                        <p>  {{PI.previous_surgey}} </p>
 
                                     </ion-col>
 
@@ -138,12 +285,12 @@
                                     <ion-col size-lg="" size-xs="12" >
 
                                         <ion-label> Previous Illnessess </ion-label>
-                                        <p>  {{previous_illnessess}} </p>
+                                        <p>  {{PI.previous_illnessess}} </p>
                                     </ion-col>
                                     <ion-col size="12" size-sm>
 
                                         <ion-label>Diabetes </ion-label>
-                                        <p>  {{diabetes}}</p>
+                                        <p>  {{PI.diabetes}}</p>
                                     </ion-col>
 
                                 </ion-row>
@@ -151,12 +298,12 @@
 
                                     <ion-col size="12" size-sm>
                                         <ion-label>Smoker </ion-label>
-                                        <p> {{tobacco}}</p>
+                                        <p> {{PI.tobacco}}</p>
 
                                     </ion-col>
                                     <ion-col size="12" size-sm>
                                         <ion-label>Allergies </ion-label>
-                                        <p> {{allergies}}</p>
+                                        <p> {{PI.allergies}}</p>
                                     </ion-col>
 
                                 </ion-row>
@@ -164,17 +311,13 @@
 
                                     <ion-col size="12" size-sm>
                                         <ion-label>Family Diseases </ion-label>
-                                        <p> {{family_diseases}}</p>
+                                        <p> {{PI.family_diseases}}</p>
 
                                     </ion-col>
 
                                 </ion-row>
 
                                 <ion-row  >
-                                    <ion-col  size="12" size-sm>
-                                        <ion-button   class="button">Edit</ion-button>
-
-                                    </ion-col>
                                     <ion-col  size="12" size-sm>
                                         <ion-button  @click="cancel" class="button">Cancel</ion-button>
 
@@ -207,17 +350,26 @@
 
                                 <ion-row >
                                     <ion-col size-lg="" size-xs="12" >
-                                        <div v-for="(visit,index) in visits " :key="visit">
+                                        <div v-for="(visit,index) in PI.dates " :key="visit">
                                         <h3> {{visit}}</h3>
-                                        <p > {{diagnosis[index]}}</p>
+                                        <p > {{PI.diagnosis[index]}}</p>
                                         </div> </ion-col>
+                                </ion-row>
+
+                                <ion-row  >
+                                    <ion-col  size="12" size-sm>
+                                        <ion-button  @click="cancel" class="button">Cancel</ion-button>
+
+                                    </ion-col>
+
+
+
                                 </ion-row>
 
                             </ion-grid>
                         </div>
                     </ion-col>
                 </ion-row>
-
             </ion-grid>
 
         </div>
@@ -234,17 +386,11 @@
         IonGrid
     } from "@ionic/vue";
     import { defineComponent } from "vue";
-
+    import { closeCircleOutline} from "ionicons/icons";
+    import axios from 'axios';
     export default defineComponent({
         name: "PatientModal",
-        props: ["SSN", "FirstName","Address", "LastName","PhoneNumber","birthdate","Medications","Gender","major_illnesses",
-            "previous_surgey",
-            "previous_illnessess",
-            "diabetes",
-            "family_diseases",
-            "allergies",
-            "tobacco",
-            "visits","diagnosis"],
+        props: ["PI"],
         components: {
             IonLabel,
              IonRow,
@@ -252,24 +398,124 @@
             IonGrid
         },
         data(){return {
-            active:1
-    };},
+            active:1,
+            edit:0,
+            newInfo:{id:this.PI.patient_id},
+
+            PatientInfo: {
+                first_name: this.PI.first_name,
+                last_name: this.PI.last_name,
+                ssn: this.PI.ssn,
+                phone_number: this.PI.phone_number,
+                gender: this.PI.gender,
+                birth_date: this.PI.birth_date,
+                address: this.PI.address,
+                Medications: this.PI.Medications,
+            },
+            closeCircleOutline,
+            menuOpen: false,
+            drugsInfo: [],
+            drugname: "",
+            drugpage: 1,
+        };},
         computed: {
 
         },
         methods: {
 
+            chooseMedication(item){
+                console.log(item);
+                this.PatientInfo['Medications'].push(item);
+                this.menuOpen = false;
+                this.id='1';
+                axios.post(process.env.VUE_APP_ROOT_API + `updatePatient/` + this.id,{patient_id:this.PI.patient_id,item: item})
+                    .then(() => {
+                        console.log("done");
+                    })
+                    .catch(error => console.log(error));
+
+
+
+
+            },
+            DeleteFromList(item){
+                const index = this.PatientInfo.Medications.indexOf(item);
+                if (index > -1) {
+                    this.PatientInfo.Medications.splice(index, 1);
+                }
+                this.id='2';
+                axios.post(process.env.VUE_APP_ROOT_API + `updatePatient/` + this.id,{patient_id:this.PI.patient_id,item: item})
+                    .then(() => {
+                        console.log("done");
+                    })
+                    .catch(error => console.log(error));
+
+
+            },
+            async get_drugs(mode = "") {
+                this.menuOpen = true;
+                axios
+                    .get(
+                        process.env.VUE_APP_ROOT_API+`drugs?name=${this.drugname}&page=${this.drugpage}`
+                    )
+                    .then((response) => {
+                        let uniqueChars = [...new Set(response.data.data.map(a => a.name))];
+                        this.drugsInfo = uniqueChars;
+                        mode == "reset" ? (this.drugpage = 1) : null;
+                    });
+            },
+            async prev() {
+                this.drugpage--;
+                this.get_drugs();
+            },
+            async next() {
+                this.drugpage++;
+                this.get_drugs();
+            },
             cancel() {
                 modalController.dismiss();
             },
             activate(num)
             {
                 this.active = num;
-                console.log(this.diagnosis);
             },
-            test(id){
-                console.log(id)
-            }
+            editFn(){
+              this.edit= 1;
+
+            },
+            submitFn() {
+                let complete = true;
+                for (const [key, value] of Object.entries(this.PatientInfo)) {
+                    if (value === '') {
+
+                        complete = false;
+                    }
+                    else if ((this.PI[key] !== this.PatientInfo[key]) && (key !=='Medications') ) {
+                            this.newInfo[key] = this.PatientInfo[key];
+                            console.log(this.PI[key] !== this.PatientInfo[key]);
+                        }
+                    }
+                    console.log(this.newInfo);
+                if (complete) {
+
+
+                        axios.post(process.env.VUE_APP_ROOT_API + "updatePatient", this.newInfo)
+                            .then(() => {
+
+                                this.edit = 0;
+                                console.log(this.edit);
+                            })
+                            .catch(error => console.log(error));
+                    }
+
+                    else {
+                        // alert("Please fill all the fields");
+                        this.presentAlert("Please fill all the fields")
+
+                    }
+                }
+
+
 
         },
     });
@@ -318,7 +564,9 @@
     ion-title{
         padding: 0;
     }
-
+input{
+    background-color: darkseagreen;
+}
 
 
 
@@ -373,6 +621,18 @@
         text-transform: uppercase;
         letter-spacing: 5px;
     }
+    input[type=radio]:checked ~ .check {
+        border: 5px solid darkseagreen;
+        box-shadow: 0 0 0 1px darkseagreen,
+        0 0 25px darkseagreen,
+        0 0 50px darkseagreen,
+        0 0 100px darkseagreen;
 
+    }
+    input[type=radio]:checked ~ .check::before{
+        background: darkseagreen;
+
+
+    }
 
 </style>
