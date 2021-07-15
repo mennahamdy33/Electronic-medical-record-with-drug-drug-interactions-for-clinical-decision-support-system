@@ -16,16 +16,18 @@
     "@ionic/vue": "^5.4.0",
     "@ionic/vue-router": "^5.4.0",
     "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
     "core-js": "^3.6.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "ionicons": "^5.4.0",
     "moment": "^2.29.1",
+    "morgan": "^1.10.0",
     "vue": "^3.0.0-0",
     "vue-advanced-search": "^0.1.43",
     "vue-async-computed": "^3.9.0",
     "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0"
-  },
-  "devDependencies": {
+    "vuex": "^4.0.0",
     "@capacitor/cli": "2.4.5",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-e2e-cypress": "~4.5.0",
@@ -37,7 +39,8 @@
     "@vue/test-utils": "^2.0.0-0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0-0",
-    "vue-jest": "^5.0.0-0"
+    "vue-jest": "^5.0.0-alpha.10"
   },
+  "devDependencies": {},
   "description": "An Ionic project"
 }

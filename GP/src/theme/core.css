@@ -200,3 +200,9 @@ input[type="radio"]:checked ~ label {
   margin-top: -20px;
   color: #ccc5c57c;
 }
+.my-custom-class  .dark {
+  background: var(--ion-color-dark);
+}
+.my-custom-class .success {
+  background: var(--ion-color-success);
+}
