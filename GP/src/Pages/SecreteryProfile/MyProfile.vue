@@ -43,12 +43,15 @@
                                     <ion-col size-lg="" size-xs="12" >
                                         <ion-label> First Name </ion-label>
                                         <p>  {{secInfo.first_name}} </p>
+                                        <input v-if="edit" type="text" v-model.trim="editedInfo.first_name">  
+                                       
                                     </ion-col>
                                     
                                     <ion-col size-lg="" size-xs="12" >
                                     
                                         <ion-label> Last Name </ion-label>
                                          <p>  {{secInfo.last_name}} </p>
+                                         <input v-if="edit" type="text"  v-model.trim="editedInfo.last_name">
                                     </ion-col>
 
                                 </ion-row>
@@ -56,12 +59,14 @@
                                     <ion-col size-lg="" size-xs="12" >
                                         <ion-label> Email </ion-label>
                                         <p>  {{secInfo.email}} </p>
+                                        <input v-if="edit" type="text" v-model.trim="editedInfo.email"> 
                                     </ion-col>
                                     
                                     <ion-col size-lg="" size-xs="12" >
                                     
                                         <ion-label> Birth Date </ion-label>
                                          <p>  {{secInfo.birth_date}} </p>
+                                         <input v-if="edit" type="date" v-model.trim="editedInfo.birth_date">
                                     </ion-col>
 
                                 </ion-row>
@@ -72,11 +77,34 @@
                                         <ion-icon v-if="secInfo.gender === 'female'"  :icon="female" ></ion-icon>
                                         <ion-icon v-if="secInfo.gender === 'male'"  :icon="male" ></ion-icon>
                                         <p>  {{secInfo.gender}}</p>
+
+                                        <div v-if="edit" class="container">
+
+                                            <ul>
+                                            
+                                            
+                                                <li>
+                                                <input type="radio" id="Male" name="gender" v-model="editedInfo.gender" value="male"  >
+                                                <label class= 'custom' for="Male"> Male </label>
+                                                    
+                                                <div class="check"><div class="inside"></div></div>
+                                                </li>
+
+                                                <li>
+                                                <input type="radio" id="Female" name="gender" v-model="editedInfo.gender" value="female">
+                                                <label class= 'custom' for="Female"> Female </label>
+                
+                                                <div class="check"><div class="inside"></div></div>
+                                                </li>
+                                            
+                                            </ul>
+                                        </div>
                                     </ion-col>
 
                                     <ion-col size="12" size-sm>
                                         <ion-label>SSN </ion-label>
                                         <p> {{secInfo.ssn}}</p>
+                                        <input v-if="edit" type="number"  v-model.trim="editedInfo.ssn">
 
                                     </ion-col>
                                 </ion-row>
@@ -84,11 +112,13 @@
                                     <ion-col size="12" size-sm>
                                         <ion-label>Phone Number </ion-label>
                                         <p> {{secInfo.phone_number}}</p>
+                                        <input v-if="edit" type="number" v-model.trim="editedInfo.phone_number">
                                     </ion-col>
 
                                     <ion-col size="12" size-sm>
                                         <ion-label>Address </ion-label>
                                         <p> {{secInfo.address}}</p>
+                                        <input v-if="edit" type="text" v-model.trim="editedInfo.address">
 
                                     </ion-col>
 
@@ -97,6 +127,7 @@
                                     <ion-col size="12" size-sm>
                                         <ion-label>Education </ion-label>
                                         <p> {{secInfo.education}}</p>
+                                        <input v-if="edit" type="text" v-model.trim="editedInfo.education">
 
                                     </ion-col>
 
@@ -115,15 +146,17 @@
 
                                 </ion-row>
                                 
-                                <!-- <ion-row  >
+                                <ion-row  >
                                     <ion-col offset-lg="10" size="12" size-sm>
-                                        <ion-button   class="button">Edit</ion-button>
+                                        
+                                        <ion-button v-if="!edit" @click="toggle" type="button" class="button">Edit</ion-button>
+                                        <ion-button @click="submit" v-if="edit" type="button" class="button">Submit</ion-button>
 
+                                        <ion-button v-if="edit" @click="toggle" type="button" class="button">Cancel</ion-button>
                                     </ion-col>
+                                                           
 
-                                    
-
-                                </ion-row> -->
+                                </ion-row>
                               
                                 
                             </ion-grid>
@@ -146,8 +179,8 @@
         IonIcon,
         IonRow,
         IonCol,
-        IonAvatar ,
-        // IonButton 
+        IonAvatar ,alertController,
+        IonButton 
           } from "@ionic/vue";
     // import BaseTemplate from "../../components/BaseTemplate";
     export default defineComponent({
@@ -162,7 +195,7 @@
             IonRow,
             IonCol,
             IonAvatar,
-            // IonButton
+            IonButton
         },
 
         data(){
@@ -170,10 +203,86 @@
                 female,
                 male,
                 secInfo:{},
-                clinics:[]
+                editedInfo:{},
+                clinics:[],
+                edit: false,
+                emailFormat: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ ,
             };
         },
 
+        methods:{
+             async presentAlert(msg) {
+                const alert = await alertController
+                .create({
+                cssClass: 'alert',
+                header: 'Alert',
+                // subHeader: 'Subtitle',
+                message: msg,
+                buttons: ['OK'],
+                });
+            return alert.present();
+             },
+            toggle(){
+            this.edit = !this.edit;
+            if(!this.edit){
+                this.editedInfo = {...this.doctorInfo}
+            }
+           
+            
+        },
+        
+        submit(){
+            const editedInfo = Object.entries(this.editedInfo)
+            let complete = true;
+            for (const [key, value] of editedInfo  ) {
+            console.log(key);
+            if(value === '' ){
+
+                complete = false; 
+            }
+            }
+      
+        if(complete){
+        //   console.log(this.editedInfo)
+          if(!String(this.editedInfo.phone_number).match(/^\d{11}$/) || !String(this.editedInfo.ssn).match(/^\d{14}$/) || !String(this.editedInfo.email).match(this.emailFormat)){
+
+            // alert("invalid Phone number or National ID")
+            this.presentAlert("invalid Phone number or National ID or email");
+
+          }
+          
+          else{
+            
+            fetch(process.env.VUE_APP_ROOT_API+'editSecretary', {
+                method: 'put',
+                headers: {'Content-Type': 'application/json', 'authorization': 'Bearer '+localStorage.getItem('tokensecretary')},
+                body: JSON.stringify(this.editedInfo)
+                }).then((res) => {
+                if(!res.ok){
+                    throw new Error(res.status)
+                }else{
+                    
+                    return res.json()
+                }
+                }).
+                then((res)=> {
+                console.log(res)
+                this.edit = false;
+                })
+                .catch(() =>
+                { 
+                console.log("Unable to edit")
+                this.presentAlert("edit Failed")
+
+                })
+          }
+        }else{
+          this.presentAlert("Please fill all the fields");
+
+        }
+        }
+        
+        },
 
         async mounted(){
 
@@ -185,6 +294,8 @@
           .then(sec => {
               sec.birth_date = sec.birth_date.split('T')[0];
               this.secInfo = sec
+               this.editedInfo = {...sec};
+               this.editedInfo.phone_number = '0'+ this.editedInfo.phone_number;
             // console.log(this.profilePhoto)
             
           } )
