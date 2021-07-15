@@ -126,7 +126,11 @@
                         :value="moment().toISOString()"
                         display-timezone="utc"
                         :ref="'date' + item.product_id"
-                        :max="moment().add(10, 'Y').toISOString()"
+                        :max="
+                          moment()
+                            .add(10, 'Y')
+                            .toISOString()
+                        "
                         :min="moment().toISOString()"
                       ></ion-datetime>
                     </ion-item>
@@ -268,7 +272,7 @@
                   v-if="interactions.length >= 1"
                   @click="
                     submitAlert(
-                      'There are some interactions between prescribed drugs , are you sure ?'
+                      'There are some Drug-Drug Interactions, are you sure that you want to submit?'
                     )
                   "
                   buttonText="Submit"
@@ -417,7 +421,7 @@ export default defineComponent({
 
       return [year, month, day].join("-");
     },
-    moment: function () {
+    moment: function() {
       return moment();
     },
     async selectPatient(item) {
@@ -486,11 +490,10 @@ export default defineComponent({
       this.inter_loading = false;
     },
     async post_diagnosis() {
-
-       this.drugs= await  this.drugs.map((value)=>{
-        let ref = 'dose'+value.product_id;
-        return ({...value , dose:this.$refs[ref].value});
-      })
+      this.drugs = await this.drugs.map((value) => {
+        let ref = "dose" + value.product_id;
+        return { ...value, dose: this.$refs[ref].value };
+      });
 
       axios
         .put(

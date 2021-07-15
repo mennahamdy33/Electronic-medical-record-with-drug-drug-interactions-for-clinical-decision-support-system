@@ -35,7 +35,7 @@
           </ion-row>
           <ion-row>
             <ion-text style="padding: 0px 5px; font-size: 14px"
-              ><b>Dose : </b>{{ item.dose ?? "There is no dose" }}</ion-text
+              ><b>Dose: </b>{{ item.dose ?? "There is no dose" }}</ion-text
             >
           </ion-row>
           <ion-row v-if="item.doctor_id">
