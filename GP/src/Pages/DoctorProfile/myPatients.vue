@@ -99,6 +99,7 @@ import PatientCard from "../../components/PatientCard";
                      this.Patients.push({
                          patient_id:med.patient_id  ,
                          ssn : med.ssn,
+                         photo: med.photo,
                           first_name : med.first_name,
                           last_name : med.last_name,
                           phone_number : med.phone_number,
