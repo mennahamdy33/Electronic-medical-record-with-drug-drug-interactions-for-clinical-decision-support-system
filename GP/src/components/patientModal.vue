@@ -521,6 +521,8 @@
     import { defineComponent } from "vue";
     import { closeCircleOutline} from "ionicons/icons";
     import axios from 'axios';
+    import {alertController} from '@ionic/vue';
+
     export default defineComponent({
         name: "PatientModal",
         props: ["PI"],
@@ -567,6 +569,18 @@
 
         },
         methods: {
+
+            async presentAlert(msg) {
+                const alert = await alertController
+                    .create({
+                        cssClass: 'alert',
+                        header: 'Alert',
+                        // subHeader: 'Subtitle',
+                        message: msg,
+                        buttons: ['OK'],
+                    });
+                return alert.present();
+            },
 
             chooseMedication(item){
                 console.log(item);
@@ -648,14 +662,24 @@
                     console.log(this.newInfo);
                     if (complete) {
 
+                        if(!this.PatientInfo.phone_number.match(/^\d{11}$/) || (!this.PatientInfo.ssn.toString().match(/^\d{14}$/)) ){
 
-                        axios.post(process.env.VUE_APP_ROOT_API + "updatePatient", this.newInfo)
-                            .then(() => {
 
-                                this.edit = 0;
-                                console.log(this.edit);
-                            })
-                            .catch(error => console.log(error));
+                            this.presentAlert("invalid Phone number or National ID ");
+
+                        }
+
+                        else{
+
+                            axios.post(process.env.VUE_APP_ROOT_API + "updatePatient", this.newInfo)
+                                .then(() => {
+
+                                    this.edit = 0;
+                                    console.log(this.edit);
+                                })
+                                .catch(error => console.log(error));
+
+                        }
                     }
 
                     else {

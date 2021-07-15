@@ -195,7 +195,7 @@
                     axios.post(process.env.VUE_APP_ROOT_API+"addpatient", data)
                             .then(()=> {
                                 this.$store.dispatch('patient/changePhase', {currentPhase: 'PersonalInfo'});
-                                // this.router.push('/MainPageSecretery')
+                                this.router.push('/todaySchedule');
                             })
                             .catch(error => console.log(error));
 
