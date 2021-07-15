@@ -6,7 +6,7 @@
                                         <div class="user-box">
                                             <textarea      v-model="MedicalHistory.majorillnesses"></textarea>
 
-                                            <label  class="Down"> Major Illnesses </label>
+                                            <label  class="Up"> Major Illnesses </label>
 
                                         </div>
                                     </ion-col>
@@ -17,7 +17,7 @@
                                         <div class="user-box">
                                             <textarea    v-model="MedicalHistory.previoussurgery"></textarea>
 
-                                            <label  class="Down">Previous Surgery</label>
+                                            <label  class="Up">Previous Surgery</label>
 
                                         </div>
                                     </ion-col>
@@ -28,7 +28,7 @@
                                         <div class="user-box">
                                             <textarea    v-model="MedicalHistory.previousillnesses"></textarea>
 
-                                            <label  class="Down"> Previous Illnesses </label>
+                                            <label  class="Up"> Previous Illnesses </label>
 
                                         </div>
                                     </ion-col>
@@ -71,7 +71,7 @@
                                         <div class="user-box">
                                             <textarea    v-model=" MedicalHistory.familydiseases"></textarea>
 
-                                            <label  class="Down"> Family Diseases </label>
+                                            <label  class="Up"> Family Diseases </label>
 
                                         </div>
                                     </ion-col>
@@ -82,7 +82,7 @@
                                         <div class="user-box">
                                             <textarea    v-model=" MedicalHistory.allergies"></textarea>
 
-                                            <label  class="Down"> Allergies </label>
+                                            <label  class="Up"> Allergies </label>
 
                                         </div>
                                     </ion-col>
@@ -221,146 +221,7 @@
 </script>
 <style scoped>
 
-    .FormGrid ion-col{
-        --ion-grid-column-padding: 20px;
-
-    }
-    .FormGrid ion-col{
-        --ion-grid-column-padding: 20px;
-
-    }
-
-
-
-
-    .user-box input {
-        width: 100%;
-        padding: 10px 0;
-        font-size: 16px;
-        color: #fff;
-        margin-bottom: 30px;
-        border: none;
-        border-bottom: 1px solid #fff;
-        outline: none;
-        background: transparent;
-    }
-    .user-box label {
-        position: absolute;
-
-        left: 0;
-        padding: 10px 0;
-        font-size: 16px;
-        color: #fff;
-        pointer-events: none;
-        transition: .5s;
-    }
-    .user-box {
-        position: relative;
-    }
-    .user-box textarea {
-        width: 100%;
-        padding: 10px 0;
-        font-size: 16px;
-        color: #fff;
-        margin-bottom: 30px;
-        border: none;
-        border-bottom: 1px solid #fff;
-        outline: none;
-        background: transparent;
-    }
-    .user-box label {
-        position: absolute;
-        left: 0;
-        padding: 10px 0;
-        font-size: 16px;
-        color: #fff;
-        pointer-events: none;
-        transition: .5s;
-    }
-    .Down{
-        top: 0;
-    }
-    .user-box textarea:focus ~ .Down{
-        top: -20px;
-        left: 0;
-        color: #03e9f4;
-        font-size: 16px;
-        font-weight: bold;
-    }
-
-    .container ul{
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-    ul li{
-        color: #ffffff;
-        /* display: block; */
-        position: relative;
-        float: left;
-        /* width: 100%; */
-        /* height: 100px; */
-    }
-    ul li input[type=radio]{
-        position: absolute;
-        visibility: hidden;
-    }
-    ul li label{
-        display: block;
-        position: relative;
-        /* font-weight: 300; */
-        font-size: 16px;
-        padding: 25px 25px 25px 80px;
-        margin: 10px auto;
-        height: 10px;
-        z-index: 9;
-        cursor: pointer;
-        /* -webkit-transition: all 0.25s linear; */
-    }
-    ul li:hover label{
-        /* color: #ffdcfc; */
-        font-size: 20px;
-    }
-    ul li .check{
-        display: block;
-        position: absolute;
-        border: 5px solid #AAAAAA;
-        border-radius: 100%;
-        height: 27px;
-        width: 27px;
-        top: 30px;
-        left: 20px;
-        z-index: 5;
-        transition: border .25s linear;
-        -webkit-transition: border .25s linear;
-    }
-    ul li:hover .check {
-        border: 5px solid #FFFFFF;
-    }
-    ul li .check::before {
-        display: block;
-        position: absolute;
-        content: '';
-        border-radius: 100%;
-        height: 12px;
-        width: 12px;
-        top: 2.4px;
-        left: 2.7px;
-        margin: auto;
-        /* transition: background 0.25s linear;
-        -webkit-transition: background 0.25s linear; */
-    }
-    input[type=radio]:checked ~ .check {
-        border: 5px solid #03e9f4;
-        box-shadow: 0 0 0 1px #03e9f4,
-        0 0 25px #03e9f4,
-        0 0 50px #03e9f4,
-        0 0 100px #03e9f4;
-    }
-    input[type=radio]:checked ~ .check::before{
-        background: #03e9f4;
-    }
-    input[type=radio]:checked ~ label{
-        color: #03e9f4;
+    textarea{
+        margin-top: 6px;
     }
 </style>
