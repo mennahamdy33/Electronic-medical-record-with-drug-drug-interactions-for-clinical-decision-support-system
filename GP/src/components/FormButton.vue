@@ -104,7 +104,7 @@ ion-button span:nth-child(1) {
   height: 3px;
   background: linear-gradient(90deg, transparent, #03e9f4);
   /* background: linear-gradient(90deg, transparent, #a6dbe2); */
-  animation: btn-anim1 1s linear infinite;
+  animation: btn-anim1 5s linear infinite;
 }
 
 /* @keyframes btn-anim1 {

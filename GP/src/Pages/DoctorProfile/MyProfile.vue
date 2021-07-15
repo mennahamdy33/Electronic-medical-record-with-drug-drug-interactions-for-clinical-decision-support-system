@@ -129,7 +129,12 @@
 
                                 </ion-row> -->
                               
-                                
+                                <ion-row class="ion-justify-content-end">
+                                    <div style="margin-top: 10px">
+
+                                        <ion-button @click="print"> Print </ion-button>
+                                    </div>
+                                </ion-row>
                             </ion-grid>
                         </div>
 
@@ -166,6 +171,8 @@
             IonRow,
             IonCol,
             IonAvatar,
+            
+            
             // IonButton
         },
 
