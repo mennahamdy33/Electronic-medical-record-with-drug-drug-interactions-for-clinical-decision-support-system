@@ -1,4 +1,34 @@
 <template >
+<ion-grid>
+                  <ion-row class= "ion-align-items-center ion-justify-content-center">
+                     <ion-col size="12" size-sm  >
+                      <ion-avatar >
+                          
+                          <img v-if="PatientInfo.photo === 'null'"  class="personal_photo"  :src="default_photo" alt="logo"  />
+                          <img  v-else class="personal_photo"  :src="PatientInfo.photo" alt="logo"  />
+                          
+                        </ion-avatar>
+                        
+                    </ion-col>
+                   </ion-row>
+                </ion-grid>
+                 <ion-grid style="margin-top:50px;">
+                  <ion-row>
+                     
+                    <ion-col size="12" size-sm >
+                      <!-- <form-field type="text" LableText="Speciality"/> -->
+                      <div class="image-input">
+
+                          <input style="display: none;" type="file" accept="image/*" id="imageInput" @change="get_photo($event)">
+                          <label for="imageInput" class="image-button"><i class="far fa-image"></i> Choose image</label>
+                        <!-- 	<img src="" class="image-preview"> -->
+                          <span class="change-image">Choose different image</span>
+                     
+                      </div>
+                    </ion-col>
+                  
+                   </ion-row>
+                </ion-grid>
 
                         <form v-on:submit.prevent="">
                             <ion-grid class="FormGrid">
@@ -164,6 +194,7 @@
         IonCard,
         IonList,IonItem,
         IonButton,
+        IonAvatar
 
     } from "@ionic/vue";
 
@@ -174,7 +205,7 @@
             IonSearchbar,IonIcon,
             FormButton, IonGrid, IonRow, IonCol,IonButton,
             IonList, IonItem,IonText,
-            IonCard,IonLabel,
+            IonCard,IonLabel,IonAvatar
 
         },
         data() {
@@ -188,6 +219,7 @@
                     ssn: "",
                     phoneNumber: "",
                     gender: "",
+                    photo: 'null',
                     birthdate: "",
                     address: "",
                     Medications: [],
@@ -196,6 +228,7 @@
                 drugsInfo: [],
                 drugname: "",
                 drugpage: 1,
+                default_photo: require("../../../public/me.jpg"),
             };
         },
         async mounted() {
@@ -283,6 +316,18 @@
                 }
             },
 
+             async get_photo(event){
+     
+                const image = event.target.files[0];
+                const reader = new FileReader();  
+                reader.readAsDataURL(image);
+                reader.onload = event =>{
+                this.PatientInfo.photo = event.target.result;
+                // console.log(this.PatientInfo.photo);
+                    }
+
+    
+            }
 
         },
 
@@ -494,4 +539,44 @@
         background-color: #ffffff;
 
     }
+
+    .personal_photo{
+  min-height:110px;
+  min-width:110px;
+}
+
+/* .image-input{ */
+
+	/* text-align: center; */
+  /* display: none; */
+/* } */
+	
+	.image-button{
+
+		/* display: block; */
+		color: #FFF;
+    width:150px;
+		background: rgb(0, 173, 204)	;
+		padding: .5rem .6rem;
+		font-size: 115%;
+    border-radius: 500px;
+		cursor: pointer;
+  }
+		i
+			{
+        font-size: 125%;
+			/* margin-right: .3rem; */
+      }
+		.image-button:hover
+			{
+        border: 1px solid #ffff;
+			/* margin-right: .3rem; */
+      }
+	
+
+	span
+		{
+    display: none;
+		/* text-align: center; */
+		cursor: pointer;}
 </style>
