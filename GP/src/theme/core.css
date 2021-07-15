@@ -94,8 +94,9 @@ ion-item menu {
 
 .user-box input:focus ~ .Down,
 .user-box textarea:focus ~ .Down,
-/* .user-box input:valid ~ .Down , */
-.user-box textarea:valid ~ .Down {
+.user-box input:valid ~ .Down 
+/* .user-box textarea:valid ~ .Down */
+ {
   top: -20px;
   left: 0;
   color: #03e9f4;
