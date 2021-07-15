@@ -43,8 +43,8 @@
                                     <ion-col size="12" size-sm>
 
                                         <ion-label>Gender </ion-label>
-                                        <ion-icon v-if="PI.gender === 'Female'"  :icon="female" ></ion-icon>
-                                        <ion-icon v-if="PI.gender === 'Male'"  :icon="male" ></ion-icon>
+                                        <ion-icon v-if="PI.gender === 'Female'"  ></ion-icon>
+                                        <ion-icon v-if="PI.gender === 'Male'"   ></ion-icon>
                                         <p>  {{PI.gender}}</p>
                                     </ion-col>
 
@@ -85,7 +85,7 @@
 
                                 <ion-row  >
                                     <ion-col  size="12" size-sm>
-                                        <ion-button  @click="editFn" class="button">Edit</ion-button>
+                                        <ion-button  @click="editFn(0)" class="button">Edit</ion-button>
 
                                     </ion-col>
                                        <ion-col  size="12" size-sm>
@@ -232,7 +232,7 @@
 
                                 <ion-row  >
                                     <ion-col  size="12" size-sm>
-                                        <ion-button @click="submitFn" class="button">Submit</ion-button>
+                                        <ion-button @click="submitFn(0)" class="button">Submit</ion-button>
 
                                     </ion-col>
                                     <ion-col  size="12" size-sm>
@@ -261,7 +261,7 @@
                         <h2>Patient Profile</h2>
 
 
-                        <div class="login-box" >
+                        <div class="login-box" v-show="!edit2" >
 
                             <ion-grid class="FormGrid" >
 
@@ -275,7 +275,7 @@
                                     <ion-col size-lg="" size-xs="12" >
 
                                         <ion-label> Previous Surgey </ion-label>
-                                        <p>  {{PI.previous_surgey}} </p>
+                                        <p>  {{PI.previous_surgery}} </p>
 
                                     </ion-col>
 
@@ -284,8 +284,8 @@
 
                                     <ion-col size-lg="" size-xs="12" >
 
-                                        <ion-label> Previous Illnessess </ion-label>
-                                        <p>  {{PI.previous_illnessess}} </p>
+                                        <ion-label> Previous Illnesses </ion-label>
+                                        <p>  {{PI.previous_illnesses}} </p>
                                     </ion-col>
                                     <ion-col size="12" size-sm>
 
@@ -318,6 +318,127 @@
                                 </ion-row>
 
                                 <ion-row  >
+                                    <ion-col  size="12" size-sm>
+                                        <ion-button  @click="editFn(1)" class="button">Edit</ion-button>
+
+                                    </ion-col>
+
+                                    <ion-col  size="12" size-sm>
+                                        <ion-button  @click="cancel" class="button">Cancel</ion-button>
+
+                                    </ion-col>
+
+
+
+                                </ion-row>
+
+
+                            </ion-grid>
+                        </div>
+                        <div class="login-box" v-show="edit2" >
+
+                            <ion-grid class="FormGrid" >
+
+
+                                <ion-row>
+
+                                        <ion-label> Major Illnesses  </ion-label>
+                                        <textarea      v-model="MedicalHistory.major_illnesses"></textarea>
+
+                                </ion-row>
+                                <ion-row>
+
+                                        <ion-label> Previous Surgery </ion-label>
+                                        <textarea    v-model="MedicalHistory.previous_surgery"></textarea>
+
+
+                                </ion-row>
+                                <ion-row>
+
+                                        <ion-label> Previous Illnesses </ion-label>
+                                        <textarea    v-model="MedicalHistory.previous_illnesses"></textarea>
+
+
+
+                                </ion-row>
+                                <ion-row>
+
+                                    <ion-label> Family Diseases </ion-label>
+                                    <textarea    v-model="MedicalHistory.family_diseases"></textarea>
+
+
+                                </ion-row>
+                                <ion-row>
+
+                                    <ion-label> Allergies    </ion-label>
+                                    <textarea    v-model="MedicalHistory.allergies"></textarea>
+
+
+
+                                </ion-row>
+
+                                <ion-row>
+
+                                    <ion-col size="12" size-sm>
+
+
+                                        <ion-label> Diabetes </ion-label>
+                                        <div class="container">
+
+                                            <ul>
+
+                                                <li>
+                                                    <input type="radio" id="diabetes" name="diabetes" v-model="MedicalHistory.diabetes" value="yes"  >
+                                                    <label style="color: #0d0d0d" for="diabetes"> Yes </label>
+
+                                                    <div class="check"><div class="inside"></div></div>
+                                                </li>
+
+                                                <li>
+                                                    <input type="radio" id="noDiabetes" name="diabetes" v-model="MedicalHistory.diabetes" value="no">
+                                                    <label style="color: #0d0d0d" for="noDiabetes"> No </label>
+
+                                                    <div class="check"><div class="inside"></div></div>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+
+
+                                    </ion-col>
+
+                                    <ion-col>
+                                    <ion-label> Smoker </ion-label>
+                                    <div class="container">
+
+                                        <ul>
+
+                                            <li>
+                                                <input type="radio" id="Yes" name="tobacco" v-model=" MedicalHistory.tobacco" value="yes"  >
+                                                <label style="color: #0d0d0d" for="Yes"> Yes </label>
+
+                                                <div class="check"><div class="inside"></div></div>
+                                            </li>
+
+                                            <li>
+                                                <input type="radio" id="No" name="tobacco" v-model=" MedicalHistory.tobacco" value="no">
+                                                <label style="color: #0d0d0d" for="No"> No </label>
+
+                                                <div class="check"><div class="inside"></div></div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                    </ion-col>
+
+                                </ion-row>
+
+                                <ion-row  >
+                                    <ion-col  size="12" size-sm>
+                                        <ion-button @click="submitFn(1)" class="button">Submit</ion-button>
+
+                                    </ion-col>
                                     <ion-col  size="12" size-sm>
                                         <ion-button  @click="cancel" class="button">Cancel</ion-button>
 
@@ -400,8 +521,18 @@
         data(){return {
             active:1,
             edit:0,
+            edit2:0,
             newInfo:{id:this.PI.patient_id},
-
+            newMH:{id:this.PI.patient_id},
+            MedicalHistory:{
+                major_illnesses: this.PI.major_illnesses,
+                previous_surgery:this.PI.previous_surgery,
+                previous_illnesses:this.PI.previous_illnesses,
+                diabetes:this.PI.diabetes,
+                family_diseases:this.PI.family_diseases,
+                allergies:this.PI.allergies,
+                tobacco: this.PI.tobacco
+            },
             PatientInfo: {
                 first_name: this.PI.first_name,
                 last_name: this.PI.last_name,
@@ -479,24 +610,29 @@
             {
                 this.active = num;
             },
-            editFn(){
-              this.edit= 1;
+            editFn(num){
+                if(num ===0){
+              this.edit= 1;}
+              if(num===1){
+                  this.edit2= 1;
+              }
 
             },
-            submitFn() {
+            submitFn(num) {
                 let complete = true;
-                for (const [key, value] of Object.entries(this.PatientInfo)) {
-                    if (value === '') {
+                if(num ===0) {
+                    for (const [key, value] of Object.entries(this.PatientInfo)) {
+                        if (value === '') {
 
-                        complete = false;
-                    }
-                    else if ((this.PI[key] !== this.PatientInfo[key]) && (key !=='Medications') ) {
+                            complete = false;
+                        }
+                        else if ((this.PI[key] !== this.PatientInfo[key]) && (key !== 'Medications')) {
                             this.newInfo[key] = this.PatientInfo[key];
                             console.log(this.PI[key] !== this.PatientInfo[key]);
                         }
                     }
                     console.log(this.newInfo);
-                if (complete) {
+                    if (complete) {
 
 
                         axios.post(process.env.VUE_APP_ROOT_API + "updatePatient", this.newInfo)
@@ -513,6 +649,38 @@
                         this.presentAlert("Please fill all the fields")
 
                     }
+                }
+                else if(num ===1){
+                    for (const [key, value] of Object.entries(this.MedicalHistory)) {
+                        if (value === '') {
+
+                            complete = false;
+                        }
+                        else if (this.PI[key] !== this.MedicalHistory[key]) {
+                            this.newMH[key] = this.MedicalHistory[key];
+
+                        }
+                    }
+                    console.log(this.newMH);
+                    if (complete) {
+
+
+                        axios.post(process.env.VUE_APP_ROOT_API + "updateMedicalHistory", this.newMH)
+                            .then(() => {
+
+                                this.edit2 = 0;
+                                console.log(this.edit);
+                            })
+                            .catch(error => console.log(error));
+                    }
+
+                    else {
+                        // alert("Please fill all the fields");
+                        this.presentAlert("Please fill all the fields")
+
+                    }
+
+                }
                 }
 
 
@@ -629,7 +797,7 @@ input{
         0 0 100px darkseagreen;
 
     }
-    input[type=radio]:checked ~ .check::before{
+    textarea,input[type=radio]:checked ~ .check::before{
         background: darkseagreen;
 
 
