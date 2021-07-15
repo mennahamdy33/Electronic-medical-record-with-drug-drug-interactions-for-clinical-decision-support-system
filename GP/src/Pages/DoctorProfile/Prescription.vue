@@ -42,8 +42,11 @@
           <ion-card>
             <ion-card-header>
               <ion-row class="ion-align-items-center">
+                <ion-avatar v-if="patientInfo.photo">
+                  <img :src="patientInfo.photo" />
+                </ion-avatar>
                 <ion-card-title
-                  style="text-transform: capitalize; line-height: 10px"
+                  style="text-transform: capitalize; line-height: 10px; margin-left:10px;"
                 >
                   {{ patientInfo.first_name }} {{ patientInfo.last_name }}
                   <p style="font-size: 12px">SSN: {{ patientInfo.ssn }}</p>
