@@ -64,6 +64,7 @@
               <ion-grid>
                 <ion-row class="ion-justify-content-center">
                   <form-button
+                    class="med"
                     @click="openPatientModal"
                     buttonText="Patient Medications"
                     type="button"
@@ -591,5 +592,15 @@ export default defineComponent({
 
 .white {
   color: white;
+}
+.med{
+  border: solid 2px #000268;
+  color: #000000;
+  padding-right:10px;
+  padding-left:10px;
+}
+.med:hover{
+  background:  #01787cb7;
+  border: solid 3px #000000;
 }
 </style>
