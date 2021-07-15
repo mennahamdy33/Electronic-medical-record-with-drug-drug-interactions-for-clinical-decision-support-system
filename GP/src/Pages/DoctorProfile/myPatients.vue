@@ -21,23 +21,7 @@
             <patient-card
                     v-for="patient in resultsPatients"
                     :key="patient.ssn"
-                    :ssn="patient.ssn"
-                    :FirstName="patient.FirstName"
-                    :LastName="patient.LastName"
-                    :PhoneNumber="patient.phoneNumber"
-                    :birthdate="patient.birthdate"
-                    :Medications="patient.Medications"
-                    :Gender="patient.Gender"
-                    :Address="patient.Address"
-                    :major_illnesses= "patient.major_illnesses"
-                    :previous_surgey= "patient.previous_surgey"
-                    :previous_illnessess= "patient.previous_illnessess"
-                    :diabetes= "patient.diabetes"
-                    :family_diseases= "patient.family_diseases"
-                    :allergies= "patient.allergies"
-                    :tobacco= "patient.tobacco"
-                    :visits = "patient.dates"
-                    :diagnosis = "patient.diagnosis"
+                    :PI="patient"
             ></patient-card>
             </ion-row>
            </ion-grid>
@@ -67,16 +51,7 @@ import PatientCard from "../../components/PatientCard";
     import axios from 'axios';
     export default defineComponent({
         name: 'MainPageSecretery',
-        props: ["ssn", "FirstName", "LastName","phoneNumber","birthdate","Medications","Gender","Address","major_illnesses",
-        "previous_surgey",
-        "previous_illnessess",
-        "diabetes",
-        "family_diseases",
-        "allergies",
-        "tobacco",
-            "visits",
-           "diagnosis"
-    ],
+        props: ["PI"],
         components: {
 
 
@@ -124,13 +99,13 @@ import PatientCard from "../../components/PatientCard";
                      this.Patients.push({
                          patient_id:med.patient_id  ,
                          ssn : med.ssn,
-                          FirstName : med.first_name,
-                          LastName : med.last_name,
-                          phoneNumber : med.phone_number,
-                          birthdate : med.birth_date,
+                          first_name : med.first_name,
+                          last_name : med.last_name,
+                          phone_number : med.phone_number,
+                          birth_date : med.birth_date.split('T')[0],
                           Medications : med.medications.split(','),
-                          Gender : med.gender,
-                          Address : med.address,
+                          gender : med.gender,
+                          address : med.address,
                           major_illnesses: med.major_illnesses,
                           previous_surgey: med.previous_surgey,
                           previous_illnessess: med.previous_illnessess,
@@ -159,8 +134,9 @@ import PatientCard from "../../components/PatientCard";
                             else{
                               this.all.push(this.Patients[i])
                           }
+
                       }
-                      console.log(this.all);
+
                 } ).catch((err) => {
                         console.log(err);
 

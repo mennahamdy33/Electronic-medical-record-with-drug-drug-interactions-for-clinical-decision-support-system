@@ -50,14 +50,14 @@
 
 
                                                 <li>
-                                                    <input type="radio" id="Male" name="gender" v-model="PatientInfo.gender" value="male"  >
+                                                    <input type="radio" id="Male" name="gender" v-model="PatientInfo.gender" value="Male"  >
                                                     <label for="Male"> Male </label>
 
                                                     <div class="check"><div class="inside"></div></div>
                                                 </li>
 
                                                 <li>
-                                                    <input type="radio" id="Female" name="gender" v-model="PatientInfo.gender" value="female">
+                                                    <input type="radio" id="Female" name="gender" v-model="PatientInfo.gender" value="Female">
                                                     <label for="Female"> Female </label>
 
                                                     <div class="check"><div class="inside"></div></div>
