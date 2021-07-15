@@ -10,8 +10,9 @@
     <ion-grid>
       <ion-card v-if="patients.length >= 1 && !patientInfo">
         <ion-card-header>
-          <ion-card-subtitle>Today's visits</ion-card-subtitle>
+          <ion-card-title>Today's Visits</ion-card-title>
         </ion-card-header>
+
         <ion-card-content>
           <ion-list>
             <ion-item
@@ -42,10 +43,7 @@
             <ion-card-header>
               <ion-row class="ion-align-items-center">
                 <ion-card-title
-                  style="
-                  text-transform: capitalize;
-                  line-height: 10px;
-                "
+                  style="text-transform: capitalize; line-height: 10px"
                 >
                   {{ patientInfo.first_name }} {{ patientInfo.last_name }}
                   <p style="font-size: 12px">SSN: {{ patientInfo.ssn }}</p>
@@ -55,28 +53,30 @@
 
             <ion-card-content>
               <p>Gender: {{ patientInfo.gender }}</p>
-              <p>Birth Date: {{ patientInfo.birth_date }}</p>
+              <p>
+                Birth Date:
+                {{ formatDate(patientInfo.birth_date) }}
+              </p>
               <p>Mobile: {{ patientInfo.phone_number }}</p>
+              <ion-grid>
+                <ion-row class="ion-justify-content-center">
+                  <form-button
+                    @click="openPatientModal"
+                    buttonText="Patient Medications"
+                    type="button"
+                  />
+                </ion-row>
+              </ion-grid>
             </ion-card-content>
           </ion-card>
-          <ion-grid>
-            <ion-row class="ion-justify-content-center">
-              <ion-col size-lg="5" size-md="7.5" size-xs="10.8">
-                <form-button
-                  @click="openPatientModal"
-                  buttonText="Patient Medications"
-                  type="button"
-                />
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+
           <ion-modal>
             <Modal title="Patient Medications"></Modal>
           </ion-modal>
 
           <ion-card>
             <ion-card-header>
-              <ion-card-subtitle>Drugs List</ion-card-subtitle>
+              <ion-card-title>Drugs List</ion-card-title>
             </ion-card-header>
             <ion-card-content>
               <ion-searchbar
@@ -89,16 +89,24 @@
                   }
                 "
               ></ion-searchbar>
+              <div class="ion-text-center">
+                <ion-spinner name="lines" v-if="drugs_loading"></ion-spinner>
+              </div>
+
               <ion-list>
-                <ion-button v-if="drugsInfo.length >= 5" @click="next()"
-                  ><ion-text class="white">next</ion-text></ion-button
-                >
-                <ion-button v-if="drugpage >= 2" @click="prev()" color="dark"
-                  ><ion-text class="white">prev</ion-text></ion-button
-                >
+                <div class="ion-text-center">
+                  <ion-button v-if="drugpage >= 2" @click="prev()" color="dark"
+                    ><ion-text class="white">prev</ion-text></ion-button
+                  >
+
+                  <ion-button v-if="drugsInfo.length >= 5" @click="next()"
+                    ><ion-text class="white">next</ion-text></ion-button
+                  >
+                </div>
+
                 <ion-item
                   style="d-flex align-items-center"
-                  :key="item.id"
+                  :key="item.product_id"
                   v-for="item in drugsInfo"
                 >
                   <ion-row style="width: 100%">
@@ -115,12 +123,19 @@
                     </ion-col>
                     <ion-item>
                       <ion-datetime
-                        value="2019-10-01T15:43:40.394Z"
+                        :value="moment().toISOString()"
                         display-timezone="utc"
+                        :ref="'date' + item.product_id"
+                        :max="
+                          moment()
+                            .add(10, 'Y')
+                            .toISOString()
+                        "
+                        :min="moment().toISOString()"
                       ></ion-datetime>
                     </ion-item>
                     <ion-item>
-                      <ion-button @click="addDrug(item, date)" color="dark"
+                      <ion-button @click="addDrug(item)" color="dark"
                         ><ion-text class="white">Add </ion-text></ion-button
                       >
                     </ion-item>
@@ -133,7 +148,7 @@
           <div v-if="drugs.length >= 1">
             <ion-card>
               <ion-card-header>
-                <ion-card-subtitle>Prescriptive drugs</ion-card-subtitle>
+                <ion-card-title>Prescribed drugs</ion-card-title>
               </ion-card-header>
               <ion-card-content>
                 <ion-list>
@@ -142,69 +157,99 @@
                     :key="item.id"
                     v-for="item in drugs"
                   >
-                    <ion-row style="width: 100%">
-                      <ion-col>
-                        <ion-label> {{ item.name }} </ion-label>
-                        <ion-card-subtitle class="ion-align-items-center">
-                          {{ item.labeller }} ({{ item.strength }})
-                          <ion-icon :icon="earthOutline"></ion-icon>
-                          {{ item.country }}</ion-card-subtitle
+                    <ion-grid>
+                      <ion-row style="width: 100%">
+                        <ion-datetime
+                          :value="item.to_date"
+                          disabled
+                          style="margin: 1px -12px"
                         >
-                        <ion-badge style="margin-top: 10px" color="dark">{{
-                          item.parent_key
-                        }}</ion-badge>
-                      </ion-col>
+                        </ion-datetime>
+                      </ion-row>
+                      <ion-row style="width: 100%">
+                        <ion-col>
+                          <ion-label> {{ item.name }} </ion-label>
+                          <ion-card-subtitle class="ion-align-items-center">
+                            {{ item.labeller }} ({{ item.strength }})
+                            <ion-icon :icon="earthOutline"></ion-icon>
+                            {{ item.country }}</ion-card-subtitle
+                          >
+                          <ion-badge style="margin-top: 10px" color="dark">{{
+                            item.parent_key
+                          }}</ion-badge>
+                        </ion-col>
 
-                      <ion-button @click="removeDrug(item)" color="dark"
-                        ><ion-text>Remove </ion-text></ion-button
-                      >
-                    </ion-row>
+                        <ion-button @click="removeDrug(item)" color="dark"
+                          ><ion-text>Remove </ion-text></ion-button
+                        >
+                      </ion-row>
+                    </ion-grid>
                   </ion-item>
                 </ion-list>
+                <ion-row class="ion-justify-content-center"> </ion-row>
+                <div class="ion-text-center">
+                  <ion-spinner name="lines" v-if="inter_loading"></ion-spinner>
+                </div>
+                <ion-card v-if="interactions.length >= 1">
+                  <ion-card-content>
+                    <ion-card-subtitle>Interactions</ion-card-subtitle>
+                    <ion-list>
+                      <ion-grid
+                        style="d-flex justify-items-between"
+                        v-for="(results, index) in interactions"
+                        :key="index"
+                      >
+                        <ion-row style="width:100%">
+                          <ion-card-title style="padding:10px 0px">
+                            {{ results.drug.name }}
+                          </ion-card-title>
+                        </ion-row>
+
+                        <ion-row
+                          style="width:100%"
+                          v-for="(item, id) in results.results"
+                          :key="id"
+                        >
+                          <ion-label>
+                            conflict with
+
+                            <b>
+                              {{ item.name }}
+                            </b>
+                            <div class="ion-align-items-between">
+                              <ion-badge style="" color="danger">{{
+                                item.parent_key
+                              }}</ion-badge>
+                            </div>
+                          </ion-label>
+                          <ion-row style="width:100%">
+                            <ion-label color="danger">
+                              <b>{{ item.interaction_name }}</b></ion-label
+                            >
+                          </ion-row>
+
+                          <ion-item-divider>
+                            <ion-text color="danger">
+                              {{ " " + item.description }}</ion-text
+                            >
+                          </ion-item-divider>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-list>
+                  </ion-card-content>
+                </ion-card>
+                <ion-text
+                  color="success"
+                  v-if="interactions.length == 0 && inter_once == true"
+                  >There are no interactions</ion-text
+                >
               </ion-card-content>
             </ion-card>
           </div>
           <ion-col>
-            <ion-grid>
-              <ion-row class="ion-justify-content-center">
-                <ion-col size-lg="4.5" size-md="7" size-xs="10">
-                  <form-button
-                    buttonText="Check Interaction"
-                    @click="post_check"
-                    type="button"
-                  />
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-            <ion-card v-if="interactions.length >= 1">
-              <ion-card-header>
-                <ion-card-subtitle>Interactions</ion-card-subtitle>
-              </ion-card-header>
-              <ion-card-content>
-                <ion-list>
-                  <ion-item
-                    style="d-flex justify-items-between"
-                    :key="item.id"
-                    v-for="(item, index) in interactions"
-                  >
-                    <ion-card>
-                      <ion-label
-                        >Drug : {{ interactions_drugs[index].name }} conflict
-                        with
-                        {{ interactions_medications[index].name }}</ion-label
-                      >
-                      <ion-label> {{ item.name }}</ion-label>
-                      <ion-text> {{ item.description }}</ion-text>
-                      <ion-text> {{ item.parent_key }}</ion-text>
-                      <ion-text> {{ item.drugbank_id }}</ion-text>
-                    </ion-card>
-                  </ion-item>
-                </ion-list>
-              </ion-card-content>
-            </ion-card>
             <ion-card>
               <ion-card-header>
-                <ion-card-subtitle>Diagnosis</ion-card-subtitle>
+                <ion-card-title>Diagnosis</ion-card-title>
               </ion-card-header>
               <ion-card-content>
                 <ion-textarea
@@ -218,7 +263,7 @@
             <ion-row class="ion-justify-content-center">
               <ion-col size-lg="2" size-md="3" size-xs="4">
                 <form-button
-                  v-if="drugs.length >= 1 && interactions.length <= 0"
+                  :disabled="!(drugs.length >= 1 && interactions.length <= 0)"
                   @click="post_diagnosis"
                   buttonText="Submit"
                   type="button"
@@ -247,11 +292,11 @@ import {
   IonCardHeader,
   IonSearchbar,
   IonText,
-  IonCardSubtitle,
   IonCardTitle,
   IonButton,
   IonModal,
   modalController,
+  IonSpinner,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios from "axios";
@@ -278,12 +323,12 @@ export default defineComponent({
     IonCardHeader,
     IonSearchbar,
     IonText,
-    IonCardSubtitle,
     IonCardTitle,
     IonButton,
     IonModal,
     FormButton,
     Modal,
+    IonSpinner,
   },
   data() {
     return {
@@ -299,6 +344,10 @@ export default defineComponent({
       interactions_medications: [],
       interactions_drugs: [],
       diagnosis: "",
+      inter_loading: false,
+      drugs_loading: false,
+      inter_once: false,
+      datetime: null,
     };
   },
   async mounted() {
@@ -311,6 +360,17 @@ export default defineComponent({
     return { router };
   },
   methods: {
+    formatDate(date) {
+      var d = new Date(date),
+        month = "" + (d.getMonth() + 1),
+        day = "" + d.getDate(),
+        year = d.getFullYear();
+
+      if (month.length < 2) month = "0" + month;
+      if (day.length < 2) day = "0" + day;
+
+      return [year, month, day].join("-");
+    },
     moment: function() {
       return moment();
     },
@@ -319,14 +379,20 @@ export default defineComponent({
       await this.get_medications();
     },
     async removeDrug(value) {
+      this.inter_once = false;
       this.drugs = this.drugs.filter((item) => {
-        console.log(item.product_id);
         return item.product_id != value.product_id;
       });
+      this.interactions = this.interactions.filter((item) => {
+        return item.drug.product_id != value.product_id;
+      });
     },
-    async addDrug(item, to_date) {
-      this.drugs.push({ ...item, to_date: to_date });
-      console.log(this.drugs);
+    async addDrug(item) {
+      let ref = "date" + item.product_id;
+      this.inter_once = false;
+      console.log(this.$refs[ref]);
+      this.post_check({ ...item, to_date: this.$refs[ref].value });
+      this.drugs.push({ ...item, to_date: this.$refs[ref].value });
     },
 
     async get_patients() {
@@ -349,22 +415,29 @@ export default defineComponent({
           this.patientInfo = response.data;
         });
     },
-    async post_check() {
-      axios
+    async post_check(value) {
+      this.inter_loading = true;
+      await axios
         .post(
           process.env.VUE_APP_ROOT_API +
             `patients/` +
             this.patientInfo.patient_id +
             `/check_interactions`,
           {
-            drugs: this.drugs,
+            drug: value,
           }
         )
         .then((response) => {
-          this.interactions = response.data.results;
-          this.interactions_medications = response.data.medications;
-          this.interactions_drugs = response.data.drugs;
+          response.data.results?.length >= 1
+            ? this.interactions.push({
+                drug: response.data.drug,
+                results: response.data.results,
+              })
+            : null;
         });
+      this.inter_once = true;
+
+      this.inter_loading = false;
     },
     async post_diagnosis() {
       axios
@@ -378,9 +451,9 @@ export default defineComponent({
             diagnosis: this.diagnosis,
           }
         )
-        .then(() => {
-          this.router.push({
-            path: "PrescriptionPreview",
+        .then((results) => {
+          this.$router.push({
+            path: "PrescriptionPreview/" + results.data,
             params: {
               patinetInfo: this.patientInfo,
               drugs: this.drugs,
@@ -405,7 +478,8 @@ export default defineComponent({
         });
     },
     async get_drugs(mode = "") {
-      axios
+      this.drugs_loading = true;
+      await axios
         .get(
           process.env.VUE_APP_ROOT_API +
             `drugs?name=${this.drugname}&page=${this.drugpage}`
@@ -414,6 +488,7 @@ export default defineComponent({
           this.drugsInfo = response.data.data;
           mode == "reset" ? (this.drugpage = 1) : null;
         });
+      this.drugs_loading = false;
     },
 
     async openPatientModal() {
@@ -455,9 +530,7 @@ export default defineComponent({
     font-size: 24px;
   }
 }
-ion-text {
-  color: rebeccapurple;
-}
+
 .white {
   color: white;
 }

@@ -8,9 +8,10 @@
       </ion-col>
     </ion-row>
     <ion-grid>
-      <ion-card class="MainCard">
+      <ion-card v-if="patientInfo" class="MainCard">
         <img
           class="personal_photo"
+          style="margin:10px"
           src="../../../public/Rx_symbol.png"
           alt="logo"
         />
@@ -18,21 +19,91 @@
           <ion-card-header>
             <ion-row class="ion-align-items-center">
               <ion-card-title
-                style="
-                  text-transform: capitalize;
-                  line-height: 10px;
-                "
+                style="text-transform: capitalize; line-height: 10px"
               >
-                Test Name
-                <p style="font-size: 12px">SSN: 1234112</p>
+                {{ patientInfo.first_name }} {{ patientInfo.last_name }}
+                <p style="font-size: 12px">SSN: {{ patientInfo.ssn }}</p>
               </ion-card-title>
             </ion-row>
           </ion-card-header>
 
           <ion-card-content>
-            <p>Gender: Male</p>
+            <p>Gender: {{ patientInfo.gender }}</p>
+            <p>Birth Date: {{ formatDate(patientInfo.birth_date) }}</p>
+            <p>Mobile: {{ patientInfo.phone_number }}</p>
           </ion-card-content>
         </ion-card>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title
+              style="text-transform: capitalize; line-height: 10px"
+              >Diagnosis</ion-card-title
+            >
+            <ion-card-subtitle
+              >Doctor's diagnosis during the visit</ion-card-subtitle
+            >
+          </ion-card-header>
+          <ion-card-content>
+            <ion-text>{{ diagnosis }}</ion-text>
+          </ion-card-content>
+        </ion-card>
+        <!-- drugs list -->
+        <div v-if="drugs.length >= 1">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title
+                style="text-transform: capitalize; line-height: 10px"
+                >Prescribed drugs</ion-card-title
+              >
+              <ion-card-subtitle
+                >These are prescribed during this visit</ion-card-subtitle
+              >
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list>
+                <ion-item
+                  style="d-flex justify-items-between"
+                  :key="item.id"
+                  v-for="item in drugs"
+                >
+                  <ion-grid>
+                    <ion-row style="width: 100%">
+                      <ion-datetime
+                        :value="item.to_date"
+                        disabled
+                        style="margin:1px -12px"
+                      >
+                      </ion-datetime>
+                    </ion-row>
+                    <ion-row style="width: 100%">
+                      <ion-col>
+                        <b> {{ item.name }} </b>
+                        <ion-card-subtitle class="ion-align-items-center">
+                          {{ item.labeller }} ({{ item.strength }})
+                          <ion-icon :icon="earthOutline"></ion-icon>
+                          {{ item.country }}</ion-card-subtitle
+                        >
+                        <ion-badge style="margin-top: 10px" color="dark">{{
+                          item.parent_key
+                        }}</ion-badge>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </div>
+        <ion-grid>
+          <ion-row class="ion-justify-content-end">
+            <div style="margin-top: 10px">
+              <ion-card-title class="signature_text"
+                >Doctor Signature</ion-card-title
+              >
+              <div class="signature"></div>
+            </div>
+          </ion-row>
+        </ion-grid>
       </ion-card>
     </ion-grid>
   </ion-grid>
@@ -40,12 +111,15 @@
 <script>
 import { defineComponent } from "vue";
 import axios from "axios";
+import { earthOutline } from "ionicons/icons";
+
 import moment from "moment";
 export default defineComponent({
   name: "Prescription",
   components: {},
   data() {
     return {
+      earthOutline,
       patientInfo: null,
       drugsInfo: [],
       drugname: "",
@@ -60,15 +134,25 @@ export default defineComponent({
     };
   },
   async mounted() {
-    await this.get_patients();
-    // await this.get_patient();
-    await this.get_drugs();
+    await this.get_prescription(this.$route.params.id);
   },
   setup() {},
   methods: {
     moment: function() {
       return moment();
     },
+    formatDate(date) {
+      var d = new Date(date),
+        month = "" + (d.getMonth() + 1),
+        day = "" + d.getDate(),
+        year = d.getFullYear();
+
+      if (month.length < 2) month = "0" + month;
+      if (day.length < 2) day = "0" + day;
+
+      return [year, month, day].join("-");
+    },
+
     async selectPatient(item) {
       this.patientInfo = item;
       await this.get_medications();
@@ -84,83 +168,16 @@ export default defineComponent({
       console.log(this.drugs);
     },
 
-    async get_patients() {
+    async get_prescription(id) {
       axios.defaults.headers.common["Authorization"] =
         "Bearer " + localStorage.getItem("tokendoctor");
 
-      axios.get(process.env.VUE_APP_ROOT_API + `patients/`).then((response) => {
-        this.patients = response.data;
-        console.log(this.patients);
-      });
-    },
-    async get_patient() {
       axios
-        .get(
-          process.env.VUE_APP_ROOT_API +
-            `patients/` +
-            this.patientInfo.patient_id
-        )
+        .get(process.env.VUE_APP_ROOT_API + `prescriptions/` + id)
         .then((response) => {
-          this.patientInfo = response.data;
-        });
-    },
-    async post_check() {
-      axios
-        .post(
-          process.env.VUE_APP_ROOT_API +
-            `patients/` +
-            this.patientInfo.patient_id +
-            `/check_interactions`,
-          {
-            drugs: this.drugs,
-          }
-        )
-        .then((response) => {
-          this.interactions = response.data.results;
-          this.interactions_medications = response.data.medications;
-          this.interactions_drugs = response.data.drugs;
-        });
-    },
-    async post_diagnosis() {
-      axios
-        .put(
-          process.env.VUE_APP_ROOT_API +
-            `visits/` +
-            this.patientInfo.visit_id +
-            `/prescription`,
-          {
-            drugs: this.drugs,
-            diagnosis: this.diagnosis,
-          }
-        )
-        .then(() => {
-          console.log("success");
-        });
-    },
-    async get_medications() {
-      console.log(localStorage.getItem("tokendoctor"));
-      axios.defaults.headers.common["Authorization"] =
-        "Bearer " + localStorage.getItem("tokendoctor");
-      axios
-        .get(
-          process.env.VUE_APP_ROOT_API +
-            `patients/` +
-            this.patientInfo.patient_id +
-            `/medications`
-        )
-        .then((response) => {
-          this.medications = response.data;
-        });
-    },
-    async get_drugs(mode = "") {
-      axios
-        .get(
-          process.env.VUE_APP_ROOT_API +
-            `drugs?name=${this.drugname}&page=${this.drugpage}`
-        )
-        .then((response) => {
-          this.drugsInfo = response.data.data;
-          mode == "reset" ? (this.drugpage = 1) : null;
+          this.patientInfo = response.data[0].patient;
+          this.drugs = response.data[0].drugs;
+          this.diagnosis = response.data[0].diagnosis;
         });
     },
 
@@ -203,5 +220,18 @@ export default defineComponent({
 }
 .MainCard {
   margin: 0 20vh;
+}
+
+.signature {
+  padding: 30px;
+  margin: 10px 0;
+  border-radius: 15px;
+  max-width: 300px;
+  min-width: 200px;
+}
+.signature_text {
+  font-family: "Great Vibes", sans-serif;
+  font-size: 26px;
+  text-decoration: underline;
 }
 </style>
