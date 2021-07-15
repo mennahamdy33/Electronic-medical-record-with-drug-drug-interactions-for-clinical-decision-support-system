@@ -11,7 +11,7 @@
       <ion-card v-if="patientInfo" class="MainCard">
         <img
           class="personal_photo"
-          style="margin:10px"
+          style="margin: 10px"
           src="../../../public/Rx_symbol.png"
           alt="logo"
         />
@@ -71,7 +71,7 @@
                       <ion-datetime
                         :value="item.to_date"
                         disabled
-                        style="margin:1px -12px"
+                        style="margin: 1px -12px"
                       >
                       </ion-datetime>
                     </ion-row>
@@ -87,6 +87,12 @@
                           item.parent_key
                         }}</ion-badge>
                       </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-text style="padding:0px  5px"
+                        ><b style="font-size:14px">Dose: </b
+                        >{{ item.dose }}</ion-text
+                      >
                     </ion-row>
                   </ion-grid>
                 </ion-item>

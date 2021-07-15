@@ -177,6 +177,11 @@
                           <ion-badge style="margin-top: 10px" color="dark">{{
                             item.parent_key
                           }}</ion-badge>
+
+                          <ion-input
+                            :ref="'dose' + item.product_id"
+                            placeholder="Enter dose here ... "
+                          ></ion-input>
                         </ion-col>
 
                         <ion-button @click="removeDrug(item)" color="dark"
@@ -199,14 +204,14 @@
                         v-for="(results, index) in interactions"
                         :key="index"
                       >
-                        <ion-row style="width:100%">
-                          <ion-card-title style="padding:10px 0px">
+                        <ion-row style="width: 100%">
+                          <ion-card-title style="padding: 10px 0px">
                             {{ results.drug.name }}
                           </ion-card-title>
                         </ion-row>
 
                         <ion-row
-                          style="width:100%"
+                          style="width: 100%"
                           v-for="(item, id) in results.results"
                           :key="id"
                         >
@@ -222,7 +227,7 @@
                               }}</ion-badge>
                             </div>
                           </ion-label>
-                          <ion-row style="width:100%">
+                          <ion-row style="width: 100%">
                             <ion-label color="danger">
                               <b>{{ item.interaction_name }}</b></ion-label
                             >
@@ -263,7 +268,23 @@
             <ion-row class="ion-justify-content-center">
               <ion-col size-lg="2" size-md="3" size-xs="4">
                 <form-button
-                  :disabled="!(drugs.length >= 1 && interactions.length <= 0)"
+                  :disabled="!(drugs.length >= 1)"
+                  v-if="interactions.length >= 1"
+                  @click="
+                    submitAlert(
+                      'There are some Drug-Drug Interactions, are you sure that you want to submit?'
+                    )
+                  "
+                  buttonText="Submit"
+                  type="button"
+                />
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-justify-content-center">
+              <ion-col size-lg="2" size-md="3" size-xs="4">
+                <form-button
+                  :disabled="!(drugs.length >= 1)"
+                  v-if="interactions.length < 1"
                   @click="post_diagnosis"
                   buttonText="Submit"
                   type="button"
@@ -297,6 +318,7 @@ import {
   IonModal,
   modalController,
   IonSpinner,
+  alertController,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios from "axios";
@@ -360,6 +382,34 @@ export default defineComponent({
     return { router };
   },
   methods: {
+    async submitAlert(msg) {
+      const alert = await alertController.create({
+        cssClass: "my-custom-class",
+        header: "Alert",
+        // subHeader: 'Subtitle',
+        message: msg,
+        buttons: [
+          {
+            text: "Cancel",
+            role: "cancel",
+            cssClass: "dark",
+
+            handler: () => {
+              console.log("Confirm Cancel");
+            },
+          },
+          {
+            text: "Submit",
+            cssClass: "success",
+
+            handler: () => {
+              this.post_diagnosis();
+            },
+          },
+        ],
+      });
+      return alert.present();
+    },
     formatDate(date) {
       var d = new Date(date),
         month = "" + (d.getMonth() + 1),
@@ -440,6 +490,11 @@ export default defineComponent({
       this.inter_loading = false;
     },
     async post_diagnosis() {
+      this.drugs = await this.drugs.map((value) => {
+        let ref = "dose" + value.product_id;
+        return { ...value, dose: this.$refs[ref].value };
+      });
+
       axios
         .put(
           process.env.VUE_APP_ROOT_API +

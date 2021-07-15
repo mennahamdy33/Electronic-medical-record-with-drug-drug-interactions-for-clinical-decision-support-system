@@ -21,6 +21,7 @@ import PrescriptionPreview from '../Pages/DoctorProfile/PrescriptionPreview.vue'
 //import AllPatients from '../Pages/PatientProfile/AllPatients.vue'
 const routes = [
   {
+    
     path: '/',
     redirect: '/home',
   },
