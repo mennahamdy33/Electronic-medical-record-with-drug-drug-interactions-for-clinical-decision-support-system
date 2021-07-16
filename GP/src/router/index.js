@@ -119,7 +119,7 @@ const routes = [
     children:
       [
         {
-          path: '/todaySchedule',
+          path: 'todaySchedules',
           component: todaySchedules
         }, 
         {

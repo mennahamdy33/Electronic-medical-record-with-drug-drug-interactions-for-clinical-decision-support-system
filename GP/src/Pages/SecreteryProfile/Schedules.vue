@@ -62,7 +62,7 @@ import {
 } from "@ionic/vue";
 // import BaseTemplate from "../../components/BaseTemplate";
 export default defineComponent({
-  name: "MyProfileDoctor",
+  name: "todaySchedules",
   components: {
     // BaseTemplate,
     // IonList,
