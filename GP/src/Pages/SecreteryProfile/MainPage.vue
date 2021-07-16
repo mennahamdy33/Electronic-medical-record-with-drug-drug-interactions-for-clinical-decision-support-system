@@ -49,6 +49,9 @@
           <ion-item button router-link="/MainPageSecretery/BookVisit"
             >Book Visit</ion-item
           >
+          <ion-item button router-link="/MainPageSecretery/todaySchedules"
+            >Today's Schedules</ion-item
+          >
           <ion-item button router-link="/MainPageSecretery/MyProfileSecretery"
             >My Profile</ion-item
           >
