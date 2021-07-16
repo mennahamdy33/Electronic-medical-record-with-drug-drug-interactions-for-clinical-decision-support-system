@@ -102,7 +102,7 @@ import PatientCard from "../../components/PatientCard";
                          photo: med.photo,
                           first_name : med.first_name,
                           last_name : med.last_name,
-                          phone_number : '0' +med.phone_number,
+                          phone_number : '0' + (med.phone_number),
                           birth_date : med.birth_date.split('T')[0],
                           Medications : med.medications.split(','),
                           gender : med.gender,
@@ -158,7 +158,7 @@ import PatientCard from "../../components/PatientCard";
                 else if( this.searchQuerywithPhoneNumber){
                     return this.all.filter((item) => {
 
-                       return this.searchQuerywithPhoneNumber.split(" ").every((v) => (item.phoneNumber).toString().startsWith(v))
+                       return this.searchQuerywithPhoneNumber.split(" ").every((v) => (item.phone_number).toString().startsWith(v))
                     });  }
                 else {
                     return this.all;
