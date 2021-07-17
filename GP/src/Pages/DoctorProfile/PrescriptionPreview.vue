@@ -1,7 +1,7 @@
 <template>
   <ion-grid>
     <ion-row class="ion-justify-content-center">
-      <ion-col size-lg="8">
+      <ion-col>
         <div class="login-box">
           <h2 class="text">Prescription Preview</h2>
         </div>
@@ -21,7 +21,8 @@
         />
         <ion-card>
           <ion-card-header>
-            <ion-row class="ion-align-items-center">
+            <ion-row   class="ion-align-items-center">
+
               <ion-card-title
                 style="text-transform: capitalize; line-height: 10px"
               >
@@ -32,6 +33,7 @@
           </ion-card-header>
 
           <ion-card-content>
+
             <p>Gender: {{ patientInfo.gender }}</p>
             <p>Birth Date: {{ formatDate(patientInfo.birth_date) }}</p>
             <p>Mobile: {{ patientInfo.phone_number }}</p>
@@ -39,13 +41,10 @@
         </ion-card>
         <ion-card>
           <ion-card-header>
-            <ion-card-title
-              style="text-transform: capitalize; line-height: 10px"
-              >Diagnosis</ion-card-title
-            >
-            <ion-card-subtitle
-              >Doctor's diagnosis during the visit</ion-card-subtitle
-            >
+            <ion-card-title style="text-transform: capitalize;"> Diagnosis </ion-card-title>
+
+            <ion-card-subtitle>Doctor's diagnosis during the visit</ion-card-subtitle>
+
           </ion-card-header>
           <ion-card-content>
             <ion-text>{{ diagnosis }}</ion-text>
