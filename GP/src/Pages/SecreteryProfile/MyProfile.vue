@@ -295,7 +295,7 @@
               sec.birth_date = sec.birth_date.split('T')[0];
               this.secInfo = sec
                this.editedInfo = {...sec};
-               this.editedInfo.phone_number = '0'+ this.editedInfo.phone_number;
+            //    this.editedInfo.phone_number = '0'+ this.editedInfo.phone_number;
             // console.log(this.profilePhoto)
             
           } )

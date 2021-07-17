@@ -289,7 +289,7 @@
               doctor.birth_date = doctor.birth_date.split('T')[0];
               this.doctorInfo = doctor
               this.editedInfo = {...doctor};
-              this.editedInfo.phone_number = '0'+ this.editedInfo.phone_number
+            //   this.editedInfo.phone_number = '0'+ this.editedInfo.phone_number
             // console.log(this.profilePhoto)
             
           } )
