@@ -43,7 +43,8 @@
             <ion-card-header>
               <ion-row class="ion-align-items-center">
                 <ion-avatar v-if="patientInfo.photo">
-                  <img :src="patientInfo.photo" />
+                  <img v-if="patientInfo.photo != 'null'" :src="patientInfo.photo" />
+                  <img v-else src="../../../public/me.jpg" />
                 </ion-avatar>
                 <ion-card-title
                   style="text-transform: capitalize; line-height: 10px; margin-left:10px;"
