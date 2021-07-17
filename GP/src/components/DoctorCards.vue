@@ -5,7 +5,7 @@
         <ion-card-subtitle>{{ title }}</ion-card-subtitle>
         <ion-card-title>{{ doctorName }}</ion-card-title>
       </ion-card-header>
-      <ion-card-content> available : {{ workingHours }} </ion-card-content>
+      <ion-card-content></ion-card-content>
     </ion-card>
   </ion-col>
 </template>
@@ -30,7 +30,7 @@ export default {
     IonCardTitle,
     IonCol,
   },
-  props: ["title", "doctorName", "workingHours","ssn"],
+  props: ["title", "doctorName","ssn"],
   methods: {
     async openModal() {
       const modal = await modalController.create({

@@ -52,7 +52,7 @@
         :key="doctor.id"
         :title="doctor.specialty"
         :doctorName="doctor.fullName"
-        :workingHours="doctor.time"
+
         :ssn="patientSSN"
       ></doctor-card>
     </ion-row>
@@ -122,7 +122,7 @@ export default {
           id: "u1",
           fullName: "Schwarz",
           specialty: "Surgeon",
-          time: "all day",
+
         },
       ],
     };

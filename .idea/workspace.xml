@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cedb8e7-e9c7-4135-a7a4-c500cfbdd849" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/DoctorProfile/MyProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/DoctorProfile/MyProfile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/DoctorProfile/myPatients.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/DoctorProfile/myPatients.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/AllPatients.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/AllPatients.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MyProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MyProfile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GP/src/components/patientModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/components/patientModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/BookVisit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/BookVisit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GP/src/components/DoctorCards.vue" beforeDir="false" afterPath="$PROJECT_DIR$/GP/src/components/DoctorCards.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -123,7 +119,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="patientModal.vue" pinned="false" current-in-tab="true">
+          <file leaf-file-name="patientModal.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/GP/src/components/patientModal.vue">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="181">
@@ -178,20 +174,20 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="BookVisit.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="BookVisit.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/BookVisit.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="248">
-                  <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+                <state relative-caret-position="350">
+                  <caret line="112" column="11" lean-forward="true" selection-start-line="112" selection-start-column="11" selection-end-line="112" selection-end-column="11" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="MainPage.vue" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MainPage.vue">
+          <file leaf-file-name="DoctorCards.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/GP/src/components/DoctorCards.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="495">
-                  <caret line="176" column="10" selection-start-line="176" selection-start-column="10" selection-end-line="176" selection-end-column="10" />
+                <state relative-caret-position="522">
+                  <caret line="57" column="8" lean-forward="true" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
                 </state>
               </provider>
             </entry>
@@ -284,7 +280,6 @@
         <option value="$PROJECT_DIR$/GP/src/store/Patient/index.js" />
         <option value="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/AddPatient.vue" />
         <option value="$PROJECT_DIR$/GP/src/Pages/PatientProfile/PatientProfile.vue" />
-        <option value="$PROJECT_DIR$/GP/src/components/DoctorCards.vue" />
         <option value="$PROJECT_DIR$/GP/src/components/modal.vue" />
         <option value="$PROJECT_DIR$/GP/src/Pages/Purchase/Login.vue" />
         <option value="$PROJECT_DIR$/GP/.env.production" />
@@ -307,6 +302,8 @@
         <option value="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MainPage.vue" />
         <option value="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MyProfile.vue" />
         <option value="$PROJECT_DIR$/GP/src/components/patientModal.vue" />
+        <option value="$PROJECT_DIR$/GP/src/components/DoctorCards.vue" />
+        <option value="$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/BookVisit.vue" />
       </list>
     </option>
   </component>
@@ -562,12 +559,12 @@
       <workItem from="1626468714408" duration="3760000" />
       <workItem from="1626474465846" duration="2581000" />
       <workItem from="1626505797346" duration="899000" />
-      <workItem from="1626506771837" duration="310000" />
+      <workItem from="1626506771837" duration="1018000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="372476000" />
+    <option name="totallyTimeSpent" value="373184000" />
   </component>
   <component name="TodoView" selected-index="2">
     <todo-panel id="selected-file">
@@ -682,13 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-275">
           <caret line="1" column="3" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GP/src/components/DoctorCards.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -826,13 +816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/BookVisit.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/MainPage.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
@@ -930,6 +913,20 @@
             <element signature="n#ion-row#2;n#ion-grid#0;n#div#0;n#template#0;n#!!top" />
             <element signature="e#21762#21910#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GP/src/components/DoctorCards.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="57" column="8" lean-forward="true" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GP/src/Pages/SecreteryProfile/BookVisit.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="112" column="11" lean-forward="true" selection-start-line="112" selection-start-column="11" selection-end-line="112" selection-end-column="11" />
         </state>
       </provider>
     </entry>
