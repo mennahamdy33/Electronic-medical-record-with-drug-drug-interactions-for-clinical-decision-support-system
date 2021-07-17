@@ -132,13 +132,13 @@ import PatientCard from "../../components/PatientCard";
 
                         return this.searchQuerywithssn
                             .split(" ")
-                            .every((v) => (item.ssn).toString().startsWith(v))
+                            .every((v) => (item.ssn).startsWith(v))
                     });
                 }
                 else if( this.searchQuerywithPhoneNumber){
                     return this.Patients.filter((item) => {
 
-                       return this.searchQuerywithPhoneNumber.split(" ").every((v) => (item.phone_number).toString().startsWith(v))
+                       return this.searchQuerywithPhoneNumber.split(" ").every((v) => (item.phone_number).startsWith(v))
                     });  }
                 else {
                     return this.Patients;

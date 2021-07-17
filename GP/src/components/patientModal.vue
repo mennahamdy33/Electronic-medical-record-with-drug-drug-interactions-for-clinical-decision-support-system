@@ -662,7 +662,7 @@
                     console.log(this.newInfo);
                     if (complete) {
 
-                        if(!this.PatientInfo.phone_number.match(/^\d{11}$/) || (!this.PatientInfo.ssn.toString().match(/^\d{14}$/)) ){
+                        if(!this.PatientInfo.phone_number.match(/^\d{11}$/) || (!this.PatientInfo.ssn.match(/^\d{14}$/)) ){
 
 
                             this.presentAlert("invalid Phone number or National ID ");
