@@ -47,8 +47,21 @@
               ></ion-text
             >
           </ion-row>
+           
         </ion-grid>
       </ion-item>
+
+      <ion-grid>
+      <ion-row  >
+          <ion-col  size="12" size-sm>
+              <ion-button  @click="cancel" class="button">Cancel</ion-button>
+
+          </ion-col>
+
+
+
+        </ion-row>
+      </ion-grid>
     </ion-list>
   </ion-content>
 </template>
@@ -61,6 +74,7 @@ import {
   IonToolbar,
   IonItem,
   IonList,
+  modalController,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { earthOutline } from "ionicons/icons";
@@ -82,5 +96,10 @@ export default defineComponent({
   data() {
     return { earthOutline };
   },
+  methods:{
+    cancel() {
+                modalController.dismiss();
+            },
+  }
 });
 </script>

@@ -7,6 +7,10 @@
         </div>
       </ion-col>
     </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+    
+    
     <ion-grid>
       <ion-card v-if="patientInfo" class="MainCard">
         <img
@@ -112,6 +116,8 @@
         </ion-grid>
       </ion-card>
     </ion-grid>
+    
+  </ion-row>
   </ion-grid>
 </template>
 <script>
