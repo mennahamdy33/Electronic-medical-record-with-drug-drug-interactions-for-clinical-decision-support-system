@@ -125,6 +125,7 @@ export default defineComponent({
           }).
         then((res)=> {
           console.log(res)
+          this.changePhase({currentPhase: 'PersonalInformation'})
           this.router.push('/Login')
           })
         .catch(() =>
