@@ -18,3 +18,7 @@ Faculty of Engineering, Cairo University
 https://drive.google.com/file/d/14DRGPpWrcR5eCi4rHJuGIM8S-EqNT4h-/view?usp=sharing
 ## Presentation
 https://drive.google.com/file/d/14CGC3OmxLtbrLhVw5-5JPlOSMcyMFFJr/view?usp=sharing
+## Report
+https://drive.google.com/file/d/14GvCIN5GmWUPJ5B8opChbAm6JHiojqMX/view?usp=sharing
+## Paper
+https://drive.google.com/file/d/1xuhz8MNfV6G-tmv2Z_qrwO6Eac1ygO9B/view?usp=sharing
